@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $kar->name }} | Performa | HWA &bull; SAT
+    {{ $kar->name }} | Performa | Validasi | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -112,7 +112,7 @@
                                 @foreach ($kar_list as $res)
                                     <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                         <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                            <a href="{{ route('g.i', Crypt::encryptString($res->kar_id)) }}"
+                                            <a href="{{ route('r.g.i', Crypt::encryptString($res->kar_id)) }}"
                                                 class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span>
                                             </a>
                                         </td>

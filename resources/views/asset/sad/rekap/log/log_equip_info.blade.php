@@ -102,10 +102,10 @@
                                 data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                 <thead class="bg-200 text-800">
                                     <tr class="text-center">
-                                        <th style="min-width: 50px"
+                                        {{-- <th style="min-width: 50px"
                                             class="bg-primary text-white align-middle white-space-nowrap">
                                             Aksi
-                                        </th>
+                                        </th> --}}
                                         <th style="min-width: 100px"
                                             class="sort bg-primary text-white align-middle white-space-nowrap"
                                             data-sort="tgl">
@@ -172,10 +172,10 @@
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">
-                                    <th style="min-width: 50px"
+                                    {{-- <th style="min-width: 50px"
                                         class="bg-secondary text-white align-middle white-space-nowrap">
                                         Aksi
-                                    </th>
+                                    </th> --}}
                                     <th style="min-width: 50px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap"
                                         data-sort="no">
@@ -216,10 +216,10 @@
                             <tbody id="table-posts" class="list">
                                 @foreach ($log_list as $res)
                                     <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                        <td class="align-middle text-center text-1000 white-space-nowrap no">
+                                        {{-- <td class="align-middle text-center text-1000 white-space-nowrap no">
                                             <a href="{{ route('log.e.i', Crypt::encryptString($res->id)) }}"
                                                 class="btn btn-sm btn-info"><span class=" fas fa-info-circle"></span></a>
-                                        </td>
+                                        </td> --}}
                                         <td class="align-middle text-center text-1000 white-space-nowrap no">
                                             {{ $loop->iteration }}</td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap tgl">

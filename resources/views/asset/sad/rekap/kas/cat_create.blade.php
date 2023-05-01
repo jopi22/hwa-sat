@@ -402,7 +402,7 @@
 
     @include('comp.alert')
 
-<form action="{{ route('cat.s') }}" method="post">
+<form action="{{ route('r.cat.s') }}" method="post">
 @csrf
     <div class="card mb-3">
         <div class="card-header bg-light">

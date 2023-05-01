@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Performa Helper | Validasi | HWA &bull; SAT
+    Performa Helper | Arsip | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -21,19 +21,21 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-            <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-wrench"></i> Over Time <span class="text-danger">Validasi
-                    </span> <span class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Performa Helper & Mekanik </h4>
-            </div>
+<div class="card mb-3 bg-light shadow-none">
+    <div class="bg-holder bg-card d-none d-sm-block"
+        style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
+    <!--/.bg-holder-->
+    <div class="card-header d-flex align-items-center z-index-1 p-0">
+        <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="ms-n3">
+            <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Over Time <a
+                    href="{{ route('amast.g') }}"><span class="text-danger">Master Arsip</span></a>
+                {{ $master->created_at->format('F Y') }}
+            </h6>
+            <h4 class="mb-0 text-primary fw-bold">Performa Helper & Mekanik<span class="mb-1 text-info"></span> </h4>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 

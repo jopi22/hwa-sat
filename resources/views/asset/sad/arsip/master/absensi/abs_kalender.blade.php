@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Kalender | Validasi | HWA &bull; SAT
+    Kalender | Arsip | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')

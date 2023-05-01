@@ -14,7 +14,7 @@ class RcateringController extends Controller
     public function cat_list()
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Validasi')->first();
         $cek = CateringMaster::where('master_id', $master->id)->count();
         $cat_m = CateringMaster::where('master_id', $master->id)->first();
         if ($cat_m) {
@@ -42,9 +42,9 @@ class RcateringController extends Controller
     public function cat_create()
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Validasi')->first();
         $cat_m = CateringMaster::where('master_id', $master->id)->first();
-        return view('author.sad.kas.cat_create', compact('periode', 'master', 'cat_m'));
+        return view('asset.sad.rekap.kas.cat_create', compact('periode', 'master', 'cat_m'));
     }
 
 
@@ -69,7 +69,7 @@ class RcateringController extends Controller
             $cat['total'] = $porsi_tot;
             Catering::create($cat);
         }
-        return redirect()->route('cat.l')->with('success', 'Data Catering Berhasil Disimpan');
+        return redirect()->route('r.cat.l')->with('success', 'Data Catering Berhasil Disimpan');
     }
 
 

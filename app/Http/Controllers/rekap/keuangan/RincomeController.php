@@ -17,7 +17,7 @@ class RincomeController extends Controller
     public function gaji_list()
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Validasi')->first();
         $kar_list = KarMaster::where('master_id', $master->id)
             ->get();
         $cek_kar = KarMaster::where('master_id', $master->id)
@@ -48,7 +48,7 @@ class RincomeController extends Controller
     public function gaji_info($id)
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Validasi')->first();
         $decryptID = Crypt::decryptString($id);
         $kar = User::Find($decryptID);
         $kar_m = KarMaster::where('master_id', $master->id)
@@ -126,6 +126,6 @@ class RincomeController extends Controller
         $a = number_format($gaji_pokok_raw);
 
 
-        return view('asset.sad.gaji.gaji_info', compact('kar_list','cek_kar', 'str_harian', 'str_bulanan','str_ins','str_lem', 'a','ai','al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
+        return view('asset.sad.rekap.gaji.gaji_info', compact('kar_list','cek_kar', 'str_harian', 'str_bulanan','str_ins','str_lem', 'a','ai','al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
     }
 }

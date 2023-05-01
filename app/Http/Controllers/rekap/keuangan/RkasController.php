@@ -12,7 +12,7 @@ class RkasController extends Controller
     public function kas_list()
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Validasi')->first();
         $cek = Kas::where('master_id', $master->id)->count();
         $kas = Kas::where('master_id', $master->id)->get();
         //Perhitungan

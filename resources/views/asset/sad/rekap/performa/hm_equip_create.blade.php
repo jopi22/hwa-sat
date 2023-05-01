@@ -435,19 +435,19 @@
         </div>
         <div class="col-auto d-flex align-items-center">
             <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                <a href="{{ route('hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
+                <a href="{{ route('r.hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
                     <button class="btn btn-sm  text-primary" data-bs-toggle="pill"
                         data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button" role="tab"
                         aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" aria-selected="false"
                         id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
                 </a>
-                <a href="{{ route('hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
+                <a href="{{ route('r.hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
                     <button class="btn btn-sm  text-warning" data-bs-toggle="pill"
                         data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
                         aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="false"
                         id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
                 </a>
-                <a href="{{ route('hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
+                <a href="{{ route('r.hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
                     <button class="btn btn-sm active text-success" data-bs-toggle="pill"
                         data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button" role="tab"
                         aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" aria-selected="true"

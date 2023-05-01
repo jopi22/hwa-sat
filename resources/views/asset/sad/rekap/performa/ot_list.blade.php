@@ -209,7 +209,7 @@
             </div>
         </div>
     </div>
-    @include('comp.modal.hm.modal_ot_create')
-    @include('comp.modal.hm.modal_ot_edit')
-    @include('comp.modal.hm.modal_ot_hapus')
+    @include('comp.modal.hm.modal_rekap_ot_create')
+    @include('comp.modal.hm.modal_rekap_ot_edit')
+    @include('comp.modal.hm.modal_rekap_ot_hapus')
 @endsection

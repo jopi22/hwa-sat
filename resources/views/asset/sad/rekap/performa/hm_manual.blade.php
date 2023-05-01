@@ -235,7 +235,7 @@
         </div>
     </div>
 
-    @include('comp.modal.hm.modal_hm_manual_create')
-    @include('comp.modal.hm.modal_hm_manual_edit')
-    @include('comp.modal.hm.modal_hm_manual_delete')
+    @include('comp.modal.hm.modal_rekap_hm_manual_create')
+    @include('comp.modal.hm.modal_rekap_hm_manual_edit')
+    @include('comp.modal.hm.modal_rekap_hm_manual_delete')
 @endsection

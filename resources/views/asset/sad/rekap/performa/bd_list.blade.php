@@ -214,7 +214,7 @@
             {{-- // --}}
         </div>
     </div>
-    @include('comp.modal.bd.modal_bd_create')
-    @include('comp.modal.bd.modal_bd_edit')
-    @include('comp.modal.bd.modal_bd_hapus')
+    @include('comp.modal.bd.modal_rekap_bd_create')
+    @include('comp.modal.bd.modal_rekap_bd_edit')
+    @include('comp.modal.bd.modal_rekap_bd_hapus')
 @endsection

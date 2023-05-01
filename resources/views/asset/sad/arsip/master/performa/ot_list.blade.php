@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Performa OT | Validasi | HWA &bull; SAT
+    Performa OT | Arsip | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -25,13 +25,16 @@
 @section('superadmin')
     <div class="card mb-3 bg-light shadow-none">
         <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
+            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
+        <!--/.bg-holder-->
         <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-            <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-wrench"></i> Over Time <span class="text-danger">Validasi </span> <span
-                        class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Performa Over Time </h4>
+            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+            <div class="ms-n3">
+                <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Over Time <a
+                        href="{{ route('amast.g') }}"><span class="text-danger">Master Arsip</span></a>
+                    {{ $master->created_at->format('F Y') }}
+                </h6>
+                <h4 class="mb-0 text-primary fw-bold">Performa Over Time<span class="mb-1 text-info"></span> </h4>
             </div>
         </div>
     </div>
@@ -60,13 +63,6 @@
                         @endforeach
                     </select>
                 </div>&nbsp;
-                <div class="col-sm-3">
-                    <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop"><span class="fas fa-plus text-success"
-                            data-fa-transform="shrink-3"></span> Tambah<span
-                            class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
-                    </button>
-                </div>
             </div>
             @if ($cek_perform == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
@@ -76,10 +72,6 @@
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                         <thead class="bg-200 text-800">
                             <tr class="text-center">
-                                <th style="min-width: 100px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
-                                    Aksi
-                                </th>
                                 <th style="min-width: 120px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="no">
                                     ID OT
@@ -121,16 +113,6 @@
                         <tbody id="table-posts" class="list">
                             @foreach ($perform as $res)
                                 <tr id="" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                    <td class="align-middle text-1000 text-center white-space-nowrap id">
-                                        <div class="btn-group  btn-group-sm" role="group">
-                                            <a href="javascript:void(0)" data-bs-target="#edit-{{ $res->id }}"
-                                                data-id="{{ $res->id }}" data-bs-toggle="modal"
-                                                class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
-                                            <a href="javascript:void(0)" data-bs-target="#hapus-{{ $res->id }}"
-                                                data-id="{{ $res->id }}" data-bs-toggle="modal" class="btn btn-danger"
-                                                type="button"><i class="fas fa-trash-alt"></i></a>
-                                        </div>
-                                    </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                                         {{ $res->id }}
                                     </td>

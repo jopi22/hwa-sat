@@ -8,7 +8,6 @@ use App\Models\Breakdown;
 use App\Models\Catering;
 use App\Models\CateringMaster;
 use App\Models\Dedicated;
-use App\Models\Dokumen;
 use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\KarMaster;
@@ -16,30 +15,31 @@ use App\Models\Kas;
 use App\Models\Lokasi;
 use App\Models\Master;
 use App\Models\PengajuanAbsensi;
+use App\Models\PengajuanAbsensiList;
 use App\Models\Performa_hm;
 use App\Models\Performa_ot;
 use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
 
 class ArsipMasterController extends Controller
 {
-    public function amast_index()
+    public function amast_menu()
     {
-        $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
-        $mast = Master::orderBy('id', 'DESC')->get();
-        $cek = Master::all()->count();
-        return view('asset.sad.arsip.master.master', compact('mast', 'master', 'cek', 'periode'));
+        $mast = Master::where('status', 'Arsip')
+            ->orderBy('id', 'DESC')->get();
+        $cek = Master::where('status', 'Arsip')->count();
+        return view('asset.sad.arsip.master.master', compact('mast', 'cek'));
     }
 
 
     public function amaster_index($id)
     {
-        $periode = date('m-Y');
         $master = Master::Find($id);
-        $cek = Master::all()->count();
-        return view('asset.sad.arsip.master.master_index', compact('master', 'cek', 'periode'));
+        $cek = Master::Find($id)->count();
+        return view('asset.sad.arsip.master.master_index', compact('master', 'cek'));
     }
 
 
@@ -49,10 +49,35 @@ class ArsipMasterController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        $master = Master::where('status', 'Validasi')->first();
-        $cek = $master;
+        $master = Master::Find($id);
         $abs = Absensi::where('periode_id', $master->id)->take(0)->get();
-        return view('asset.sad.arsip.master.absensi.kelola_absensi', compact('abs', 'kar', 'master', 'cek'));
+        return view('asset.sad.arsip.master.absensi.kelola_absensi', compact('abs', 'kar', 'master'));
+    }
+
+
+    public function absSearch(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'search'     => 'required',
+        ], [
+            'required' => 'Tidak Boleh Kosong',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $master = Master::where('status', 'Arsip')->first();
+        //search
+        if ($request->has('search')) {
+            $abs = Absensi::where('periode_id', $master->id)
+                ->where('tgl', 'LIKE', '%' . $request->search . '%')->get();
+        } else {
+            $abs = Absensi::latest()->take(0)->get();
+        }
+
+        return view('asset.sad.arsip.master.absensi.kelola_absensi', compact('abs', 'master', 'kar'));
     }
 
 
@@ -99,11 +124,29 @@ class ArsipMasterController extends Controller
     }
 
 
-    public function abs_kalender()
+    // public function pengAbsInfo($id)
+    // {
+    //     date_default_timezone_set('Asia/Pontianak');
+    //     $master = Master::Find($id);
+    //     $cek = $master;
+    //     $decryptID = Crypt::decryptString($id);
+    //     $peng = PengajuanAbsensi::Find($decryptID);
+    //     $penglist = Absensi::where('pengajuan_fk', $peng->pengajuan_pk)->get();
+    //     $penglist_ = PengajuanAbsensiList::select('absensi_id')->distinct()
+    //         ->where('pengajuan_fk', $peng->pengajuan_pk)->get();
+    //     $all = PengajuanAbsensi::where('master_id', $master->id)->get();
+    //     $kar = User::where('status', '<>', 'Hidden')
+    //         ->where('status', '<>', 'Delete')
+    //         ->get();
+    //     return view('asset.sad.rekap.pengabs.pengabs_info', compact('peng', 'cek', 'penglist', 'penglist_', 'kar', 'all'));
+    // }
+
+
+    public function abs_kalender($id)
     {
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
-        $per = Master::where('status', 'Validasi')->first();
+        $per = Master::Find($id);
         $cek = $per;
         $abs = Absensi::where('periode_id', $per->id)->take(1)->get();
         $kar = User::where('status', '<>', 'Hidden')
@@ -205,21 +248,21 @@ class ArsipMasterController extends Controller
         $cek = Breakdown::where('master_id', $master->id)->count();
         $bd = Breakdown::where('master_id', $master->id)->get();
         $equip = Equipment::where('status', 'Aktif')->get();
-
         return view('asset.sad.arsip.master.performa.bd_list', compact('equip', 'cek', 'master', 'bd'));
     }
 
-    public function log_equip_list()
+
+    public function log_equip_list($id)
     {
-        $master = Master::where('status', 'Validasi')->first();
+        $master = Master::Find($id);
         $e_list = EquipMaster::where('master_id', $master->id)->get();
         return view('asset.sad.arsip.master.log.log_equip_list', compact('e_list', 'master'));
     }
 
-    public function kas_list()
+    public function kas_list($id)
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::Find($id);
         $cek = Kas::where('master_id', $master->id)->count();
         $kas = Kas::where('master_id', $master->id)->get();
         //Perhitungan
@@ -231,13 +274,13 @@ class ArsipMasterController extends Controller
             ->where('tipe', 'Kredit Pusat')->sum('jumlah');
         $saldo = $debit - $kredit;
         $grand_kredit = $kredit_p + $kredit;
-        return view('asset.sad.arsip.master.kas.kas_list', compact('periode','master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
+        return view('asset.sad.arsip.master.kas.kas_list', compact('periode', 'master', 'cek', 'kas', 'debit', 'kredit', 'kredit_p', 'saldo', 'grand_kredit'));
     }
 
-    public function gaji_list()
+    public function gaji_list($id)
     {
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::Find($id);
         $kar_list = KarMaster::where('master_id', $master->id)
             ->get();
         $cek_kar = KarMaster::where('master_id', $master->id)
@@ -261,13 +304,12 @@ class ArsipMasterController extends Controller
         $lemburan = $jam_total * $master->lemburan;
         $ins_lem = $insentif + $lemburan;
         $grand = $pokok + $insentif + $lemburan;
-        return view('asset.sad.arsip.master.gaji.gaji_list', compact('jabatan','cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
+        return view('asset.sad.arsip.master.gaji.gaji_list', compact('jabatan', 'cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
     }
 
-    public function cat_list()
+    public function cat_list($id)
     {
-        $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::Find($id);
         $cek = CateringMaster::where('master_id', $master->id)->count();
         $cat_m = CateringMaster::where('master_id', $master->id)->first();
         if ($cat_m) {
@@ -284,10 +326,10 @@ class ArsipMasterController extends Controller
             $porsi_harga = $cat_m->porsi_harga;
             $harga_raw = $total * $porsi_harga;
             $harga = number_format($harga_raw);
-            return view('asset.sad.rekap.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
+            return view('asset.sad.arsip.master.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
         }
 
 
-        return view('asset.sad.arsip.master.kas.cat_list', compact('periode', 'master', 'cek','cat_m'));
+        return view('asset.sad.arsip.master.kas.cat_list', compact( 'master', 'cek', 'cat_m'));
     }
 }
