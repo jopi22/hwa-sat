@@ -30,7 +30,7 @@
 @endsection
 
 @section('superadmin')
-    @if ($master->periode == $periode)
+    @if ($master->status == "Validasi")
         @if ($cek->ket == 1)
             <div class="card mb-3 bg-light shadow-none">
                 <div class="bg-holder bg-card d-none d-sm-block"
@@ -39,7 +39,7 @@
                 <div class="card-header d-flex align-items-center z-index-1 p-0">
                     <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
                     <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Absensi <span
+                        <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Rekapitulasi <span
                                 class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
                         <h4 class="mb-0 text-primary fw-bold">Pengajuan Absensi </h4>
                     </div>
@@ -109,15 +109,9 @@
                         </div>
                         <div class="col-auto mt-4">
                             <div class="col-auto">
-                                <a href="{{ route('peng.abs.cm') }}">
+                                <a href="{{ route('r.peng.abs.cm') }}">
                                     <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
                                             class="fas fa-plus text-success" data-fa-transform="shrink-3"></span> Tambah<span
-                                            class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
-                                    </button>
-                                </a>
-                                <a href="{{ route('peng.abs.c') }}">
-                                    <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
-                                            class="fas fa-user-plus text-success" data-fa-transform="shrink-3"></span> Saya<span
                                             class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
                                     </button>
                                 </a>
@@ -208,12 +202,12 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
                                                             @else
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
                                                             @endif
@@ -309,12 +303,12 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
                                                             @else
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
                                                             @endif
@@ -410,12 +404,12 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
                                                             @else
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
                                                             @endif
@@ -511,12 +505,12 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
                                                             @else
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
                                                             @endif
@@ -542,6 +536,6 @@
             @include('comp.card.card404_kalender')
         @endif
     @else
-        Harap Melakukan Update Master Data
+        Data Validasi Kosong
     @endif
 @endsection

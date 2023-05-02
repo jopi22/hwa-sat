@@ -58,7 +58,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-calendar-check text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="#!">
+                                <a class="stretched-link text-decoration-none" href="{{route('r.abs.kel')}}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Data Absensi</h5>
                                 </a>
                             </div>
@@ -74,7 +74,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-calendar-alt text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="#!">
+                                <a class="stretched-link text-decoration-none" href="{{route('r.abs.kal')}}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Kalender</h5>
                                 </a>
                             </div>
