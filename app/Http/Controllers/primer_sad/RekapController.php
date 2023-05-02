@@ -17,11 +17,8 @@ class RekapController extends Controller
 {
     public function rekap_index()
     {
-        $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
-        // $mit = Mitra::all();
-        // $cek = Mitra::all()->count();
-        return view('author.sad.rekap.rekap_index', compact( 'periode', 'master'));
+        $master = Master::where('status', 'Validasi')->first();
+        return view('asset.sad.rekap.rekap_index', compact('master'));
     }
 
 }

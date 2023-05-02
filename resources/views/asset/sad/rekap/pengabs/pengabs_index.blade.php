@@ -1,15 +1,11 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Pengajuan Absensi | HWA &bull; SAT
+    Pengajuan Absensi | Validasi | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @if ($cek->periode == $periode)
-        @include('layouts.panel.sad.vertikal')
-    @else
-        @include('layouts.panel.sad.vertikal_off')
-    @endif
+@include('layouts.panel.sad.vertikal')
 @endsection
 
 @section('link')
@@ -34,13 +30,14 @@
         @if ($cek->ket == 1)
             <div class="card mb-3 bg-light shadow-none">
                 <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                    style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
                 <!--/.bg-holder-->
                 <div class="card-header d-flex align-items-center z-index-1 p-0">
-                    <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
-                    <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Rekapitulasi <span
-                                class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
+                    <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
+                    <div class="ms-n0">
+                        <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Absensi <span
+                            class="text-danger">Validasi</span> <span
+                            class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
                         <h4 class="mb-0 text-primary fw-bold">Pengajuan Absensi </h4>
                     </div>
                 </div>
@@ -107,7 +104,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-auto mt-4">
+                        {{-- <div class="col-auto mt-4">
                             <div class="col-auto">
                                 <a href="{{ route('r.peng.abs.cm') }}">
                                     <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
@@ -116,7 +113,7 @@
                                     </button>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-body p-0">

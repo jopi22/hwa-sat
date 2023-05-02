@@ -1,15 +1,11 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $peng->id }}Rekap | Pengajuan Absen | HWA &bull; SAT
+    {{ $peng->id }} | Pengajuan Absen | Validasi | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @if ($cek->periode == $periode)
-        @include('layouts.panel.sad.vertikal')
-    @else
-        @include('layouts.panel.sad.vertikal_off')
-    @endif
+    @include('layouts.panel.sad.vertikal')
 @endsection
 
 @section('link')
@@ -36,7 +32,7 @@
             <div>
                 <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
                             class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('peng.abs.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
+                <a href="{{ route('r.peng.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
                             class="fas fa-list text-primary"></i></button></a>
                 <a href="#"><button class="btn btn-link btn-dark btn-sm p-0"><i
                             class="fas fa-spinner text-primary"></i></button></a>
@@ -60,7 +56,8 @@
                             <h6 class="mb-0">
                                 @if ($peng->respon_status == 'Belum')
                                     <h6 class="mb-0 fs-1"><span class="badge bg-sm bg-secondary rounded-pill"><i
-                                                class="fas fa-question-circle"></i> Belum Direspon</span></h6> <code>Harap anda respon pengajuan ini.</code>
+                                                class="fas fa-question-circle"></i> Belum Direspon</span></h6> <code>Harap
+                                        anda respon pengajuan ini.</code>
                                 @else
                                     @if ($peng->respon_status == 'Ditolak')
                                         <h6 class="mb-0 fs-1"><span class="badge bg-sm bg-danger rounded-pill"><i
@@ -202,11 +199,10 @@
                     @foreach ($all as $res)
                         <div class="d-flex mb-3 hover-actions-trigger align-items-center">
                             <div class="file-thumbnail"><img class="border h-100 w-100 fit-cover rounded-2"
-                                    src="@if ($res->kar_peng_->image)
-                                    {{ asset($res->kar_peng_->image) }}
+                                    src="@if ($res->kar_peng_->image) {{ asset($res->kar_peng_->image) }}
                                     @else
-                                    {{ asset('assets/img/team/avatar.png') }}
-                                    @endif" alt="" /></div>
+                                    {{ asset('assets/img/team/avatar.png') }} @endif"
+                                    alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold"
                                         href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}">#{{ $res->id }}
