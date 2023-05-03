@@ -3,6 +3,7 @@
 use App\Http\Controllers\primer_sad\RekapController;
 use App\Http\Controllers\rekap\absensi\RabsensiController;
 use App\Http\Controllers\rekap\absensi\RpengabsController;
+use App\Http\Controllers\rekap\logistik\RlogistikController;
 use App\Http\Controllers\rekap\performa\RbreakdownController;
 use App\Http\Controllers\rekap\performa\RperformaHMController;
 use App\Http\Controllers\rekap\performa\RperformaOTController;
@@ -70,6 +71,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rekap_bd_store', 'bd_store')->name('r.bd.s');
         Route::post('rekap_bd_update', 'bd_update')->name('r.bd.u');
         Route::post('rekap_bd_delete', 'bd_delete')->name('r.bd.d');
+    });
+
+    Route::controller(RlogistikController::class)->group(function () {
+        //Master Logistik
+        Route::get('rekap_log_equip_list', 'log_equip_list')->name('r.log.e.l');
+        Route::get('rekap_log_equip_info/{log}', 'log_equip_info')->name('r.log.e.i');
+        Route::get('rekap_log_equip_edit/{log}', 'log_equip_edit')->name('r.log.e.e');
+        Route::get('rekap_log_equip_create/{log}', 'log_equip_create')->name('r.log.e.c');
+        Route::post('rekap_log_equip_update', 'log_equip_update')->name('r.log.e.u');
+        Route::post('rekap_log_equip_store', 'log_equip_store')->name('r.log.e.s');
     });
 
 });

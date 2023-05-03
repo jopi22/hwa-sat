@@ -177,4 +177,100 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6 mb-3 col-xxl-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="d-flex align-items-center"><img class="me-2"
+                            src="{{ asset('assets/img/tickets/reports/2.png') }}" alt="" height="35" />
+                        <h5 class="fs-0 fw-normal text-800 mb-0">Keuangan</h5>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="scrollbar-overlay pt-0 px-x1 ask-analytics">
+
+                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="fas fa-coins text-primary"></span>
+                                <a class="stretched-link text-decoration-none" href="{{ route('r.ot.l') }}">
+                                    <h5 class="fs--1 text-600 mb-0 ps-3">Kas Perusahaan</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="fas fa-donate text-primary"></span>
+                                <a class="stretched-link text-decoration-none" href="{{ route('r.ot.k') }}">
+                                    <h5 class="fs--1 text-600 mb-0 ps-3">Income Perusahaan</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="fas fa-utensils text-primary"></span>
+                                <a class="stretched-link text-decoration-none" href="{{ route('r.bd.l') }}">
+                                    <h5 class="fs--1 text-600 mb-0 ps-3">Catering</h5>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-end py-2">
+                    {{-- // --}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3 col-xxl-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="d-flex align-items-center"><img class="me-2"
+                            src="{{ asset('assets/img/tickets/open-tickets.png') }}" alt="" height="35" />
+                        <h5 class="fs-0 fw-normal text-800 mb-0">Logistik</h5>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="scrollbar-overlay pt-0 px-x1 ask-analytics">
+                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="far fa-share-square text-primary"></span>
+                                <a class="stretched-link text-decoration-none" href="{{ route('r.log.e.l') }}">
+                                    <h5 class="fs--1 text-600 mb-0 ps-3">Barang Keluar</h5>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-end py-2">
+                    {{-- // --}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3 col-xxl-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <div class="d-flex align-items-center"><img class="me-2"
+                            src="{{ asset('assets/img/tickets/unassigned.png') }}" alt="" height="35" />
+                        <h5 class="fs-0 fw-normal text-800 mb-0">Proses Akhir Validasi</h5>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="scrollbar-overlay pt-0 px-x1 ask-analytics">
+                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3 bg-success">
+                            <div class="d-flex align-items-center">
+                                <span class="fas fa-flag-checkered text-white"></span>
+                                <a type="submit" class="stretched-link text-decoration-none" href="{{ route('r.log.e.l') }}">
+                                    <h5 class="fs--1 text-white mb-0 ps-3">Arsipkan Data Master</h5>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-light text-end py-2">
+                    {{-- // --}}
+                </div>
+            </div>
+        </div>
     @endsection
