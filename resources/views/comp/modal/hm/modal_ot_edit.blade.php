@@ -7,7 +7,7 @@
                         class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body p-0">
-                    <form action="{{ route('ot.u') }}" method="post">
+                    <form action="{{ route('r.ot.u') }}" method="post">
                         @csrf
                         <input type="hidden" name="delete" value="{{ $res->id }}">
                         <input type="hidden" name="id" value="{{ $res->id }}">

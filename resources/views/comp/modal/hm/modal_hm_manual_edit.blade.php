@@ -7,7 +7,7 @@
                         class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body p-0">
-                    <form action="{{ route('hm.m.u', $hasil->id) }}" method="post">
+                    <form action="{{ route('r.hm.m.u', $hasil->id) }}" method="post">
                         @method('PUT')
                         @csrf
                         <div class="bg-warning rounded-top-lg py-3 ps-4 pe-6">
