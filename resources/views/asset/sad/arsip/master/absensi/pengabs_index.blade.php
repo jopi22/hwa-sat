@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Pengajuan Absensi | Validasi | HWA &bull; SAT
+    Pengajuan Absensi | Master | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -340,12 +340,12 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('a.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
                                                             @else
-                                                                <a href="{{ route('a.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
                                                             @endif

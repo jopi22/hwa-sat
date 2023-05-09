@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\master_sad\keuangan;
+namespace App\Http\Controllers\rekap\keuangan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kas;
 use App\Models\Master;
 use Illuminate\Http\Request;
 
-class KasController extends Controller
+class RkasController extends Controller
 {
     public function kas_list()
     {
@@ -24,7 +24,7 @@ class KasController extends Controller
             ->where('tipe', 'Kredit Pusat')->sum('jumlah');
         $saldo = $debit - $kredit;
         $grand_kredit = $kredit_p + $kredit;
-        return view('author.sad.kas.kas_list', compact('periode','master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
+        return view('asset.sad.rekap.kas.kas_list', compact('periode','master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
     }
 
 

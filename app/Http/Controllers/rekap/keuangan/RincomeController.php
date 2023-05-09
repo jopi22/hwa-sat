@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\master_sad\keuangan;
+namespace App\Http\Controllers\rekap\keuangan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
@@ -12,7 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
-class IncomeController extends Controller
+class RincomeController extends Controller
 {
     public function gaji_list()
     {
@@ -41,7 +41,7 @@ class IncomeController extends Controller
         $lemburan = $jam_total * $master->lemburan;
         $ins_lem = $insentif + $lemburan;
         $grand = $pokok + $insentif + $lemburan;
-        return view('author.sad.gaji.gaji_list', compact('jabatan','cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
+        return view('asset.sad.rekap.gaji.gaji_list', compact('jabatan','cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
     }
 
 

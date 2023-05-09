@@ -9,10 +9,25 @@
 @endsection
 
 @section('link')
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
 @endsection
 
 @section('script')
+    <script type="text/javascript">
+        function htmlTableToExcel(type) {
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {
+                sheet: "sheet1"
+            });
+            XLSX.write(excelFile, {
+                bookType: type,
+                bookSST: true,
+                type: 'base64'
+            });
+            XLSX.writeFile(excelFile, 'ExportedFile:HTMLTableToExcel.' + type);
+        }
+    </script>
     <script src="{{ asset('vendors/countup/countUp.umd.js') }}"></script>
     <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
@@ -21,20 +36,6 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-            <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-stopwatch"></i> Hours Meter <span class="text-danger">Validasi </span> <span
-                        class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Performa Operator & Driver </h4>
-            </div>
-        </div>
-    </div>
-
     @include('comp.alert')
 
     <div class="card mb-3">
@@ -45,8 +46,8 @@
             <div class="row justify-content-left ms-3 mt-3 mb-3 g-0">
                 <div class="col-auto col-sm-3">
                     <form>
-                        <div class="input-group"><input class="form-control form-control-sm shadow-none search"
-                                type="search" placeholder="Pencarian..." aria-label="search" />
+                        <div class="input-group"><input class="form-control form-control-sm shadow-none search" type="search"
+                                placeholder="Pencarian..." aria-label="search" />
                         </div>
                     </form>
                 </div>&nbsp;
@@ -60,32 +61,29 @@
                     </select>
                 </div>&nbsp;
                 <div class="col-auto col-sm-3 ">
-                    <a href="{{route('p.hm.k')}}" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-falcon-info"><i
-                        class="fas fa-print"></i> Print</button></a>
+                    <button id="button" onclick="htmlTableToExcel('xlsx')" class="btn btn-sm btn-falcon-success"><i
+                            class="fas fa-file-excel"></i> Excel</button>
                 </div>
             </div>
             @if ($cek_perform == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
             @else
                 <div class="table-responsive scrollbar">
-                    <table class="table table-sm table-striped table-bordered mb-0 fs--1"
+                    <table id="tblToExcl" class="table table-sm table-striped table-bordered mb-0 fs--1"
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                         <thead class="bg-200 text-800">
                             <tr class="text-center">
-                                <th style="min-width: 50px" class="bg-secondary text-white align-middle white-space-nowrap">
-                                    Aksi
-                                </th>
                                 <th style="min-width: 50px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="no">
-                                    #
+                                    No
                                 </th>
                                 <th style="min-width: 120px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="id">
-                                    ID O/D
+                                    ID Operator/Driver
                                 </th>
                                 <th style="min-width: 350px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="nama">
-                                    Nama
+                                    Nama Operator/Driver
                                 </th>
                                 <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap"
@@ -104,11 +102,6 @@
                         <tbody id="table-posts" class="list">
                             @foreach ($kar_list as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                    <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                        <a href="{{ route('r.hm.k.i', Crypt::encryptString($res->id)) }}"
-                                            class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span>
-                                        </a>
-                                    </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         {{ $loop->iteration }}</td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">

@@ -59,6 +59,20 @@ class RperformaHMController extends Controller
         return view('asset.sad.rekap.performa.hm_karyawan', compact('cek_perform', 'jabatan', 'master', 'kar_list'));
     }
 
+
+    public function print_hm_karyawan()
+    {
+        $master = Master::where('status', 'Validasi')->first();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $jabatan = User::select('jabatan')->distinct()
+            ->where('tipe_gaji', 'AI')->get();
+        return view('asset.sad.rekap.performa.print_hm_karyawan', compact('cek_perform', 'jabatan', 'master', 'kar_list'));
+    }
+
     public function hm_kar_info($id)
     {
         $decryptID = Crypt::decryptString($id);

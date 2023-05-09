@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\master_sad\keuangan\KasController;
+use App\Http\Controllers\primer_sad\PrintController;
 use App\Http\Controllers\primer_sad\RekapController;
 use App\Http\Controllers\rekap\absensi\RabsensiController;
 use App\Http\Controllers\rekap\absensi\RpengabsController;
+use App\Http\Controllers\rekap\keuangan\RcateringController;
+use App\Http\Controllers\rekap\keuangan\RincomeController;
+use App\Http\Controllers\rekap\keuangan\RkasController;
 use App\Http\Controllers\rekap\logistik\RlogistikController;
 use App\Http\Controllers\rekap\performa\RbreakdownController;
 use App\Http\Controllers\rekap\performa\RperformaHMController;
@@ -14,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(RekapController::class)->group(function () {
         // Index
         Route::get('rekap_index', 'rekap_index')->name('rek.g');
+        Route::put('arsip_save/{arsip_save}', 'arsip_save')->name('r.arsip');
     });
 
     Route::controller(RpengabsController::class)->group(function () {
@@ -47,6 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rekap_hm_equip_refresh', 'hm_equip_refresh')->name('r.hm.e.r');
         // HM OD
         Route::get('rekap_hm_Karyawan', 'hm_karyawan')->name('r.hm.k');
+        Route::get('print_hm_Karyawan', 'print_hm_karyawan')->name('p.hm.k');
         Route::get('rekap_hm_Karyawan/{kar}', 'hm_kar_info')->name('r.hm.k.i');
         Route::post('rekap_hm_kar_refresh', 'hm_kar_refresh')->name('r.hm.k.r');
 
@@ -81,6 +88,31 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('rekap_log_equip_create/{log}', 'log_equip_create')->name('r.log.e.c');
         Route::post('rekap_log_equip_update', 'log_equip_update')->name('r.log.e.u');
         Route::post('rekap_log_equip_store', 'log_equip_store')->name('r.log.e.s');
+    });
+
+    Route::controller(RcateringController::class)->group(function () {
+        // Catering
+        Route::get('rekap_cat_list', 'cat_list')->name('r.cat.l');
+        Route::get('rekap_cat_create', 'cat_create')->name('r.cat.c');
+        Route::post('rekap_cat_store', 'cat_store')->name('r.cat.s');
+        Route::post('rekap_cat_update', 'cat_update')->name('r.cat.u');
+        Route::post('rekap_cat_delete', 'cat_delete')->name('r.cat.d');
+        Route::post('rekap_cat_setting', 'cat_setting')->name('r.cat.set');
+        Route::post('rekap_cat_refresh', 'cat_refresh')->name('r.cat.r');
+    });
+
+     Route::controller(RkasController::class)->group(function () {
+        // Kas
+        Route::get('rekap_kas_list', 'kas_list')->name('r.kas.l');
+        Route::post('rekap_kas_store', 'kas_store')->name('r.kas.s');
+        Route::post('rekap_kas_update', 'kas_update')->name('r.kas.u');
+        Route::post('rekap_kas_delete', 'kas_delete')->name('r.kas.d');
+    });
+
+    Route::controller(RincomeController::class)->group(function () {
+        // Gaji
+        Route::get('rekap_gaji_list', 'gaji_list')->name('r.g.l');
+        Route::get('rekap_gaji_info/{gaji}', 'gaji_info')->name('r.g.i');
     });
 
 });

@@ -13,11 +13,26 @@
 @endsection
 
 @section('link')
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}">
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
 @endsection
 
 @section('script')
+    <script type="text/javascript">
+        function htmlTableToExcel(type) {
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {
+                sheet: "sheet1"
+            });
+            XLSX.write(excelFile, {
+                bookType: type,
+                bookSST: true,
+                type: 'base64'
+            });
+            XLSX.writeFile(excelFile, 'HWA_Excel.' + type);
+        }
+    </script>
     <script src="{{ asset('assets/js/flatpickr.js') }}"></script>
     <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
@@ -69,6 +84,10 @@
                                             type="search" placeholder="Cari Nama & Id Karyawan" aria-label="search" />
                                     </div>
                                 </form>
+                            </div>&nbsp;
+                            <div class="col-auto col-sm-3 mb-3">
+                                <button class="btn btn-sm btn-falcon-info" id="button"
+                                    onclick="htmlTableToExcel('xlsx')"><i class="fas fa-print"></i> Print</button>
                             </div>
                         </div>
                         <div class="table-responsive scrollbar">
@@ -76,12 +95,13 @@
                             @else
                                 <form action="{{ route('abs.abs') }}" method="post">
                                     @csrf
-                                    <table class="table table-bordered table-striped fs--1 mb-0">
+                                    <table id="tblToExcl" class="table table-bordered table-striped fs--1 mb-0">
                                         <thead class="bg-200 text-900">
                                             <tr>
                                                 <th style="min-width: 250px">ID Absensi</th>
                                                 <th style="min-width: 250px">Tgl Absensi</th>
-                                                <th style="min-width: 250px" class="text-center text-white bg-danger text-1000">Aksi
+                                                <th style="min-width: 250px"
+                                                    class="text-center text-white bg-danger text-1000">Aksi
                                                 </th>
                                                 <th style="min-width: 250px" class="sort" data-sort="name">Nama</th>
                                                 <th style="min-width: 250px" class="sort" data-sort="id">ID Karyawan</th>

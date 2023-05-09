@@ -16,6 +16,7 @@ include 'hwa/route_sad_print.php';
 include 'hwa/route_sad_akt.php';
 include 'hwa/route_sad_arsip.php';
 include 'hwa/route_sad_rekap.php';
+include 'hwa/route_sad_arsip_master.php';
 
 Route::get('/', function () {
     return view('auth.login');

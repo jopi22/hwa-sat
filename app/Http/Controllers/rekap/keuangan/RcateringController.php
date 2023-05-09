@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\master_sad\keuangan;
+namespace App\Http\Controllers\rekap\keuangan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catering;
@@ -9,7 +9,7 @@ use App\Models\Kas;
 use App\Models\Master;
 use Illuminate\Http\Request;
 
-class CateringController extends Controller
+class RcateringController extends Controller
 {
     public function cat_list()
     {
@@ -31,11 +31,11 @@ class CateringController extends Controller
             $porsi_harga = $cat_m->porsi_harga;
             $harga_raw = $total * $porsi_harga;
             $harga = number_format($harga_raw);
-            return view('author.sad.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
+            return view('asset.sad.rekap.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
         }
 
 
-        return view('author.sad.kas.cat_list', compact('periode', 'master', 'cek','cat_m'));
+        return view('asset.sad.rekap.kas.cat_list', compact('periode', 'master', 'cek','cat_m'));
     }
 
 

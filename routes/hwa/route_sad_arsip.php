@@ -32,11 +32,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('catatan_delete', 'catatan_delete')->name('catat.d');
     });
 
-    // Master Data
-    Route::controller(ArsipMasterController::class)->group(function () {
-        Route::get('arsip_master_index', 'amast_index')->name('amast.g');
-    });
-
     // Galeri
     Route::controller(GaleriController::class)->group(function () {
         Route::get('galeri', 'galeri_index')->name('gal.g');

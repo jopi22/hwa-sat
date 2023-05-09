@@ -219,11 +219,11 @@
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Buat
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('print.g') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Print
                                         Laporan</span></div>
                             </a><!-- more inner pages-->
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 

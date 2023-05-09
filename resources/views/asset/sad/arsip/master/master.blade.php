@@ -128,7 +128,7 @@
                                     </div>
                                 </a>
                                 <div class="ms-1 ms-sm-3">
-                                    <p class="fw-semi-bold mb-3 mb-sm-2"><a href="tickets-preview.html">{{$item->periode}}</a></p>
+                                    <p class="fw-semi-bold mb-3 mb-sm-2"><a href="{{route('master.gdp', $item->id)}}">{{$item->periode}}</a></p>
                                     <div class="row align-items-center gx-0 gy-2">
                                         <div class="col-auto me-2">
                                             <h6 class="client mb-0"><a

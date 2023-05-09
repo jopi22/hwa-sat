@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Rekapitulasi | HWA &bull; SAT
+    Arsip | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -31,7 +31,7 @@
             <div class="ms-n0">
                 <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Rekapitulasi
                 </h6>
-                <h4 class="mb-0 text-primary fw-bold">Validasi <span
+                <h4 class="mb-0 text-primary fw-bold">{{$master->periode}} <span
                         class="mb-1 text-info"></span> </h4>
             </div>
         </div>
@@ -57,7 +57,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-calendar-check text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.abs.kel') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.abs.kel', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Data Absensi</h5>
                                 </a>
                             </div>
@@ -65,7 +65,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-envelope text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.peng.g') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.peng.g', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Pengajuan Surat</h5>
                                 </a>
                             </div>
@@ -73,7 +73,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-calendar-alt text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.abs.kal') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.abs.kal', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Kalender</h5>
                                 </a>
                             </div>
@@ -97,18 +97,18 @@
                 </div>
                 <div class="card-body p-0">
                     <div class="scrollbar-overlay pt-0 px-x1 ask-analytics">
-                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
+                        {{-- <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-stopwatch text-primary"></span>
                                 <a class="stretched-link text-decoration-none" href="{{ route('r.hm.p') }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Hours Meter</h5>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-envelope text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.hm.e') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.hm.e', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Performa Equipment</h5>
                                 </a>
                             </div>
@@ -116,15 +116,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-calendar-alt text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.hm.m') }}">
-                                    <h5 class="fs--1 text-600 mb-0 ps-3">HM Manual</h5>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
-                            <div class="d-flex align-items-center">
-                                <span class="fas fa-calendar-alt text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.hm.k') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.hm.k', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Performa O/D</h5>
                                 </a>
                             </div>
@@ -151,7 +143,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-clock text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.ot.l') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.ot.l', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Over Time</h5>
                                 </a>
                             </div>
@@ -159,7 +151,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-chart-bar text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.ot.k') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.ot.k', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Performa Helper</h5>
                                 </a>
                             </div>
@@ -167,7 +159,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-wrench text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.bd.l') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.bd.l', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Breakdown</h5>
                                 </a>
                             </div>
@@ -195,7 +187,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-coins text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.kas.l') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.kas.l', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Kas Perusahaan</h5>
                                 </a>
                             </div>
@@ -203,15 +195,15 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-donate text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.g.l') }}">
-                                    <h5 class="fs--1 text-600 mb-0 ps-3">Income Karyawan</h5>
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.g.l', $master->id) }}">
+                                    <h5 class="fs--1 text-600 mb-0 ps-3">Income Perusahaan</h5>
                                 </a>
                             </div>
                         </div>
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="fas fa-utensils text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.cat.l') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.cat.l', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Catering</h5>
                                 </a>
                             </div>
@@ -238,7 +230,7 @@
                         <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                             <div class="d-flex align-items-center">
                                 <span class="far fa-share-square text-primary"></span>
-                                <a class="stretched-link text-decoration-none" href="{{ route('r.log.e.l') }}">
+                                <a class="stretched-link text-decoration-none" href="{{ route('a.log.e.l', $master->id) }}">
                                     <h5 class="fs--1 text-600 mb-0 ps-3">Barang Keluar</h5>
                                 </a>
                             </div>
@@ -288,13 +280,13 @@
             <div class="modal-footer">
                 <button data-bs-dismiss="modal" aria-label="Close" type="button" class=" btn btn-light"><i
                         class="fas fa-times"></i> Batal</button>
-                <form action="{{ route('r.arsip', $master->id) }}" method="post">
+                {{-- <form action="{{ route('r.arsip', $master->id) }}" method="post">
                     @csrf
                     @method('put')
                     <input type="hidden" name="status" value="Arsip">
                     <button type="submit" class="btn btn-success ms-2"><i class="fas fa-check-circle"></i> Ya,
                         Arsipkan</button>
-                </form>
+                </form> --}}
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Performa O/D | Validasi | HWA &bull; SAT
+    Performa Helper | Validasi | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -28,9 +28,9 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
             <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-stopwatch"></i> Hours Meter <span class="text-danger">Validasi </span> <span
-                        class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Performa Operator & Driver </h4>
+                <h6 class="mb-1 text-primary"><i class="fas fa-wrench"></i> Over Time <span class="text-danger">Validasi
+                    </span> <span class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                <h4 class="mb-0 text-primary fw-bold">Performa Helper & Mekanik </h4>
             </div>
         </div>
     </div>
@@ -58,10 +58,6 @@
                             <option value="{{ $asu->jabatan }}">{{ $asu->jabatan }}</option>
                         @endforeach
                     </select>
-                </div>&nbsp;
-                <div class="col-auto col-sm-3 ">
-                    <a href="{{route('p.hm.k')}}" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-falcon-info"><i
-                        class="fas fa-print"></i> Print</button></a>
                 </div>
             </div>
             @if ($cek_perform == 0)
@@ -94,18 +90,18 @@
                                 </th>
                                 <th style="min-width: 100px"
                                     class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="hm">
-                                    Grand Total HM
+                                    Jam Total
                                 </th>
                                 <th style="min-width: 150px"
                                     class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="ins">
-                                    Total Insentif (Rp)</th>
+                                    Total Lemburan (Rp)</th>
                             </tr>
                         </thead>
                         <tbody id="table-posts" class="list">
                             @foreach ($kar_list as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                        <a href="{{ route('r.hm.k.i', Crypt::encryptString($res->id)) }}"
+                                        <a href="{{ route('r.ot.k.i', Crypt::encryptString($res->id)) }}"
                                             class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span>
                                         </a>
                                     </td>
@@ -133,15 +129,15 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap hm">
-                                        @if ($res->hm_total)
-                                            {{ $res->hm_total }}
+                                        @if ($res->jam_total)
+                                            {{ $res->jam_total }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap ins">
-                                        @if ($res->insentif)
-                                            <h6 data-countup='{"duration":0,"endValue":{{ $res->insentif }}}'>0
+                                        @if ($res->lemburan)
+                                            <h6 data-countup='{"duration":0,"endValue":{{ $res->lemburan }}}'>0
                                             </h6>
                                         @else
                                             -
