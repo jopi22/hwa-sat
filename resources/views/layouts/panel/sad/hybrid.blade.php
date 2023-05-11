@@ -144,6 +144,7 @@
                         class="fas fa-moon fs-0"></span></label>
             </div>
         </li>
+
         <li class="nav-item">
             <a href="#settings-offcanvas" data-bs-toggle="offcanvas">
                 <div class="theme-control-toggle fa-icon-wait px-2">
@@ -159,13 +160,15 @@
                 </div>
             </a>
         </li>
-        <li class="nav-item d-none d-sm-block">
+
+        {{-- <li class="nav-item d-none d-sm-block">
             <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait"
                 href="app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart"
                     data-fa-transform="shrink-7" style="font-size: 33px;"></span><span
                     class="notification-indicator-number">1</span></a>
-        </li>
-        <li class="nav-item dropdown">
+        </li> --}}
+
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
                 id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false" data-hide-on-body-scroll="data-hide-on-body-scroll"><span class="fas fa-bell"
@@ -276,7 +279,8 @@
                             href="app/social/notifications.html">View all</a></div>
                 </div>
             </div>
-        </li>
+        </li> --}}
+
         <li class="nav-item dropdown px-1">
             <a class="nav-link fa-icon-wait nine-dots p-1" id="navbarDropdownMenu" role="button"
                 data-hide-on-body-scroll="data-hide-on-body-scroll" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -330,6 +334,7 @@
                 </div>
             </div>
         </li>
+
         <li class="nav-item dropdown"><a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-xl">
@@ -342,9 +347,8 @@
                     <a class="dropdown-item fw-bold text-warning" href="#!"><span
                             class="fas fa-crown me-1"></span><span>{{ Auth::user()->name }}</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#!">Profile</a>
-                    <a class="dropdown-item" href="user/profile.html">account</a>
-                    <a class="dropdown-item" href="user/settings.html">Settings</a>
+                    <a class="dropdown-item" href="{{route('kar.i', Crypt::encryptString(Auth::user()->id))}}">Profile</a>
+                    {{-- <a class="dropdown-item" href="{{route('akun.i', Crypt::encryptString(Auth::user()->id))}}">Account</a> --}}
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

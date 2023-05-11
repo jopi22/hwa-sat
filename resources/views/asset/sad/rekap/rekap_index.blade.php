@@ -5,7 +5,11 @@
 @endsection
 
 @section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+@if ($master == 1)
+@include('layouts.panel.sad.vertikal')
+@else
+@include('layouts.panel.sad.vertikal_off')
+@endif
 @endsection
 
 @section('link')
