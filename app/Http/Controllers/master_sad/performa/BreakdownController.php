@@ -6,19 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Breakdown;
 use App\Models\Equipment;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BreakdownController extends Controller
 {
     public function bd_list()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $cek = Breakdown::where('master_id', $master->id)->count();
         $bd = Breakdown::where('master_id', $master->id)->get();
         $equip = Equipment::where('status', 'Aktif')->get();
 
-        return view('author.sad.pfm.bd_list', compact('equip', 'cek','periode','master','bd'));
+        return view('author.sad.pfm.bd_list', compact('equip','nav', 'cek','periode','master','bd'));
     }
 
 

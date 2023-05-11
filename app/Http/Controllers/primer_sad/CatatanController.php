@@ -6,49 +6,55 @@ use App\Http\Controllers\Controller;
 use App\Models\Catatan;
 use App\Models\Dokumen;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class CatatanController extends Controller
 {
     public function catatan_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $cat = Catatan::orderBy('id', 'DESC')->get();
         $cek = Catatan::all()->count();
         $kat = Catatan::select('kategori')->distinct()->get();
-        return view('asset.sad.arsip.catatan.catatan', compact('cat','master','cek','periode','kat'));
+        return view('asset.sad.arsip.catatan.catatan', compact('cat','nav', 'master','cek','periode','kat'));
     }
 
 
     public function catatan_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $cat = Catatan::orderBy('id', 'DESC')->get();
         $cek = Catatan::all()->count();
-        return view('asset.sad.arsip.catatan.catatan_create', compact('cat','master','cek','periode'));
+        return view('asset.sad.arsip.catatan.catatan_create', compact('cat','nav', 'master','cek','periode'));
     }
 
 
     public function catatan_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $catat = Catatan::Find($decryptID);
-        return view('asset.sad.arsip.catatan.catatan_info', compact('catat', 'master', 'periode'));
+        return view('asset.sad.arsip.catatan.catatan_info', compact('catat','nav', 'master', 'periode'));
     }
 
 
     public function catatan_edit($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $catat = Catatan::Find($decryptID);
-        return view('asset.sad.arsip.catatan.catatan_edit', compact('catat', 'master', 'periode'));
+        return view('asset.sad.arsip.catatan.catatan_edit', compact('catat','nav', 'master', 'periode'));
     }
 
 

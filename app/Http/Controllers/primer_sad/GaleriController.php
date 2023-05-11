@@ -6,29 +6,33 @@ use App\Http\Controllers\Controller;
 use App\Models\FotoGaleri;
 use App\Models\Galeri;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class GaleriController extends Controller
 {
     public function galeri_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $gal = Galeri::orderBy('id', 'DESC')->get();
         $cek = Galeri::all()->count();
-        return view('asset.sad.arsip.galeri.galeri', compact('gal', 'master', 'cek', 'periode'));
+        return view('asset.sad.arsip.galeri.galeri', compact('gal','nav', 'master', 'cek', 'periode'));
     }
 
 
     public function galeri_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $gal = Galeri::Find($decryptID);
         $foto = FotoGaleri::where('galeri_id', $decryptID)->get();
-        return view('asset.sad.arsip.galeri.galeri_info', compact('gal', 'master', 'periode','foto'));
+        return view('asset.sad.arsip.galeri.galeri_info', compact('gal','nav', 'master', 'periode','foto'));
     }
 
 

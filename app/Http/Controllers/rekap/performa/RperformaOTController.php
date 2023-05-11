@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Jabatan;
 use App\Models\KarMaster;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\Performa_ot;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class RperformaOTController extends Controller
 {
     public function ot_list()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $master = Master::where('status', 'Validasi')->first();
         $cek_perform = Performa_ot::where('master_id', $master->id)
             ->count();
@@ -24,7 +27,7 @@ class RperformaOTController extends Controller
             ->where('status', '<>', 'Delete')
             ->where('tipe_gaji', 'AL')
             ->get();
-        return view('author.sad.rekap.pfm.ot_list', compact('master', 'cek_perform', 'perform', 'kar_filter'));
+        return view('author.sad.rekap.pfm.ot_list', compact('master','nav', 'cek_perform', 'perform', 'kar_filter'));
     }
 
 
@@ -141,6 +144,7 @@ class RperformaOTController extends Controller
 
     public function ot_karyawan()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $master = Master::where('status', 'Validasi')->first();
         $cek_perform = Performa_ot::where('master_id', $master->id)
             ->count();
@@ -149,11 +153,12 @@ class RperformaOTController extends Controller
             ->get();
         $jabatan = User::select('jabatan')->distinct()
             ->where('tipe_gaji', 'AL')->get();
-        return view('author.sad.rekap.pfm.ot_karyawan', compact('cek_perform', 'jabatan', 'master', 'jabatan', 'kar_list'));
+        return view('author.sad.rekap.pfm.ot_karyawan', compact('cek_perform','nav', 'jabatan', 'master', 'jabatan', 'kar_list'));
     }
 
     public function ot_kar_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $master = Master::where('status', 'Validasi')->first();
         $kar = KarMaster::Find($decryptID);
@@ -170,7 +175,7 @@ class RperformaOTController extends Controller
             ->where('kar_id', $kar->kar_id)
             ->sum('jam_total');
         $lemburan = $total_jam * $master->lemburan;
-        return view('asset.sad.rekap.performa.ot_kar_info', compact('cek_perform', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master',  'data', 'total_jam'));
+        return view('asset.sad.rekap.performa.ot_kar_info', compact('cek_perform','nav', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master',  'data', 'total_jam'));
     }
 
 

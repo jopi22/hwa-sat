@@ -5,12 +5,15 @@ namespace App\Http\Controllers\rekap\keuangan;
 use App\Http\Controllers\Controller;
 use App\Models\Kas;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RkasController extends Controller
 {
     public function kas_list()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Validasi')->first();
         $cek = Kas::where('master_id', $master->id)->count();
@@ -24,7 +27,7 @@ class RkasController extends Controller
             ->where('tipe', 'Kredit Pusat')->sum('jumlah');
         $saldo = $debit - $kredit;
         $grand_kredit = $kredit_p + $kredit;
-        return view('author.sad.rekap.kas.kas_list', compact('periode','master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
+        return view('author.sad.rekap.kas.kas_list', compact('periode','nav', 'master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
     }
 
 

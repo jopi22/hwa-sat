@@ -15,7 +15,7 @@
             <div class="d-flex align-middle py-3">
                 <img class="me-2" src="{{ asset('assets/img/logos/hubstaff.png') }}" alt="" width="35"
                     height="35" />
-                <span class="font-sans-serif">HWA SAP</span>
+                <span class="font-sans-serif">HWA SAT</span>
             </div>
         </a>
     </div>
@@ -24,57 +24,63 @@
         <div class="navbar-vertical-content scrollbar">
             <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
 
-
-
-                <li class="nav-item mt-2">
-                    <div class="col-auto navbar-vertical-label">Rekapitulasi</div>
-                    <div class="col ps-0">
-                        <hr class="mb-0 navbar-vertical-divider" />
+                <li class="nav-item">
+                    <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
+                        <div class="col-auto navbar-vertical-label">Validasi</div>
+                        <div class="col ps-0">
+                            <hr class="mb-0 navbar-vertical-divider" />
+                        </div>
                     </div>
-                    <a class="nav-link dropdown-indicator" href="#qq-learning" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                </li>
+
+                <!-- Rekapitulasi-->
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#qq-learning" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="e-learning">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-building"></span></span><span class="nav-link-text ps-1">
-                                Rekapitulasi </span></div>
+                                    class="fas fa-clipboard-check"></span></span><span class="nav-link-text ps-1">
+                                Validasi </span></div>
                     </a>
                     <ul class="nav collapse" id="qq-learning">
-
-                        <li class="nav-item"><a class="nav-link" href="#">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('rek.g') }}">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Validasi</span>
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Buat Laporan</span></div>
+                        {{-- <li class="nav-item"><a class="nav-link" href="{{ route('print.g') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Print
+                                        Laporan</span></div>
                             </a><!-- more inner pages-->
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
-                <li class="nav-item mt-2">
-                    <div class="col-auto navbar-vertical-label">Data Perusahaan</div>
-                    <div class="col ps-0">
-                        <hr class="mb-0 navbar-vertical-divider" />
+                <li class="nav-item">
+                    <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
+                        <div class="col-auto navbar-vertical-label">Perusahaan Data</div>
+                        <div class="col ps-0">
+                            <hr class="mb-0 navbar-vertical-divider" />
+                        </div>
                     </div>
+                </li>
+
 
                 <li class="nav-item">
-
-                    <a class="nav-link dropdown-indicator" href="#e-learning" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                    <a class="nav-link dropdown-indicator" href="#e-learning" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="e-learning">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                     class="fas fa-user-circle"></span></span><span class="nav-link-text ps-1">
-                                Karyawan</span></div>
+                                SDM</span></div>
                     </a>
                     <ul class="nav collapse" id="e-learning">
-
                         <li class="nav-item"><a class="nav-link" href="{{ route('kar.g') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
                                         Karyawan</span></div>
                             </a><!-- more inner pages-->
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('akun.g') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Akun
-                                        Karyawan</span></div>
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
+                                        Account</span></div>
                             </a><!-- more inner pages-->
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('jab.g') }}">
@@ -89,110 +95,98 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#sdads-sdf" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="e-learning">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                    class="fas fa-truck-monster"></span></span><span class="nav-link-text ps-1">
+                                Equipment </span></div>
+                    </a>
+                    <ul class="nav collapse" id="sdads-sdf">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('heavy.l') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Heavy
+                                        Equipment</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('vehicle.l') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Vehicle</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('support.l') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Support
+                                        Equipment</span></div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <a class="nav-link dropdown-indicator" href="#e-m" role="button" data-bs-toggle="collapse"
                     aria-expanded="false" aria-controls="e-learning">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                 class="fab fa-pagelines"></span></span><span
-                            class="nav-link-text ps-1">Aktivitas</span></div>
+                            class="nav-link-text ps-1">Aktivitas</span>
+                    </div>
                 </a>
                 <ul class="nav collapse" id="e-m">
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/student-overview.html">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('sp.g') }}">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Surat
                                     Peringatan</span></div>
                         </a><!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
                             <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Permohonan
                                     Resign</span></div>
                         </a><!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
-                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Mutasi</span>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('mit.g') }}">
+                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Mitra
+                                    Perusahaan</span>
                             </div>
                         </a><!-- more inner pages-->
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
-                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dokumen</span>
-                            </div>
-                        </a><!-- more inner pages-->
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
-                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Galeri</span>
-                            </div>
-                        </a><!-- more inner pages-->
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
-                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Catatan</span>
-                            </div>
-                        </a><!-- more inner pages-->
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
-                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Kunjungan
-                                    Tamu</span></div>
-                        </a><!-- more inner pages-->
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="app/e-learning/trainer-profile.html">
-                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Kunjungan
-                                    Keluar</span></div>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('eve.g') }}">
+                            <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Event</span></div>
                         </a><!-- more inner pages-->
                     </li>
                 </ul>
-                </li>
 
                 <li class="nav-item">
-
-                    <a class="nav-link dropdown-indicator" href="#sdads-ss" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                    <a class="nav-link dropdown-indicator" href="#sdads-ss" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="e-learning">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-building"></span></span><span class="nav-link-text ps-1">
+                                    class="fas fa-file-archive"></span></span><span class="nav-link-text ps-1">
                                 Arsip </span></div>
                     </a>
                     <ul class="nav collapse" id="sdads-ss">
-
-                        <li class="nav-item"><a class="nav-link" href="{{ route('hwa.g') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Profil
-                                        Perusahaan</span>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('amast.g') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1"> Master
+                                        Data</span>
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Struktur
-                                        Organisai</span></div>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('dok.g') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dokumen</span>
+                                </div>
                             </a><!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Peraturan
-                                        Perusahaan</span></div>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('gal.g') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Galeri</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('catat.g') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Catatan</span>
+                                </div>
                             </a><!-- more inner pages-->
                         </li>
                     </ul>
                 </li>
 
-                <li class="nav-item">
 
-                    <a class="nav-link dropdown-indicator" href="#sdads-sdf" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-building"></span></span><span class="nav-link-text ps-1">
-                                Equipment </span></div>
-                    </a>
-                    <ul class="nav collapse" id="sdads-sdf">
-
-                        <li class="nav-item"><a class="nav-link" href="{{ route('hwa.g') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Eksavator</span>
-                                </div>
-                            </a><!-- more inner pages-->
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Vibro</span></div>
-                            </a><!-- more inner pages-->
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dump Truck</span></div>
-                            </a><!-- more inner pages-->
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="nav-item">
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\master_sad\absensi;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\PengajuanAbsensi;
 use App\Models\PengajuanAbsensiList;
 use App\Models\User;
@@ -17,6 +18,7 @@ class PengajuanAbsController extends Controller
 {
     public function pengAbsGet()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
@@ -55,12 +57,13 @@ class PengajuanAbsController extends Controller
         $cek_tol = PengajuanAbsensi::where('master_id', $master->id)
             ->where('respon_status', 'Ditolak')
             ->count();
-        return view('author.sad.abs.pengabs_index', compact('all', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
+        return view('author.sad.abs.pengabs_index', compact('all','nav', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
     }
 
 
     public function pengAbsCreate()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $today = date('d-m-Y');
@@ -74,12 +77,13 @@ class PengajuanAbsController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        return view('author.sad.abs.pengabs_create', compact('kar', 'cek', 'periode', 'master', 'tgl_list', 'today', 'time'));
+        return view('author.sad.abs.pengabs_create', compact('kar','nav', 'cek', 'periode', 'master', 'tgl_list', 'today', 'time'));
     }
 
 
     public function pengAbsCreateM()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $today = date('d-m-Y');
@@ -90,12 +94,13 @@ class PengajuanAbsController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        return view('author.sad.abs.pengabs_create_m', compact('kar', 'cek', 'periode', 'master', 'today', 'time', 'abs'));
+        return view('author.sad.abs.pengabs_create_m', compact('kar','nav', 'cek', 'periode', 'master', 'today', 'time', 'abs'));
     }
 
 
     public function absSearch_2(Request $request)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $validator = Validator::make($request->all(), [
             'search'     => 'required',
         ], [
@@ -124,7 +129,7 @@ class PengajuanAbsController extends Controller
             $abs = Absensi::latest()->take(0)->get();
         }
 
-        return view('author.sad.abs.pengabs_create_m', compact('abs', 'cek', 'kar', 'today', 'time', 'periode', 'master'));
+        return view('author.sad.abs.pengabs_create_m', compact('abs','nav', 'cek', 'kar', 'today', 'time', 'periode', 'master'));
     }
 
 
@@ -240,6 +245,7 @@ class PengajuanAbsController extends Controller
 
     public function pengAbsInfo($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
@@ -253,12 +259,13 @@ class PengajuanAbsController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        return view('asset.sad.abs.pengabs_info', compact('peng', 'cek', 'periode', 'penglist', 'penglist_', 'kar', 'all'));
+        return view('asset.sad.abs.pengabs_info', compact('peng','nav', 'cek', 'periode', 'penglist', 'penglist_', 'kar', 'all'));
     }
 
 
     public function pengAbsPrint($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $peng = PengajuanAbsensi::Find($decryptID);
         $penglist = Absensi::where('pengajuan_fk', $peng->pengajuan_pk)->get();
@@ -267,7 +274,7 @@ class PengajuanAbsController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        return view('asset.sad.abs.pengabs_surat', compact('peng', 'penglist', 'penglist_', 'kar'));
+        return view('asset.sad.abs.pengabs_surat', compact('peng','nav', 'penglist', 'penglist_', 'kar'));
     }
 
 

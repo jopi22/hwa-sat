@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HwaController;
-use App\Http\Controllers\pfm\PerformaHMController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 include 'hwa/route_sad_kar.php';
@@ -29,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(HwaController::class)->group(function () {
         // Dashboard
-        Route::get('/', 'superadmin')->name('dash');
+        Route::get('/', 'dashboard')->name('dash');
         //HWA Profile
         Route::get('hwa_profil', 'hwaProfil')->name('hwa.g');
         Route::get('hwa_edit_profil', 'hwaEdit')->name('hwa.e');
@@ -38,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::controller(HwaController::class)->group(function () {
+    // Hwa
     Route::get('hwa_profil', 'hwaProfil')->name('hwa.g');
     Route::get('hwa_edit_profil', 'hwaEdit')->name('hwa.e');
     Route::put('hwa_Update', 'hwaUpdate')->name('hwa.u');
@@ -45,6 +45,14 @@ Route::controller(HwaController::class)->group(function () {
     Route::put('hwa_struktur_edit', 'hwa_struktur_update')->name('hwa.s.u');
     Route::get('hwa_peraturan', 'hwa_peraturan')->name('hwa.p');
     Route::put('hwa_peraturan_edit', 'hwa_peraturan_update')->name('hwa.p.u');
+});
+
+Route::controller(SettingController::class)->group(function () {
+    //Navigator
+    Route::get('navigator', 'navigator')->name('nav.g');
+    Route::post('navigator_save', 'navigator_save')->name('nav.s');
+    Route::put('navigator_save/{nav}', 'navigator_update')->name('nav.u');
+    Route::delete('navigator_save/{nav}', 'navigator_delete')->name('nav.d');
 });
 
 

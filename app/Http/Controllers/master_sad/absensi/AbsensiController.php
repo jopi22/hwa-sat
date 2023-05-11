@@ -6,14 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\KarMaster;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AbsensiController extends Controller
 {
     public function abs_kelola()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $today = date('d-m-Y');
         $periode = date('m-Y');
@@ -24,12 +27,13 @@ class AbsensiController extends Controller
         $master = Master::where('status', 'Present')->first();
         $abs = Absensi::where('periode_id', $master->id)
             ->where('tgl', $today)->get();
-        return view('author.sad.abs.kelola_absensi', compact('abs', 'kar', 'today', 'master', 'periode', 'cek'));
+        return view('author.sad.abs.kelola_absensi', compact('abs','nav', 'kar', 'today', 'master', 'periode', 'cek'));
     }
 
 
     public function abs_kalender()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $per = Master::where('status', 'Present')->first();
@@ -60,9 +64,9 @@ class AbsensiController extends Controller
         if ($cek->ket == 1) {
             $persentase = $sudah * 100 / $all;
             $progres = number_format($persentase);
-            return view('asset.sad.abs.abs_kalender', compact('progres', 'per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
+            return view('asset.sad.abs.abs_kalender', compact('progres','nav', 'per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
         }
-        return view('asset.sad.abs.abs_kalender', compact('per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
+        return view('asset.sad.abs.abs_kalender', compact('per','nav', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
     }
 
 

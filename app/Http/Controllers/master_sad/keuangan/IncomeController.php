@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\KarMaster;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\Performa_hm;
 use App\Models\Performa_ot;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class IncomeController extends Controller
 {
     public function gaji_list()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $kar_list = KarMaster::where('master_id', $master->id)
@@ -41,12 +44,13 @@ class IncomeController extends Controller
         $lemburan = $jam_total * $master->lemburan;
         $ins_lem = $insentif + $lemburan;
         $grand = $pokok + $insentif + $lemburan;
-        return view('author.sad.gaji.gaji_list', compact('jabatan','cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
+        return view('author.sad.gaji.gaji_list', compact('jabatan','cek_kar','nav', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
     }
 
 
     public function gaji_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $decryptID = Crypt::decryptString($id);
@@ -126,6 +130,6 @@ class IncomeController extends Controller
         $a = number_format($gaji_pokok_raw);
 
 
-        return view('asset.sad.gaji.gaji_info', compact('kar_list','cek_kar', 'str_harian', 'str_bulanan','str_ins','str_lem', 'a','ai','al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
+        return view('asset.sad.gaji.gaji_info', compact('kar_list','cek_kar','nav', 'str_harian', 'str_bulanan','str_ins','str_lem', 'a','ai','al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
     }
 }

@@ -5,17 +5,20 @@ namespace App\Http\Controllers\primer_sad;
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class BankController extends Controller
 {
     public function bank_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $bank = Bank::all();
-        return view('author.sad.kar.bank_index',compact('bank','master','periode'));
+        return view('author.sad.kar.bank_index',compact('bank','master','periode','nav'));
     }
 
 

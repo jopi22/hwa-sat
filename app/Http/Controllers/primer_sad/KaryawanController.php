@@ -8,6 +8,7 @@ use App\Models\Bank;
 use App\Models\Hwa;
 use App\Models\Jabatan;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +19,9 @@ class KaryawanController extends Controller
 {
     public function kar_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
@@ -27,15 +29,16 @@ class KaryawanController extends Controller
             ->where('status', '<>', 'Trash')
             ->count();
         $jab_f = Jabatan::all();
-        return view('author.sad.kar.kar_index', compact('cek', 'kar', 'jab_f', 'master', 'periode',));
+        return view('author.sad.kar.kar_index', compact('cek','nav', 'kar', 'jab_f', 'master', 'periode',));
     }
 
 
     public function kar_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $kar = User::Find($decryptID);
         $bnk = Bank::all();
         $jab = Jabatan::all();
@@ -48,25 +51,27 @@ class KaryawanController extends Controller
         $hwa = Hwa::where('id', 1)->first();
         // History
         $h_user = User::where('author', $decryptID)->get();
-        return view('asset.sad.kar.kar_info', compact('kar', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
+        return view('asset.sad.kar.kar_info', compact('kar','nav', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
     }
 
 
     public function kar_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $bank = Bank::all();
         $jabatan = Jabatan::all();
-        return view('author.sad.kar.kar_create', compact('jabatan', 'bank', 'periode', 'master'));
+        return view('author.sad.kar.kar_create', compact('jabatan','nav', 'bank', 'periode', 'master'));
     }
 
 
     public function kar_edit($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $kar_list = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Trash')
             ->get();
@@ -76,7 +81,7 @@ class KaryawanController extends Controller
         $kar = User::Find($decryptID);
         $bank = Bank::all();
         $jab = Jabatan::all();
-        return view('asset.sad.kar.kar_edit', compact('kar', 'jab', 'bank', 'master', 'periode', 'master', 'kar_list', 'cek'));
+        return view('asset.sad.kar.kar_edit', compact('kar','nav', 'jab', 'bank', 'master', 'periode', 'master', 'kar_list', 'cek'));
     }
 
 

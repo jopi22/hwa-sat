@@ -6,6 +6,7 @@ use App\Helpers\LogActivity;
 use App\Http\Controllers\Controller;
 use App\Models\Equipment;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -15,8 +16,9 @@ class EquipmentController extends Controller
 {
     public function heavy_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $heavy = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Heavy Equipment')
             ->get();
@@ -27,14 +29,15 @@ class EquipmentController extends Controller
         $cek = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Heavy Equipment')
             ->count();
-        return view('author.sad.equip.heavy_index', compact('cek', 'heavy', 'master', 'periode', 'filter'));
+        return view('author.sad.equip.heavy_index', compact('cek','nav', 'heavy', 'master', 'periode', 'filter'));
     }
 
 
     public function vehicle_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $vehicle = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Vehicle')
             ->get();
@@ -42,14 +45,15 @@ class EquipmentController extends Controller
             ->where('jenis', 'Vehicle')
             ->count();
         $filter = Equipment::select('tipe')->distinct()->get();
-        return view('author.sad.equip.vehicle_index', compact('cek', 'vehicle', 'master', 'periode', 'filter'));
+        return view('author.sad.equip.vehicle_index', compact('cek','nav', 'vehicle', 'master', 'periode', 'filter'));
     }
 
 
     public function support_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $support = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Support Equipment')
             ->get();
@@ -57,41 +61,45 @@ class EquipmentController extends Controller
             ->where('jenis', 'Support Equipment')
             ->count();
         $filter = Equipment::select('tipe')->distinct()->get();
-        return view('author.sad.equip.support_index', compact('cek', 'support', 'master', 'periode', 'filter'));
+        return view('author.sad.equip.support_index', compact('cek','nav', 'support', 'master', 'periode', 'filter'));
     }
 
 
     public function heavy_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
-        return view('author.sad.equip.heavy_create', compact('master', 'periode',));
+        $master = Master::where('status', 'Present')->count();
+        return view('author.sad.equip.heavy_create', compact('master','nav', 'periode',));
     }
 
 
     public function vehicle_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
-        return view('author.sad.equip.vehicle_create', compact('master', 'periode',));
+        $master = Master::where('status', 'Present')->count();
+        return view('author.sad.equip.vehicle_create', compact('master','nav', 'periode',));
     }
 
 
     public function support_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
-        return view('author.sad.equip.support_create', compact('master', 'periode',));
+        $master = Master::where('status', 'Present')->count();
+        return view('author.sad.equip.support_create', compact('master','nav', 'periode',));
     }
 
 
     public function equip_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $decryptID = Crypt::decryptString($id);
         $equip = Equipment::Find($decryptID);
-        return view('asset.sad.equip.equip_info', compact('master', 'periode', 'equip'));
+        return view('asset.sad.equip.equip_info', compact('master','nav', 'periode', 'equip'));
     }
 
 

@@ -4,21 +4,24 @@ namespace App\Http\Controllers\primer_sad;
 
 use App\Http\Controllers\Controller;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\SP;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SPController extends Controller
 {
     public function sp_index()
     {
-        $master = Master::where('status', 'Present')->first();
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $master = Master::where('status', 'Present')->count();
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
         $sp = SP::all();
         $cek = SP::all()->count();
-        return view('author.sad.akt.sp', compact('sp','kar','master','cek'));
+        return view('author.sad.akt.sp', compact('sp','kar','master','cek','nav'));
     }
 
 

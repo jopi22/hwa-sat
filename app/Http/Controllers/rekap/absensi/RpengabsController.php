@@ -5,6 +5,7 @@ namespace App\Http\Controllers\rekap\absensi;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\PengajuanAbsensi;
 use App\Models\PengajuanAbsensiList;
 use App\Models\User;
@@ -17,6 +18,7 @@ class RpengabsController extends Controller
 {
     public function pengabs_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $master2 = Master::where('status', 'Present')->first();
@@ -56,12 +58,13 @@ class RpengabsController extends Controller
         $cek_tol = PengajuanAbsensi::where('master_id', $master->id)
             ->where('respon_status', 'Ditolak')
             ->count();
-        return view('author.sad.rekap.abs.pengabs_index', compact('all', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
+        return view('author.sad.rekap.abs.pengabs_index', compact('all','nav', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
     }
 
 
     public function pengAbsInfo($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $master = Master::where('status', 'Validasi')->first();
         $cek = $master;
@@ -74,6 +77,6 @@ class RpengabsController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        return view('asset.sad.rekap.pengabs.pengabs_info', compact('peng', 'cek', 'penglist', 'penglist_', 'kar', 'all'));
+        return view('asset.sad.rekap.pengabs.pengabs_info', compact('peng','nav', 'cek', 'penglist', 'penglist_', 'kar', 'all'));
     }
 }

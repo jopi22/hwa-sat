@@ -8,13 +8,16 @@ use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\KarMaster;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MasterController extends Controller
 {
     public function master_generate()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $cek = Master::where('status', 'Present')->first();
         $cek_null = Master::where('status', 'Present')->first();
@@ -30,12 +33,13 @@ class MasterController extends Controller
         $per = Master::where('status', 'Present')->first();
         $equip = Equipment::where('status', 'Aktif')->get();
         $cek_cat = CateringMaster::where('master_id', $cek->id)->count();
-        return view('author.sad.mas.mas_generate', compact('cek', 'cek_null', 'pokok', 'cek_cat', 'insentif', 'lemburan', 'periode', 'kar', 'per', 'equip'));
+        return view('author.sad.mas.mas_generate', compact('cek','nav', 'cek_null', 'pokok', 'cek_cat', 'insentif', 'lemburan', 'periode', 'kar', 'per', 'equip'));
     }
 
 
     public function master_kar()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $cek = Master::where('status', 'Present')->first();
         $kar_mas = KarMaster::where('master_id', $cek->id)->get();
@@ -47,19 +51,20 @@ class MasterController extends Controller
         $kar_m = KarMaster::where('master_id', $cek->id)->count();
         $kar_list = KarMaster::where('master_id', $cek->id)->get();
         $kar_all = KarMaster::all()->count();
-        return view('author.sad.mas.mas_kar', compact('cek', 'periode', 'kar', 'per', 'equip', 'kar_m', 'kar_all', 'kar_list'));
+        return view('author.sad.mas.mas_kar', compact('cek','nav', 'periode', 'kar', 'per', 'equip', 'kar_m', 'kar_all', 'kar_list'));
     }
 
 
     public function master_equip()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $cek = Master::where('status', 'Present')->first();
         $equip_list = EquipMaster::where('master_id', $cek->id)->get();
         $equip_m = EquipMaster::where('master_id', $cek->id)->count();
         $equip_all = EquipMaster::all()->count();
         $equip = Equipment::where('status', 'Aktif')->get();
-        return view('author.sad.mas.mas_equip', compact('periode', 'cek', 'equip_list', 'equip_m', 'equip_all', 'equip'));
+        return view('author.sad.mas.mas_equip', compact('periode','nav' ,'cek', 'equip_list', 'equip_m', 'equip_all', 'equip'));
     }
 
 

@@ -7,21 +7,25 @@ use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\LogMaster;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class RlogistikController extends Controller
 {
     public function log_equip_list()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $master = Master::where('status', 'Validasi')->first();
         $e_list = EquipMaster::where('master_id', $master->id)->get();
-        return view('author.sad.rekap.log.log_equip_list', compact('e_list', 'master'));
+        return view('author.sad.rekap.log.log_equip_list', compact('e_list','nav', 'master'));
     }
 
 
     public function log_equip_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $master = Master::where('status', 'Validasi')->first();
         $equip_m = EquipMaster::where('master_id', $master->id)
@@ -35,12 +39,13 @@ class RlogistikController extends Controller
             ->count();
         $cek_all = LogMaster::where('master_id', $master->id)
             ->count();
-        return view('asset.sad.rekap.log.log_equip_info', compact('equip_m', 'cek_log', 'cek_all', 'equip_list', 'log_list', 'master'));
+        return view('asset.sad.rekap.log.log_equip_info', compact('equip_m','nav', 'cek_log', 'cek_all', 'equip_list', 'log_list', 'master'));
     }
 
 
     public function log_equip_edit($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $master = Master::where('status', 'Validasi')->first();
         $equip_m = EquipMaster::where('master_id', $master->id)
@@ -54,12 +59,13 @@ class RlogistikController extends Controller
             ->count();
         $cek_all = LogMaster::where('master_id', $master->id)
             ->count();
-        return view('asset.sad.rekap.log.log_equip_edit', compact('equip_m', 'equip_list', 'cek_log', 'cek_all', 'log_list', 'master'));
+        return view('asset.sad.rekap.log.log_equip_edit', compact('equip_m','nav', 'equip_list', 'cek_log', 'cek_all', 'log_list', 'master'));
     }
 
 
     public function log_equip_create($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $master = Master::where('status', 'Validasi')->first();
         $equip_m = EquipMaster::where('master_id', $master->id)
@@ -73,7 +79,7 @@ class RlogistikController extends Controller
         $log_list = LogMaster::where('master_id', $master->id)
             ->where('equip_id', $decryptID)
             ->get();
-        return view('asset.sad.rekap.log.log_equip_create', compact('equip_m', 'cek_log', 'equip_list', 'cek_all', 'log_list', 'master'));
+        return view('asset.sad.rekap.log.log_equip_create', compact('equip_m','nav', 'cek_log', 'equip_list', 'cek_all', 'log_list', 'master'));
     }
 
 

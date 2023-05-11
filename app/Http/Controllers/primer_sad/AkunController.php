@@ -4,15 +4,18 @@ namespace App\Http\Controllers\primer_sad;
 
 use App\Http\Controllers\Controller;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AkunController extends Controller
 {
     public function akunGet()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $kar = User::where('status', '<>', 'Delete')
             ->get();
         $cek = User::where('status', '<>', 'Delete')
@@ -21,7 +24,7 @@ class AkunController extends Controller
             ->count();
         $on = User::where('username', '<>', null)
             ->count();
-        return view('author.sad.kar.akun_index', compact('kar', 'cek', 'periode', 'master','off','on'));
+        return view('author.sad.kar.akun_index', compact('kar','nav', 'cek', 'periode', 'master','off','on'));
     }
 
 

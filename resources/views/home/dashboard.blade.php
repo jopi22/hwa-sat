@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Superadmin | HWA-SAT
+    Dashboard | HWA-SAT
 @endsection
 
 @section('sad_menu')
@@ -517,8 +517,25 @@
                 <div class="col-lg-6"><img class="img-fluid" src="../assets/img/icons/spot-illustrations/21.png"
                         alt="" /></div>
                 <div class="col-lg-6 ps-lg-4 my-5 text-center text-lg-start">
-                    <h3 class="text-primary">Superadmin</h3>
-                    <p class="lead">Create Something Beautiful.</p><a class="btn btn-falcon-primary"
+                    <h3 class="text-primary">{{Auth::user()->name}}</h3>
+                    <p class="lead">Superadmin</p><a class="btn btn-falcon-primary"
+                        href="../documentation/getting-started.html">Getting started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('admin')
+    <div class="card mt-3">
+        </form>
+        <div class="card-body overflow-hidden p-lg-6">
+            <div class="row align-items-center">
+                <div class="col-lg-6"><img class="img-fluid" src="../assets/img/icons/spot-illustrations/21.png"
+                        alt="" /></div>
+                <div class="col-lg-6 ps-lg-4 my-5 text-center text-lg-start">
+                    <h3 class="text-primary">{{Auth::user()->name}}</h3>
+                    <p class="lead">Admin</p><a class="btn btn-falcon-primary"
                         href="../documentation/getting-started.html">Getting started</a>
                 </div>
             </div>

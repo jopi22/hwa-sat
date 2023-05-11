@@ -5,7 +5,7 @@
 @endsection
 
 @section('sad_menu')
-    @if ($master->periode == $periode)
+    @if ($master  == 1)
         @include('layouts.panel.sad.vertikal')
     @else
         @include('layouts.panel.sad.vertikal_off')

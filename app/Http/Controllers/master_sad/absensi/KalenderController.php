@@ -5,8 +5,10 @@ namespace App\Http\Controllers\master_sad\absensi;
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,13 +16,14 @@ class KalenderController extends Controller
 {
     public function masterGet()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $day = date('d');
         $progres = $day * 3.3;
         $per = Master::latest()->get();
         $cek = Master::all()->count();
-        return view('author.sad.abs.master_index', compact('per', 'progres', 'cek', 'periode'));
+        return view('author.sad.abs.master_index', compact('per','nav', 'progres', 'cek', 'periode'));
     }
 
 
@@ -99,6 +102,7 @@ class KalenderController extends Controller
 
     public function perCreateAktif(Request $request, $id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $decryptID = Crypt::decryptString($id);
@@ -118,6 +122,6 @@ class KalenderController extends Controller
         $jumlah = $hadir + $sakit;
         $g_pokok = $jumlah * 54.838;
         $gaji = 31 * 54.838;
-        return view('asset.sad.abs.per_create_aktivasi', compact('per', 'kar', 'abs', 'g_pokok', 'gaji'));
+        return view('asset.sad.abs.per_create_aktivasi', compact('per','nav', 'kar', 'abs', 'g_pokok', 'gaji'));
     }
 }

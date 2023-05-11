@@ -4,6 +4,7 @@ namespace App\Http\Controllers\primer_sad;
 
 use App\Http\Controllers\Controller;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -13,9 +14,10 @@ class RekapController extends Controller
 {
     public function rekap_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $master = Master::where('status', 'Validasi')->first();
         $cek = Master::where('status', 'Validasi')->count();
-        return view('asset.sad.rekap.rekap_index', compact('master','cek'));
+        return view('asset.sad.rekap.rekap_index', compact('master','cek','nav'));
     }
 
 

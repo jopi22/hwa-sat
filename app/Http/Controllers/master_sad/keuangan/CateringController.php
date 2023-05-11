@@ -7,12 +7,15 @@ use App\Models\Catering;
 use App\Models\CateringMaster;
 use App\Models\Kas;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CateringController extends Controller
 {
     public function cat_list()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $cek = CateringMaster::where('master_id', $master->id)->count();
@@ -31,20 +34,21 @@ class CateringController extends Controller
             $porsi_harga = $cat_m->porsi_harga;
             $harga_raw = $total * $porsi_harga;
             $harga = number_format($harga_raw);
-            return view('author.sad.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
+            return view('author.sad.kas.cat_list', compact('harga_porsi','nav', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
         }
 
 
-        return view('author.sad.kas.cat_list', compact('periode', 'master', 'cek','cat_m'));
+        return view('author.sad.kas.cat_list', compact('periode','nav', 'master', 'cek','cat_m'));
     }
 
 
     public function cat_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $cat_m = CateringMaster::where('master_id', $master->id)->first();
-        return view('author.sad.kas.cat_create', compact('periode', 'master', 'cat_m'));
+        return view('author.sad.kas.cat_create', compact('periode','nav', 'master', 'cat_m'));
     }
 
 

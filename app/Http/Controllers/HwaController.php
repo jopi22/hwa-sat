@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Hwa;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HwaController extends Controller
 {
@@ -15,12 +17,13 @@ class HwaController extends Controller
     }
 
 
-    public function superadmin()
+    public function dashboard()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $cek = Master::where('status', 'Present')->first();
         $cek_null = Master::where('status', 'Present')->first();
-        return view('home.superadmin', compact('cek','cek_null', 'periode'));
+        return view('home.dashboard', compact('cek','cek_null', 'periode','nav'));
     }
 
 
@@ -38,19 +41,21 @@ class HwaController extends Controller
 
     public function hwaprofil()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $hwa = Hwa::Find(1);
-        return view('author.sad.hwa.hwa_profil', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_profil', compact('hwa','periode','master','nav'));
     }
 
 
     public function hwaEdit()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $hwa = Hwa::Find(1);
-        return view('author.sad.hwa.hwa_profil_edit', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_profil_edit', compact('hwa','periode','master','nav'));
     }
 
 
@@ -96,10 +101,11 @@ class HwaController extends Controller
 
     public function hwa_struktur()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $hwa = Hwa::Find(1);
-        return view('author.sad.hwa.hwa_struktur', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_struktur', compact('hwa','periode','master','nav'));
     }
 
 
@@ -120,10 +126,11 @@ class HwaController extends Controller
 
     public function hwa_peraturan()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $hwa = Hwa::Find(1);
-        return view('author.sad.hwa.hwa_peraturan', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_peraturan', compact('hwa','periode','master','nav'));
     }
 
 

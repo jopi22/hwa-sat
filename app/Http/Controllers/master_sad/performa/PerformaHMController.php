@@ -10,10 +10,12 @@ use App\Models\Jabatan;
 use App\Models\KarMaster;
 use App\Models\Lokasi;
 use App\Models\Master;
+use App\Models\Navigator;
 use App\Models\User;
 use App\Models\Performa_hm;
 use App\Models\Shift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,6 +23,7 @@ class PerformaHMController extends Controller
 {
     public function hm_performance()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $kar_list = KarMaster::where('master_id', $master->id)
@@ -43,12 +46,13 @@ class PerformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_performance', compact('cek_perform', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+        return view('author.sad.pfm.hm_performance', compact('cek_perform','nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
     }
 
 
     public function hm_karyawan()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $cek_perform = Performa_hm::where('master_id', $master->id)
@@ -58,11 +62,12 @@ class PerformaHMController extends Controller
             ->get();
         $jabatan = User::select('jabatan')->distinct()
             ->where('tipe_gaji', 'AI')->get();
-        return view('author.sad.pfm.hm_karyawan', compact('cek_perform', 'jabatan', 'master', 'periode', 'kar_list'));
+        return view('author.sad.pfm.hm_karyawan', compact('cek_perform','nav', 'jabatan', 'master', 'periode', 'kar_list'));
     }
 
     public function hm_kar_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
@@ -84,7 +89,7 @@ class PerformaHMController extends Controller
             ->sum('jam_total');
         $grand_total = $total_hm + $total_jam;
         $insentif = $grand_total * $master->insentif;
-        return view('asset.sad.pfm.hm_kar_info', compact('cek_perform','kar_list', 'insentif', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_hm', 'total_jam', 'grand_total'));
+        return view('asset.sad.pfm.hm_kar_info', compact('cek_perform','kar_list','nav', 'insentif', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_hm', 'total_jam', 'grand_total'));
     }
 
 
@@ -130,6 +135,7 @@ class PerformaHMController extends Controller
 
     public function hm_equipment()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $cek_perform = Performa_hm::where('master_id', $master->id)
@@ -146,12 +152,13 @@ class PerformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_equip', compact('cek_perform', 'master', 'periode', 'perform', 'equipment', 'equip', 'kar', 'lok', 'dedi', 'shift', 'sum'));
+        return view('author.sad.pfm.hm_equip', compact('cek_perform','nav', 'master', 'periode', 'perform', 'equipment', 'equip', 'kar', 'lok', 'dedi', 'shift', 'sum'));
     }
 
 
     public function hm_equip_info($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
@@ -182,12 +189,13 @@ class PerformaHMController extends Controller
         $max = Performa_hm::where('equip_id', $decryptID)
             ->where('master_id', $master->id)
             ->min('hm_awal');
-        return view('asset.sad.pfm.hm_equip_info', compact('list', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        return view('asset.sad.pfm.hm_equip_info', compact('list','nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
     }
 
 
     public function hm_equip_edit($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $perform = EquipMaster::Find($decryptID);
         $periode = date('m-Y');
@@ -229,12 +237,13 @@ class PerformaHMController extends Controller
             ->get();
         $lok = Lokasi::all();
         $dedi = Dedicated::all();
-        return view('asset.sad.pfm.hm_equip_edit', compact('list', 'master', 'periode', 'equip_list', 'equip_m', 'kar_filter', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
+        return view('asset.sad.pfm.hm_equip_edit', compact('list','nav', 'master', 'periode', 'equip_list', 'equip_m', 'kar_filter', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
     }
 
 
     public function hm_equip_create($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $perform = EquipMaster::Find($decryptID);
         $periode = date('m-Y');
@@ -271,7 +280,7 @@ class PerformaHMController extends Controller
             ->get();
         $lok = Lokasi::all();
         $dedi = Dedicated::all();
-        return view('asset.sad.pfm.hm_equip_create', compact('list', 'periode', 'equip_m', 'equip_list', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
+        return view('asset.sad.pfm.hm_equip_create', compact('list','nav', 'periode', 'equip_m', 'equip_list', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
     }
 
 

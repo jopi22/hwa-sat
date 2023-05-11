@@ -6,27 +6,31 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Master;
 use App\Models\Mitra;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class EventController extends Controller
 {
     public function event_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $eve = Event::orderBy('id', 'DESC')->get();
         $cek = Event::all()->count();
-        return view('author.sad.akt.event', compact('eve', 'periode', 'master', 'cek'));
+        return view('author.sad.akt.event', compact('eve','nav', 'periode', 'master', 'cek'));
     }
 
 
     public function event_create()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $eve = Event::all();
-        return view('author.sad.akt.event_create', compact('eve', 'periode', 'master'));
+        return view('author.sad.akt.event_create', compact('eve','nav', 'periode', 'master'));
     }
 
 
@@ -65,21 +69,23 @@ class EventController extends Controller
 
     public function event_show($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $eve = Event::Find($decryptID);
-        return view('asset.sad.akt.event.event_show', compact('eve', 'master', 'periode'));
+        return view('asset.sad.akt.event.event_show', compact('eve','nav', 'master', 'periode'));
     }
 
 
     public function event_edit($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $eve = Event::Find($decryptID);
-        return view('asset.sad.akt.event.event_edit', compact('eve', 'master', 'periode'));
+        return view('asset.sad.akt.event.event_edit', compact('eve','nav', 'master', 'periode'));
     }
 
 

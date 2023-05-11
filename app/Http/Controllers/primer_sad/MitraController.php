@@ -5,18 +5,21 @@ namespace App\Http\Controllers\primer_sad;
 use App\Http\Controllers\Controller;
 use App\Models\Master;
 use App\Models\Mitra;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 class MitraController extends Controller
 {
     public function mitra_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $mit = Mitra::all();
         $cek = Mitra::all()->count();
-        return view('author.sad.akt.mitra', compact('mit', 'periode', 'master', 'cek'));
+        return view('author.sad.akt.mitra', compact('mit','nav', 'periode', 'master', 'cek'));
     }
 
 
@@ -61,11 +64,12 @@ class MitraController extends Controller
 
     public function mitra_show($id)
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $mit = Mitra::Find($decryptID);
-        return view('asset.sad.mitra.mitra_show', compact('mit', 'master', 'periode'));
+        return view('asset.sad.mitra.mitra_show', compact('mit','nav', 'master', 'periode'));
     }
 
 

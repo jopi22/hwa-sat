@@ -5,18 +5,21 @@ namespace App\Http\Controllers\primer_sad;
 use App\Http\Controllers\Controller;
 use App\Models\Dokumen;
 use App\Models\Master;
+use App\Models\Navigator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DokumenController extends Controller
 {
     public function dok_index()
     {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
-        $master = Master::where('status', 'Present')->first();
+        $master = Master::where('status', 'Present')->count();
         $dok = Dokumen::orderBy('id', 'DESC')->get();
         $cek = Dokumen::all()->count();
         $kat = Dokumen::select('kategori')->distinct()->get();
-        return view('asset.sad.arsip.dokumen.dokumen', compact('dok','master','cek','periode','kat'));
+        return view('asset.sad.arsip.dokumen.dokumen', compact('dok','nav', 'master','cek','periode','kat'));
     }
 
 
