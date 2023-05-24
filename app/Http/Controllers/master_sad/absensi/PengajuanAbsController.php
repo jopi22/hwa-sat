@@ -22,6 +22,7 @@ class PengajuanAbsController extends Controller
         date_default_timezone_set('Asia/Pontianak');
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
+        $master2 = Master::where('status', 'Present')->count();
         $cek = $master;
         $all = PengajuanAbsensi::where('master_id', $master->id)->get();
         $all_c = PengajuanAbsensi::where('master_id', $master->id)->count();
@@ -57,7 +58,7 @@ class PengajuanAbsController extends Controller
         $cek_tol = PengajuanAbsensi::where('master_id', $master->id)
             ->where('respon_status', 'Ditolak')
             ->count();
-        return view('author.sad.abs.pengabs_index', compact('all','nav', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
+        return view('author.sad.abs.pengabs_index', compact('all','nav','master2', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
     }
 
 

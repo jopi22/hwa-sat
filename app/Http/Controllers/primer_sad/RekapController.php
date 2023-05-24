@@ -15,7 +15,7 @@ class RekapController extends Controller
     public function rekap_index()
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
-        $master = Master::where('status', 'Validasi')->first();
+        $master = Master::where('status', 'Present')->count();
         $cek = Master::where('status', 'Validasi')->count();
         return view('asset.sad.rekap.rekap_index', compact('master','cek','nav'));
     }

@@ -99,6 +99,7 @@ class AbsensiController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
@@ -113,7 +114,7 @@ class AbsensiController extends Controller
             $abs = Absensi::latest()->take(0)->get();
         }
 
-        return view('author.sad.abs.kelola_absensi', compact('abs', 'master', 'kar', 'cek', 'periode'));
+        return view('author.sad.abs.kelola_absensi', compact('abs','nav', 'master', 'kar', 'cek', 'periode'));
     }
 
 
