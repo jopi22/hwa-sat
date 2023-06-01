@@ -56,7 +56,7 @@ class RpengabsController extends Controller
         $cek_tol = PengajuanAbsensi::where('master_id', $master->id)
             ->where('respon_status', 'Ditolak')
             ->count();
-        return view('asset.sad.rekap.pengabs.pengabs_index', compact('all', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
+        return view('author.sad.rekap.abs.pengabs_index', compact('all', 'all_c', 'nores_c', 'ter_c', 'tol_c', 'master', 'periode', 'cek', 'nores', 'ter', 'tol', 'cek_all', 'cek_nores', 'cek_ter', 'cek_tol'));
     }
 
 

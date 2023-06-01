@@ -37,7 +37,8 @@
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
                 <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Equipment <span
-                        class="mb-1 text-info">Primer</span></h6>
+                    class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
+                </span></h6>
                 <h4 class="mb-0 text-primary fw-bold">Support Equipment</h4>
             </div>
         </div>
@@ -154,9 +155,9 @@
                                                             class="fas fa-power-off"></i></button>
                                                 </form>
                                             @endif
-                                            <a href="#" class="btn btn-info" type="button" data-bs-toggle="modal"
+                                            {{-- <a href="#" class="btn btn-info" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#detail-{{ $res->id }}" title="Detail"><i
-                                                    class="fas fa-info-circle"></i></a>
+                                                    class="fas fa-info-circle"></i></a> --}}
                                             <a href="javascript:void(0)" id="edit-btn"
                                                 data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
                                                 class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"

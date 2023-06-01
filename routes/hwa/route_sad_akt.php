@@ -8,6 +8,7 @@ use App\Http\Controllers\primer_sad\TamuController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
+
     // Surat Peringatan
     Route::controller(SPController::class)->group(function () {
         Route::get('surat_peringatan', 'sp_index')->name('sp.g');

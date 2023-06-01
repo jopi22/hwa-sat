@@ -29,9 +29,9 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
             <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Rekapitulasi
+                <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Validasi
                 </h6>
-                <h4 class="mb-0 text-primary fw-bold">Validasi <span class="mb-1 text-info"></span> </h4>
+                <h4 class="mb-0 text-primary fw-bold">Proses Validasi <span class="mb-1 text-info"></span> </h4>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
     @include('comp.alert')
 
     @if ($cek == 0)
-        Data Kosong
+        @include('comp.card.card_kosong')
     @else
         <div class="row">
             <div class="col-md-6 mb-3 col-xxl-4">

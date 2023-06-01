@@ -17,7 +17,7 @@ class RbreakdownController extends Controller
         $bd = Breakdown::where('master_id', $master->id)->get();
         $equip = Equipment::where('status', 'Aktif')->get();
 
-        return view('asset.sad.rekap.performa.bd_list', compact('equip', 'cek', 'master', 'bd'));
+        return view('author.sad.rekap.pfm.bd_list', compact('equip', 'cek', 'master', 'bd'));
     }
 
 

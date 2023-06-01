@@ -38,7 +38,9 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> SDM <span class="mb-1 text-info">Sekunder</span>
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> SDM <span
+                        class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
+                    </span>
                 </h6>
                 <h4 class="mb-0 text-primary fw-bold">Bank</h4>
             </div>
@@ -51,8 +53,7 @@
         <div class="card-header py-2 bg-light">
             {{-- // --}}
         </div>
-        <div id="tableExample3"
-            data-list='{"valueNames":["id","name"],"page":10,"pagination":true}'>
+        <div id="tableExample3" data-list='{"valueNames":["id","name"],"page":10,"pagination":true}'>
             <div class="row ms-3 mt-2 mb-2 g-0 flex-between-left">
                 <div class="col-sm-3">
                     <form>
@@ -62,8 +63,8 @@
                     </form>
                 </div>
                 <div class="col-sm-auto">
-                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm btn-falcon-success mx-2" type="button"><span data-fa-transform="shrink-3"
-                            class="fas fa-plus"></span> </button>
+                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm btn-falcon-success mx-2"
+                        type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span> </button>
                 </div>
             </div>
             <div class="table-responsive scrollbar">
@@ -84,14 +85,12 @@
                                     <div class="btn-group  btn-group-sm" role="group">
                                         <a href="javascript:void(0)" id="btn-edit-post"
                                             data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
-                                            class="btn btn-warning" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Edit Jabatan"><span
-                                                class="fas fa-edit"></span></a>
+                                            class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Edit Jabatan"><span class="fas fa-edit"></span></a>
                                         <a href="javascript:void(0)" id="btn-delete-post"
                                             data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
-                                            class="btn btn-danger" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Hapus Jabatan"><span
-                                                class="fas fa-times-circle"></span></a>
+                                            class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Hapus Jabatan"><span class="fas fa-times-circle"></span></a>
                                     </div>
                                 </td>
                                 <td class="text-black text-center fw-semi-bold">{{ $loop->iteration }}</td>

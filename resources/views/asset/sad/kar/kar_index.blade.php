@@ -33,8 +33,8 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> SDM <span
-                        class="mb-1 text-info">Primer</span></h6>
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> SDM <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
+                </span></h6>
                 <h4 class="mb-0 text-primary fw-bold">Karyawan</h4>
             </div>
         </div>
@@ -215,6 +215,5 @@
         </div>
     </div>
 
-    {{-- @include('comp.modal.kar.modal_kar_create') --}}
     @include('comp.modal.kar.modal_kar_delete')
 @endsection

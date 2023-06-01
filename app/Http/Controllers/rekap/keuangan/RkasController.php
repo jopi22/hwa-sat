@@ -24,7 +24,7 @@ class RkasController extends Controller
             ->where('tipe', 'Kredit Pusat')->sum('jumlah');
         $saldo = $debit - $kredit;
         $grand_kredit = $kredit_p + $kredit;
-        return view('asset.sad.rekap.kas.kas_list', compact('periode','master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
+        return view('author.sad.rekap.kas.kas_list', compact('periode','master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
     }
 
 

@@ -36,7 +36,8 @@
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" width="96" />
             <div class="ms-n3">
                 <h6 class="mb-1 text-primary"><i class="fab fa-pagelines"></i> Aktivitas <span
-                        class="mb-1 text-info">Sekunder</span>
+                        class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
+                    </span>
                 </h6>
                 <h4 class="mb-0 text-primary fw-bold">Surat Peringatan</h4>
             </div>
@@ -61,7 +62,8 @@
                 <div class="col-sm-auto">
                     <div class="btn-group  btn-group-sm mx-2" role="group">
                         <button class="btn btn-sm btn-falcon-success mx-2" type="button" data-bs-toggle="modal"
-                            data-bs-target="#error-modal"><span data-fa-transform="shrink-3" class="fas fa-plus"></span> Tambah
+                            data-bs-target="#error-modal"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
+                            Tambah
                         </button>
                     </div>
                 </div>

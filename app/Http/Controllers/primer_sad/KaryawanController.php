@@ -48,7 +48,7 @@ class KaryawanController extends Controller
         $hwa = Hwa::where('id', 1)->first();
         // History
         $h_user = User::where('author', $decryptID)->get();
-        return view('asset.sad.kar.kar_info', compact('kar', 'jab', 'bnk','master', 'periode', 'hwa', 'kar_list', 'cek','h_user'));
+        return view('asset.sad.kar.kar_info', compact('kar', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
     }
 
 
@@ -214,5 +214,4 @@ class KaryawanController extends Controller
         $kar->update($kar_data);
         return back()->with('success', 'Data Karyawan Berhasil dihapus');
     }
-
 }

@@ -24,7 +24,7 @@ class RperformaOTController extends Controller
             ->where('status', '<>', 'Delete')
             ->where('tipe_gaji', 'AL')
             ->get();
-        return view('asset.sad.rekap.performa.ot_list', compact('master', 'cek_perform', 'perform', 'kar_filter'));
+        return view('author.sad.rekap.pfm.ot_list', compact('master', 'cek_perform', 'perform', 'kar_filter'));
     }
 
 
@@ -149,7 +149,7 @@ class RperformaOTController extends Controller
             ->get();
         $jabatan = User::select('jabatan')->distinct()
             ->where('tipe_gaji', 'AL')->get();
-        return view('asset.sad.rekap.performa.ot_karyawan', compact('cek_perform', 'jabatan', 'master', 'jabatan', 'kar_list'));
+        return view('author.sad.rekap.pfm.ot_karyawan', compact('cek_perform', 'jabatan', 'master', 'jabatan', 'kar_list'));
     }
 
     public function ot_kar_info($id)

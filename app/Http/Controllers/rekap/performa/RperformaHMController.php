@@ -42,7 +42,7 @@ class RperformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('asset.sad.rekap.performa.hm_performance', compact('cek_perform', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master'));
+        return view('author.sad.rekap.pfm.hm_performance', compact('cek_perform', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master'));
     }
 
 
@@ -56,7 +56,7 @@ class RperformaHMController extends Controller
             ->get();
         $jabatan = User::select('jabatan')->distinct()
             ->where('tipe_gaji', 'AI')->get();
-        return view('asset.sad.rekap.performa.hm_karyawan', compact('cek_perform', 'jabatan', 'master', 'kar_list'));
+        return view('author.sad.rekap.pfm.hm_karyawan', compact('cek_perform', 'jabatan', 'master', 'kar_list'));
     }
 
 
@@ -156,7 +156,7 @@ class RperformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('asset.sad.rekap.performa.hm_equip', compact('cek_perform', 'master', 'perform', 'equipment', 'equip', 'kar', 'lok', 'dedi', 'shift', 'sum'));
+        return view('author.sad.rekap.pfm.hm_equip', compact('cek_perform', 'master', 'perform', 'equipment', 'equip', 'kar', 'lok', 'dedi', 'shift', 'sum'));
     }
 
 
@@ -539,7 +539,7 @@ class RperformaHMController extends Controller
             ->get();
         $equip = Equipment::all();
         $shift = Shift::all();
-        return view('asset.sad.rekap.performa.hm_manual', compact('cek', 'shift', 'all', 'kar', 'equip', 'lok', 'dedi', 'master', 'diff', 'jam'));
+        return view('author.sad.rekap.pfm.hm_manual', compact('cek', 'shift', 'all', 'kar', 'equip', 'lok', 'dedi', 'master', 'diff', 'jam'));
     }
 
 

@@ -37,8 +37,8 @@
                             class="fas fa-home text-primary"></i></button></a>
                 <a href="{{ route('eve.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
                             class="fas fa-list text-primary"></i></button></a>
-                <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="far fa-dot-circle"></i>
-                    Sekunder</span>
+                <span class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
+                </span>
             </div>
             <div class="ms-1">&nbsp;
                 <span class=" fw-semi-bold text-primary"> Create Event</span>
@@ -91,7 +91,8 @@
                     <div class="col-md">
                         <h5 class="mb-2 mb-md-0">Nice Job! You're almost done</h5>
                     </div>
-                    <div class="col-auto"><button type="submit" class="btn btn-success btn-sm me-2"><i class="fas fa-save"></i> Simpan</button>
+                    <div class="col-auto"><button type="submit" class="btn btn-success btn-sm me-2"><i
+                                class="fas fa-save"></i> Simpan</button>
                     </div>
                 </div>
             </div>

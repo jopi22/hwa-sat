@@ -16,7 +16,7 @@ class RlogistikController extends Controller
     {
         $master = Master::where('status', 'Validasi')->first();
         $e_list = EquipMaster::where('master_id', $master->id)->get();
-        return view('asset.sad.rekap.log.log_equip_list', compact('e_list', 'master'));
+        return view('author.sad.rekap.log.log_equip_list', compact('e_list', 'master'));
     }
 
 

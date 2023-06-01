@@ -12,14 +12,13 @@ class SPController extends Controller
 {
     public function sp_index()
     {
-        $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
         $sp = SP::all();
         $cek = SP::all()->count();
-        return view('asset.sad.akt.sp.sp', compact('sp','kar','master','cek','periode'));
+        return view('author.sad.akt.sp', compact('sp','kar','master','cek'));
     }
 
 

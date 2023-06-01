@@ -101,7 +101,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rekap_cat_refresh', 'cat_refresh')->name('r.cat.r');
     });
 
-     Route::controller(RkasController::class)->group(function () {
+    Route::controller(RkasController::class)->group(function () {
         // Kas
         Route::get('rekap_kas_list', 'kas_list')->name('r.kas.l');
         Route::post('rekap_kas_store', 'kas_store')->name('r.kas.s');
@@ -114,5 +114,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('rekap_gaji_list', 'gaji_list')->name('r.g.l');
         Route::get('rekap_gaji_info/{gaji}', 'gaji_info')->name('r.g.i');
     });
-
 });

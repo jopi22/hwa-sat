@@ -16,7 +16,7 @@ class MitraController extends Controller
         $master = Master::where('status', 'Present')->first();
         $mit = Mitra::all();
         $cek = Mitra::all()->count();
-        return view('asset.sad.akt.mitra.mitra', compact('mit', 'periode', 'master', 'cek'));
+        return view('author.sad.akt.mitra', compact('mit', 'periode', 'master', 'cek'));
     }
 
 

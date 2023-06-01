@@ -31,11 +31,11 @@ class RcateringController extends Controller
             $porsi_harga = $cat_m->porsi_harga;
             $harga_raw = $total * $porsi_harga;
             $harga = number_format($harga_raw);
-            return view('asset.sad.rekap.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
+            return view('author.sad.rekap.kas.cat_list', compact('harga_porsi', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
         }
 
 
-        return view('asset.sad.rekap.kas.cat_list', compact('periode', 'master', 'cek','cat_m'));
+        return view('author.sad.rekap.kas.cat_list', compact('periode', 'master', 'cek','cat_m'));
     }
 
 
@@ -44,7 +44,7 @@ class RcateringController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Validasi')->first();
         $cat_m = CateringMaster::where('master_id', $master->id)->first();
-        return view('asset.sad.rekap.kas.cat_create', compact('periode', 'master', 'cat_m'));
+        return view('author.sad.rekap.kas.cat_create', compact('periode', 'master', 'cat_m'));
     }
 
 

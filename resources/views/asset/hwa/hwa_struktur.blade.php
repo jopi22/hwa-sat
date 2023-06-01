@@ -20,8 +20,8 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Perusahaan <span
-                        class="mb-1 text-info">Primer</span></h6>
+                <h6 class="mb-1 text-primary"><i class="fas fa-building"></i> Perusahaan <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
+                </span></h6>
                 <h4 class="mb-0 text-primary fw-bold">Sruktur Organisasi</h4>
             </div>
         </div>
@@ -31,15 +31,16 @@
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="heading2"><button class="accordion-button collapsed" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">Ubah Struktur </button></h2>
+                    data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true"
+                    aria-controls="collapse2">Ubah Struktur </button></h2>
             <div class="accordion-collapse collapse" id="collapse2" aria-labelledby="heading2"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <form action="{{ route('hwa.s.u') }}" method="post" enctype="multipart/form-data">
-                    @method('put')
-                    @csrf
-                    <input type="file" name="foto" class="form-control">
-                    <button class="btn btn-success btn-sm mt-3">Simpan</button>
+                        @method('put')
+                        @csrf
+                        <input type="file" name="foto" class="form-control">
+                        <button class="btn btn-success btn-sm mt-3">Simpan</button>
                     </form>
                 </div>
             </div>

@@ -4,6 +4,14 @@
     HWA | Edit Profil Perusahaan
 @endsection
 
+@section('sad_menu')
+    @if ($master->periode == $periode)
+        @include('layouts.panel.sad.vertikal')
+    @else
+        @include('layouts.panel.sad.vertikal_off')
+    @endif
+@endsection
+
 @section('link')
     <link rel="stylesheet" href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}">
     <link href="{{ asset('vendors/dropzone/dropzone.min.css') }}" rel="stylesheet" />
@@ -43,34 +51,30 @@
 
 @section('script')
     <script src="{{ asset('assets/js/bundle-addon.js') }}"></script>
-
     <script src="{{ asset('assets/js/flatpickr.js') }}"></script>
     <script src="{{ asset('vendors/dropzone/dropzone.min.js') }}"></script>
 @endsection
 
 @section('konten')
     {{-- // Header // --}}
-    <div class="card mb-2">
-        <div class="bg-holder d-none d-lg-block bg-card"
-            style="background-image:url({{ asset('assets/img/illustrations/corner-6.png') }});"></div>
-        <div class="card-body mt-3 pt-0 position-relative">
-            <div class="row">
-                <div class="col-6">
-                    <h5 class="mb-0 text-black"><i class="fas fa-building"></i> Edit Profil Perusahaan</h5>
-                </div>
-                <div class="col-auto ms-auto">
-                    <a href="" target="__blank"><span class="text text-warning"><i
-                                class="fas fa-question-circle"></i></span></a>
-                </div>
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+        <div class="col d-flex align-items-center">
+            <div>
+                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
+                            class="fas fa-home text-primary"></i></button></a>
+                <a href="{{ route('hwa.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
+                            class="fas fa-list text-primary"></i></button></a>
+                <a href="#"><button class="btn btn-link btn-dark btn-sm p-0"><i
+                            class="fas fa-spinner text-primary"></i></button></a>
+                <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
+                    </span>
             </div>
-            <div class="mt-2">
-                <a href="{{ route('dash') }}"><code>Dashboard</code></a>
-                <code class="text-black"> &gt; </code>
-                <a href="{{ route('hwa.g') }}"><code>Profil-Perusahaan</code></a>
-                <code class="text-black"> &gt; Edit-Profil-Perusahaan</code>
+            <div class="ms-1">&nbsp;
+                <span class=" fw-semi-bold text-primary"> Edit Profil Perusahaan</span></span>
             </div>
         </div>
     </div>
+
     {{-- // Konten // --}}
     <div class="col-lg-12 pe-lg-2">
         <div class="card mb-3">

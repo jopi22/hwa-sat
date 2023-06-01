@@ -41,14 +41,16 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $hwa = Hwa::Find(1);
-        return view('asset.hwa.hwa_profil', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_profil', compact('hwa','periode','master'));
     }
 
 
     public function hwaEdit()
     {
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
         $hwa = Hwa::Find(1);
-        return view('asset.hwa.hwa_edit', compact('hwa'));
+        return view('author.sad.hwa.hwa_profil_edit', compact('hwa','periode','master'));
     }
 
 
@@ -97,7 +99,7 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $hwa = Hwa::Find(1);
-        return view('asset.hwa.hwa_struktur', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_struktur', compact('hwa','periode','master'));
     }
 
 
@@ -105,7 +107,6 @@ class HwaController extends Controller
     {
         // dd($request->all());
         $hwa = Hwa::Find(1);
-
             $foto = $request->foto;
             $new_foto = 'foto' . time() . $foto->getClientOriginalName();
             $foto->move('file/hwa/profil/', $new_foto);
@@ -122,7 +123,7 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $hwa = Hwa::Find(1);
-        return view('asset.hwa.hwa_peraturan', compact('hwa','periode','master'));
+        return view('author.sad.hwa.hwa_peraturan', compact('hwa','periode','master'));
     }
 
 
@@ -130,7 +131,6 @@ class HwaController extends Controller
     {
         // dd($request->all());
         $hwa = Hwa::Find(1);
-
             $foto = $request->foto;
             $new_foto = 'foto' . time() . $foto->getClientOriginalName();
             $foto->move('file/hwa/profil/', $new_foto);

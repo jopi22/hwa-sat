@@ -147,7 +147,7 @@
                 <a href="{{ route('kar.c') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
                             class="fas fa-spinner text-primary"></i></button></a>
                 <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                    Primer</span>
+                </span>
             </div>
             <div class="ms-1">&nbsp;
                 <span class=" fw-semi-bold text-primary"> Form Tambah Karyawan</span></span>

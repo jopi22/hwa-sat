@@ -41,7 +41,7 @@ class RincomeController extends Controller
         $lemburan = $jam_total * $master->lemburan;
         $ins_lem = $insentif + $lemburan;
         $grand = $pokok + $insentif + $lemburan;
-        return view('asset.sad.rekap.gaji.gaji_list', compact('jabatan','cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
+        return view('author.sad.rekap.gaji.gaji_list', compact('jabatan','cek_kar', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
     }
 
 

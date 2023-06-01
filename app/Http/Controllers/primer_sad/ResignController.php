@@ -20,7 +20,7 @@ class ResignController extends Controller
             ->get();
         $asu = Resign::orderBy('id', 'DESC')->get();
         $cek = Resign::all()->count();
-        return view('asset.sad.akt.resign.resign', compact('asu','kar','periode','master','cek'));
+        return view('author.sad.akt.resign', compact('asu','kar','periode','master','cek'));
     }
 
 

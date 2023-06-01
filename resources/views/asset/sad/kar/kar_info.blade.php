@@ -132,7 +132,7 @@
                 <a href="{{ route('kar.i', Crypt::encryptString($kar->id)) }}"><button
                         class="btn btn-link btn-dark btn-sm p-0"><i class="fas fa-spinner text-primary"></i></button></a>
                 <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                    Primer</span>
+                </span>
             </div>
             <div class="ms-1">&nbsp;
                 <span class=" fw-semi-bold text-primary"> Karyawan /
@@ -582,7 +582,7 @@
                 </div>
             </div>
 
-            <div class="card mb-3">
+            {{-- <div class="card mb-3">
                 <div class="card-header bg-primary py-2">
                     <h5 class="text-white text-center"><i class="fas fa-history"></i> History</h5>
                 </div>
@@ -634,11 +634,10 @@
                     </div>
                 </div>
                 <div class="card-footer py-2 bg-light">
-                    {{-- // --}}
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="card">
+            {{-- <div class="card">
                 <div class="card-header bg-primary py-2">
                     <h5 class="mb-0 text-white text-center"><i class="fas fa-history"></i> History</h5>
                 </div>
@@ -663,10 +662,10 @@
                                 <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
                                     data-list-filter="data-list-filter">
                                     <option selected="" value="">Pilih Disini</span></option>
-                                    {{-- @foreach ($jab as $res2) --}}
+                                    @foreach ($jab as $res2)
                                     <option value="2023">2023</option>
                                     <option value="2024">2024</option>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -693,7 +692,7 @@
                                                 {{ $abs->status_absensi_->status }}
                                             </td>
 
-                                            {{-- <td class="align-middle text-center white-space-nowrap payment">
+                                            <td class="align-middle text-center white-space-nowrap payment">
                                             @if ($res->status == 'Aktif')
                                                 <span class="badge rounded-pill bg-info">Aktif</span>
                                             @else
@@ -707,7 +706,7 @@
                                                     @endif
                                                 @endif
                                             @endif
-                                        </td> --}}
+                                        </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -716,11 +715,10 @@
                     </div>
                 </div>
                 <div class="card-footer py-2 bg-light">
-                    {{-- // --}}
                 </div>
-            </div>
+            </div> --}}
 
-            <div class="col-auto">
+            {{-- <div class="col-auto">
                 <h1>CSS Calendar</h1>
 
                 <div class="month">
@@ -777,9 +775,9 @@
                     <li>30</li>
                     <li>31</li>
                 </ul>
-            </div>
+            </div> --}}
 
-            <div class="col-auto">
+            {{-- <div class="col-auto">
                 <div class="card h-lg-100 overflow-hidden">
                     <div class="card-header bg-light">
                         <div class="row align-items-center">
@@ -944,7 +942,7 @@
                             href="#!">Show all projects<span class="fas fa-chevron-right ms-1 fs--2"></span></a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

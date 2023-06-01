@@ -20,8 +20,8 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Perusahaan <span
-                        class="mb-1 text-info">Primer</span></h6>
+                <h6 class="mb-1 text-primary"><i class="fas fa-building"></i> Perusahaan <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
+                </span></h6>
                 <h4 class="mb-0 text-primary fw-bold">Profil Perusahaan</h4>
             </div>
         </div>
@@ -81,19 +81,19 @@
     <div class="card mb-2">
         <a class="color-white" href="#!">
             <div class="hoverbox rounded-3">
-              <img class="img-fluid" src="{{ asset('file/hwa/profil/IMG_20230106_223851_949.jpg') }}" alt="" />
-              <div class="hoverbox-content">
-                <img class="img-fluid" src="{{ asset('file/hwa/profil/banner.jpg') }}" alt="" />
-              </div>
+                <img class="img-fluid" src="{{ asset('file/hwa/profil/IMG_20230106_223851_949.jpg') }}" alt="" />
+                <div class="hoverbox-content">
+                    <img class="img-fluid" src="{{ asset('file/hwa/profil/banner.jpg') }}" alt="" />
+                </div>
             </div>
-          </a>
+        </a>
     </div>
 
 
     <div class="card">
         <iframe class="embed-responsive-item col-12"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.9540271134665!2d110.49358861445864!3d-1.1926127991301043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e0479b9d83e2641%3A0xaefde216191c3eec!2sPT%20Harapan%20Wahyu%20Abadi%20(%20HWA%20)%2C%20Site%20Sandai!5e0!3m2!1sid!2sid!4v1676308046793!5m2!1sid!2sid"
-        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.9540271134665!2d110.49358861445864!3d-1.1926127991301043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e0479b9d83e2641%3A0xaefde216191c3eec!2sPT%20Harapan%20Wahyu%20Abadi%20(%20HWA%20)%2C%20Site%20Sandai!5e0!3m2!1sid!2sid!4v1676308046793!5m2!1sid!2sid"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 @endsection

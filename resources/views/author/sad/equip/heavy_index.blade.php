@@ -1,5 +1,5 @@
 @if (Auth::user()->level < 3)
     @include('asset.sad.equip.heavy_index')
 @else
-    kosong
+    @include('home.404')
 @endif

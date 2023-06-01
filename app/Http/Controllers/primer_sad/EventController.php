@@ -17,7 +17,7 @@ class EventController extends Controller
         $master = Master::where('status', 'Present')->first();
         $eve = Event::orderBy('id', 'DESC')->get();
         $cek = Event::all()->count();
-        return view('asset.sad.akt.event.event', compact('eve', 'periode', 'master', 'cek'));
+        return view('author.sad.akt.event', compact('eve', 'periode', 'master', 'cek'));
     }
 
 
@@ -26,7 +26,7 @@ class EventController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $eve = Event::all();
-        return view('asset.sad.akt.event.event_create', compact('eve', 'periode', 'master'));
+        return view('author.sad.akt.event_create', compact('eve', 'periode', 'master'));
     }
 
 
