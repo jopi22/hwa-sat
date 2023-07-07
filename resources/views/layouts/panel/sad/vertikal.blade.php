@@ -460,6 +460,11 @@
                                             Performa O/D</span></div>
                                 </a>
                             </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('ha.l') }}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
+                                            Hauling</span></div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 

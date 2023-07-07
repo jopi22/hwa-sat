@@ -22,6 +22,7 @@ class EquipMaster extends Model
         'total_jam',
         'grand_total',
         'kode_unik',
+        'hauling',
     ];
 
     public function equip_(){

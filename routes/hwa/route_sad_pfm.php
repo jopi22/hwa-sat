@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\master_sad\performa\BreakdownController;
+use App\Http\Controllers\master_sad\performa\HaulingController;
 use App\Http\Controllers\master_sad\performa\PerformaHMController;
 use App\Http\Controllers\master_sad\performa\PerformaOTController;
 use Illuminate\Support\Facades\Route;
@@ -38,7 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('ot_store', 'ot_store')->name('ot.s');
         Route::post('ot_update', 'ot_update')->name('ot.u');
         Route::post('ot_delete', 'ot_delete')->name('ot.d');
-        // HM OD
+        // HM OT
         Route::get('ot_Karyawan', 'ot_karyawan')->name('ot.k');
         Route::get('ot_Karyawan/{kar}', 'ot_kar_info')->name('ot.k.i');
         Route::post('ot_kar_refresh', 'ot_kar_refresh')->name('ot.k.r');
@@ -51,5 +52,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('bd_store', 'bd_store')->name('bd.s');
         Route::post('bd_update', 'bd_update')->name('bd.u');
         Route::post('bd_delete', 'bd_delete')->name('bd.d');
+    });
+
+
+    Route::controller(HaulingController::class)->group(function () {
+        // Hauling
+        Route::get('hauling_list', 'ha_list')->name('ha.l');
+        Route::put('hauling_update/{ha}', 'ha_update')->name('ha.u');
+        Route::post('hauling_delete', 'ha_delete')->name('ha.d');
     });
 });
