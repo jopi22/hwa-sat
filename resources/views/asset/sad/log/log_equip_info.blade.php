@@ -219,7 +219,7 @@
                                 </tr>
                             </thead>
                             <tbody id="table-posts" class="list">
-                                @foreach ($log_list as $res)
+                                @foreach ($bd_list as $res)
                                     <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                         <td class="align-middle text-center text-1000 white-space-nowrap no">
                                             <a href="{{ route('log.e.i', Crypt::encryptString($res->id)) }}"

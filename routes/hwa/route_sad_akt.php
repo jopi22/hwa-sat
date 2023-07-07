@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('event_update/{event_edit}', 'event_update')->name('eve.u');
     });
 
-    // Mutasi Karyawan
+    // Mitra
     Route::controller(MitraController::class)->group(function () {
         Route::get('mitra_perusahaan', 'mitra_index')->name('mit.g');
         Route::post('mitra_store', 'mitra_store')->name('mit.s');

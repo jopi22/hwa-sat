@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\master_sad\logistik;
 
 use App\Http\Controllers\Controller;
+use App\Models\Breakdown;
 use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\LogMaster;
@@ -33,7 +34,7 @@ class LogistikController extends Controller
         $equip_m = EquipMaster::where('master_id', $master->id)
             ->where('equip_id', $decryptID)->first();
         $equip_list = EquipMaster::where('master_id', $master->id)->get();
-        $log_list = LogMaster::where('master_id', $master->id)
+        $bd_list = Breakdown::where('master_id', $master->id)
             ->where('equip_id', $decryptID)
             ->get();
         $cek_log = LogMaster::where('master_id', $master->id)
