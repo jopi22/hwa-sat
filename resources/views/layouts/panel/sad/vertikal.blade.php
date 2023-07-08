@@ -551,6 +551,11 @@
                                                 Keluar</span></div>
                                     </a>
                                 </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('log.m') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
+                                                Masuk</span></div>
+                                    </a>
+                                </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('ond.l') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok Onderdil
                                             </span></div>

@@ -107,6 +107,11 @@
                                             Nama
                                         </th>
                                         <th style="min-width: 120px"
+                                            class="sort bg-secondary text-white align-middle white-space-nowrap"
+                                            data-sort="unit">
+                                            No Unit
+                                        </th>
+                                        <th style="min-width: 120px"
                                             class="sort bg-primary text-white align-middle white-space-nowrap">
                                             Jam Mulai
                                         </th>
@@ -165,6 +170,13 @@
                                             <td class="align-middle text-1000 white-space-nowrap nama">
                                                 @if ($res->kar_id)
                                                     {{ $res->kar_->name }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td class="align-middle text-center text-1000 white-space-nowrap nama">
+                                                @if ($res->equip_id)
+                                                    {{ $res->equipot_->equip_->no_unit }}
                                                 @else
                                                     -
                                                 @endif

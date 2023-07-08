@@ -16,12 +16,24 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('log_equip_store', 'log_equip_store')->name('log.e.s');
     });
 
+    // Barang Masuk
+    Route::controller(LogistikController::class)->group(function () {
+        Route::get('log_masuk_list', 'log_m_list')->name('log.m');
+        Route::get('log_masuk_create', 'log_m_create')->name('log.m.c');
+        Route::post('log_masuk_store', 'log_m_store')->name('log.m.s');
+        Route::post('log_masuk_delete', 'log_m_delete')->name('log.m.d');
+        Route::put('log_masuk_update/{log}', 'log_m_update')->name('log.m.u');
+    });
+
+
     // Stok Onderdil
     Route::controller(StokController::class)->group(function () {
         Route::get('onderdil_list', 'ond_list')->name('ond.l');
         Route::post('onderdil_store', 'ond_store')->name('ond.s');
         Route::post('onderdil_delete', 'ond_delete')->name('ond.d');
+        Route::post('verifikasi_update', 'verif_update')->name('verif.u');
         Route::put('onderdil_update/{ond}', 'ond_update')->name('ond.u');
+        Route::get('verifikasi_info/{ond}', 'verif_info')->name('verif.i');
     });
 
     // Stok Liquid

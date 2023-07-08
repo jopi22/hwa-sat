@@ -178,10 +178,6 @@
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">
                                     <th style="min-width: 50px"
-                                        class="bg-secondary text-white align-middle white-space-nowrap">
-                                        Aksi
-                                    </th>
-                                    <th style="min-width: 50px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap"
                                         data-sort="no">
                                         #
@@ -219,12 +215,8 @@
                                 </tr>
                             </thead>
                             <tbody id="table-posts" class="list">
-                                @foreach ($bd_list as $res)
+                                @foreach ($log_list as $res)
                                     <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                        <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                            <a href="{{ route('log.e.i', Crypt::encryptString($res->id)) }}"
-                                                class="btn btn-sm btn-info"><span class=" fas fa-info-circle"></span></a>
-                                        </td>
                                         <td class="align-middle text-center text-1000 white-space-nowrap no">
                                             {{ $loop->iteration }}</td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap tgl">
@@ -235,8 +227,8 @@
                                             @endif
                                         </td>
                                         <td class="align-middle text-1000 white-space-nowrap bar">
-                                            @if ($res->barang)
-                                                {{ $res->barang }}
+                                            @if ($res->barang_id)
+                                                {{ $res->stok_->barang }}
                                             @else
                                                 -
                                             @endif
@@ -249,8 +241,8 @@
                                             @endif
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap sat">
-                                            @if ($res->satuan)
-                                                {{ $res->satuan }}
+                                            @if ($res->barang_id)
+                                                {{ $res->stok_->satuan }}
                                             @else
                                                 -
                                             @endif

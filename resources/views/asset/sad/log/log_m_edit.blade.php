@@ -487,7 +487,6 @@
                                                     <input required maxlength="100" class="form-control form-control-sm"
                                                         type="text" name="ket[]" value="{{ $res->ket }}">
                                                 </td>
-                                                <input type="hidden" name="log_tipe[]" value="Keluar">
                                             </tr>
                                         @endforeach
                                     </tbody>

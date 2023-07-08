@@ -7,10 +7,11 @@
                         class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body p-0">
-                    <form action="{{ route('r.ot.u') }}" method="post">
+                    <form action="{{ route('ot.u') }}" method="post">
                         @csrf
                         <input type="hidden" name="delete" value="{{ $res->id }}">
                         <input type="hidden" name="id" value="{{ $res->id }}">
+                        <input type="hidden" name="master_id" value="{{ $res->master_id }}">
                         <div class="bg-warning rounded-top-lg py-3 ps-4 pe-6">
                             <h4 class="mb-1 text-white" id="staticBackdropLabel">
                                 <i class="fas fa-wrench"></i> Id Over Time #{{ $res->id }}
@@ -290,24 +291,40 @@
                                         <div class="col-6">
                                             <div class="mb-2">
                                                 <div class="form-floating">
-                                                    <select required name="kar_id" class="form-select form-select-sm"
+                                                    <select required name="equip_id" class="form-select form-select-sm"
                                                         id="floatingSelect"
                                                         aria-label="Floating label select example">
-                                                        <option value="{{ $res->kar_id }}">{{ $res->kar_->name }}
+                                                        <option value="{{ $res->equip_id }}">{{ $res->equipot_->equip_->no_unit }}
                                                         </option>
-                                                        @foreach ($kar_filter as $item)
-                                                            <option value="{{ $item->name }}">{{ $item->name }}
+                                                        @foreach ($equip_filter as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->equip_->no_unit }}
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    <label for="floatingSelect">Pilih Helper</label>
+                                                    <label for="floatingSelect">Pilih Unit</label>
                                                 </div>
-                                                @error('kar_id')
+                                                @error('equip_id')
                                                     <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
                                         <div class="col-12">
+                                            <div class="form-floating">
+                                                <select required name="kar_id" class="form-select form-select-sm"
+                                                    id="floatingSelect"
+                                                    aria-label="Floating label select example">
+                                                    <option value="{{ $res->kar_id }}">{{ $res->kar_->name }}
+                                                    </option>
+                                                    @foreach ($kar_filter as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <label for="floatingSelect">Pilih Helper</label>
+                                            </div>
+                                            @error('kar_id')
+                                                <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                            @enderror
                                             <div class="form-floating">
                                                 <textarea name="remark" maxlength="50" class="form-control form-control-sm" id="floatingTextarea2"
                                                     style="height: 100px">{{ $res->remark }}</textarea>

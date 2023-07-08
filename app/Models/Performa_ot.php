@@ -15,6 +15,7 @@ class Performa_ot extends Model
         'tgl',
         'remark',
         'kar_id',
+        'equip_id',
         'jam_mulai',
         'jam_selesai',
         'jam_pot',
@@ -30,4 +31,9 @@ class Performa_ot extends Model
     public function kar_(){
         return $this->belongsTo(User::class, 'kar_id');
     }
+
+    public function equipot_(){
+        return $this->belongsTo(EquipMaster::class, 'equip_id');
+    }
+
 }

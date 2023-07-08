@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\master_sad\performa;
 
 use App\Http\Controllers\Controller;
+use App\Models\EquipMaster;
 use App\Models\Jabatan;
 use App\Models\KarMaster;
 use App\Models\Master;
@@ -28,7 +29,9 @@ class PerformaOTController extends Controller
             ->where('status', '<>', 'Delete')
             ->where('tipe_gaji', 'AL')
             ->get();
-        return view('author.sad.pfm.ot_list', compact('periode','nav', 'master', 'cek_perform', 'perform', 'kar_filter'));
+        $equip_filter = EquipMaster::where('master_id', $master->id)
+            ->get();
+        return view('author.sad.pfm.ot_list', compact('periode','equip_filter', 'nav', 'master', 'cek_perform', 'perform', 'kar_filter'));
     }
 
 
@@ -58,6 +61,7 @@ class PerformaOTController extends Controller
             Performa_ot::create([
                 'tgl' => $request->tgl,
                 'kar_id' => $request->kar_id,
+                'equip_id' => $request->equip_id,
                 'master_id' => $master->id,
                 'remark' => $request->remark,
                 'jam_mulai' => $request->jam_mulai,
@@ -69,6 +73,7 @@ class PerformaOTController extends Controller
             Performa_ot::create([
                 'tgl' => $request->tgl,
                 'kar_id' => $request->kar_id,
+                'equip_id' => $request->equip_id,
                 'master_id' => $master->id,
                 'remark' => $request->remark,
                 'jam_mulai' => $request->jam_mulai,
@@ -110,7 +115,8 @@ class PerformaOTController extends Controller
                 'id' => $request->id,
                 'tgl' => $request->tgl,
                 'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
+                'equip_id' => $request->equip_id,
+                'master_id' => $request->master_id,
                 'remark' => $request->remark,
                 'jam_mulai' => $request->jam_mulai,
                 'jam_selesai' => $request->jam_selesai,
@@ -123,7 +129,8 @@ class PerformaOTController extends Controller
                 'id' => $request->id,
                 'tgl' => $request->tgl,
                 'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
+                'equip_id' => $request->equip_id,
+                'master_id' => $request->master_id,
                 'remark' => $request->remark,
                 'jam_mulai' => $request->jam_mulai,
                 'jam_selesai' => $request->jam_selesai,

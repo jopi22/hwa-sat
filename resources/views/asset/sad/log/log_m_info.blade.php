@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Stok Onderdil | HWA &bull; SAT
+    Barang Masuk | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -29,7 +29,7 @@
                 <h6 class="mb-1 text-primary"><i class="fas fa-gas-pump"></i> Logistik <span
                         class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
                     </span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Stok Onderdil </h4>
+                <h4 class="mb-0 text-primary fw-bold">Barang Masuk </h4>
             </div>
         </div>
     </div>
@@ -52,9 +52,8 @@
                 </div>&nbsp;
                 <div class="col-sm-auto">
                     <div class="btn-group  btn-group-sm mx-2" role="group">
-                        <a href="#"><button data-bs-toggle="modal" data-bs-target="#modal-create"
-                                class="btn btn-sm btn-falcon-success mx-2" type="button"><span data-fa-transform="shrink-3"
-                                    class="fas fa-plus"></span> </button></a>
+                        <a href="{{route('log.m.c')}}"><button class="btn btn-sm btn-falcon-success mx-2" type="button"><span
+                                    data-fa-transform="shrink-3" class="fas fa-plus"></span> </button></a>
                         <div class="dropdown font-sans-serif d-inline-block">
                             <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
                                 type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
@@ -71,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            @if ($cek == 0)
+            @if ($cek_log == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
             @else
                 <div class="table-responsive scrollbar">
@@ -87,7 +86,7 @@
                                 </th>
                                 <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="unit">
-                                    Kode Barang
+                                    Tanggal
                                 </th>
                                 <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap"
@@ -97,6 +96,10 @@
                                 <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="jenis">
                                     Tipe Alat
+                                </th>
+                                <th style="min-width: 150px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="jenis">
+                                    Jenis
                                 </th>
                                 <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="brand">
@@ -113,12 +116,10 @@
                             </tr>
                         </thead>
                         <tbody id="table-posts" class="list">
-                            @foreach ($ond as $res)
+                            @foreach ($log_list as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         <div class="btn-group  btn-group-sm" role="group">
-                                            <a href="{{route('verif.i', $res->id)}}"
-                                                class="btn btn-info" type="button"><i class="fas fa-check-circle"></i></a>
                                             <a data-bs-toggle="modal" data-bs-target="#edit-{{ $res->id }}"
                                                 class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
                                             <a data-bs-toggle="modal" data-bs-target="#delete-{{ $res->id }}"
@@ -128,29 +129,36 @@
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         {{ $loop->iteration }}</td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap unit">
-                                        @if ($res->kode)
-                                            {{ $res->kode }}
+                                        @if ($res->tgl)
+                                            {{ $res->tgl }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap payment">
-                                        @if ($res->barang)
-                                            {{ $res->barang }}
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->barang }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap jenis">
-                                        @if ($res->tipe_alat)
-                                            {{ $res->tipe_alat }}
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->tipe_alat }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap jenis">
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->jenis }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap brand">
-                                        @if ($res->brand)
-                                            {{ $res->brand }}
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->brand }}
                                         @else
                                             -
                                         @endif
@@ -163,8 +171,8 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap brand">
-                                        @if ($res->satuan)
-                                            {{ $res->satuan }}
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->satuan }}
                                         @else
                                             -
                                         @endif
@@ -187,8 +195,6 @@
         </div>
     </div>
 
-
-    @include('comp.modal.stok.modal_ond_create')
-    @include('comp.modal.stok.modal_ond_edit')
-    @include('comp.modal.stok.modal_ond_delete')
+    @include('comp.modal.stok.modal_logmasuk_edit')
+    @include('comp.modal.stok.modal_logmasuk_delete')
 @endsection

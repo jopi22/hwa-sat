@@ -471,6 +471,10 @@ class PerformaHMController extends Controller
             'total_jam' => $total_jam,
             'total_hm' => $total_hm,
             'grand_total' => $total_all,
+            'ot_total' => $request->ot_total,
+            'valid' => $request->valid,
+            'tipe' => $request->tipe,
+            'hauling' => $request->hauling,
         ]);
         return back()->with('success', 'Data HM Berhasil Ditambahkan');
     }

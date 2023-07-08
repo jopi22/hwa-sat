@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Stok Onderdil | HWA &bull; SAT
+    Verifikasi Stok Barang | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -29,12 +29,38 @@
                 <h6 class="mb-1 text-primary"><i class="fas fa-gas-pump"></i> Logistik <span
                         class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
                     </span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Stok Onderdil </h4>
+                <h4 class="mb-0 text-primary fw-bold">Verifikasi {{ $barang->barang }} </h4>
             </div>
         </div>
     </div>
 
     @include('comp.alert')
+
+    <form action="{{ route('verif.u') }}" method="post">
+        @csrf
+        @foreach ($log as $item)
+            <input type="hidden" name="delete_log[]" value="{{ $item->id }}">
+            <input type="hidden" name="id[]" value="{{ $item->id }}">
+            <input type="hidden" name="master_id[]" value="{{ $item->master_id }}">
+            <input type="hidden" name="equip_id[]" value="{{ $item->equip_id }}">
+            <input type="hidden" name="barang_id[]" value="{{ $item->barang_id }}">
+            <input type="hidden" name="jumlah[]" value="{{ $item->jumlah }}">
+            <input type="hidden" name="hmkm[]" value="{{ $item->hmkm }}">
+            <input type="hidden" name="tgl[]" value="{{ $item->tgl }}">
+            <input type="hidden" name="ket[]" value="{{ $item->ket }}">
+            <input type="hidden" name="log_tipe[]" value="{{ $item->log_tipe }}">
+            <input type="hidden" name="status[]" value="Sudah">
+        @endforeach
+        <input type="hidden" name="delete_stok" value="{{ $barang->id }}">
+        <input type="hidden" name="id_stok" value="{{ $barang->id }}">
+        <input type="hidden" name="barang" value="{{ $barang->barang }}">
+        <input type="hidden" name="jenis" value="{{ $barang->jenis }}">
+        <input type="hidden" name="brand" value="{{ $barang->brand }}">
+        <input type="hidden" name="jum_tot" value="{{ $jum_tot }}">
+        <input type="hidden" name="satuan" value="{{ $barang->satuan }}">
+        <input type="hidden" name="tipe_alat" value="{{ $barang->tipe_alat }}">
+        <button type="submit">update</button>
+    </form>
 
     <div class="card mb-3">
         <div class="card-header py-2 bg-light">
@@ -78,7 +104,8 @@
                     <table class="table table-sm table-striped table-bordered mb-0 fs--1 overflow-hidden">
                         <thead class="bg-200 text-800">
                             <tr class="text-center">
-                                <th style="min-width: 50px" class="bg-secondary text-white align-middle white-space-nowrap">
+                                <th style="min-width: 50px"
+                                    class="bg-secondary text-white align-middle white-space-nowrap">
                                     Aksi
                                 </th>
                                 <th style="min-width: 50px"
@@ -86,71 +113,55 @@
                                     #
                                 </th>
                                 <th style="min-width: 150px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="unit">
-                                    Kode Barang
-                                </th>
-                                <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap"
                                     data-sort="payment">
                                     Nama Barang
                                 </th>
                                 <th style="min-width: 150px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="jenis">
-                                    Tipe Alat
-                                </th>
-                                <th style="min-width: 150px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="brand">
-                                    Brand
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap"
+                                    data-sort="jenis">
+                                    Tanggal
                                 </th>
                                 <th style="min-width: 150px"
                                     class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="jumlah">
                                     Jumlah
                                 </th>
                                 <th style="min-width: 150px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="jumlah">
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap"
+                                    data-sort="jumlah">
                                     Satuan
+                                </th>
+                                <th style="min-width: 150px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap"
+                                    data-sort="jumlah">
+                                    Tipe
                                 </th>
                             </tr>
                         </thead>
                         <tbody id="table-posts" class="list">
-                            @foreach ($ond as $res)
+                            @foreach ($log as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         <div class="btn-group  btn-group-sm" role="group">
-                                            <a href="{{route('verif.i', $res->id)}}"
-                                                class="btn btn-info" type="button"><i class="fas fa-check-circle"></i></a>
                                             <a data-bs-toggle="modal" data-bs-target="#edit-{{ $res->id }}"
                                                 class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
                                             <a data-bs-toggle="modal" data-bs-target="#delete-{{ $res->id }}"
-                                                class="btn btn-danger" type="button"><i class="fas fa-trash-alt"></i></a>
+                                                class="btn btn-danger" type="button"><i
+                                                    class="fas fa-trash-alt"></i></a>
                                         </div>
                                     </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         {{ $loop->iteration }}</td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap unit">
-                                        @if ($res->kode)
-                                            {{ $res->kode }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap payment">
-                                        @if ($res->barang)
-                                            {{ $res->barang }}
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->barang }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap jenis">
-                                        @if ($res->tipe_alat)
-                                            {{ $res->tipe_alat }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap brand">
-                                        @if ($res->brand)
-                                            {{ $res->brand }}
+                                        @if ($res->tgl)
+                                            {{ $res->tgl }}
                                         @else
                                             -
                                         @endif
@@ -163,8 +174,15 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap brand">
-                                        @if ($res->satuan)
-                                            {{ $res->satuan }}
+                                        @if ($res->barang_id)
+                                            {{ $res->stok_->satuan }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap brand">
+                                        @if ($res->log_tipe)
+                                            {{ $res->log_tipe }}
                                         @else
                                             -
                                         @endif
@@ -188,7 +206,7 @@
     </div>
 
 
-    @include('comp.modal.stok.modal_ond_create')
-    @include('comp.modal.stok.modal_ond_edit')
-    @include('comp.modal.stok.modal_ond_delete')
+    {{-- @include('comp.modal.stok.modal_liq_create')
+    @include('comp.modal.stok.modal_liq_edit')
+    @include('comp.modal.stok.modal_liq_delete') --}}
 @endsection

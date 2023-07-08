@@ -287,24 +287,35 @@
                                     <div class="col-6">
                                         <div class="mb-2">
                                             <div class="form-floating">
-                                                <select required name="kar_id" class="form-select form-select-sm"
+                                                <select required name="equip_id" class="form-select form-select-sm"
                                                     id="floatingSelect" aria-label="Floating label select example">
                                                     <option selected=""></option>
-                                                    @foreach ($kar_filter as $s)
-                                                        <option value="{{ $s->id }}">{{ $s->name }}
+                                                    @foreach ($equip_filter as $ajg)
+                                                        <option value="{{ $ajg->id }}">{{ $ajg->equip_->no_unit }}
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                                <label for="floatingSelect">Pilih Helper</label>
+                                                <label for="floatingSelect">Pilih Unit</label>
                                             </div>
-                                            @error('kar_id')
+                                            @error('equip_id')
                                                 <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <textarea name="remark" maxlength="50" class="form-control form-control-sm" id="floatingTextarea2"
+                                            <select required name="kar_id" class="form-select form-select-sm"
+                                                id="floatingSelect" aria-label="Floating label select example">
+                                                <option selected=""></option>
+                                                @foreach ($kar_filter as $asu)
+                                                    <option value="{{ $asu->id }}">{{ $asu->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="floatingSelect">Pilih Helper</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea name="remark" maxlength="50" class="form-control form-control-sm mt-2" id="floatingTextarea2"
                                                 style="height: 100px"></textarea>
                                             <label for="floatingTextarea2">Remark<code>*</code></label>
                                         </div>

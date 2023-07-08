@@ -543,10 +543,6 @@
                                     Jumlah
                                 </th>
                                 <th style="min-width: 150px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="jum">
-                                    Satuan
-                                </th>
-                                <th style="min-width: 150px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="jm">
                                     HM/KM
                                 </th>
@@ -563,6 +559,7 @@
                                             class="fas fa-plus-square fs-2"></i></a>
                                     <input type="hidden" name="master_id[]" value="{{ $master->id }}">
                                     <input type="hidden" name="equip_id[]" value="{{ $equip_m->equip_id }}">
+                                    <input type="hidden" name="log_tipe[]" value="Keluar">
                                 </td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap tgl">
                                     <select required class="form-control form-control-sm" name="tgl[]">
@@ -818,16 +815,16 @@
                                     </select>
                                 </td>
                                 <td class="align-middle text-1000 white-space-nowrap log">
-                                    <input required maxlength="100" class="form-control form-control-sm" type="text"
-                                        name="barang[]">
+                                    <select required class="form-control form-control-sm" name="barang[]">
+                                        <option value=""></option>
+                                        @foreach ($barang as $asu)
+                                            <option value="{{$asu->id}}">{{$asu->barang}}</option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap jum">
                                     <input required max="100000000" class="form-control form-control-sm" type="number"
                                         name="jumlah[]">
-                                </td>
-                                <td class="align-middle text-1000 text-center white-space-nowrap jum">
-                                    <input required maxlength="10" class="form-control form-control-sm" type="text"
-                                        name="satuan[]">
                                 </td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap hm">
                                     <input required max="100000000" class="form-control form-control-sm" type="number"

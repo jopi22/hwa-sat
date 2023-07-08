@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(BreakdownController::class)->group(function () {
         // Breakdown
         Route::get('bd_list', 'bd_list')->name('bd.l');
+        Route::get('bd_info/{bd}', 'bd_info')->name('bd.i');
         Route::post('bd_store', 'bd_store')->name('bd.s');
         Route::post('bd_update', 'bd_update')->name('bd.u');
         Route::post('bd_delete', 'bd_delete')->name('bd.d');
