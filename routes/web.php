@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('print2', function () {
+    return view('print');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
