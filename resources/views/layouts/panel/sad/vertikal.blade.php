@@ -699,29 +699,60 @@
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-truck-monster"></span></span><span
                                         class="nav-link-text ps-1">
-                                        Equipment </span></div>
+                                        Rental </span>
+                                </div>
                             </a>
                             <ul class="nav collapse" id="sdads-sdf">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('heavy.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Heavy
-                                                Equipment</span>
-                                        </div>
+                                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#course"
+                                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Equipment</span></div>
+                                    </a><!-- more inner pages-->
+                                    <ul class="nav collapse" id="course">
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('heavy.l') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Heavy</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('vehicle.l') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Vehicle</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('support.l') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Support</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('aktivitas.l') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Jenis
+                                                Aktivitas
+                                            </span></div>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('vehicle.l') }}">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('location.l') }}">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Vehicle</span>
-                                        </div>
+                                                class="nav-link-text ps-1">Location
+                                            </span></div>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('support.l') }}">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('category.l') }}">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Support
-                                                Equipment</span></div>
+                                                class="nav-link-text ps-1">Category
+                                            </span></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('dedicated.l') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Dedicated
+                                            </span></div>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
 
                         <a class="nav-link dropdown-indicator" href="#e-m" role="button"
                             data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">

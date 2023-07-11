@@ -4,6 +4,10 @@ use App\Http\Controllers\master_sad\performa\BreakdownController;
 use App\Http\Controllers\master_sad\performa\HaulingController;
 use App\Http\Controllers\master_sad\performa\PerformaHMController;
 use App\Http\Controllers\master_sad\performa\PerformaOTController;
+use App\Http\Controllers\primer_sad\AktivitasController;
+use App\Http\Controllers\primer_sad\CategoryController;
+use App\Http\Controllers\primer_sad\DedicatedController;
+use App\Http\Controllers\primer_sad\LocationController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
@@ -61,5 +65,37 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('hauling_list', 'ha_list')->name('ha.l');
         Route::put('hauling_update/{ha}', 'ha_update')->name('ha.u');
         Route::post('hauling_delete', 'ha_delete')->name('ha.d');
+    });
+
+
+    Route::controller(AktivitasController::class)->group(function () {
+        // Jenis Aktivitas
+        Route::get('aktivitas_list', 'aktivitas_index')->name('aktivitas.l');
+        Route::put('aktivitas_update/{aktivitas}', 'aktivitas_update')->name('aktivitas.u');
+        Route::post('aktivitas_store', 'aktivitas_store')->name('aktivitas.s');
+    });
+
+
+    Route::controller(LocationController::class)->group(function () {
+        // Location
+        Route::get('location_list', 'location_index')->name('location.l');
+        Route::put('location_update/{location}', 'location_update')->name('location.u');
+        Route::post('location_store', 'location_store')->name('location.s');
+    });
+
+
+    Route::controller(CategoryController::class)->group(function () {
+        // Category
+        Route::get('category_list', 'category_index')->name('category.l');
+        Route::put('category_update/{category}', 'category_update')->name('category.u');
+        Route::post('category_store', 'category_store')->name('category.s');
+    });
+
+
+    Route::controller(DedicatedController::class)->group(function () {
+        // Category
+        Route::get('dedicated_list', 'dedicated_index')->name('dedicated.l');
+        Route::put('dedicated_update/{dedicated}', 'dedicated_update')->name('dedicated.u');
+        Route::post('dedicated_store', 'dedicated_store')->name('dedicated.s');
     });
 });

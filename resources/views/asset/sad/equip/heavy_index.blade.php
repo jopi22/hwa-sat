@@ -36,9 +36,9 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Equipment <span
-                    class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                </span></h6>
+                <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
+                        class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
+                    </span></h6>
                 <h4 class="mb-0 text-primary fw-bold">Heavy Equipment</h4>
             </div>
         </div>
@@ -79,11 +79,48 @@
                                 type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-print"></i></button>
                             <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i>
+                                <a target="_blank" class="dropdown-item text-success"
+                                    href="{{ route('heavy.p.excel', Auth::user()->id) }}"><i class="fas fa-file-excel"></i>
                                     Print Excel
                                 </a>
-                                <a class="dropdown-item text-warning" href="#!"><i class="fas fa-file-pdf"></i>
+                                <a target="_blank" class="dropdown-item text-warning"
+                                    href="{{ route('heavy.p.pdf', Auth::user()->id) }}"><i class="fas fa-file-pdf"></i>
                                     Print PDF
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dropdown font-sans-serif d-inline-block">
+                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
+                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-truck-monster"></i></button>
+                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item text-900" href="{{ route('heavy.l') }}">
+                                    Heavy
+                                </a>
+                                <a class="dropdown-item text-900" href="{{ route('vehicle.l') }}">
+                                    Vehicle
+                                </a>
+                                <a class="dropdown-item text-900" href="{{ route('support.l') }}">
+                                    Support
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dropdown font-sans-serif d-inline-block">
+                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
+                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="fas fa-layer-group"></i></button>
+                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item text-900" href="{{ route('aktivitas.l') }}">
+                                    Jenis Aktivitas
+                                </a>
+                                <a class="dropdown-item text-900" href="{{ route('location.l') }}">
+                                    Location
+                                </a>
+                                <a class="dropdown-item text-900" href="{{ route('category.l') }}">
+                                    Category
+                                </a>
+                                <a class="dropdown-item text-900" href="{{ route('dedicated.l') }}">
+                                    Dedicated
                                 </a>
                             </div>
                         </div>
@@ -95,16 +132,13 @@
             @else
                 <div class="table-responsive scrollbar">
                     <table class="table table-sm table-bordered mb-0 fs--1 overflow-hidden">
-                        <thead class="bg-200 text-800">
+                        <thead class="bg-secondary text-white">
                             <tr class="text-center">
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
                                     Aksi
                                 </th>
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
-                                </th>
-                                <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="id">
-                                    ID
                                 </th>
                                 <th style="min-width: 150px" class="sort align-middle white-space-nowrap" data-sort="unit">
                                     No Unit
@@ -119,10 +153,12 @@
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="tipe">
                                     Tipe
                                 </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="jenis">
-                                    Jenis
+                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                                    data-sort="jenis">
+                                    No Rangka
                                 </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="brand">
+                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                                    data-sort="brand">
                                     Brand
                                 </th>
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
@@ -142,6 +178,7 @@
                                                     @method('put')
                                                     <input type="hidden" name="status" value="Tidak Aktif">
                                                     <input type="hidden" name="off" value="1">
+                                                    <input type="hidden" name="end_op" value="{{ date('d-m-y') }}">
                                                     <button type="submit" class="btn btn-sm btn-danger"><i
                                                             class="fas fa-power-off"></i></button>
                                                 </form>
@@ -151,6 +188,7 @@
                                                     @method('put')
                                                     <input type="hidden" name="status" value="Aktif">
                                                     <input type="hidden" name="on" value="1">
+                                                    <input type="hidden" name="end_op" value="-">
                                                     <button type="submit" class="btn btn-sm btn-info"><i
                                                             class="fas fa-power-off"></i></button>
                                                 </form>
@@ -158,39 +196,57 @@
                                             {{-- <a href="#" class="btn btn-info" type="button"
                                                 data-bs-toggle="modal" data-bs-target="#detail-{{ $res->id }}"
                                                 title="Detail"><i class="fas fa-info-circle"></i></a> --}}
-                                            <a href="javascript:void(0)" id="edit-btn"
-                                                data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
-                                                class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Edit"><span class="fas fa-edit"></span></a>
-                                            <a href="javascript:void(0)" id="hapus-btn"
-                                                data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
-                                                class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                                                title="Hapus"><span class="fas fa-trash-alt"></span></a>
+                                            <a data-bs-toggle="modal" data-bs-target="#edit-{{ $res->id }}"
+                                                class="btn btn-warning" data-bs-toggle="tooltip"><span
+                                                    class="fas fa-edit"></span></a>
+                                            <a data-bs-toggle="modal" data-bs-target="#hapus-{{ $res->id }}"
+                                                class="btn btn-danger"><span class="fas fa-trash-alt"></span></a>
                                         </div>
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap no">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap id">
-                                        {{ $res->id }}
-                                    </td>
                                     <td class="align-middle text-1000 white-space-nowrap unit">
-                                        {{ $res->no_unit }}
+                                        @if ($res->no_unit)
+                                            {{ $res->no_unit }}
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="align-middle text-1000 white-space-nowrap kode">
-                                        {{ $res->kode_unit }}
+                                        @if ($res->kode_unit)
+                                            {{ $res->kode_unit }}
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="align-middle text-1000 white-space-nowrap model">
-                                        {{ $res->model }}
+                                        @if ($res->model)
+                                            {{ $res->model }}
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="align-middle text-1000 white-space-nowrap tipe">
-                                        {{ $res->tipe }}
+                                        @if ($res->tipe)
+                                            {{ $res->tipe }}
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="align-middle text-1000 white-space-nowrap jenis">
-                                        {{ $res->jenis }}
+                                        @if ($res->no_rangka)
+                                            {{ $res->no_rangka }}
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="align-middle text-1000 white-space-nowrap brand">
-                                        {{ $res->brand }}
+                                        @if ($res->brand)
+                                            {{ $res->brand }}
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap status">
                                         @if ($res->status == 'Aktif')
@@ -221,6 +277,6 @@
         </div>
     </div>
 
-    @include('comp.modal.equip.modal_equip_edit')
+    @include('comp.modal.equip.modal_heavy_edit')
     @include('comp.modal.equip.modal_equip_delete')
 @endsection

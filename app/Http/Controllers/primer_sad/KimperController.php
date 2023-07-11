@@ -28,8 +28,8 @@ class KimperController extends Controller
             ->orderBy('username', 'ASC')
             ->get();
         $site = Site::all();
-        $cek = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Trash')
+        $cek = User::where('status', 'Aktif')
+        ->where('tipe_gaji', 'AI')
             ->count();
         $jab_f = Jabatan::all();
         return view('author.sad.kar.kimper_index', compact('cek', 'site', 'nav', 'kar', 'jab_f', 'master', 'periode',));

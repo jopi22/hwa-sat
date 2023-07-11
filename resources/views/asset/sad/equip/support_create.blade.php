@@ -54,13 +54,21 @@
                             name="model[]">
                     </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control form-control-sm"
-                            name="tipe[]">
-                    </td>
+                        <select required name="tipe[]" class="form-control form-control-sm">
+                                        <option></option>
+                                        <option value="Peralatan Las">Peralatan Las</option>
+                                        <option value="Kompresor">Kompresor</option>
+                                        <option value="Generator Listrik">Generator Listrik</option>
+                                    </select>
+                                </td>
                     <td class="align-middle white-space-nowrap">
                         <input required type="text" maxlength="50" class="form-control form-control-sm"
                             name="brand[]">
                     </td>
+<td class="align-middle white-space-nowrap">
+                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="no_rangka[]">
+                                </td>
                     <td class="align-middle white-space-nowrap">
                         <input required type="date" class="form-control form-control-sm"
                                         name="start_op[]">
@@ -202,6 +210,10 @@
                                 </th>
                                 <th style="min-width: 200px"
                                     class="sort bg-danger text-white align-middle white-space-nowrap">
+                                    No Mesin
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-danger text-white align-middle white-space-nowrap">
                                     Tgl Operasional
                                 </th>
                             </tr>
@@ -227,12 +239,20 @@
                                         name="model[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
-                                        name="tipe[]">
+                                    <select required name="tipe[]" class="form-control form-control-sm">
+                                        <option></option>
+                                        <option value="Peralatan Las">Peralatan Las</option>
+                                        <option value="Kompresor">Kompresor</option>
+                                        <option value="Generator Listrik">Generator Listrik</option>
+                                    </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="50" class="form-control form-control-sm"
                                         name="brand[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="no_rangka[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="date" class="form-control form-control-sm" name="start_op[]">

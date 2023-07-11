@@ -10,5 +10,6 @@ class Equipment extends Model
     use HasFactory;
     protected $table = 'hwa_equipment';
     protected $guarded = ['id'];
+    protected $dates = ['start_op'];
 
 }

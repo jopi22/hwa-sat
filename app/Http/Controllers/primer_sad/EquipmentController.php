@@ -23,13 +23,44 @@ class EquipmentController extends Controller
             ->where('jenis', 'Heavy Equipment')
             ->get();
         $equip = Equipment::where('status', '<>', 'Delete')
+            ->get();
+        $filter = Equipment::select('tipe')->distinct()->get();
+        $cek = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Heavy Equipment')
+            ->count();
+        return view('author.sad.equip.heavy_index', compact('cek', 'nav', 'equip', 'heavy', 'master', 'periode', 'filter'));
+    }
+
+
+    public function heavy_print_pdf($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $equip = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Heavy Equipment')
             ->get();
         $filter = Equipment::select('tipe')->distinct()->get();
         $cek = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Heavy Equipment')
             ->count();
-        return view('author.sad.equip.heavy_index', compact('cek','nav', 'heavy', 'master', 'periode', 'filter'));
+        return view('asset.sad.equip.heavy_print_pdf', compact('cek', 'nav', 'equip',  'master', 'periode', 'filter'));
+    }
+
+
+    public function heavy_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Heavy Equipment')
+            ->get();
+        $filter = Equipment::select('tipe')->distinct()->get();
+        $cek = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Heavy Equipment')
+            ->count();
+        return view('asset.sad.equip.heavy_print_excel', compact('cek', 'nav', 'equip',  'master', 'periode', 'filter'));
     }
 
 
@@ -41,11 +72,45 @@ class EquipmentController extends Controller
         $vehicle = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Vehicle')
             ->get();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->get();
         $cek = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Vehicle')
             ->count();
         $filter = Equipment::select('tipe')->distinct()->get();
-        return view('author.sad.equip.vehicle_index', compact('cek','nav', 'vehicle', 'master', 'periode', 'filter'));
+        return view('author.sad.equip.vehicle_index', compact('cek', 'equip', 'nav', 'vehicle', 'master', 'periode', 'filter'));
+    }
+
+
+    public function vehicle_print_pdf($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Vehicle')
+            ->get();
+        $filter = Equipment::select('tipe')->distinct()->get();
+        $cek = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Vehicle')
+            ->count();
+        return view('asset.sad.equip.vehicle_print_pdf', compact('cek', 'nav', 'equip', 'master', 'periode', 'filter'));
+    }
+
+
+    public function vehicle_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Vehicle')
+            ->get();
+        $filter = Equipment::select('tipe')->distinct()->get();
+        $cek = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Vehicle')
+            ->count();
+        return view('asset.sad.equip.vehicle_print_excel', compact('cek', 'nav', 'equip', 'master', 'periode', 'filter'));
     }
 
 
@@ -57,11 +122,44 @@ class EquipmentController extends Controller
         $support = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Support Equipment')
             ->get();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->get();
         $cek = Equipment::where('status', '<>', 'Delete')
             ->where('jenis', 'Support Equipment')
             ->count();
         $filter = Equipment::select('tipe')->distinct()->get();
-        return view('author.sad.equip.support_index', compact('cek','nav', 'support', 'master', 'periode', 'filter'));
+        return view('author.sad.equip.support_index', compact('cek','equip', 'nav', 'support', 'master', 'periode', 'filter'));
+    }
+
+    public function support_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Support Equipment')
+            ->get();
+        $filter = Equipment::select('tipe')->distinct()->get();
+        $cek = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Vehicle')
+            ->count();
+        return view('asset.sad.equip.support_print_excel', compact('cek', 'nav', 'equip', 'master', 'periode', 'filter'));
+    }
+
+
+    public function support_print_pdf($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $equip = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Support Equipment')
+            ->get();
+        $filter = Equipment::select('tipe')->distinct()->get();
+        $cek = Equipment::where('status', '<>', 'Delete')
+            ->where('jenis', 'Vehicle')
+            ->count();
+        return view('asset.sad.equip.support_print_pdf', compact('cek', 'nav', 'equip', 'master', 'periode', 'filter'));
     }
 
 
@@ -70,7 +168,7 @@ class EquipmentController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        return view('author.sad.equip.heavy_create', compact('master','nav', 'periode',));
+        return view('author.sad.equip.heavy_create', compact('master', 'nav', 'periode',));
     }
 
 
@@ -79,7 +177,7 @@ class EquipmentController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        return view('author.sad.equip.vehicle_create', compact('master','nav', 'periode',));
+        return view('author.sad.equip.vehicle_create', compact('master', 'nav', 'periode',));
     }
 
 
@@ -88,7 +186,7 @@ class EquipmentController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        return view('author.sad.equip.support_create', compact('master','nav', 'periode',));
+        return view('author.sad.equip.support_create', compact('master', 'nav', 'periode',));
     }
 
 
@@ -99,7 +197,7 @@ class EquipmentController extends Controller
         $master = Master::where('status', 'Present')->count();
         $decryptID = Crypt::decryptString($id);
         $equip = Equipment::Find($decryptID);
-        return view('asset.sad.equip.equip_info', compact('master','nav', 'periode', 'equip'));
+        return view('asset.sad.equip.equip_info', compact('master', 'nav', 'periode', 'equip'));
     }
 
 
@@ -114,20 +212,18 @@ class EquipmentController extends Controller
     }
 
 
-    public function equip_update(Request $request, Equipment $equip)
+    public function equip_update(Request $request, $id)
     {
+        $equip = Equipment::Find($id);
         $equip->update([
             'no_unit' => $request->no_unit,
             'kode_unit' => $request->kode_unit,
             'brand' => $request->brand,
             'tipe' => $request->tipe,
             'model' => $request->model,
+            'no_rangka' => $request->no_rangka,
         ]);
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Berhasil Diupdapte',
-            'data'    => $equip
-        ]);
+        return back()->with('success', 'Data Berhasil Diupdate');
     }
 
 
@@ -144,13 +240,14 @@ class EquipmentController extends Controller
             $data['jenis'] = $request->jenis[$key];
             $data['tipe'] = $request->tipe[$key];
             $data['brand'] = $request->brand[$key];
+            $data['no_rangka'] = $request->no_rangka[$key];
             $data['start_op'] = $request->start_op[$key];
             $data['status'] = $request->status[$key];
             $data['token'] = $token;
             $data['author'] = Auth::user()->id;
             Equipment::create($data);
         }
-        LogActivity::addToLog('Menambahkan Data Equipment (Primer)');
+        // LogActivity::addToLog('Menambahkan Data Equipment (Primer)');
         if ($request->has('heavy')) {
             return redirect()->route('heavy.l')->with('success', 'Heavy Equipment Berhasil ditambahkan');
         } else {
@@ -165,16 +262,13 @@ class EquipmentController extends Controller
     }
 
 
-    public function equip_delete(Request $request, Equipment $equip)
+    public function equip_delete(Request $request, $id)
     {
+        $equip = Equipment::Find($id);
         $equip->update([
             'status' => $request->status,
         ]);
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Berhasil Diupdapte',
-            'data'    => $equip
-        ]);
+        return back()->with('success', 'Equipment Berhasil Dihapus');
     }
 
 
@@ -183,6 +277,7 @@ class EquipmentController extends Controller
         $equip = Equipment::Find($id);
         $equip_data = [
             'status' => $request->status,
+            'end_op' => $request->end_op,
         ];
         $equip->update($equip_data);
         if ($request->has('on')) {

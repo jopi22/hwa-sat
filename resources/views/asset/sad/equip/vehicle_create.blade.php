@@ -54,13 +54,22 @@
                             name="model[]">
                     </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control form-control-sm"
-                            name="tipe[]">
-                    </td>
+                                    <select required name="tipe[]" class="form-control form-control-sm">
+                                        <option></option>
+                                        <option value="Dump Truck">Dump Truck</option>
+                                        <option value="Pick Up">Pick Up</option>
+                                        <option value="Truck Loader">Truck Loader</option>
+                                        <option value="Truck Tangki">Truck Tangki</option>
+                                    </select>
+                                </td>
                     <td class="align-middle white-space-nowrap">
                         <input required type="text" maxlength="50" class="form-control form-control-sm"
                             name="brand[]">
                     </td>
+<td class="align-middle white-space-nowrap">
+                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="no_rangka[]">
+                                </td>
                     <td class="align-middle white-space-nowrap">
                         <input required type="date" class="form-control form-control-sm"
                                         name="start_op[]">
@@ -147,7 +156,7 @@
                 <a href="{{ route('heavy.c') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
                             class="fas fa-spinner text-primary"></i></button></a>
                 <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                    </span>
+                </span>
             </div>
             <div class="ms-1">&nbsp;
                 <span class=" fw-semi-bold text-primary"> Tambah Vehicle</span></span>
@@ -202,6 +211,10 @@
                                 </th>
                                 <th style="min-width: 200px"
                                     class="sort bg-danger text-white align-middle white-space-nowrap">
+                                    No Rangka
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-danger text-white align-middle white-space-nowrap">
                                     Tgl Operasional
                                 </th>
                             </tr>
@@ -227,12 +240,21 @@
                                         name="model[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
-                                        name="tipe[]">
+                                    <select required name="tipe[]" class="form-control form-control-sm">
+                                        <option></option>
+                                        <option value="Dump Truck">Dump Truck</option>
+                                        <option value="Pick Up">Pick Up</option>
+                                        <option value="Truck Loader">Truck Loader</option>
+                                        <option value="Truck Tangki">Truck Tangki</option>
+                                    </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="50" class="form-control form-control-sm"
                                         name="brand[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="no_rangka[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="date" class="form-control form-control-sm" name="start_op[]">

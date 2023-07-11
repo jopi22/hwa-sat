@@ -8,7 +8,7 @@
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="{{ asset('assets/print/css/kar_excel.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/print/css/print_excel.css') }}" rel="stylesheet">
 </head>
 
 <body class="l">

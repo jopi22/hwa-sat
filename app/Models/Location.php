@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dedicated extends Model
+class Location extends Model
 {
     use HasFactory;
-    protected $table = 'hwa_dedicated';
+    protected $table = 'hwa_location';
     protected $guarded = ['id'];
 }
