@@ -557,12 +557,14 @@
                                     </a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('ond.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok Onderdil
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
+                                                Onderdil
                                             </span></div>
                                     </a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('liq.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok Liquid
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
+                                                Liquid
                                             </span></div>
                                     </a>
                                 </li>
@@ -648,7 +650,7 @@
                                 data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-user-circle"></span></span><span class="nav-link-text ps-1">
-                                        SDM</span></div>
+                                        HRGA</span></div>
                             </a>
                             <ul class="nav collapse" id="e-learning">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('kar.g') }}">
@@ -658,7 +660,7 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('akun.g') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Account</span></div>
+                                                Kelola Akun</span></div>
                                     </a><!-- more inner pages-->
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('jab.g') }}">
@@ -667,10 +669,25 @@
                                         </div>
                                     </a><!-- more inner pages-->
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('bank.g') }}">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('sp.g') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Surat
+                                                Peringatan</span></div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data
+                                                Resign</span></div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('mut.g') }}">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Bank</span>
-                                        </div>
+                                                class="nav-link-text ps-1">Mutasi</span></div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('kim.g') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">KIMPER</span></div>
                                     </a><!-- more inner pages-->
                                 </li>
                             </ul>
@@ -714,15 +731,10 @@
                             </div>
                         </a>
                         <ul class="nav collapse" id="e-m">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('sp.g') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Surat
-                                            Peringatan</span></div>
-                                </a><!-- more inner pages-->
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Permohonan
-                                            Resign</span></div>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('bank.g') }}">
+                                    <div class="d-flex align-items-center"><span
+                                            class="nav-link-text ps-1">Bank</span>
+                                    </div>
                                 </a><!-- more inner pages-->
                             </li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('mit.g') }}">

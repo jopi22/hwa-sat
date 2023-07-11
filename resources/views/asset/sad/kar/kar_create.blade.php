@@ -39,6 +39,10 @@
                     <a href="javascript:void(0)" class="text-danger remove" title="Remove"><i class="fas fa-minus-square fs-2"></i></a>
                 </td>
                 <td class="align-middle white-space-nowrap">
+                    <input required type="number" maxlength="25" class="form-control form-control-sm"
+                        name="username[]">
+                </td>
+                <td class="align-middle white-space-nowrap">
                     <input required type="text" maxlength="25" class="form-control form-control-sm"
                         name="name[]">
                 </td>
@@ -59,9 +63,48 @@
                     </select>
                 </td>
                 <td class="align-middle white-space-nowrap">
-                    <input required type="date" class="form-control form-control-sm" name="tgl_gabung[]">
-                </td>
+                                    <input required type="date" class="form-control form-control-sm"
+                                        name="tgl_gabung[]">
+                                </td>
                 <td class="align-middle white-space-nowrap">
+                                    <input type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="kimper[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="date" class="form-control form-control-sm" name="ed_kimper[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="nama_rek[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="number" maxlength="50" class="form-control form-control-sm"
+                                        name="no_rek[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <select name="bank[]" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                        <option value="BRI">BRI</option>
+                                        <option value="BNI">BNI</option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="Kalbar">Kalbar</option>
+                                        <option value="BCA">BCA</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <select name="agama[]" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katholik">Katholik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                </td>
+                                <td class="align-middle white-space-nowrap">
                     <input disabled type="text" class="form-control form-control-sm" value="Aktif">
                     <input type="hidden" name="status[]" value="Aktif">
                 </td>
@@ -181,6 +224,10 @@
                                     class="sort bg-secondary text-white align-middle white-space-nowrap">
                                     Add Row
                                 </th>
+                                <th style="min-width: 150px"
+                                    class="sort bg-danger text-white align-middle white-space-nowrap">
+                                    NIK
+                                </th>
                                 <th style="min-width: 300px"
                                     class="sort bg-danger text-white align-middle white-space-nowrap">
                                     Nama
@@ -198,7 +245,31 @@
                                     Tgl Gabung
                                 </th>
                                 <th style="min-width: 200px"
-                                    class="sort bg-danger text-white align-middle white-space-nowrap">
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
+                                    Kimper
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
+                                    ED Kimper
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
+                                    Nama Rekening
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
+                                    No Rekening
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
+                                    Bank
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
+                                    Agama
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
                                     Status
                                 </th>
                             </tr>
@@ -210,8 +281,14 @@
                                             class="fas fa-plus-square fs-2"></i></a>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
+                                    <input required type="number" maxlength="25" class="form-control form-control-sm"
+                                        name="username[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="25" class="form-control form-control-sm"
                                         name="name[]">
+                                    <input required type="hidden" maxlength="25" class="form-control form-control-sm"
+                                        name="site_id[]" value="1">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <select required name="tipe_gaji[]" class="form-control form-control-sm">
@@ -231,6 +308,44 @@
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="date" class="form-control form-control-sm" name="tgl_gabung[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="kimper[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="date" class="form-control form-control-sm" name="ed_kimper[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="text" maxlength="50" class="form-control form-control-sm"
+                                        name="nama_rek[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="number" maxlength="50" class="form-control form-control-sm"
+                                        name="no_rek[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <select name="bank[]" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                        <option value="BRI">BRI</option>
+                                        <option value="BNI">BNI</option>
+                                        <option value="Mandiri">Mandiri</option>
+                                        <option value="Kalbar">Kalbar</option>
+                                        <option value="BCA">BCA</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <select name="agama[]" class="form-control form-control-sm">
+                                        <option value=""></option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katholik">Katholik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input disabled type="text" class="form-control form-control-sm" value="Aktif">

@@ -348,6 +348,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="row g-2">
+                    <div class="col-6 mb-3">
+                        <label class="form-label">Agama<code>*</code></label>
+                        <select name="agama" class="form-control">
+                            <option value="{{ $kar->agama }}">{{ $kar->agama }}</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Katholik">Katholik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Kong Hu Chu">Kong Hu Chu</option>
+                            <option value="Lain-lain">Lain-lain</option>
+                        </select>
+                        @error('agama')
+                            <div class="text-danger mt-2 text-sm">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
                 <hr>
                 <div class="row g-2">
                     <div class="col-6">
@@ -375,6 +393,29 @@
                                 id="datepicker" type="text" placeholder="Pilih Tanggal Bergabung"
                                 value="{{ $kar->tgl_gabung }}" data-options='{"disableMobile":true}' />
                             @error('tgl_gabung')
+                                <div class="text-danger mt-2 text-sm">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">KIMPER<code>*</code></label>
+                            <input type="text" class="form-control" maxlength="50" name="kimper"
+                                value="{{ $kar->kimper }}">
+                            @error('jabatan')
+                                <div class="text-danger mt-2 text-sm">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">ED KIMPER<code>*</code></label>
+                            <input value="{{ $kar->ed_kimper }}" class="form-control datetimepicker" name="ed_kimper"
+                                id="datepicker" type="text" placeholder="Pilih Tanggal ED KIMPER"
+                                value="{{ $kar->ed_kimper }}" data-options='{"disableMobile":true}' />
+                            @error('ed_kimper')
                                 <div class="text-danger mt-2 text-sm">{{ $message }}</div>
                             @enderror
                         </div>

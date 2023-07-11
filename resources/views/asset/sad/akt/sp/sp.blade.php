@@ -35,7 +35,7 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fab fa-pagelines"></i> Aktivitas <span
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
                         class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
                     </span>
                 </h6>
@@ -63,7 +63,6 @@
                     <div class="btn-group  btn-group-sm mx-2" role="group">
                         <button class="btn btn-sm btn-falcon-success mx-2" type="button" data-bs-toggle="modal"
                             data-bs-target="#error-modal"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
-                            Tambah
                         </button>
                     </div>
                 </div>
@@ -73,13 +72,13 @@
             @else
                 <div class="table-responsive scrollbar">
                     <table class="table table-sm table-striped table-bordered mb-0 fs--1 overflow-hidden">
-                        <thead class="bg-200 text-800">
+                        <thead class="bg-secondary text-white">
                             <tr class="text-center">
-                                <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
-                                    Aksi
-                                </th>
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
+                                </th>
+                                <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
+                                    Aksi
                                 </th>
                                 <th style="min-width: 100px" class="sort  align-middle white-space-nowrap"
                                     data-sort="surat">
@@ -96,6 +95,9 @@
                         <tbody id="table-posts" class="list">
                             @foreach ($sp as $res)
                                 <tr id="" class="btn-reveal-trigger text-1000 fw-semi-bold">
+                                    <td class="align-middle text-1000 text-center white-space-nowrap no">
+                                        {{ $loop->iteration }}
+                                    </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                                         <div class="btn-group  btn-group-sm" role="group">
                                             <a class="btn btn-primary" type="button" data-bs-toggle="modal"
@@ -105,9 +107,6 @@
                                                 data-bs-target="#hapus-{{ $res->id }}" data-bs-placement="top"
                                                 title="Hapus Surat"><i class="fas fa-trash-alt"></i></a>
                                         </div>
-                                    </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap no">
-                                        {{ $loop->iteration }}
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap surat">
                                         @if ($res->no)

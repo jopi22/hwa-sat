@@ -1,0 +1,53 @@
+/* Lanscape */
+
+body.l {
+    box-sizing: border-box;
+    height: 7.5in;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0.5in;
+    width: 14in;
+}
+
+body.l {
+    background: #FFF;
+    border-radius: 1px;
+    box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+}
+
+/* table */
+
+table {
+    font-size: 50%;
+    table-layout: fixed;
+    width: 100%;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+th,
+td {
+    border-width: 1px;
+    padding: 0.5em;
+    position: relative;
+    text-align: left;
+}
+
+th,
+td {
+    border-radius: 0.25em;
+    border-style: solid;
+}
+
+th {
+    background: #EEE;
+    border-color: #BBB;
+}
+
+td {
+    border-color: #DDD;
+}
+

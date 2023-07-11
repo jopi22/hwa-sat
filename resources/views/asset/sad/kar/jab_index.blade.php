@@ -5,7 +5,7 @@
 @endsection
 
 @section('sad_menu')
-    @if ($master  == 1)
+    @if ($master == 1)
         @include('layouts.panel.sad.vertikal')
     @else
         @include('layouts.panel.sad.vertikal_off')
@@ -38,8 +38,9 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> SDM <span class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
-                </span>
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
+                        class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
+                    </span>
                 </h6>
                 <h4 class="mb-0 text-primary fw-bold">Jabatan</h4>
             </div>
@@ -63,41 +64,50 @@
                     </form>
                 </div>
                 <div class="col-sm-auto">
-                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm btn-falcon-success mx-2" type="button"><span data-fa-transform="shrink-3"
-                            class="fas fa-plus"></span> </button>
+                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm btn-falcon-success mx-2"
+                        type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span> </button>
                 </div>
             </div>
             <div class="table-responsive scrollbar">
                 <table class="table table-sm table-striped table-bordered fs--1 mb-0 overflow-hidden">
                     <thead class="bg-secondary text-white text-center">
                         <tr>
-                            <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
                             <th style="min-width: 50px" class="sort" data-sort="#">#</th>
-                            <th style="min-width: 900px" class="sort" data-sort="jab">
+
+                            <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
+                            <th style="min-width: 400px" class="sort" data-sort="jab">
                                 Jabatan
+                            </th>
+                            <th style="min-width: 500px" class="sort" data-sort="ket">
+                                Keterangan
                             </th>
                         </tr>
                     </thead>
                     <tbody id="table-posts" class="list">
                         @foreach ($jab as $res)
                             <tr id="index_{{ $res->id }}" class="btn-reveal-trigger">
+                                <td class="text-black text-center fw-semi-bold">{{ $loop->iteration }}</td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap id">
                                     <div class="btn-group  btn-group-sm" role="group">
                                         <a href="javascript:void(0)" id="btn-edit-post"
                                             data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
-                                            class="btn btn-warning" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Edit Jabatan"><span
-                                                class="fas fa-edit"></span></a>
+                                            class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Edit Jabatan"><span class="fas fa-edit"></span></a>
                                         <a href="javascript:void(0)" id="btn-delete-post"
                                             data-bs-target="{{ $res->id }}" data-id="{{ $res->id }}"
-                                            class="btn btn-danger" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" title="Hapus Jabatan"><span
-                                                class="fas fa-times-circle"></span></a>
+                                            class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
+                                            title="Hapus Jabatan"><span class="fas fa-times-circle"></span></a>
                                     </div>
                                 </td>
-                                <td class="text-black text-center fw-semi-bold">{{ $loop->iteration }}</td>
                                 <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                                     {{ $res->jabatan }}
+                                </td>
+                                <td class="text-black fw-semi-bold align-middle white-space-nowrap ket">
+                                    @if ($res->ket)
+                                        {{ $res->ket }}
+                                    @else
+                                        -
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

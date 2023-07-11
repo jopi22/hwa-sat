@@ -9,6 +9,7 @@ use App\Models\SP;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class SPController extends Controller
 {
@@ -22,6 +23,20 @@ class SPController extends Controller
         $sp = SP::all();
         $cek = SP::all()->count();
         return view('author.sad.akt.sp', compact('sp','kar','master','cek','nav'));
+    }
+
+
+    public function sp_info($id)
+    {
+        $decryptID = Crypt::decryptString($id);
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $master = Master::where('status', 'Present')->count();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $sp = SP::Find($decryptID);
+        $cek = SP::all()->count();
+        return view('asset.sad.akt.sp.sp_info', compact('sp','kar','master','cek','nav'));
     }
 
 

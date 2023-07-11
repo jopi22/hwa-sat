@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hwa extends Model
+class Site extends Model
 {
     use HasFactory;
-    protected $table = 'hwa_profil';
+    protected $table = 'hwa_site';
     protected $guarded = ['id'];
 }

@@ -21,9 +21,34 @@ class ResignController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
+        $sinkron = User::all();
         $asu = Resign::orderBy('id', 'DESC')->get();
         $cek = Resign::all()->count();
-        return view('author.sad.akt.resign', compact('asu','kar','periode','master','cek','nav'));
+        $all = Resign::all();
+        $all_c = Resign::all()->count();
+        $nores = Resign::where('status', 'Belum')
+            ->orderBy('id', 'DESC')
+            ->get();
+        $nores_c = Resign::where('status', 'Belum')
+            ->count();
+        $ter = Resign::where('status', 'Diterima')
+            ->orderBy('id', 'DESC')
+            ->get();
+        $ter_c = Resign::where('status', 'Diterima')
+            ->count();
+        $tol = Resign::where('status', 'Ditolak')
+            ->orderBy('id', 'DESC')
+            ->get();
+        $tol_c = Resign::where('status', 'Ditolak')
+            ->count();
+        $cek_all = Resign::count();
+        $cek_nores = Resign::where('status', 'Belum')
+            ->count();
+        $cek_ter = Resign::where('status', 'Diterima')
+            ->count();
+        $cek_tol = Resign::where('status', 'Ditolak')
+            ->count();
+        return view('author.sad.akt.resign', compact('asu', 'sinkron', 'kar', 'periode', 'master', 'cek', 'nav', 'all', 'all_c', 'nores', 'nores_c', 'ter', 'ter_c', 'cek_all', 'cek_nores', 'cek_ter'));
     }
 
 
@@ -33,19 +58,19 @@ class ResignController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $res = Resign::Find($decryptID);
-        return view('asset.sad.akt.resign.resign_show', compact('res','master','periode'));
+        return view('asset.sad.akt.resign.resign_show', compact('res', 'master', 'periode'));
     }
 
 
-    public function resign_tolak(Request $request, $id)
+    public function resign_sinkron(Request $request, $id)
     {
         // dd($request->all());
-        $res = Resign::Find($id);
+        $res = User::Find($id);
         $data = [
             'status' => $request->status,
         ];
         $res->update($data);
-        return back()->with('success', 'Data Pengajuan Resign Telah Ditolak');
+        return back()->with('success', 'Data Pengajuan Resign Telah Tersinkron Dengan Data User');
     }
 
 

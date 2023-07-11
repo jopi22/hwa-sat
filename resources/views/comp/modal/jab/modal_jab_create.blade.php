@@ -19,6 +19,10 @@
                         <label class="form-label" for="jabatan">Nama Jabatan</label>
                         <input required maxlength="25" class="form-control" id="jabatan" type="text" />
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="jabatan">Keterangan</label>
+                        <input required maxlength="50" class="form-control" id="ket" type="text" />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-light" type="button" data-bs-dismiss="modal" aria-label="Close"><span
@@ -43,6 +47,7 @@
 
         //-- identifikasi variable di ajax --
         let jabatan = $('#jabatan').val();
+        let ket = $('#ket').val();
         let token = $("meta[name='csrf-token']").attr("content");
 
         //-- proses store data --
@@ -52,12 +57,14 @@
             cache: false,
             data: {
                 "jabatan": jabatan,
+                "ket": ket,
                 "_token": token
             },
             success: function(response) {
                 //data post
                 let post = `
                 <tr id="index_${response.data.id}" class="btn-reveal-trigger">
+                    <td class="text-black text-center fw-semi-bold"> <span class="badge bg-success"><i class="fas fa-check"></i></span></td></td>
                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                         <div class="btn-group  btn-group-sm" role="group">
                             <a href="javascript:void(0)" id="btn-edit-post"
@@ -72,9 +79,11 @@
                                     class="fas fa-times-circle"></span></a>
                         </div>
                     </td>
-                    <td class="text-black text-center fw-semi-bold"> <span class="badge bg-success"><i class="fas fa-check"></i></span></td></td>
                     <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                         ${response.data.jabatan}
+                    </td>
+                    <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
+                        ${response.data.ket}
                     </td>
                 </tr>
                     `;
@@ -84,6 +93,7 @@
 
                 //clear form
                 $('#jabatan').val('');
+                $('#ket').val('');
 
                 //close modal
                 $('#modal-create').modal('hide');

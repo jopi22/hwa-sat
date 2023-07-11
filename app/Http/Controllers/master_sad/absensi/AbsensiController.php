@@ -27,7 +27,7 @@ class AbsensiController extends Controller
         $master = Master::where('status', 'Present')->first();
         $abs = Absensi::where('periode_id', $master->id)
             ->where('tgl', $today)->get();
-        return view('author.sad.abs.kelola_absensi', compact('abs','nav', 'kar', 'today', 'master', 'periode', 'cek'));
+        return view('author.sad.abs.kelola_absensi', compact('abs', 'nav', 'kar', 'today', 'master', 'periode', 'cek'));
     }
 
 
@@ -64,9 +64,9 @@ class AbsensiController extends Controller
         if ($cek->ket == 1) {
             $persentase = $sudah * 100 / $all;
             $progres = number_format($persentase);
-            return view('asset.sad.abs.abs_kalender', compact('progres','nav', 'per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
+            return view('asset.sad.abs.abs_kalender', compact('progres', 'nav', 'per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
         }
-        return view('asset.sad.abs.abs_kalender', compact('per','nav', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
+        return view('asset.sad.abs.abs_kalender', compact('per', 'nav', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
     }
 
 
@@ -114,7 +114,7 @@ class AbsensiController extends Controller
             $abs = Absensi::latest()->take(0)->get();
         }
 
-        return view('author.sad.abs.kelola_absensi', compact('abs','nav', 'master', 'kar', 'cek', 'periode'));
+        return view('author.sad.abs.kelola_absensi', compact('abs', 'nav', 'master', 'kar', 'cek', 'periode'));
     }
 
 
@@ -147,5 +147,4 @@ class AbsensiController extends Controller
             'data'    => $abs
         ]);
     }
-
 }

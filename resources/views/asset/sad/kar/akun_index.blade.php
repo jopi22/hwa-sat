@@ -33,11 +33,11 @@
         <div class="card-header d-flex align-items-center z-index-1 p-0">
             <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> SDM <span
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
                         class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
                     </span>
                 </h6>
-                <h4 class="mb-0 text-primary fw-bold">Account Controll</h4>
+                <h4 class="mb-0 text-primary fw-bold">Kelola Akun</h4>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-auto">
+                {{-- <div class="col-sm-auto">
                     <div class="dropdown font-sans-serif d-inline-block">
                         <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
                             type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
@@ -72,27 +72,27 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="table-responsive scrollbar">
                 <table class="table table-sm table-striped table-bordered fs--1 mb-0 overflow-hidden">
                     <thead class="bg-secondary text-white text-center">
                         <tr>
+                            <th style="min-width: 20px" class="sort" data-sort="#">#</th>
                             <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
-                            <th style="min-width: 10px" class="sort" data-sort="#">#</th>
-                            <th style="min-width: 120px" class="sort" data-sort="id">ID</th>
                             <th style="min-width: 300px" class="sort" data-sort="name">
                                 Nama</th>
-                            <th style="min-width: 200px" class="sort bg-primary" data-sort="username">
-                                Email / ID</th>
+                            <th style="min-width: 300px" class="sort bg-primary" data-sort="username">
+                                NIK / ID</th>
                             <th style="min-width: 100px" class="sort bg-primary" data-sort="password">Password</th>
-                            <th style="min-width: 200px" class="sort bg-primary" data-sort="level">Role Akun</th>
-                            <th style="min-width: 200px" class="sort bg-primary" data-sort="status">Status Akun</th>
+                            <th style="min-width: 100px" class="sort bg-primary" data-sort="level">Role Akun</th>
+                            <th style="min-width: 80px" class="sort bg-primary" data-sort="status">Status Akun</th>
                         </tr>
                     </thead>
                     <tbody id="table-posts" class="list">
                         @foreach ($kar as $res)
                             <tr id="index_{{ $res->id }}" class="btn-reveal-trigger">
+                                <td class="text-black text-center fw-semi-bold">{{ $loop->iteration }}</td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap id">
                                     <div class="btn-group  btn-group-sm" role="group">
                                         @if ($res->level == 1)
@@ -135,9 +135,6 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td class="text-black text-center fw-semi-bold">{{ $loop->iteration }}</td>
-                                <td class="text-black fw-semi-bold text-center align-middle white-space-nowrap id">
-                                    K{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}</td>
                                 <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                                     {{ $res->name }}</td>
                                 <td class="text-black fw-semi-bold align-middlefs-0 white-space-nowrap payment">

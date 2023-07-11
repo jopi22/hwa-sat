@@ -12,6 +12,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Surat Peringatan
     Route::controller(SPController::class)->group(function () {
         Route::get('surat_peringatan', 'sp_index')->name('sp.g');
+        Route::get('surat_peringatan_info/{sp}', 'sp_info')->name('sp.i');
         Route::post('sp_save', 'sp_save')->name('sp.s');
         Route::post('sp_delete', 'sp_delete')->name('sp.d');
     });
@@ -19,9 +20,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Surat Resign
     Route::controller(ResignController::class)->group(function () {
         Route::get('permohonan_resign', 'resign_index')->name('res.g');
-        Route::get('resign_show/{resign_show}', 'resign_show')->name('res.i');
-        Route::put('resign_tolak/{resign_tolak}', 'resign_tolak')->name('res.tol');
-        Route::put('resign_terima/{resign_terima}', 'resign_terima')->name('res.ter');
+        Route::get('resign_show/{resign}', 'resign_show')->name('res.i');
+        Route::put('resign_terima/{resign}', 'resign_terima')->name('res.t');
+        Route::put('resign_sinkron/{resign}', 'resign_sinkron')->name('res.sinkron');
         Route::post('resign_delete', 'resign_delete')->name('res.d');
     });
 

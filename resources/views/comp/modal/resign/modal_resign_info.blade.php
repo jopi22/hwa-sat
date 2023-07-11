@@ -1,4 +1,4 @@
-@foreach ($sp as $del)
+@foreach ($all as $del)
     <div class="modal fade" id="info-{{ $del->id }}" data-bs-keyboard="false" data-bs-backdrop="static" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg mt-6" role="document">
@@ -9,7 +9,7 @@
                 <div class="modal-body p-0">
                     <div class="bg-light rounded-top-lg py-3 ps-4 pe-6">
                         <h4 class="mb-1" id="staticBackdropLabel">{{ $del->no }}</h4>
-                        <p class="fs--2 mb-0">{{ $del->karyawan_->name }}</p>
+                        <p class="fs--2 mb-0">{{ $del->kar_->name }}</p>
                     </div>
                         <embed width="100%" height="400px" type="application/pdf" src="{{ asset($del->surat) }}" />
                 </div>

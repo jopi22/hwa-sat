@@ -9,6 +9,7 @@ use App\Models\Hwa;
 use App\Models\Jabatan;
 use App\Models\Master;
 use App\Models\Navigator;
+use App\Models\Site;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,12 +25,13 @@ class KaryawanController extends Controller
         $master = Master::where('status', 'Present')->count();
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
+            ->orderBy('username', 'ASC')
             ->get();
         $cek = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Trash')
             ->count();
         $jab_f = Jabatan::all();
-        return view('author.sad.kar.kar_index', compact('cek','nav', 'kar', 'jab_f', 'master', 'periode',));
+        return view('author.sad.kar.kar_index', compact('cek', 'nav', 'kar', 'jab_f', 'master', 'periode',));
     }
 
 
@@ -48,10 +50,10 @@ class KaryawanController extends Controller
         $cek = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Trash')
             ->count();
-        $hwa = Hwa::where('id', 1)->first();
+        $hwa = Site::where('id', 1)->first();
         // History
         $h_user = User::where('author', $decryptID)->get();
-        return view('asset.sad.kar.kar_info', compact('kar','nav', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
+        return view('asset.sad.kar.kar_info', compact('kar', 'nav', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
     }
 
 
@@ -62,7 +64,7 @@ class KaryawanController extends Controller
         $master = Master::where('status', 'Present')->count();
         $bank = Bank::all();
         $jabatan = Jabatan::all();
-        return view('author.sad.kar.kar_create', compact('jabatan','nav', 'bank', 'periode', 'master'));
+        return view('author.sad.kar.kar_create', compact('jabatan', 'nav', 'bank', 'periode', 'master'));
     }
 
 
@@ -81,7 +83,7 @@ class KaryawanController extends Controller
         $kar = User::Find($decryptID);
         $bank = Bank::all();
         $jab = Jabatan::all();
-        return view('asset.sad.kar.kar_edit', compact('kar','nav', 'jab', 'bank', 'master', 'periode', 'master', 'kar_list', 'cek'));
+        return view('asset.sad.kar.kar_edit', compact('kar', 'nav', 'jab', 'bank', 'master', 'periode', 'master', 'kar_list', 'cek'));
     }
 
 
@@ -93,10 +95,18 @@ class KaryawanController extends Controller
         $token = $user_id . $date;
         foreach ($request->name as $key => $value) {
             $kar['name'] = $request->name[$key];
+            $kar['username'] = $request->username[$key];
             $kar['tipe_gaji'] = $request->tipe_gaji[$key];
             $kar['jabatan'] = $request->jabatan[$key];
             $kar['tgl_gabung'] = $request->tgl_gabung[$key];
             $kar['status'] = $request->status[$key];
+            $kar['kimper'] = $request->kimper[$key];
+            $kar['ed_kimper'] = $request->ed_kimper[$key];
+            $kar['agama'] = $request->agama[$key];
+            $kar['nama_rek'] = $request->nama_rek[$key];
+            $kar['no_rek'] = $request->no_rek[$key];
+            $kar['bank'] = $request->bank[$key];
+            $kar['site_id'] = $request->site_id[$key];
             $kar['token'] = $token;
             $kar['author'] = Auth::user()->id;
             User::create($kar);
@@ -204,9 +214,12 @@ class KaryawanController extends Controller
             'status' => $request->status,
             'asal' => $request->asal,
             'jabatan' => $request->jabatan,
+            'agama' => $request->agama,
+            'kimper' => $request->kimper,
+            'ed_kimper' => $request->ed_kimper,
         ];
         $kar->update($kar_data);
-        return back()->with('success', 'Data Karyawan Berhasil di Update');
+        return back()->with('success', 'Data Karyawan Berhasil diupdate');
     }
 
 
@@ -218,5 +231,90 @@ class KaryawanController extends Controller
         ];
         $kar->update($kar_data);
         return back()->with('success', 'Data Karyawan Berhasil dihapus');
+    }
+
+    public function kar_print_pdf($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $decryptID = Crypt::decryptString($id);
+        $karyawan = User::Find($decryptID);
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->orderBy('username', 'ASC')
+            ->get();
+        $staf = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->where('tipe_gaji', 'A')
+            ->count();
+        $od = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->where('tipe_gaji', 'AI')
+            ->count();
+        $ot = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->where('tipe_gaji', 'AL')
+            ->count();
+        $cek = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Trash')
+            ->count();
+        $tot = $staf + $od + $ot;
+        $jab_f = Jabatan::all();
+        return view('asset.sad.kar.kar_print_pdf', compact('cek', 'karyawan', 'nav', 'kar', 'jab_f', 'master', 'periode', 'staf', 'staf', 'ot', 'od', 'tot'));
+    }
+
+
+    public function kar_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $decryptID = Crypt::decryptString($id);
+        $karyawan = User::Find($decryptID);
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->orderBy('username', 'ASC')
+            ->get();
+        $staf = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->where('tipe_gaji', 'A')
+            ->count();
+        $od = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->where('tipe_gaji', 'AI')
+            ->count();
+        $ot = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->where('tipe_gaji', 'AL')
+            ->count();
+        $cek = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Trash')
+            ->count();
+        $tot = $staf + $od + $ot;
+        $jab_f = Jabatan::all();
+        return view('asset.sad.kar.kar_print_excel', compact('cek', 'karyawan', 'nav', 'kar', 'jab_f', 'master', 'periode', 'staf', 'staf', 'ot', 'od', 'tot'));
+    }
+
+
+    public function kar_info_print_pdf($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $decryptID = Crypt::decryptString($id);
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->count();
+        $kar = User::Find($decryptID);
+        $bnk = Bank::all();
+        $jab = Jabatan::all();
+        $kar_list = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Trash')
+            ->get();
+        $cek = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Trash')
+            ->count();
+        $hwa = Site::where('id', 1)->first();
+        // History
+        $h_user = User::where('author', $decryptID)->get();
+        return view('asset.sad.kar.kar_info_print_pdf', compact('kar', 'nav', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
     }
 }

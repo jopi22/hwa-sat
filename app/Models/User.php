@@ -25,6 +25,7 @@ class User extends Authenticatable
         'tgl_gabung',
         'tgl_resign',
         'tgl_lahir',
+        'ed_kimper',
     ];
 
     protected $casts = [
@@ -39,6 +40,11 @@ class User extends Authenticatable
     public function history_()
     {
         return $this->belongsTo(History::class, 'token','token');
+    }
+
+    public function site_()
+    {
+        return $this->belongsTo(Site::class, 'site_id');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hwa;
 use App\Models\Master;
 use App\Models\Navigator;
+use App\Models\Site;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,7 @@ class HwaController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
         return view('author.sad.hwa.hwa_profil', compact('hwa','periode','master','nav'));
     }
 
@@ -54,7 +55,7 @@ class HwaController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
         return view('author.sad.hwa.hwa_profil_edit', compact('hwa','periode','master','nav'));
     }
 
@@ -62,7 +63,7 @@ class HwaController extends Controller
     public function hwaUpdate(Request $request)
     {
         // dd($request->all());
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
 
         if ($request->has('foto')) {
             $foto = $request->foto;
@@ -104,7 +105,7 @@ class HwaController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
         return view('author.sad.hwa.hwa_struktur', compact('hwa','periode','master','nav'));
     }
 
@@ -112,7 +113,7 @@ class HwaController extends Controller
     public function hwa_struktur_update(Request $request)
     {
         // dd($request->all());
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
             $foto = $request->foto;
             $new_foto = 'foto' . time() . $foto->getClientOriginalName();
             $foto->move('file/hwa/profil/', $new_foto);
@@ -129,7 +130,7 @@ class HwaController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
         return view('author.sad.hwa.hwa_peraturan', compact('hwa','periode','master','nav'));
     }
 
@@ -137,7 +138,7 @@ class HwaController extends Controller
     public function hwa_peraturan_update(Request $request)
     {
         // dd($request->all());
-        $hwa = Hwa::Find(1);
+        $hwa = Site::Find(1);
             $foto = $request->foto;
             $new_foto = 'foto' . time() . $foto->getClientOriginalName();
             $foto->move('file/hwa/profil/', $new_foto);

@@ -12,7 +12,7 @@ class Resign extends Model
     protected $fillable = ['status','karyawan','surat'];
     protected $dates = ['created_at','tgl_bergabung'];
 
-    public function karyawan_()
+    public function kar_()
     {
         return $this->belongsTo(User::class, 'karyawan');
     }

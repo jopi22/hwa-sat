@@ -19,6 +19,10 @@
                         <input type="hidden" id="jabatan_id">
                         <input class="form-control" id="nama_jabatan_edit" type="text" maxlength="25" required />
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Keterangan</label>
+                        <input class="form-control" id="keterangan_edit" type="text" maxlength="50" required />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-light" type="button" data-bs-dismiss="modal" aria-label="Close"><span
@@ -53,6 +57,7 @@
                 //-- melempar data dengan id --
                 $('#jabatan_id').val(response.data.id);
                 $('#nama_jabatan_edit').val(response.data.jabatan);
+                $('#keterangan_edit').val(response.data.ket);
 
                 //-- membuka modal --
                 $(`#modal-edit`).modal('show');
@@ -67,6 +72,7 @@
         //-- identifikasi variable di ajax --
         let jabatan_id = $('#jabatan_id').val();
         let jabatan = $('#nama_jabatan_edit').val();
+        let ket = $('#keterangan_edit').val();
         let token = $("meta[name='csrf-token']").attr("content");
 
         //-- proses update data --
@@ -77,6 +83,7 @@
             cache: false,
             data: {
                 "jabatan": jabatan,
+                "ket": ket,
                 "_token": token
             },
             success: function(response) {
@@ -84,6 +91,7 @@
                 //-- data yg akan bereaksi setelah data dihapus  --
                 let post = `
                 <tr id="index_${response.data.id}" class="btn-reveal-trigger">
+                    <td class="text-black text-center fw-semi-bold"> <span class="badge bg-warning"><i class="fas fa-check"></i></span></td></td>
                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                         <div class="btn-group  btn-group-sm" role="group">
                             <a href="javascript:void(0)" id="btn-edit-post"
@@ -98,9 +106,11 @@
                                     class="fas fa-times-circle"></span></a>
                         </div>
                     </td>
-                    <td class="text-black text-center fw-semi-bold"> <span class="badge bg-warning"><i class="fas fa-check"></i></span></td></td>
                     <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                         ${response.data.jabatan}
+                    </td>
+                    <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
+                        ${response.data.ket}
                     </td>
                 </tr>
                 `;

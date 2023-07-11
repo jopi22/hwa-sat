@@ -163,10 +163,8 @@
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                         class="fas fa-print"></i></button>
                 <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i>
-                        Print Excel
-                    </a>
-                    <a class="dropdown-item text-warning" href="#!"><i class="fas fa-file-pdf"></i>
+                    <a class="dropdown-item text-warning" target="_blank"
+                        href="{{ route('kar.i.p.pdf', Crypt::EncryptString($kar->id)) }}"><i class="fas fa-file-pdf"></i>
                         Print PDF
                     </a>
                 </div>
@@ -304,10 +302,10 @@
                                     <th class="text-500 fw-normal fs--1">DATA KARYAWAN</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-700 fw-normal fs-0" style="min-width: 150px">ID Karyawan</th>
+                                    <th class="text-700 fw-normal fs-0" style="min-width: 150px">NIK</th>
                                     <th class="text-700 fw-normal fs-0">:</th>
                                     <th class="text-1000 fw-normal fs-0">
-                                        &nbsp;K{{ $kar->tgl_gabung->format('ym') }}{{ $kar->id }}
+                                        &nbsp;{{ $kar->username }}
                                     </th>
                                 </tr>
                                 <tr>
@@ -358,6 +356,26 @@
                                                 @else
                                                 @endif
                                             @endif
+                                        @endif
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="text-700 fw-normal fs-0" style="min-width: 150px">KIMPER</th>
+                                    <th class="text-700 fw-normal fs-0">:</th>
+                                    <th class="text-1000 fw-normal fs-0">&nbsp;@if ($kar->kimper)
+                                            {{ $kar->kimper }}
+                                        @else
+                                            -
+                                        @endif
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="text-700 fw-normal fs-0" style="min-width: 150px">ED KIMPER</th>
+                                    <th class="text-700 fw-normal fs-0">:</th>
+                                    <th class="text-1000 fw-normal fs-0">&nbsp;@if ($kar->ed_kimper)
+                                            {{ $kar->ed_kimper->format('d F Y') }}
+                                        @else
+                                            -
                                         @endif
                                     </th>
                                 </tr>
@@ -484,6 +502,16 @@
                                     <th class="text-700 fw-normal fs-0">:</th>
                                     <th class="text-1000 fw-normal fs-0">&nbsp;@if ($kar->tgl_lahir)
                                             {{ $kar->tgl_lahir->diff()->y }} Tahun
+                                        @else
+                                            -
+                                        @endif
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="text-700 fw-normal fs-0" style="min-width: 150px">Agama</th>
+                                    <th class="text-700 fw-normal fs-0">:</th>
+                                    <th class="text-1000 fw-normal fs-0">&nbsp;@if ($kar->agama)
+                                            {{ $kar->agama }}
                                         @else
                                             -
                                         @endif

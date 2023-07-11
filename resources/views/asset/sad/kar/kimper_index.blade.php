@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Karyawan | HWA &bull; SAT
+    KIMPER | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -36,7 +36,7 @@
                 <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
                         class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
                     </span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Karyawan PT Harapan Wahyu Abadi</h4>
+                <h4 class="mb-0 text-primary fw-bold">Kartu Izin Mengemudi Perusahaan</h4>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
             {{-- // --}}
         </div>
         <div id="tableExample3"
-            data-list='{"valueNames":["id","nik","no","tgl","nama","jab","tipe","kimper","tgl2","agama","status"],"page":10,"pagination":true,"filter":{"key":"status"}}'>
+            data-list='{"valueNames":["id","nik","no","tgl","name","jab","tgl","kimper","tgl2","agama","status"],"page":10,"pagination":true,"filter":{"key":"jab"}}'>
             <div class="row mt-2 ms-3 mb-2 g-0 flex-between-left">
                 <div class="col-sm-3">
                     <form>
@@ -68,23 +68,13 @@
                 </div>&nbsp;
                 <div class="col-sm-auto">
                     <div class="btn-group  btn-group-sm mx-2" role="group">
-                        <a href="{{ route('kar.c') }}"><button class="btn btn-sm btn-falcon-success mx-2"
-                                type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span> </button></a>
-                        <a href="{{ route('akun.g') }}"><button class="btn btn-sm btn-falcon-default mx-2"
-                                type="button"><span data-fa-transform="shrink-3" class="fas fa-unlock-alt"></span>
-                            </button></a>
                         <div class="dropdown font-sans-serif d-inline-block">
                             <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
                                 type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                                     class="fas fa-print"></i></button>
                             <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-success" target="_blank"
-                                    href="{{ route('kar.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"><i
-                                        class="fas fa-file-excel"></i>
-                                    Print Excel
-                                </a>
                                 <a class="dropdown-item text-warning" target="_blank"
-                                    href="{{ route('kar.p.pdf', Crypt::EncryptString(Auth::user()->id)) }}"><i
+                                    href="{{ route('kim.p.pdf', Crypt::EncryptString(Auth::user()->id)) }}"><i
                                         class="fas fa-file-pdf"></i>
                                     Print PDF
                                 </a>
@@ -103,37 +93,35 @@
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
                                 </th>
-                                <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
+                                <th style="min-width: 80px" class="sort align-middle white-space-nowrap">
                                     Aksi
                                 </th>
-                                <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="nik">
-                                    NIK
+                                <th style="min-width: 180px" class="sort align-middle white-space-nowrap" data-sort="name">
+                                    Nama Karyawan
                                 </th>
-                                <th style="min-width: 200px" class="sort align-middle white-space-nowrap" data-sort="nama">
-                                    Nama
-                                </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="jab">
+                                <th style="min-width: 80px" class="sort align-middle white-space-nowrap" data-sort="jab">
                                     Jabatan
                                 </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="tgl">
-                                    Tgl Gabung
+                                <th style="min-width: 20px" class="sort align-middle bg-primary white-space-nowrap">
+                                    SIM A
                                 </th>
-                                <th style="min-width: 150px" class="sort align-middle white-space-nowrap"
-                                    data-sort="kimper">
+                                <th style="min-width: 20px" class="sort align-middle bg-primary white-space-nowrap">
+                                    SIM B1
+                                </th>
+                                <th style="min-width: 20px" class="sort align-middle bg-primary white-space-nowrap">
+                                    SIM B2
+                                </th>
+                                <th style="min-width: 20px" class="sort align-middle bg-primary white-space-nowrap">
+                                    Tes Medis
+                                </th>
+                                <th style="min-width: 20px" class="sort align-middle bg-primary white-space-nowrap">
                                     KIMPER
                                 </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="tgl2">
+                                <th style="min-width: 60px" class="sort align-middle bg-primary white-space-nowrap">
                                     ED KIMPER
                                 </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="agama">
-                                    Agama
-                                </th>
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="agama">
-                                    Tipe Income
-                                </th>
-                                <th style="min-width: 100px" class="sort  align-middle white-space-nowrap"
-                                    data-sort="status">
-                                    Status
+                                <th style="min-width: 80px" class="sort align-middle bg-primary white-space-nowrap">
+                                    No KIMPER
                                 </th>
                             </tr>
                         </thead>
@@ -143,94 +131,76 @@
                                     <td class="align-middle text-1000 text-center white-space-nowrap no">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap id">
+                                    <td class="align-middle text-1000 text-center white-space-nowrap">
                                         <div class="btn-group  btn-group-sm" role="group">
-                                            <a href="{{ route('kar.i', Crypt::encryptString($res->id)) }}"
-                                                class="btn btn-info" type="button" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Detail Karyawan"><i
+                                            <a class="btn btn-info"
+                                                href="{{ route('kar.i', Crypt::EncryptString($res->id)) }}"><i
                                                     class="fas fa-info-circle"></i></a>
-                                            <a href="{{ route('kar.e', Crypt::encryptString($res->id)) }}"
-                                                class="btn btn-warning" type="button" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" title="Edit Karyawan"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                                data-bs-target="#hapus-{{ $res->id }}" data-bs-placement="top"
-                                                title="Absensi Karyawan"><i class="fas fa-trash-alt"></i></a>
+                                            <button data-bs-toggle="modal" data-bs-target="#edit-{{ $res->id }}"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i></button>
                                         </div>
                                     </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap nik">
-                                        @if ($res->username)
-                                            {{ $res->username }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-1000 white-space-nowrap nama">
+                                    <td class="align-middle text-1000 white-space-nowrap name">
                                         @if ($res->name)
                                             {{ $res->name }}
                                         @else
                                             -
                                         @endif
                                     </td>
-                                    <td class="align-middle text-1000 white-space-nowrap jab">
+                                    <td class="align-middle text-center text-1000 white-space-nowrap jab">
                                         @if ($res->jabatan)
                                             {{ $res->jabatan }}
                                         @else
                                             -
                                         @endif
                                     </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap tgl">
-                                        {{ $res->tgl_gabung->format('d-m-Y') }}
-                                    </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap kimper">
-                                        @if ($res->kimper)
-                                            {{ $res->kimper }}
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        @if ($res->file_sim_a)
+                                            <span class="text text-primary"><i class="fas fa-check-circle"></i></span>
                                         @else
-                                            -
+                                            <span class="text text-danger"><i class="fas fa-times-circle"></i></span>
                                         @endif
                                     </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap tgl2">
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        @if ($res->file_sim_b1)
+                                            <span class="text text-primary"><i class="fas fa-check-circle"></i></span>
+                                        @else
+                                            <span class="text text-danger"><i class="fas fa-times-circle"></i></span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        @if ($res->file_sim_b2)
+                                            <span class="text text-primary"><i class="fas fa-check-circle"></i></span>
+                                        @else
+                                            <span class="text text-danger"><i class="fas fa-times-circle"></i></span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        @if ($res->file_tes_medis)
+                                            <span class="text text-primary"><i class="fas fa-check-circle"></i></span>
+                                        @else
+                                            <span class="text text-danger"><i class="fas fa-times-circle"></i></span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        @if ($res->file_kimper)
+                                            <span class="text text-primary"><i class="fas fa-check-circle"></i></span>
+                                        @else
+                                            <span class="text text-danger"><i class="fas fa-times-circle"></i></span>
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
                                         @if ($res->ed_kimper)
                                             {{ $res->ed_kimper->format('d-m-Y') }}
                                         @else
                                             -
                                         @endif
                                     </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap agama">
-                                        @if ($res->agama)
-                                            {{ $res->agama }}
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        @if ($res->kimper)
+                                            {{ $res->kimper }}
                                         @else
                                             -
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap tipe">
-                                        @if ($res->tipe_gaji == 'A')
-                                            Gaji Pokok
-                                        @else
-                                            @if ($res->tipe_gaji == 'AI')
-                                                Gaji Pokok + Insentif
-                                            @else
-                                                @if ($res->tipe_gaji == 'AL')
-                                                    Gaji Pokok + Lemburan
-                                                @else
-                                                    -
-                                                @endif
-                                            @endif
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap tipe">
-                                        @if ($res->status == 'Aktif')
-                                            <span class="badge rounded-pill bg-info">Aktif</span>
-                                        @else
-                                            @if ($res->status == 'Resign')
-                                                <span class="badge rounded-pill bg-danger">Resign</span>
-                                            @else
-                                                @if ($res->status == 'Mutasi')
-                                                    <span class="badge rounded-pill bg-warning">Mutasi</span>
-                                                @else
-                                                    <span class="id fs--1 text-400">Kosong</span>
-                                                @endif
-                                            @endif
                                         @endif
                                     </td>
                                 </tr>
@@ -251,5 +221,5 @@
         </div>
     </div>
 
-    @include('comp.modal.kar.modal_kar_delete')
+    @include('comp.modal.kar.modal_kimper_edit')
 @endsection

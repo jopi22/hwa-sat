@@ -71,7 +71,13 @@ table.inventory th:nth-child(2) {
     width:200px;
 }
 table.inventory th:nth-child(4) {
-    width:200px;
+    width:100px;
+}
+table.inventory th:nth-child(5) {
+    width:100px;
+}
+table.inventory th:nth-child(6) {
+    width:100px;
 }
 table.inventory th { font-weight: bold; text-align: center; }
 
