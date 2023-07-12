@@ -15,14 +15,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(PerformaHMController::class)->group(function () {
         // Performa HM
         Route::get('hm_performance', 'hm_performance')->name('hm.p');
+        Route::get('hm_performance_print/{hm}', 'hm_performance_print')->name('hm.p.excel');
+        Route::get('hm_performance_unit_print_excel/{hm}', 'hm_performance_unit_print_excel')->name('hm.u.p.excel');
+        Route::get('hm_performance_od_print_excel/{hm}', 'hm_performance_od_print_excel')->name('hm.od.p.excel');
+        Route::get('hm_performance_unit', 'hm_performance_unit')->name('hm.p.u');
+        Route::get('hm_performance_od', 'hm_performance_od')->name('hm.p.od');
         Route::get('manual_hm', 'hmManual')->name('hm.m');
         Route::post('hm_manual_store', 'hmManualStore')->name('hm.m.s');
         Route::post('hm_store', 'hmStore')->name('hm.s');
         Route::put('hm_update/{hm}', 'hmManualUpdate')->name('hm.m.u');
         Route::delete('hm_manual_delete/{hm}', 'hmManualDelete')->name('hm.m.d');
         // HM Equip
-        Route::get('hm_equip', 'hm_equipment')->name('hm.e');
+        Route::get('kelola_hm_index', 'kelola_hm')->name('hm.e');
         Route::get('hm_equip_info/{equip}', 'hm_equip_info')->name('hm.e.i');
+        Route::get('hm_equip_print_excel/{equip}', 'hm_equip_print_excel')->name('hm.e.p.excel');
         Route::get('hm_equip_edit/{equip}', 'hm_equip_edit')->name('hm.e.e');
         Route::get('hm_equip_create/{equip}', 'hm_equip_create')->name('hm.e.c');
         Route::post('hm_equip_update', 'hm_equip_update')->name('hm.e.u');
@@ -61,10 +67,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::controller(HaulingController::class)->group(function () {
-        // Hauling
-        Route::get('hauling_list', 'ha_list')->name('ha.l');
-        Route::put('hauling_update/{ha}', 'ha_update')->name('ha.u');
-        Route::post('hauling_delete', 'ha_delete')->name('ha.d');
+        //  Hauling
+        Route::get('hauling_list', 'hauling_list')->name('ha.l');
+        Route::get('hauling_print/{ha}', 'hauling_print_excel')->name('ha.p.excel');
+        Route::put('hauling_update/{hauling}', 'hauling_update')->name('ha.u');
+        Route::post('hauling_store', 'hauling_store')->name('ha.s');
+        Route::delete('hauling_delete/{hm}', 'hauling_delete')->name('ha.d');
     });
 
 

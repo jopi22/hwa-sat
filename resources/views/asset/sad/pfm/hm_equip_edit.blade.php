@@ -38,7 +38,7 @@
                     {{ date('F Y') }}</span>
             </div>
             <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> {{ $equip_m->equip_->tipe }} <span
+                <span class=" fw-semi-bold text-primary"> Edit Hours Meter / {{ $equip_m->equip_->tipe }} / <span
                         class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
             </div>
         </div>
@@ -67,16 +67,6 @@
                 <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
                         class="fas fa-truck-monster"></i></button>
-            </div>
-            <div class="position-relative">&nbsp;
-                <div class="dropdown font-sans-serif d-inline-block">
-                    <button class="btn btn-sm btn-falcon-default dropdown-toggle" id="dropdownMenuButton" type="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                            Excel</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -130,8 +120,7 @@
                                                     class="btn btn-info" type="button"><i
                                                         class="fas fa-info-circle"></i></a>
                                                 <a href="{{ route('hm.e.e', Crypt::encryptString($res->equip_id)) }}"
-                                                    class="btn btn-warning" type="button"><i
-                                                        class="fas fa-edit"></i></a>
+                                                    class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
                                                 <a href="{{ route('hm.e.c', Crypt::encryptString($res->equip_id)) }}"
                                                     class="btn btn-success" type="button"><i
                                                         class="fas fa-plus-square"></i></a>
@@ -156,7 +145,10 @@
         @csrf
         <div class="card mb-3">
             <div class="card-header bg-light">
-                {{-- // --}}
+                <p class="fs--1 mb-0"><strong>Notes: </strong>Kolom Berwarna
+                    Merah <i class="fas fa-square text-danger"></i> Wajib Diisi | Tekan Tombol <i
+                        class="fas fa-plus-square text-success"></i> Untuk Tambah
+                    Baris</p>
             </div>
             <div id="tableExample4" data-list='{"valueNames":["ase"]}'>
                 @if ($cek == 0)
@@ -168,40 +160,45 @@
                             <thead class="bg-200 text-800">
                                 <tr class="text-center bg-secondary text-white">
                                     <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
-                                        data-sort="ase">
-                                        Id HM
+                                        data-sort="no">
+                                        Add Row
                                     </th>
-                                    <th style="min-width: 180px" class="sort align-middle white-space-nowrap"
+                                    <th style="min-width: 180px" class="sort bg-danger align-middle white-space-nowrap"
                                         data-sort="tgl">
                                         Tanggal
                                     </th>
-                                    <th style="min-width: 180px" class="sort align-middle white-space-nowrap"
+                                    <th style="min-width: 180px" class="sort bg-danger align-middle white-space-nowrap"
                                         data-sort="shift">
                                         Shift
                                     </th>
                                     <th style="min-width: 400px; max-width: 400px;"
-                                        class="sort align-middle white-space-nowrap" data-sort="name">Operator /
+                                        class="sort bg-danger align-middle white-space-nowrap" data-sort="name">Operator /
                                         Driver
                                     </th>
-                                    <th style="min-width: 150px" class="sort bg-primary align-middle white-space-nowrap">
+                                    <th style="min-width: 150px" class="sort bg-danger align-middle white-space-nowrap">
                                         HM Awal</th>
                                     <th style="min-width: 150px"
-                                        class="sort bg-primary align-middle white-space-nowrap text-center">
+                                        class="sort bg-danger align-middle white-space-nowrap text-center">
                                         HM Akhir
                                     </th>
-                                    <th style="min-width: 150px" class="sort bg-primary align-middle white-space-nowrap">
-                                        HM
+                                    <th style="min-width: 150px" class="sort align-middle white-space-nowrap">HM
                                         Potongan
                                     </th>
-                                    <th style="min-width: 150px" class="sort bg-primary align-middle white-space-nowrap">
-                                        HM
-                                        Total
+                                    <th style="min-width: 150px" class="sort align-middle white-space-nowrap">Rest
+                                        Time
                                     </th>
                                     <th style="min-width: 300px; max-width: 400px;"
-                                        class="sort align-middle white-space-nowrap" data-sort="dedi">Dedicated
+                                        class="sort bg-danger align-middle white-space-nowrap" data-sort="dedi">Dedicated
                                     </th>
                                     <th style="min-width: 300px; max-width: 400px;"
-                                        class="sort align-middle white-space-nowrap" data-sort="lokasi">Lokasi
+                                        class="sort bg-danger align-middle white-space-nowrap" data-sort="dedi">Category
+                                    </th>
+                                    <th style="min-width: 300px; max-width: 400px;"
+                                        class="sort bg-danger align-middle white-space-nowrap" data-sort="lokasi">Lokasi
+                                    </th>
+                                    <th style="min-width: 300px; max-width: 400px;"
+                                        class="sort bg-danger align-middle white-space-nowrap" data-sort="lokasi">
+                                        Aktivitas
                                     </th>
                                     <th style="min-width: 400px; max-width: 400px;"
                                         class="sort align-middle white-space-nowrap" data-sort="rem">Remark
@@ -472,9 +469,8 @@
                                             </select>
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap shift">
-                                            <select name="shift_id[]" class="form-select form-select-sm">
-                                                <option value="{{ $res->shift_id }}">{{ $res->shift_->shift }}
-                                                </option>
+                                            <select required name="shift_id[]" class="form-select form-select-sm">
+                                                <option value="{{ $res->shift_id }}">{{ $res->shift_->shift }}</option>
                                                 @foreach ($shift as $item)
                                                     <option value="{{ $item->id }}">{{ $item->shift }}
                                                     </option>
@@ -482,58 +478,67 @@
                                             </select>
                                         </td>
                                         <td class="align-middle text-1000 white-space-nowrap name">
-                                            <select name="kar_id[]" class="form-select form-select-sm">
-                                                <option value="{{ $res->kar_id }}">{{ $res->kar_->name }} |
-                                                    K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->id }}
-                                                </option>
+                                            <select required name="kar_id[]" class="form-select form-select-sm">
+                                                <option value="{{ $res->kar_id }}">{{ $res->kar_->name }}</option>
                                                 @foreach ($kar as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }} |
-                                                        K{{ $item->tgl_gabung->format('ym') }}{{ $item->id }}
+                                                        {{ $item->username }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            <input type="number" class="form-control form-control-sm" name="hm_awal[]"
-                                                value="{{ $res->hm_awal }}">
+                                            <input required type="number" class="form-control form-control-sm"
+                                                name="hm_awal[]" value="{{ $res->hm_awal }}">
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            <input type="number" class="form-control form-control-sm" name="hm_akhir[]"
-                                                value="{{ $res->hm_akhir }}">
+                                            <input required type="number" class="form-control form-control-sm"
+                                                name="hm_akhir[]" value="{{ $res->hm_akhir }}">
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap">
                                             <input type="number" class="form-control form-control-sm" name="hm_pot[]"
                                                 value="{{ $res->hm_pot }}">
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            <input disabled type="number" class="form-control form-control-sm"
-                                                value="{{ $res->hm_total }}">
+                                            <input type="number" class="form-control form-control-sm" name="rest_time[]"
+                                                value="{{ $res->rest_time }}">
                                         </td>
                                         <td class="align-middle text-1000 white-space-nowrap dedi">
-                                            <select name="dedicated_id[]" class="form-select form-select-sm">
-                                                @if ($res->dedicated_id)
-                                                    <option value="{{ $res->dedicated_id }}">
-                                                        {{ $res->dedicated_->dedicated }}</option>
-                                                @else
-                                                    <option></option>
-                                                @endif
+                                            <select required name="dedicated_id[]" class="form-select form-select-sm">
+                                                <option value="{{ $res->dedicated_id }}">
+                                                    {{ $res->dedicated_->dedicated }}</option>
                                                 @foreach ($dedi as $item)
                                                     <option value="{{ $item->id }}">{{ $item->dedicated }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td class="align-middle text-1000 white-space-nowrap lokasi">
-                                            <select name="lokasi_id[]" class="form-select form-select-sm">
-                                                @if ($res->lokasi_id)
-                                                    <option value="{{ $res->lokasi_id }}">
-                                                        {{ $res->lokasi_->lokasi }}
+                                        <td class="align-middle text-1000 white-space-nowrap dedi">
+                                            <select required name="category_id[]" class="form-select form-select-sm">
+                                                <option value="{{ $res->category_id }}">{{ $res->category_->category }}
+                                                </option>
+                                                @foreach ($category as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->category }}
                                                     </option>
-                                                @else
-                                                    <option></option>
-                                                @endif
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td class="align-middle text-1000 white-space-nowrap lokasi">
+                                            <select required name="lokasi_id[]" class="form-select form-select-sm">
+                                                <option value="{{ $res->lokasi_id }}">{{ $res->lokasi_->location }}
+                                                </option>
                                                 @foreach ($lok as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->lokasi }}
+                                                    <option value="{{ $item->id }}">{{ $item->location }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td class="align-middle text-1000 white-space-nowrap lokasi">
+                                            <select required name="aktivitas_id[]" class="form-select form-select-sm">
+                                                <option value="{{ $res->aktivitas_id }}">
+                                                    {{ $res->aktivitas_->aktivitas }}</option>
+                                                @foreach ($aktivitas as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->aktivitas }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -560,7 +565,7 @@
                     <input type="hidden" name="total_m" value="{{ $total }}">
                 @endif
             </div>
-            <div class="card-footer bg-200">
+            <div class="card-footer text-center bg-200">
                 <button class="btn btn-sm btn-warning" type="submit"><i class="fas fa-save"></i>
                     Update</button>
             </div>

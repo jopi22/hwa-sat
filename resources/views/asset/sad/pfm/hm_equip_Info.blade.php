@@ -39,8 +39,8 @@
                     {{ date('F Y') }}</span>
             </div>
             <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> {{ $equip_m->equip_->tipe }}
-                    <span class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
+                <span class=" fw-semi-bold text-primary"> Performance Hours Meter / {{ $equip_m->equip_->tipe }} / <span
+                        class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
             </div>
         </div>
         <div class="col-auto d-flex align-items-center">
@@ -71,12 +71,7 @@
             </div>
             <div class="position-relative">&nbsp;
                 <div class="dropdown font-sans-serif d-inline-block">
-                    <button class="btn btn-sm btn-falcon-default dropdown-toggle" id="dropdownMenuButton" type="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                            Excel</a>
-                    </div>
+                    <a target="_blank" href="{{route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id))}}"><button class="btn btn-sm btn-falcon-success" type="button"><i class="fas fa-file-excel"></i></button></a>
                 </div>
             </div>
         </div>
@@ -159,24 +154,9 @@
                 <div class="col-sm-2">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700">Total Data HM</h6>
-                            <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $cek_hm }}}'>0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-700">Total Data Manual</h6>
-                            <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $cek_manual }}}'>0</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-700">Total All Data</h6>
-                            <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $cek }}}'>0</h3>
+                            <h6 class="text-danger">Potongan HM</h6>
+                            <h3 class="fw-normal text-danger" data-countup='{"endValue":{{ $equip_m->total_pot }}}'>0
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -210,9 +190,9 @@
     </div>
 
     <div class="card mb-3">
-        <div class="card-header bg-light  d-flex flex-between-center py-1">
+        <div class="card-header bg-light d-flex flex-between-center py-1">
             <div class="row">
-                <div class="col-auto ms-0">
+                <div class="col-auto mt-3 ms-0">
                     <form action="{{ route('hm.e.r') }}" method="post">
                         @csrf
                         <input type="hidden" name="equip_id_bro" value="{{ $equip_m->equip_id }}">
@@ -225,13 +205,13 @@
                             Sinkronisasi</button>
                     </form>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto mt-3">
                     <span class="text-500 fs--1">Disinkronkan {{ $equip_m->updated_at->diffforhumans() }}</span>
                 </div>
             </div>
         </div>
         <div id="tableExample4"
-            data-list='{"valueNames":["id","no","tgl","name","payment","dedi","lokasi","shift","rem"],"filter":{"key":"payment"}}'>
+            data-list='{"valueNames":["id","no","tgl","nik","payment","dedi","lokasi","shift","remark"],"filter":{"key":"payment"}}'>
             <div class="row justify-content-left ms-3 mt-3 g-0">
                 <div class="col-auto col-sm-3">
                     <form>
@@ -259,7 +239,7 @@
                         <thead class="bg-200 text-800">
                             <tr class="text-center text-white bg-secondary">
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="no">
-                                    Id HM
+                                    #
                                 </th>
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
                                     data-sort="tgl">
@@ -270,47 +250,37 @@
                                     Shift
                                 </th>
                                 <th style="min-width: 120px" class="sort align-middle white-space-nowrap" data-sort="id">
-                                    Id O/D
+                                    NIK
                                 </th>
-                                <th style="min-width: 350px; max-width: 400px;"
-                                    class="sort align-middle white-space-nowrap" data-sort="payment">Operator /
+                                <th style="min-width: 250px" class="sort align-middle white-space-nowrap"
+                                    data-sort="payment">Operator /
                                     Driver
                                 </th>
-                                <th style="min-width: 100px" class="sort bg-primary align-middle white-space-nowrap">
+                                <th style="min-width: 80px" class="sort bg-primary align-middle white-space-nowrap">
                                     HM Awal</th>
-                                <th style="min-width: 100px"
+                                <th style="min-width: 80px"
                                     class="sort bg-primary align-middle white-space-nowrap text-center">
                                     HM Akhir
                                 </th>
-                                <th style="min-width: 100px" class="sort bg-primary align-middle white-space-nowrap">
-                                    HM
-                                    Potongan
-                                </th>
-                                <th style="min-width: 100px" class="sort bg-primary align-middle white-space-nowrap">
+                                <th style="min-width: 80px" class="sort bg-primary align-middle white-space-nowrap">
                                     HM
                                     Total
                                 </th>
-                                <th style="min-width: 200px; max-width: 400px;"
-                                    class="sort align-middle white-space-nowrap" data-sort="dedi">Dedicated
+                                <th style="min-width: 80px" class="sort bg-primary align-middle white-space-nowrap">
+                                    HM
+                                    Potongan
                                 </th>
-                                <th style="min-width: 200px; max-width: 400px;"
-                                    class="sort align-middle white-space-nowrap" data-sort="lokasi">Lokasi
+                                <th style="min-width: 200px" class="sort align-middle white-space-nowrap"
+                                    data-sort="remark">Remark
                                 </th>
-                                <th style="min-width: 200px; max-width: 400px;"
-                                    class="sort align-middle white-space-nowrap" data-sort="rem">Remark
-                                </th>
-                                <th style="min-width: 100px"
+                                <th style="min-width: 80px"
                                     class="bg-secondary text-white align-middle white-space-nowrap">
                                     Jam Awal</th>
-                                <th style="min-width: 100px"
+                                <th style="min-width: 80px"
                                     class="bg-secondary text-white align-middle white-space-nowrap text-center">
                                     Jam Akhir
                                 </th>
-                                <th style="min-width: 100px"
-                                    class="bg-secondary text-white align-middle white-space-nowrap">Jam
-                                    Potongan
-                                </th>
-                                <th style="min-width: 100px"
+                                <th style="min-width: 80px"
                                     class="bg-secondary text-white align-middle white-space-nowrap">Jam Total
                                 </th>
                             </tr>
@@ -319,15 +289,15 @@
                             @foreach ($list as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                        {{ $res->id }}</td>
+                                        {{ $loop->iteration }}</td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap tgl">
                                         {{ $res->tgl }}</td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap shift">
                                         {{ $res->shift_->shift }}
                                     </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap id">
+                                    <td class="align-middle text-1000 text-center white-space-nowrap nik">
                                         @if ($res->kar_id)
-                                            K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->kar_->id }}
+                                            {{ $res->kar_->username }}
                                         @else
                                             -
                                         @endif
@@ -354,34 +324,20 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap">
-                                        @if ($res->hm_pot)
-                                            {{ $res->hm_pot }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap">
                                         @if ($res->hm_total)
                                             {{ $res->hm_total }}
                                         @else
                                             -
                                         @endif
                                     </td>
-                                    <td class="align-middle text-1000 white-space-nowrap dedi">
-                                        @if ($res->dedicated_id)
-                                            {{ $res->dedicated_->dedicated }}
+                                    <td class="align-middle text-1000 text-center white-space-nowrap">
+                                        @if ($res->hm_pot)
+                                            {{ $res->hm_pot }}
                                         @else
                                             -
                                         @endif
                                     </td>
-                                    <td class="align-middle text-1000 white-space-nowrap lokasi">
-                                        @if ($res->lokasi_id)
-                                            {{ $res->lokasi_->lokasi }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-1000 white-space-nowrap rem">
+                                    <td class="align-middle text-1000 white-space-nowrap remark">
                                         @if ($res->remark)
                                             {{ $res->remark }}
                                         @else
@@ -398,13 +354,6 @@
                                     <td class="align-middle text-1000 text-center white-space-nowrap">
                                         @if ($res->jam_akhir)
                                             {{ $res->jam_akhir->format('H:i') }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
-                                    <td class="align-middle text-1000 text-center white-space-nowrap">
-                                        @if ($res->jam_pot)
-                                            {{ $res->jam_pot }}
                                         @else
                                             -
                                         @endif

@@ -448,18 +448,37 @@
                                 data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-stopwatch"></span></span><span
-                                        class="nav-link-text ps-1">Hours
-                                        Meter</span></div>
+                                        class="nav-link-text ps-1">Hours Meter</span></div>
                             </a>
                             <ul class="nav collapse" id="e-00">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('hm.p') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Hours Meter</span></div>
-                                    </a>
+                                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#course"
+                                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Performance</span></div>
+                                    </a><!-- more inner pages-->
+                                    <ul class="nav collapse" id="course">
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('hm.p') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">
+                                                        Hours Meter</span></div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('hm.p.u') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Unit</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('hm.p.od') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">OD</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
                                 </li>
+
                                 <li class="nav-item"><a class="nav-link" href="{{ route('hm.e') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Performa Equip</span></div>
+                                                Kelola HM</span></div>
                                     </a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('hm.m') }}">
@@ -467,9 +486,9 @@
                                                 HM Manual</span></div>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('hm.k') }}">
+                                <li class="nav-item"><a class="nav-link" href="#">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Performa O/D</span></div>
+                                                Control OD</span></div>
                                     </a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('ha.l') }}">

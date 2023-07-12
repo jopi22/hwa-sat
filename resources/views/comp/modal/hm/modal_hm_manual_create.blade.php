@@ -18,7 +18,8 @@
 
                         <div class="row">
                             <div class="col-lg-12 mb-2">
-                                <span class="text-warning fs--1"><i class="fas fa-info-circle"></i> Bertanda Bintang <code>*</code> Tidak Wajib Diisi.</span>
+                                <span class="text-warning fs--1"><i class="fas fa-info-circle"></i> Bertanda Bintang
+                                    <code>*</code> Tidak Wajib Diisi.</span>
                             </div>
                             <div class="col-lg-9">
                                 <div class="row">
@@ -305,13 +306,30 @@
                                                     id="floatingSelect" aria-label="Floating label select example">
                                                     <option selected=""></option>
                                                     @foreach ($equip as $res)
-                                                        <option value="{{ $res->id }}">{{ $res->no_unit }}
+                                                        <option value="{{ $res->equip_->id }}">
+                                                            {{ $res->equip_->no_unit }}
                                                         </option>
                                                     @endforeach
                                                 </select>
-                                                <label for="floatingSelect">Pilih Equipment</label>
+                                                <label for="floatingSelect">Pilih Unit</label>
                                             </div>
                                             @error('equip_id')
+                                                <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="form-floating">
+                                                <select required name="category_id" class="form-select form-select-sm"
+                                                    id="floatingSelect" aria-label="Floating label select example">
+                                                    <option selected=""></option>
+                                                    @foreach ($category as $res)
+                                                        <option value="{{ $res->id }}">{{ $res->category }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <label for="floatingSelect">Pilih Category</label>
+                                            </div>
+                                            @error('category_id')
                                                 <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -339,7 +357,7 @@
                                                     id="floatingSelect" aria-label="Floating label select example">
                                                     <option selected=""></option>
                                                     @foreach ($lok as $s)
-                                                        <option value="{{ $s->id }}">{{ $s->lokasi }}
+                                                        <option value="{{ $s->id }}">{{ $s->location }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -366,11 +384,28 @@
                                                 <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                             @enderror
                                         </div>
+                                        <div class="mb-2">
+                                            <div class="form-floating">
+                                                <select required name="aktivitas_id"
+                                                    class="form-select form-select-sm" id="floatingSelect"
+                                                    aria-label="Floating label select example">
+                                                    <option selected=""></option>
+                                                    @foreach ($aktivitas as $res)
+                                                        <option value="{{ $res->id }}">{{ $res->aktivitas }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <label for="floatingSelect">Pilih Aktivitas</label>
+                                            </div>
+                                            @error('aktivitas_id')
+                                                <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <textarea name="remark" maxlength="50" class="form-control form-control-sm" id="floatingTextarea2"
-                                                style="height: 100px"></textarea>
+                                                rows="1""></textarea>
                                             <label for="floatingTextarea2">Remark<code>*</code></label>
                                         </div>
                                     </div>
@@ -397,9 +432,17 @@
                                         @enderror
                                     </li>
                                     <li class="nav-item me-2 mb-2 me-lg-0">
-                                        <label class="form-label">Jam Potongan<code>*</code></label>
-                                        <input class="form-control form-control-sm" name="jam_pot" type="number" />
-                                        @error('jam_pot')
+                                        <label class="form-label">HM Potongan<code>*</code></label>
+                                        <input class="form-control form-control-sm" name="hm_pot" type="number" />
+                                        @error('hm_pot')
+                                            <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                        @enderror
+                                    </li>
+                                    <li class="nav-item me-2 mb-2 me-lg-0">
+                                        <label class="form-label">Rest Time<code>*</code></label>
+                                        <input class="form-control form-control-sm" name="rest_time"
+                                            type="number" />
+                                        @error('rest_time')
                                             <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                         @enderror
                                     </li>
@@ -408,7 +451,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success btn-sm mb-3 me-3"><i class="fas fa-save"></i> Simpan</button>
+                        <button class="btn btn-success btn-sm me-3"><i class="fas fa-save"></i> Simpan</button>
                     </div>
                 </form>
             </div>

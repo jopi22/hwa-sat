@@ -203,16 +203,11 @@
     <form action="{{ route('kar.s') }}" method="post">
         @csrf
         <div class="card mb-3">
-            <div class="card-header text-center bg-success py-2">
-                <h5 class="text-white"><i class="fas fa-user-plus"></i> Form Tambah Karyawan</h5>
-            </div>
-            <div class="ms-3 mt-3">
-                <ul>
-                    <li class="text-warning fs--1">Kolom Berwarna
-                        Merah <i class="fas fa-square text-danger"></i> Wajib Diisi.</li>
-                    <li class="text-warning fs--1">Tekan Tombol <i class="fas fa-plus-square text-success"></i> Untuk Tambah
-                        Baris.</li>
-                </ul>
+            <div class="card-header bg-light">
+                <p class="fs--1 mb-0"><strong>Notes: </strong>Kolom Berwarna
+                    Merah <i class="fas fa-square text-danger"></i> Wajib Diisi | Tekan Tombol <i
+                        class="fas fa-plus-square text-success"></i> Untuk Tambah
+                    Baris</p>
             </div>
             <div id="tableExample4">
                 <div class="table-responsive scrollbar">

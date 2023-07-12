@@ -7,7 +7,7 @@
                         class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button></div>
                 <div class="modal-body p-0">
-                    <form action="{{ route('r.hm.m.u', $hasil->id) }}" method="post">
+                    <form action="{{ route('hm.m.u', $hasil->id) }}" method="post">
                         @method('PUT')
                         @csrf
                         <div class="bg-warning rounded-top-lg py-3 ps-4 pe-6">
@@ -19,7 +19,8 @@
                         <div class="p-4">
                             <div class="row">
                                 <div class="col-lg-12 mb-2">
-                                    <span class="text-warning fs--1"><i class="fas fa-info-circle"></i> Bertanda Bintang <code>*</code> Tidak Wajib Diisi.</span>
+                                    <span class="text-warning fs--1"><i class="fas fa-info-circle"></i> Bertanda Bintang
+                                        <code>*</code> Tidak Wajib Diisi.</span>
                                 </div>
                                 <div class="col-lg-9">
                                     <div class="row">
@@ -289,8 +290,8 @@
                                                     <select required name="shift_id"
                                                         class="form-select form-select-sm" id="floatingSelect"
                                                         aria-label="Floating label select example">
-                                                        {{-- <option value="{{ $hasil->shift_id }}">
-                                                            {{ $hasil->shift_->shift }}</option> --}}
+                                                        <option value="{{ $hasil->shift_id }}">
+                                                            {{ $hasil->shift_->shift }}</option>
                                                         @foreach ($shift as $s)
                                                             <option value="{{ $s->id }}">{{ $s->shift }}
                                                             </option>
@@ -307,17 +308,36 @@
                                                     <select required name="equip_id"
                                                         class="form-select form-select-sm" id="floatingSelect"
                                                         aria-label="Floating label select example">
-                                                        {{-- <option value="{{ $hasil->equip_id }}">
-                                                            {{ $hasil->equip_->no_unit }}</option> --}}
-                                                        @foreach ($equip as $hasil)
-                                                            <option value="{{ $hasil->id }}">
-                                                                {{ $hasil->no_unit }}
+                                                        <option value="{{ $hasil->equip_id }}">
+                                                            {{ $hasil->equip_->no_unit }}</option>
+                                                        @foreach ($equip as $asu)
+                                                            <option value="{{ $asu->equip_->id }}">
+                                                                {{ $asu->equip_->no_unit }}
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    <label for="floatingSelect">Pilih Equipment</label>
+                                                    <label for="floatingSelect">Pilih Unit</label>
                                                 </div>
                                                 @error('equip_id')
+                                                    <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2">
+                                                <div class="form-floating">
+                                                    <select required name="category_id"
+                                                        class="form-select form-select-sm" id="floatingSelect"
+                                                        aria-label="Floating label select example">
+                                                        <option value="{{ $hasil->category_id }}">
+                                                            {{ $hasil->category_->category }}</option>
+                                                        @foreach ($category as $asu)
+                                                            <option value="{{ $asu->id }}">
+                                                                {{ $asu->category }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <label for="floatingSelect">Pilih Category</label>
+                                                </div>
+                                                @error('category_id')
                                                     <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -328,8 +348,9 @@
                                                     <select required name="kar_id" class="form-select form-select-sm"
                                                         id="floatingSelect"
                                                         aria-label="Floating label select example">
-                                                        {{-- <option value="{{ $hasil->kar_id }}">{{ $hasil->kar_->name }}
-                                                        </option> --}}
+                                                        <option value="{{ $hasil->kar_id }}">
+                                                            {{ $hasil->kar_->name }}
+                                                        </option>
                                                         @foreach ($kar as $s)
                                                             <option value="{{ $s->id }}">{{ $s->name }}
                                                             </option>
@@ -346,9 +367,10 @@
                                                     <select required name="lokasi_id"
                                                         class="form-select form-select-sm" id="floatingSelect"
                                                         aria-label="Floating label select example">
-                                                        {{-- <option value="{{ $hasil->lokasi_id }}">{{ $hasil->lokasi_->lokasi }}</option> --}}
+                                                        <option value="{{ $hasil->lokasi_id }}">
+                                                            {{ $hasil->lokasi_->location }}</option>
                                                         @foreach ($lok as $s)
-                                                            <option value="{{ $s->id }}">{{ $s->lokasi }}
+                                                            <option value="{{ $s->id }}">{{ $s->location }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -363,16 +385,36 @@
                                                     <select required name="dedicated_id"
                                                         class="form-select form-select-sm" id="floatingSelect"
                                                         aria-label="Floating label select example">
-                                                        {{-- <option value="{{ $hasil->dedicated_id }}">{{ $hasil->dedicated_->dedicated }}</option> --}}
-                                                        @foreach ($dedi as $hasil)
-                                                            <option value="{{ $hasil->id }}">
-                                                                {{ $hasil->dedicated }}
+                                                        <option value="{{ $hasil->dedicated_id }}">
+                                                            {{ $hasil->dedicated_->dedicated }}</option>
+                                                        @foreach ($dedi as $b)
+                                                            <option value="{{ $b->id }}">
+                                                                {{ $b->dedicated }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                     <label for="floatingSelect">Pilih Dedicated</label>
                                                 </div>
                                                 @error('dedicated_id')
+                                                    <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="mb-2">
+                                                <div class="form-floating">
+                                                    <select required name="aktivitas_id"
+                                                        class="form-select form-select-sm" id="floatingSelect"
+                                                        aria-label="Floating label select example">
+                                                        <option value="{{ $hasil->aktivitas_id }}">
+                                                            {{ $hasil->aktivitas_->aktivitas }}</option>
+                                                        @foreach ($aktivitas as $bro)
+                                                            <option value="{{ $bro->id }}">
+                                                                {{ $bro->aktivitas }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <label for="floatingSelect">Pilih Aktivitas</label>
+                                                </div>
+                                                @error('aktivitas_id')
                                                     <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                                 @enderror
                                             </div>
@@ -412,10 +454,18 @@
                                             @enderror
                                         </li>
                                         <li class="nav-item me-2 mb-2 me-lg-0">
-                                            <label class="form-label">Jam Potongan<code>*</code></label>
-                                            <input class="form-control form-control-sm" name="jam_pot" type="number"
-                                                value="{{ $hasil->jam_pot }}" />
-                                            @error('jam_pot')
+                                            <label class="form-label">HM Potongan<code>*</code></label>
+                                            <input class="form-control form-control-sm" name="hm_pot" type="number"
+                                                value="{{ $hasil->hm_pot }}" />
+                                            @error('hm_pot')
+                                                <div class="text-danger mt-2 fs--1">{{ $message }}</div>
+                                            @enderror
+                                        </li>
+                                        <li class="nav-item me-2 mb-2 me-lg-0">
+                                            <label class="form-label">Rest Time<code>*</code></label>
+                                            <input class="form-control form-control-sm" name="rest_time"
+                                                type="number" value="{{ $hasil->rest_time }}" />
+                                            @error('rest_time')
                                                 <div class="text-danger mt-2 fs--1">{{ $message }}</div>
                                             @enderror
                                         </li>
@@ -424,7 +474,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-warning btn-sm mb-3 me-3"><i class="fas fa-save"></i>
+                            <button class="btn btn-warning btn-sm me-3"><i class="fas fa-magic"></i>
                                 Update</button>
                         </div>
                     </form>

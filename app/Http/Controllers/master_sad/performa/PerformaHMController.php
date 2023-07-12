@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\master_sad\performa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Aktivitas;
+use App\Models\Category;
 use App\Models\Dedicated;
 use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\Jabatan;
 use App\Models\KarMaster;
+use App\Models\Location;
 use App\Models\Lokasi;
 use App\Models\Master;
 use App\Models\Navigator;
@@ -39,6 +42,122 @@ class PerformaHMController extends Controller
             ->sum('hm_total');
         $equip = EquipMaster::where('master_id', $master->id)
             ->get();
+        $equipment = Equipment::where('status', 'Aktif')->get();
+        $lok = Lokasi::all();
+        $dedi = Dedicated::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        return view('author.sad.pfm.hm_performance', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+    }
+
+
+    public function hm_performance_unit()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equipment = Equipment::where('status', 'Aktif')->get();
+        $lok = Lokasi::all();
+        $dedi = Dedicated::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        return view('author.sad.pfm.hm_performance_unit', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+    }
+
+
+    public function hm_performance_od()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equipment = Equipment::all();
+        $lok = Lokasi::all();
+        $jab = Jabatan::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        return view('author.sad.pfm.hm_performance_od', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'jab', 'shift', 'master', 'periode'));
+    }
+
+
+    public function hm_performance_od_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equipment = Equipment::all();
+        $lok = Lokasi::all();
+        $jab = Jabatan::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        return view('asset.sad.pfm.perform_od_print_excel', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'jab', 'shift', 'master', 'periode'));
+    }
+
+
+    public function hm_performance_print($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
         $equipment = Equipment::all();
         $lok = Lokasi::all();
         $dedi = Dedicated::all();
@@ -46,7 +165,36 @@ class PerformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_performance', compact('cek_perform','nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+        return view('asset.sad.pfm.perform_hm_print_excel', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+    }
+
+
+    public function hm_performance_unit_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equipment = Equipment::where('status', 'Aktif')->get();
+        $lok = Lokasi::all();
+        $dedi = Dedicated::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        return view('asset.sad.pfm.perform_unit_print_excel', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
     }
 
 
@@ -62,7 +210,7 @@ class PerformaHMController extends Controller
             ->get();
         $jabatan = User::select('jabatan')->distinct()
             ->where('tipe_gaji', 'AI')->get();
-        return view('author.sad.pfm.hm_karyawan', compact('cek_perform','nav', 'jabatan', 'master', 'periode', 'kar_list'));
+        return view('author.sad.pfm.hm_karyawan', compact('cek_perform', 'nav', 'jabatan', 'master', 'periode', 'kar_list'));
     }
 
     public function hm_kar_info($id)
@@ -89,7 +237,7 @@ class PerformaHMController extends Controller
             ->sum('jam_total');
         $grand_total = $total_hm + $total_jam;
         $insentif = $grand_total * $master->insentif;
-        return view('asset.sad.pfm.hm_kar_info', compact('cek_perform','kar_list','nav', 'insentif', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_hm', 'total_jam', 'grand_total'));
+        return view('asset.sad.pfm.hm_kar_info', compact('cek_perform', 'kar_list', 'nav', 'insentif', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_hm', 'total_jam', 'grand_total'));
     }
 
 
@@ -133,7 +281,7 @@ class PerformaHMController extends Controller
     }
 
 
-    public function hm_equipment()
+    public function kelola_hm()
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
@@ -152,7 +300,7 @@ class PerformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_equip', compact('cek_perform','nav', 'master', 'periode', 'perform', 'equipment', 'equip', 'kar', 'lok', 'dedi', 'shift', 'sum'));
+        return view('author.sad.pfm.hm_equip', compact('cek_perform', 'nav', 'master', 'periode', 'perform', 'equipment', 'equip', 'kar', 'lok', 'dedi', 'shift', 'sum'));
     }
 
 
@@ -189,7 +337,44 @@ class PerformaHMController extends Controller
         $max = Performa_hm::where('equip_id', $decryptID)
             ->where('master_id', $master->id)
             ->min('hm_awal');
-        return view('asset.sad.pfm.hm_equip_info', compact('list','nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        return view('asset.sad.pfm.hm_equip_info', compact('list', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+    }
+
+
+    public function hm_equip_print_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $decryptID = Crypt::decryptString($id);
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $equip_list = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equip_m = EquipMaster::where('equip_id', $decryptID)->first();
+        $kar_filter = Performa_hm::select('kar_id')
+            ->distinct()
+            ->where('equip_id', $decryptID)
+            ->where('master_id', $master->id)->get();
+        $list = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->get();
+        $cek = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->count();
+        $cek_hm = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->where('tipe', 'HM')
+            ->count();
+        $cek_manual = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->where('tipe', 'Manual')
+            ->count();
+        $sum = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->sum('hm_total');
+        $max = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->min('hm_awal');
+        return view('asset.sad.pfm.hm_equip_print_excel', compact('list', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
     }
 
 
@@ -232,12 +417,14 @@ class PerformaHMController extends Controller
             ->where('master_id', $master->id)
             ->max('hm_akhir');
         $shift = Shift::all();
-        $kar = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Delete')
+        $kar = User::where('status', 'Aktif')
+            ->where('tipe_gaji', 'AI')
             ->get();
-        $lok = Lokasi::all();
-        $dedi = Dedicated::all();
-        return view('asset.sad.pfm.hm_equip_edit', compact('list','nav', 'master', 'periode', 'equip_list', 'equip_m', 'kar_filter', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
+        $lok = Location::where('status', '<>', 'Delete')->get();
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        $category = Category::where('status', '<>', 'Delete')->get();
+        $aktivitas = Aktivitas::where('status', '<>', 'Delete')->get();
+        return view('asset.sad.pfm.hm_equip_edit', compact('list', 'category', 'aktivitas', 'nav', 'master', 'periode', 'equip_list', 'equip_m', 'kar_filter', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
     }
 
 
@@ -275,12 +462,14 @@ class PerformaHMController extends Controller
             ->where('master_id', $master->id)
             ->max('hm_akhir');
         $shift = Shift::all();
-        $kar = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Delete')
+        $kar = User::where('status', 'Aktif')
+            ->where('tipe_gaji', 'AI')
             ->get();
-        $lok = Lokasi::all();
-        $dedi = Dedicated::all();
-        return view('asset.sad.pfm.hm_equip_create', compact('list','nav', 'periode', 'equip_m', 'equip_list', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
+        $lok = Location::where('status', '<>', 'Delete')->get();
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        $category = Category::where('status', '<>', 'Delete')->get();
+        $aktivitas = Aktivitas::where('status', '<>', 'Delete')->get();
+        return view('asset.sad.pfm.hm_equip_create', compact('list', 'nav', 'periode', 'category', 'aktivitas', 'equip_m', 'equip_list', 'perform', 'first', 'cek', 'total', 'hm_awal', 'hm_akhir', 'total_pot', 'master', 'shift', 'kar', 'dedi', 'lok'));
     }
 
 
@@ -292,52 +481,31 @@ class PerformaHMController extends Controller
         foreach ($request->delete_id as $key => $items) {
             Performa_hm::where('id', $request->delete_id[$key])->delete();
         }
-        if ($request->has('hm_pot')) {
-            foreach ($request->tgl as $key => $items) {
-                $awal = $request->hm_awal[$key];
-                $akhir = $request->hm_akhir[$key];
-                $tot_hm_kotor = $akhir - $awal;
-                $pot = $request->hm_pot[$key];
-                $tot_hm_bersih = $tot_hm_kotor - $pot;
+        foreach ($request->tgl as $key => $items) {
+            $awal = $request->hm_awal[$key];
+            $akhir = $request->hm_akhir[$key];
+            $tot_hm_kotor = $akhir - $awal;
+            $pot = $request->hm_pot[$key];
+            $tot_hm_bersih = $tot_hm_kotor - $pot;
 
-                $hm_data['id'] = $request->id[$key];
-                $hm_data['tgl'] = $request->tgl[$key];
-                $hm_data['equip_id'] = $request->equip_id[$key];
-                $hm_data['shift_id'] = $request->shift_id[$key];
-                $hm_data['kar_id'] = $request->kar_id[$key];
-                $hm_data['dedicated_id'] = $request->dedicated_id[$key];
-                $hm_data['lokasi_id'] = $request->lokasi_id[$key];
-                $hm_data['remark'] = $request->remark[$key];
-                $hm_data['hm_awal'] = $request->hm_awal[$key];
-                $hm_data['hm_akhir'] = $request->hm_akhir[$key];
-                $hm_data['hm_pot'] = $request->hm_pot[$key];
-                $hm_data['hm_total'] = $tot_hm_bersih;
-                $hm_data['tipe'] = $hm;
-                $hm_data['master_id']     = $request->master_id[$key];
-                Performa_hm::create($hm_data);
-            }
-        } else {
-            foreach ($request->tgl as $key => $items) {
-                $awal = $request->hm_awal[$key];
-                $akhir = $request->hm_akhir[$key];
-                $tot_hm_kotor = $akhir - $awal;
-                $pot = $request->hm_pot[$key];
-
-                $hm_data['id'] = $request->id[$key];
-                $hm_data['tgl'] = $request->tgl[$key];
-                $hm_data['equip_id'] = $request->equip_id[$key];
-                $hm_data['shift_id'] = $request->shift_id[$key];
-                $hm_data['kar_id'] = $request->kar_id[$key];
-                $hm_data['dedicated_id'] = $request->dedicated_id[$key];
-                $hm_data['lokasi_id'] = $request->lokasi_id[$key];
-                $hm_data['remark'] = $request->remark[$key];
-                $hm_data['hm_awal'] = $request->hm_awal[$key];
-                $hm_data['hm_akhir'] = $request->hm_akhir[$key];
-                $hm_data['hm_total'] = $tot_hm_kotor;
-                $hm_data['tipe'] = $hm;
-                $hm_data['master_id']     = $request->master_id[$key];
-                Performa_hm::create($hm_data);
-            }
+            $hm_data['id'] = $request->id[$key];
+            $hm_data['tgl'] = $request->tgl[$key];
+            $hm_data['equip_id'] = $request->equip_id[$key];
+            $hm_data['shift_id'] = $request->shift_id[$key];
+            $hm_data['kar_id'] = $request->kar_id[$key];
+            $hm_data['dedicated_id'] = $request->dedicated_id[$key];
+            $hm_data['aktivitas_id'] = $request->aktivitas_id[$key];
+            $hm_data['category_id'] = $request->category_id[$key];
+            $hm_data['rest_time'] = $request->rest_time[$key];
+            $hm_data['lokasi_id'] = $request->lokasi_id[$key];
+            $hm_data['remark'] = $request->remark[$key];
+            $hm_data['hm_awal'] = $request->hm_awal[$key];
+            $hm_data['hm_akhir'] = $request->hm_akhir[$key];
+            $hm_data['hm_pot'] = $request->hm_pot[$key];
+            $hm_data['hm_total'] = $tot_hm_kotor;
+            $hm_data['tipe'] = $hm;
+            $hm_data['master_id']     = $request->master_id[$key];
+            Performa_hm::create($hm_data);
         }
 
         $periode = date('m-Y');
@@ -388,51 +556,32 @@ class PerformaHMController extends Controller
     {
         // dd($request->all());
         $hm = 'HM';
-        if ($request->has('hm_pot')) {
-            foreach ($request->tgl as $key => $items) {
-                $awal = $request->hm_awal[$key];
-                $akhir = $request->hm_akhir[$key];
-                $tot_hm_kotor = $akhir - $awal;
-                $pot = $request->hm_pot[$key];
-                $tot_hm_bersih = $tot_hm_kotor - $pot;
 
-                $hm_data['tgl'] = $request->tgl[$key];
-                $hm_data['equip_id'] = $request->equip_id[$key];
-                $hm_data['shift_id'] = $request->shift_id[$key];
-                $hm_data['kar_id'] = $request->kar_id[$key];
-                $hm_data['dedicated_id'] = $request->dedicated_id[$key];
-                $hm_data['lokasi_id'] = $request->lokasi_id[$key];
-                $hm_data['remark'] = $request->remark[$key];
-                $hm_data['hm_awal'] = $request->hm_awal[$key];
-                $hm_data['hm_akhir'] = $request->hm_akhir[$key];
-                $hm_data['hm_pot'] = $request->hm_pot[$key];
-                $hm_data['hm_total'] = $tot_hm_bersih;
-                $hm_data['tipe'] = $hm;
-                $hm_data['master_id']     = $request->master_id[$key];
-                Performa_hm::create($hm_data);
-            }
-        } else {
-            foreach ($request->tgl as $key => $items) {
-                $awal = $request->hm_awal[$key];
-                $akhir = $request->hm_akhir[$key];
-                $tot_hm_kotor = $akhir - $awal;
-                $pot = $request->hm_pot[$key];
+        foreach ($request->tgl as $key => $items) {
+            $awal = $request->hm_awal[$key];
+            $akhir = $request->hm_akhir[$key];
+            $tot_hm_kotor = $akhir - $awal;
+            $pot = $request->hm_pot[$key];
 
-                $hm_data['tgl'] = $request->tgl[$key];
-                $hm_data['equip_id'] = $request->equip_id[$key];
-                $hm_data['shift_id'] = $request->shift_id[$key];
-                $hm_data['kar_id'] = $request->kar_id[$key];
-                $hm_data['dedicated_id'] = $request->dedicated_id[$key];
-                $hm_data['lokasi_id'] = $request->lokasi_id[$key];
-                $hm_data['remark'] = $request->remark[$key];
-                $hm_data['hm_awal'] = $request->hm_awal[$key];
-                $hm_data['hm_akhir'] = $request->hm_akhir[$key];
-                $hm_data['hm_total'] = $tot_hm_kotor;
-                $hm_data['tipe'] = $hm;
-                $hm_data['master_id']     = $request->master_id[$key];
-                Performa_hm::create($hm_data);
-            }
+            $hm_data['tgl'] = $request->tgl[$key];
+            $hm_data['equip_id'] = $request->equip_id[$key];
+            $hm_data['shift_id'] = $request->shift_id[$key];
+            $hm_data['kar_id'] = $request->kar_id[$key];
+            $hm_data['rest_time'] = $request->rest_time[$key];
+            $hm_data['dedicated_id'] = $request->dedicated_id[$key];
+            $hm_data['lokasi_id'] = $request->lokasi_id[$key];
+            $hm_data['category_id'] = $request->category_id[$key];
+            $hm_data['remark'] = $request->remark[$key];
+            $hm_data['hm_awal'] = $request->hm_awal[$key];
+            $hm_data['hm_akhir'] = $request->hm_akhir[$key];
+            $hm_data['hm_pot'] = $request->hm_pot[$key];
+            $hm_data['aktivitas_id'] = $request->aktivitas_id[$key];
+            $hm_data['hm_total'] = $tot_hm_kotor;
+            $hm_data['tipe'] = $hm;
+            $hm_data['master_id']     = $request->master_id[$key];
+            Performa_hm::create($hm_data);
         }
+
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')
             ->where('periode', $periode)
@@ -475,6 +624,7 @@ class PerformaHMController extends Controller
             'valid' => $request->valid,
             'tipe' => $request->tipe,
             'hauling' => $request->hauling,
+            'alokasi' => $request->alokasi,
         ]);
         return back()->with('success', 'Data HM Berhasil Ditambahkan');
     }
@@ -533,15 +683,11 @@ class PerformaHMController extends Controller
         $diff = $akhir - $awal;
         $jam    = floor($diff / (60 * 60));
 
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master2 = Master::where('periode', $periode)
             ->where('status', 'Present')
             ->first();
-        $lok = Lokasi::all();
-        $dedi = Dedicated::all();
-        $kar = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Delete')
-            ->get();
         $master = Master::where('status', 'Present')->first();
         $cek = Performa_hm::where('master_id', $master->id)
             ->where('tipe', 'Manual')
@@ -549,9 +695,16 @@ class PerformaHMController extends Controller
         $all = Performa_hm::where('master_id', $master->id)
             ->where('tipe', 'Manual')
             ->get();
-        $equip = Equipment::all();
+        $equip = EquipMaster::where('master_id', $master->id)->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_manual', compact('cek', 'shift', 'all', 'kar', 'periode', 'equip', 'lok', 'dedi', 'master', 'diff', 'jam'));
+        $kar = User::where('status', 'Aktif')
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $lok = Location::where('status', '<>', 'Delete')->get();
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        $category = Category::where('status', '<>', 'Delete')->get();
+        $aktivitas = Aktivitas::where('status', '<>', 'Delete')->get();
+        return view('author.sad.pfm.hm_manual', compact('cek', 'category', 'aktivitas', 'nav', 'shift', 'all', 'kar', 'periode', 'equip', 'lok', 'dedi', 'master', 'diff', 'jam'));
     }
 
 
@@ -576,39 +729,25 @@ class PerformaHMController extends Controller
 
         $master = Master::where('status', 'Present')->first();
         $manual = 'Manual';
-        if ($request->has('jam_pot')) {
-            Performa_hm::create([
-                'tgl' => $request->tgl,
-                'shift_id' => $request->shift_id,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'equip_id' => $request->equip_id,
-                'lokasi_id' => $request->lokasi_id,
-                'dedicated_id' => $request->dedicated_id,
-                'remark' => $request->remark,
-                'tipe' => $manual,
-                'jam_awal' => $request->jam_awal,
-                'jam_akhir' => $request->jam_akhir,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_bersih,
-            ]);
-        } else {
-            Performa_hm::create([
-                'tgl' => $request->tgl,
-                'shift_id' => $request->shift_id,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'equip_id' => $request->equip_id,
-                'lokasi_id' => $request->lokasi_id,
-                'dedicated_id' => $request->dedicated_id,
-                'remark' => $request->remark,
-                'tipe' => $manual,
-                'jam_awal' => $request->jam_awal,
-                'jam_akhir' => $request->jam_akhir,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_kotor,
-            ]);
-        }
+
+        Performa_hm::create([
+            'tgl' => $request->tgl,
+            'shift_id' => $request->shift_id,
+            'kar_id' => $request->kar_id,
+            'master_id' => $master->id,
+            'equip_id' => $request->equip_id,
+            'lokasi_id' => $request->lokasi_id,
+            'dedicated_id' => $request->dedicated_id,
+            'remark' => $request->remark,
+            'category_id' => $request->category_id,
+            'aktivitas_id' => $request->aktivitas_id,
+            'rest_time' => $request->rest_time,
+            'tipe' => $manual,
+            'jam_awal' => $request->jam_awal,
+            'jam_akhir' => $request->jam_akhir,
+            'hm_pot' => $request->hm_pot,
+            'jam_total' => $tot_jam_kotor,
+        ]);
 
         return back()->with('success', 'Data HM Manual Berhasil Ditambahkan');
     }
@@ -636,39 +775,24 @@ class PerformaHMController extends Controller
         $master = Master::where('status', 'Present')->first();
         $manual = 'Manual';
         $hm = Performa_hm::Find($id);
-        if ($request->has('jam_pot')) {
-            $hm_data = [
-                'tgl' => $request->tgl,
-                'shift_id' => $request->shift_id,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'equip_id' => $request->equip_id,
-                'lokasi_id' => $request->lokasi_id,
-                'dedicated_id' => $request->dedicated_id,
-                'remark' => $request->remark,
-                'tipe' => $manual,
-                'jam_awal' => $request->jam_awal,
-                'jam_akhir' => $request->jam_akhir,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_bersih,
-            ];
-        } else {
-            $hm_data = [
-                'tgl' => $request->tgl,
-                'shift_id' => $request->shift_id,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'equip_id' => $request->equip_id,
-                'lokasi_id' => $request->lokasi_id,
-                'dedicated_id' => $request->dedicated_id,
-                'remark' => $request->remark,
-                'tipe' => $manual,
-                'jam_awal' => $request->jam_awal,
-                'jam_akhir' => $request->jam_akhir,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_kotor,
-            ];
-        }
+        $hm_data = [
+            'tgl' => $request->tgl,
+            'shift_id' => $request->shift_id,
+            'kar_id' => $request->kar_id,
+            'master_id' => $master->id,
+            'equip_id' => $request->equip_id,
+            'lokasi_id' => $request->lokasi_id,
+            'dedicated_id' => $request->dedicated_id,
+            'remark' => $request->remark,
+            'category_id' => $request->category_id,
+            'aktivitas_id' => $request->aktivitas_id,
+            'rest_time' => $request->rest_time,
+            'tipe' => $manual,
+            'jam_awal' => $request->jam_awal,
+            'jam_akhir' => $request->jam_akhir,
+            'hm_pot' => $request->hm_pot,
+            'jam_total' => $tot_jam_kotor,
+        ];
         $hm->update($hm_data);
         return back()->with('success', 'Data HM Manual Berhasil Diupdate');
     }

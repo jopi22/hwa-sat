@@ -35,10 +35,9 @@
             // Adding a row inside the tbody.
             $("#tableEstimate tbody").append(`
             <tr class="btn-reveal-trigger text-center text-1000 fw-semi-bold">
-                                                <td class="align-middle white-space-nowrap">
-                                                    <a href="javascript:void(0)" class="text-success" title="Add"
-                                                        id="addBtn"><i class="fas fa-plus-square fs-2"></i></a>
-                                                </td>
+                <td class="align-middle white-space-nowrap">
+                    <a href="javascript:void(0)" class="text-danger remove" title="Remove"><i class="fas fa-minus-square fs-2"></i></a>
+                </td>
                                                 <td class="align-middle white-space-nowrap">
                                                     <input required type="text" maxlength="25"
                                                         class="form-control form-control-sm" name="location[]">
