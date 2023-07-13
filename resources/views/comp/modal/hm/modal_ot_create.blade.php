@@ -291,7 +291,8 @@
                                                     id="floatingSelect" aria-label="Floating label select example">
                                                     <option selected=""></option>
                                                     @foreach ($equip_filter as $ajg)
-                                                        <option value="{{ $ajg->id }}">{{ $ajg->equip_->no_unit }}
+                                                        <option value="{{ $ajg->id }}">
+                                                            {{ $ajg->equip_->no_unit }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -307,8 +308,8 @@
                                             <select required name="kar_id" class="form-select form-select-sm"
                                                 id="floatingSelect" aria-label="Floating label select example">
                                                 <option selected=""></option>
-                                                @foreach ($kar_filter as $asu)
-                                                    <option value="{{ $asu->id }}">{{ $asu->name }}
+                                                @foreach ($kar as $asu)
+                                                    <option value="{{ $asu->kar_->id }}">{{ $asu->kar_->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -316,7 +317,7 @@
                                         </div>
                                         <div class="form-floating">
                                             <textarea name="remark" maxlength="50" class="form-control form-control-sm mt-2" id="floatingTextarea2"
-                                                style="height: 100px"></textarea>
+                                                cols="2"></textarea>
                                             <label for="floatingTextarea2">Remark<code>*</code></label>
                                         </div>
                                     </div>

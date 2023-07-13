@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Performa Hours Meter | HWA &bull; SAT
+    Rekap  Hours Meter | HWA &bull; SAT
 @endsection
 
 @section('link')
@@ -31,7 +31,7 @@
                 bookSST: true,
                 type: 'base64'
             });
-            XLSX.writeFile(excelFile, 'Performance Hours Meter.' + type);
+            XLSX.writeFile(excelFile, 'Rekap Hours Meter.' + type);
         }
     </script>
 @endsection
@@ -41,7 +41,7 @@
         <div class="card-body">
             <div class="row justify-content-between align-items-center">
                 <div class="col-md">
-                    <h5 class="text-primary mb-2 mb-md-0"><i class="fas fa-print"></i> Performance Hours Meter <span
+                    <h5 class="text-primary mb-2 mb-md-0"><i class="fas fa-print"></i> Rekap Hours Meter <span
                             class="text-info">{{ $master->created_at->format('F Y') }}</span></h5>
                 </div>
                 <div class="col-auto">

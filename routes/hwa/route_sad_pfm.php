@@ -46,12 +46,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(PerformaOTController::class)->group(function () {
         // Performa OT
         Route::get('ot_list', 'ot_list')->name('ot.l');
+        Route::get('ot_list/{ot}', 'ot_list_excel')->name('ot.l.excel');
         Route::post('ot_store', 'ot_store')->name('ot.s');
         Route::post('ot_update', 'ot_update')->name('ot.u');
         Route::post('ot_delete', 'ot_delete')->name('ot.d');
         // HM OT
         Route::get('ot_Karyawan', 'ot_karyawan')->name('ot.k');
-        Route::get('ot_Karyawan/{kar}', 'ot_kar_info')->name('ot.k.i');
+        Route::get('ot_Karyawan_excel/{kar}', 'ot_karyawan_excel')->name('ot.k.excel');
+        Route::get('ot_Karyawan_info/{kar}', 'ot_kar_info')->name('ot.k.i');
+        Route::get('ot_Karyawan_info_excel/{kar}', 'ot_kar_info_excel')->name('ot.k.i.excel');
         Route::post('ot_kar_refresh', 'ot_kar_refresh')->name('ot.k.r');
     });
 
@@ -60,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Breakdown
         Route::get('bd_list', 'bd_list')->name('bd.l');
         Route::get('bd_info/{bd}', 'bd_info')->name('bd.i');
+        Route::get('bd_excel/{bd}', 'bd_excel')->name('bd.excel');
         Route::post('bd_store', 'bd_store')->name('bd.s');
         Route::post('bd_update', 'bd_update')->name('bd.u');
         Route::post('bd_delete', 'bd_delete')->name('bd.d');

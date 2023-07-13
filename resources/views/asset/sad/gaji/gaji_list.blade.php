@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Penghasilan Karyawan | HWA &bull; SAT
+    Income | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -33,9 +33,9 @@
             <div class="card-header d-flex align-items-center z-index-1 p-0">
                 <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
                 <div class="ms-n3">
-                    <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Keuangan <span
+                    <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance <span
                             class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                    <h4 class="mb-0 text-primary fw-bold">Penghasilan Karyawan</h4>
+                    <h4 class="mb-0 text-primary fw-bold"> Income</h4>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                 {{-- // --}}
             </div>
             <div id="tableExample4"
-                data-list='{"valueNames":["nama","id", "payment","ins","hm"],"filter":{"key":"payment"}}'>
+                data-list='{"valueNames":["nama","id", "tipe","ins","hm"],"filter":{"key":"tipe"}}'>
                 <div class="row mt-2 ms-3 mb-2 g-0">
                     <div class="col-6">
                         <div class="row g-1">
@@ -104,9 +104,9 @@
                             <div class="col-sm-6 ">
                                 <select class="form-select form-select-sm" aria-label="Bulk actions"
                                     data-list-filter="data-list-filter">
-                                    <option selected="" value="">Filter: Jabatan</option>
-                                    @foreach ($jabatan as $item)
-                                        <option value="{{ $item->jabatan }}">{{ $item->jabatan }}</option>
+                                    <option selected="" value="">Filter: Tipe Income</option>
+                                    @foreach ($kar_list as $item)
+                                        <option value="{{ $item->tipe_gaji }}">{{ $item->tipe_gaji }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -140,7 +140,7 @@
                                 </th>
                                 <th style="min-width: 100px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                    data-sort="payment">
+                                    data-sort="tipe">
                                     Tipe Income
                                 </th>
                         </thead>
@@ -149,13 +149,13 @@
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         <a href="{{ route('g.i', Crypt::encryptString($res->kar_id)) }}"
-                                            class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span></a>
+                                            class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span> Lihat</a>
                                     </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         {{ $loop->iteration }}</td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                                         @if ($res->kar_id)
-                                            K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->kar_->id }}
+                                            {{ $res->kar_->username }}
                                         @else
                                             -
                                         @endif
@@ -175,18 +175,10 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap tipe">
-                                        @if ($res->tipe_gaji == 'A')
-                                            Gaji Pokok
+                                        @if ($res->tipe_gaji)
+                                            {{ $res->tipe_gaji }}
                                         @else
-                                            @if ($res->tipe_gaji == 'AI')
-                                                Gaji Pokok + Insentif
-                                            @else
-                                                @if ($res->tipe_gaji == 'AL')
-                                                    Gaji Pokok + Lemburan
-                                                @else
-                                                    -
-                                                @endif
-                                            @endif
+                                            -
                                         @endif
                                     </td>
                                 </tr>

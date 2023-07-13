@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $kar->id }} | Performa Helper | HWA &bull; SAT
+    {{ $kar->id }} | Performance | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -13,8 +13,7 @@
 @endsection
 
 @section('link')
-    <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}">
-    </script>
+    <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
 @endsection
 
 @section('script')
@@ -40,7 +39,7 @@
                         {{ date('F Y') }}</span>
                 </div>
                 <div class="ms-1">&nbsp;
-                    <span class=" fw-semi-bold text-primary"> Performa Helper :
+                    <span class=" fw-semi-bold text-primary"> Performance Helper /
                         <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
                 </div>
             </div>
@@ -57,14 +56,11 @@
                             class="fas fa-users"></i></button>
                 </div>
                 <div class="position-relative">&nbsp;
-                    <div class="dropdown font-sans-serif d-inline-block">
-                        <button class="btn btn-sm btn-falcon-default dropdown-toggle" id="dropdownMenuButton" type="button"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                        <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                                Excel</a>
-                        </div>
-                    </div>
+                    <a href="{{ route('ot.k.i.excel', Crypt::EncryptString($kar->id)) }}" target="_blank"
+                        rel="noopener noreferrer">
+                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -73,8 +69,8 @@
 
         <div class="offcanvas offcanvas-end" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel"><i class="fas fa-wrench"></i> Performa Helper</h5><button class="btn-close text-reset" type="button"
-                    data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <h5 id="offcanvasRightLabel"><i class="fas fa-wrench"></i> Performa Helper</h5><button
+                    class="btn-close text-reset" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <div id="tableExample4"
@@ -159,7 +155,7 @@
 
         <div class="card mb-2 font-sans-serif">
             <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
             <div class="card-body d-flex gap-3 flex-column flex-sm-row align-items-center">
                 <div class="avatar avatar-4xl">
                     <img class="rounded-soft"
@@ -215,7 +211,8 @@
                         <div class="border-sm-end border-300">
                             <div class="text-center">
                                 <h6 class="text-700">Standar Lemburan/Jam</h6>
-                                <h3 class="fw-normal text-700" data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $master->lemburan }}}'>0</h3>
+                                <h3 class="fw-normal text-700"
+                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $master->lemburan }}}'>0</h3>
                             </div>
                         </div>
                     </div>
@@ -245,20 +242,20 @@
             <div class="card-header bg-light d-flex flex-between-end py-2">
                 {{-- // --}}
             </div>
-            <div id="tableExample4"
-                data-list='{"valueNames":["nama","id", "payment","ins","hm"],"filter":{"key":"payment"}}'>
-                <div class="row mt-2 ms-3 mb-2 g-0 flex-between-end">
-                    <div class="col-4">
-                        <form>
-                            <div class="input-group"><input class="form-control form-control-sm shadow-none search"
-                                    type="search" placeholder="Pencarian..." aria-label="search" />
-                            </div>
-                        </form>
+            @if ($cek == 0)
+                <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
+            @else
+                <div id="tableExample4"
+                    data-list='{"valueNames":["nama","rem", "payment","ins","hm"],"filter":{"key":"payment"}}'>
+                    <div class="row mt-2 ms-3 mb-2 g-0 flex-between-end">
+                        <div class="col-4">
+                            <form>
+                                <div class="input-group"><input class="form-control form-control-sm shadow-none search"
+                                        type="search" placeholder="Pencarian..." aria-label="search" />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-                @if ($cek_perform == 0)
-                    <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
-                @else
                     <div class="table-responsive scrollbar">
                         <table class="table table-sm table-striped table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
@@ -269,36 +266,36 @@
                                         data-sort="no">
                                         #
                                     </th>
-                                    <th style="min-width: 120px"
+                                    <th style="min-width: 80px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap"
                                         data-sort="tgl">
                                         Tanggal
                                     </th>
-                                    <th style="min-width: 100px"
+                                    <th style="min-width: 200px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap"
                                         data-sort="nama">
-                                        Nama
+                                        Helper / Mekanik
                                     </th>
-                                    <th style="min-width: 180px"
+                                    <th style="min-width: 80px"
                                         class="sort bg-primary text-white align-middle white-space-nowrap">
-                                        Jam Mulai
+                                        Jam Awal
                                     </th>
-                                    <th style="min-width: 180px"
+                                    <th style="min-width: 80px"
                                         class="sort bg-primary text-white align-middle white-space-nowrap">
-                                        Jam Selesai
+                                        Jam Akhir
                                     </th>
-                                    <th style="min-width: 120px"
+                                    <th style="min-width: 80px"
                                         class="sort bg-primary text-white align-middle white-space-nowrap">
-                                        Jam Potongan
+                                        Jumlah Jam
                                     </th>
-                                    <th style="min-width: 120px"
-                                        class="sort bg-primary text-white align-middle white-space-nowrap">
-                                        Jam Total
-                                    </th>
-                                    <th style="min-width: 350px"
+                                    <th style="min-width: 200px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                        data-sort="ins">
+                                        data-sort="rem">
                                         Remark
+                                    </th>
+                                    <th style="min-width: 80px"
+                                        class="sort bg-danger text-white align-middle white-space-nowrap">
+                                        Jam Potongan
                                     </th>
                                 </tr>
                             </thead>
@@ -337,13 +334,6 @@
                                             @endif
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            @if ($res->jam_pot)
-                                                {{ $res->jam_pot }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-                                        <td class="align-middle text-1000 text-center white-space-nowrap">
                                             @if ($res->jam_total)
                                                 {{ $res->jam_total }}
                                             @else
@@ -357,13 +347,21 @@
                                                 -
                                             @endif
                                         </td>
+                                        <td class="align-middle text-1000 text-center white-space-nowrap">
+                                            @if ($res->jam_pot)
+                                                {{ $res->jam_pot }}
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
             <div class="card-footer bg-light d-flex flex-between-end py-2">
                 {{-- // --}}
             </div>

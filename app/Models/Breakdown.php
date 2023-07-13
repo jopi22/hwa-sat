@@ -17,7 +17,7 @@ class Breakdown extends Model
     }
 
 
-    public function dedicated_(){
-        return $this->belongsTo(Equipment::class, 'dedicated_id');
+    public function dedi_(){
+        return $this->belongsTo(Dedicated::class, 'dedicated_id');
     }
 }

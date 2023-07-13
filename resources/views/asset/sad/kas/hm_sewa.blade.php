@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Performa Hours Meter | HWA &bull; SAT
+    Rekap Sewa Hours Meter | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -32,19 +32,79 @@
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
             @if ($master->ket1 == 1)
-            <div class="card mb-3 bg-light shadow-none">
-                <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-                <div class="card-header d-flex align-items-center z-index-1 p-0">
-                    <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt=""
-                        width="96" />
-                    <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
-                                class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                        <h4 class="mb-0 text-primary fw-bold">Performa Hours Meter </h4>
+                <div class="card mb-3 bg-light shadow-none">
+                    <div class="bg-holder bg-card d-none d-sm-block"
+                        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                    <div class="card-header d-flex align-items-center z-index-1 p-0">
+                        <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
+                        <div class="ms-n3">
+                            <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance <span
+                                    class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                            <h4 class="mb-0 text-primary fw-bold">Rekap Sewa Hours Meter </h4>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="card mb-3">
+                    <div class="card-body py-5 py-sm-3">
+                        <div class="row g-5 g-sm-0">
+                            <div class="col-sm-1">
+                                <div class="border-sm-end border-300">
+                                    <div class="text-center">
+                                        <h6 class="text-danger fw-normal">Potongan HM</h6>
+                                        <h6 class=" text-danger" data-countup='{"endValue":{{ $t_pot }}}'>0
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="border-sm-end border-300">
+                                    <div class="text-center">
+                                        <h6 class="text-700 fw-normal">Total HM</h6>
+                                        <h6 class=" text-700" data-countup='{"endValue":{{ $t_hm }}}'>0</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="border-sm-end border-300">
+                                    <div class="text-center">
+                                        <h6 class="fw-normal text-700">Total HM Manual</h6>
+                                        <h6 class=" text-700" data-countup='{"endValue":{{ $t_jam }}}'>0</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="border-sm-end border-300">
+                                    <div class="text-center">
+                                        <h6 class="fw-normal text-primary">Grand Total HM</h6>
+                                        <h6 class=" text-primary" data-countup='{"endValue":{{ $hm_grand }}}'>0
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="border-sm-end border-300">
+                                    <div class="text-center">
+                                        <h6 class="fw-normal text-success">Standar Biaya Sewa per HM</h6>
+                                        <h6 class="text-success"
+                                            data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $str_sewa }}}'>0
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="text-center">
+                                        <h6 class="fw-normal text-primary">Total Biaya Sewa</h6>
+                                        <h6 class="text-primary"
+                                            data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $tot_sewa }}}'>0
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 @include('comp.alert')
 
@@ -53,14 +113,11 @@
                         <div class="row flex-between-left">
                             <div class="col-auto ms-2">
                                 <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                                    <a href="{{ route('hm.p') }}"><button class="btn btn-sm active text-warning"
+                                    <a href="{{ route('hm.sewa') }}"><button class="btn btn-sm active text-warning"
                                             type="button"><i class="fas fa-stopwatch"></i> Hours Meter</button></a>
-                                    <a href="{{ route('hm.p.u') }}"><button class="btn btn-sm text-primary"
+                                    <a href="{{ route('unit.sewa') }}"><button class="btn btn-sm text-primary"
                                             type="button"><i class="fas fa-truck-monster"></i>
                                             Unit</button></a>
-                                    <a href="{{ route('hm.p.od') }}"><button class="btn btn-sm text-primary"
-                                            type="button"><i class="fas fa-users"></i> Operator &
-                                            Driver</button></a>
                                 </div>
                             </div>
                         </div>

@@ -4,11 +4,18 @@ namespace App\Http\Controllers\master_sad\keuangan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;
+use App\Models\Adjustment;
+use App\Models\Bon;
+use App\Models\Dedicated;
+use App\Models\EquipMaster;
+use App\Models\Equipment;
 use App\Models\KarMaster;
+use App\Models\Lokasi;
 use App\Models\Master;
 use App\Models\Navigator;
 use App\Models\Performa_hm;
 use App\Models\Performa_ot;
+use App\Models\Shift;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +51,7 @@ class IncomeController extends Controller
         $lemburan = $jam_total * $master->lemburan;
         $ins_lem = $insentif + $lemburan;
         $grand = $pokok + $insentif + $lemburan;
-        return view('author.sad.gaji.gaji_list', compact('jabatan','cek_kar','nav', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
+        return view('author.sad.gaji.gaji_list', compact('jabatan', 'cek_kar', 'nav', 'grand', 'insentif', 'pokok', 'lemburan', 'master', 'periode', 'kar_list'));
     }
 
 
@@ -61,6 +68,26 @@ class IncomeController extends Controller
             ->get();
         $cek_kar = KarMaster::where('master_id', $master->id)
             ->count();
+        //Perhitungan Adjustmen
+        $tunj = Adjustment::where('master_id', $master->id)
+            ->where('kar_id', $decryptID)
+            ->where('kategori', 'Tunjangan')
+            ->get();
+        $pinj = Adjustment::where('master_id', $master->id)
+            ->where('kar_id', $decryptID)
+            ->where('kategori', 'Pinjaman')
+            ->get();
+        $tunj_t = Adjustment::where('master_id', $master->id)
+            ->where('kar_id', $decryptID)
+            ->where('kategori', 'Tunjangan')
+            ->sum('nominal');
+        $pinj_t = Adjustment::where('master_id', $master->id)
+            ->where('kar_id', $decryptID)
+            ->where('kategori', 'Pinjaman')
+            ->sum('nominal');
+        $adjust_t = $tunj_t - $pinj_t;
+        $adjust = number_format($adjust_t);
+
         //Perhitungan gaji pokok
         $abs_h = Absensi::where('karyawan', $decryptID)
             ->where('periode_id', $master->id)
@@ -98,8 +125,7 @@ class IncomeController extends Controller
         $hitung = $master->pokok / $master->total;
         $str_harian = number_format($hitung);
         $gaji_pokok_raw = $hitung * $hari_valid;
-
-
+        $gaji_pokok = $gaji_pokok_raw + $adjust;
 
         //Perhitungan Insentif
         $str_ins = number_format($master->insentif);
@@ -123,13 +149,171 @@ class IncomeController extends Controller
 
 
         //Grand Total Gaji
-        $ai_raw = $gaji_pokok_raw + $ins;
-        $al_raw = $gaji_pokok_raw + $lem;
+        $ai_raw = $gaji_pokok_raw + $ins + $adjust_t;
+        $al_raw = $gaji_pokok_raw + $lem + $adjust_t;
         $ai = number_format($ai_raw);
         $al = number_format($al_raw);
-        $a = number_format($gaji_pokok_raw);
+        $a = number_format($gaji_pokok);
 
 
-        return view('asset.sad.gaji.gaji_info', compact('kar_list','cek_kar','nav', 'str_harian', 'str_bulanan','str_ins','str_lem', 'a','ai','al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
+        return view('asset.sad.gaji.gaji_info', compact('kar_list', 'adjust', 'tunj', 'pinj_t', 'tunj_t', 'adjust_t', 'pinj', 'cek_kar', 'nav', 'str_harian', 'str_bulanan', 'str_ins', 'str_lem', 'a', 'ai', 'al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
+    }
+
+    public function adjust()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $adjust = Adjustment::where('master_id', $master->id)->get();
+        $cek = Adjustment::where('master_id', $master->id)->count();
+        $kar = KarMaster::where('master_id', $master->id)->get();
+        return view('author.sad.kas.adjust', compact('adjust', 'nav', 'periode', 'master', 'cek', 'kar'));
+    }
+
+    public function adjust_store(Request $request)
+    {
+        Adjustment::create([
+            'tgl' => $request->tgl,
+            'ket' => $request->ket,
+            'kar_id' => $request->kar_id,
+            'nominal' => $request->nominal,
+            'master_id' => $request->master_id,
+            'kategori' => $request->kategori,
+        ]);
+        return back()->with('success', 'Data Adjustment Berhasil Disimpan');
+    }
+
+
+    public function adjust_update(Request $request, $id)
+    {
+        $adjust = Adjustment::Find($id);
+        $data = [
+            'tgl' => $request->tgl,
+            'ket' => $request->ket,
+            'kar_id' => $request->kar_id,
+            'nominal' => $request->nominal,
+            'master_id' => $request->master_id,
+            'kategori' => $request->kategori,
+        ];
+        $adjust->update($data);
+        return back()->with('success', 'Data Adjustment Berhasil Diubah');
+    }
+
+
+    public function adjust_delete(Request $request, $id)
+    {
+        $adjust = Adjustment::Find($id);
+        $adjust->delete();
+        return back()->with('success', 'Data Adjustment Berhasil Dihapus');
+    }
+
+    public function hm_sewa()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equipment = Equipment::where('status', 'Aktif')->get();
+        $lok = Lokasi::all();
+        $dedi = Dedicated::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        //Perhitungan
+        $t_pot = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_pot');
+        $t_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $t_jam = Performa_hm::where('master_id', $master->id)
+            ->sum('jam_total');
+        $hm_grand = $t_hm + $t_jam - $t_pot;
+        $str_sewa = $master->biaya_sewa;
+        $tot_sewa = $hm_grand * $str_sewa;
+        return view('author.sad.kas.hm_sewa', compact('t_pot', 'str_sewa', 't_hm', 't_jam', 'hm_grand', 'tot_sewa', 'cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+    }
+
+
+    public function unit_sewa()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AI')
+            ->get();
+        $cek_perform = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $perform_list = Performa_hm::where('master_id', $master->id)
+            ->get();
+        $hitung_list = Performa_hm::where('master_id', $master->id)
+            ->count();
+        $total_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $equip = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equipment = Equipment::where('status', 'Aktif')->get();
+        $lok = Lokasi::all();
+        $dedi = Dedicated::all();
+        $kar = User::where('status', '<>', 'Hidden')
+            ->where('status', '<>', 'Delete')
+            ->get();
+        $shift = Shift::all();
+        return view('author.sad.kas.unit_sewa', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+    }
+
+    public function unit_sewa_info($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $decryptID = Crypt::decryptString($id);
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $equip_list = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $equip_m = EquipMaster::where('equip_id', $decryptID)->first();
+        $kar_filter = Performa_hm::select('kar_id')
+            ->distinct()
+            ->where('equip_id', $decryptID)
+            ->where('master_id', $master->id)->get();
+        $list = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->get();
+        $cek = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->count();
+        $cek_hm = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->where('tipe', 'HM')
+            ->count();
+        $cek_manual = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->where('tipe', 'Manual')
+            ->count();
+        $sum = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->sum('hm_total');
+        $max = Performa_hm::where('equip_id', $decryptID)
+            ->where('master_id', $master->id)
+            ->min('hm_awal');
+        //Perhitungan
+        $hm_total = $equip_m->total_hm;
+        $hm_jam = $equip_m->total_jam;
+        $hm_pot = $equip_m->total_pot;
+        $hm_grand = $hm_total + $hm_jam - $hm_pot;
+        $str_sewa = $master->biaya_sewa;
+        $tot_sewa = $hm_grand * $str_sewa;
+        return view('asset.sad.kas.unit_sewa_info', compact('list', 'hm_total', 'hm_jam', 'hm_pot', 'hm_grand', 'str_sewa', 'tot_sewa', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
     }
 }

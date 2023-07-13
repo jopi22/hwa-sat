@@ -49,7 +49,17 @@ class PerformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_performance', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+        //Perhitungan
+        $t_pot = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_pot');
+        $t_hm = Performa_hm::where('master_id', $master->id)
+            ->sum('hm_total');
+        $t_jam = Performa_hm::where('master_id', $master->id)
+            ->sum('jam_total');
+        $hm_grand = $t_hm + $t_jam - $t_pot;
+        $str_sewa = $master->biaya_sewa;
+        $tot_sewa = $hm_grand * $str_sewa;
+        return view('author.sad.pfm.hm_performance', compact('t_pot', 'str_sewa', 't_hm', 't_jam', 'hm_grand', 'tot_sewa', 'cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
     }
 
 

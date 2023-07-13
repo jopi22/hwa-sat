@@ -4,6 +4,7 @@ namespace App\Http\Controllers\master_sad\performa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Breakdown;
+use App\Models\Dedicated;
 use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\Master;
@@ -21,10 +22,12 @@ class BreakdownController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
         $cek = Breakdown::where('master_id', $master->id)->count();
+        $bd = Breakdown::orderBy('tgl', 'ASC')
+            ->where('master_id', $master->id)->get();
         $e_list = EquipMaster::where('master_id', $master->id)->get();
         $equip = Equipment::where('status', 'Aktif')->get();
-
-        return view('author.sad.pfm.bd_list', compact('equip','e_list', 'nav', 'cek','periode','master'));
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        return view('author.sad.pfm.bd_list', compact('equip', 'e_list', 'bd', 'dedi', 'nav', 'cek', 'periode', 'master'));
     }
 
 
@@ -51,6 +54,7 @@ class BreakdownController extends Controller
             'tgl' => $request->tgl,
             'equip_id' => $request->equip_id,
             'master_id' => $request->master_id,
+            'dedicated_id' => $request->dedicated_id,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'jam_total' => $jam_total,
@@ -87,6 +91,7 @@ class BreakdownController extends Controller
             'tgl' => $request->tgl,
             'equip_id' => $request->equip_id,
             'master_id' => $request->master_id,
+            'dedicated_id' => $request->dedicated_id,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'jam_total' => $jam_total,
@@ -125,7 +130,7 @@ class BreakdownController extends Controller
         $cek_manual = Performa_ot::where('equip_id', $decryptID)
             ->where('master_id', $master->id)
             ->count();
-        return view('asset.sad.pfm.bd_equip_info', compact('list','nav','cek_ot', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek'));
+        return view('asset.sad.pfm.bd_equip_info', compact('list', 'nav', 'cek_ot', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek'));
     }
 
 
@@ -133,5 +138,20 @@ class BreakdownController extends Controller
     {
         Breakdown::where('id', $request->delete)->delete();
         return back()->with('success', 'Data BreakDown Berhasil Dihapus');
+    }
+
+
+    public function bd_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $cek = Breakdown::where('master_id', $master->id)->count();
+        $bd = Breakdown::orderBy('tgl', 'ASC')
+            ->where('master_id', $master->id)->get();
+        $e_list = EquipMaster::where('master_id', $master->id)->get();
+        $equip = Equipment::where('status', 'Aktif')->get();
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        return view('asset.sad.pfm.bd_excel', compact('equip', 'e_list', 'bd', 'dedi', 'nav', 'cek', 'periode', 'master'));
     }
 }

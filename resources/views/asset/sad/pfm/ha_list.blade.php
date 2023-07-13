@@ -180,7 +180,7 @@
                 <div class="card-header d-flex align-items-center z-index-1 p-0">
                     <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
                     <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-stopwatch"></i> Hauling <span
+                        <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
                                 class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
                         <h4 class="mb-0 text-primary fw-bold">Hauling </h4>
                     </div>

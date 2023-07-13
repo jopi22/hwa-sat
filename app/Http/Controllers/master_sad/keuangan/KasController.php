@@ -31,6 +31,26 @@ class KasController extends Controller
     }
 
 
+    public function kas_excel()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $cek = Kas::where('master_id', $master->id)->count();
+        $kas = Kas::where('master_id', $master->id)->get();
+        //Perhitungan
+        $debit = Kas::where('master_id', $master->id)
+            ->where('tipe', 'Debit')->sum('jumlah');
+        $kredit = Kas::where('master_id', $master->id)
+            ->where('tipe', 'Kredit')->sum('jumlah');
+        $kredit_p = Kas::where('master_id', $master->id)
+            ->where('tipe', 'Kredit Pusat')->sum('jumlah');
+        $saldo = $debit - $kredit;
+        $grand_kredit = $kredit_p + $kredit;
+        return view('asset.sad.kas.kas_excel', compact('periode','nav', 'master','cek','kas','debit','kredit','kredit_p','saldo','grand_kredit'));
+    }
+
+
     public function kas_store(Request $request)
     {
         // dd($request->all());

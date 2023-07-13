@@ -28,12 +28,13 @@ class Performa_ot extends Model
         'updated_at',
     ];
 
-    public function kar_(){
+    public function kar_()
+    {
         return $this->belongsTo(User::class, 'kar_id');
     }
 
-    public function equipot_(){
+    public function equipot_()
+    {
         return $this->belongsTo(EquipMaster::class, 'equip_id');
     }
-
 }

@@ -305,15 +305,27 @@
                                     </div>
                                     <div class="col-12 mb-2">
                                         <div class="form-floating">
+                                            <select required name="dedicated_id" class="form-control form-control-sm">
+                                                <option value=""></option>
+                                                @foreach ($dedi as $asu)
+                                                    <option value="{{ $asu->id }}">{{ $asu->dedicated }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <label for="floatingTextarea2">Dedicated</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <div class="form-floating">
                                             <textarea name="deskripsi" maxlength="100" class="form-control form-control-sm" id="floatingTextarea2"
-                                                style="height: 100px"></textarea>
+                                                cols="2"></textarea>
                                             <label for="floatingTextarea2">Deskripsi<code>*</code></label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
                                             <textarea name="remark" maxlength="100" class="form-control form-control-sm" id="floatingTextarea2"
-                                                style="height: 100px"></textarea>
+                                                cols="2"></textarea>
                                             <label for="floatingTextarea2">Remark<code>*</code></label>
                                         </div>
                                     </div>
@@ -344,7 +356,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-success btn-sm mb-3 me-3"><i class="fas fa-save"></i> Simpan</button>
+                        <button class="btn btn-success btn-sm me-3"><i class="fas fa-save"></i> Simpan</button>
                     </div>
                 </form>
             </div>

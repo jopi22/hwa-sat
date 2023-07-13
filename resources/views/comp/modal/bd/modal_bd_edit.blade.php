@@ -310,6 +310,20 @@
                                         </div>
                                         <div class="col-12 mb-2">
                                             <div class="form-floating">
+                                                <select required name="dedicated_id"
+                                                    class="form-control form-control-sm">
+                                                    <option value="{{ $res->dedicated_id }}">
+                                                        {{ $res->dedi_->dedicated }}</option>
+                                                    @foreach ($dedi as $asu)
+                                                        <option value="{{ $asu->id }}">{{ $asu->dedicated }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                <label for="floatingTextarea2">Dedicated</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mb-2">
+                                            <div class="form-floating">
                                                 <textarea name="deskripsi" maxlength="100" class="form-control form-control-sm" id="floatingTextarea2"
                                                     style="height: 100px">{{ $res->deskripsi }}</textarea>
                                                 <label for="floatingTextarea2">Deskripsi<code>*</code></label>
@@ -328,8 +342,8 @@
                                     <ul class="nav flex-lg-column fs--1">
                                         <li class="nav-item me-2 mb-2 me-lg-0">
                                             <label class="form-label">Jam Mulai</label>
-                                            <input class="form-control datetimepicker" id="datetimepicker"
-                                                name="jam_mulai" type="text"
+                                            <input required value="{{ $res->jam_mulai }}" class="form-control datetimepicker"
+                                                id="datetimepicker" name="jam_mulai" type="text"
                                                 data-options='{"enableTime":true,"dateFormat":"Y/m/d H:i","disableMobile":true}' />
                                             @error('jam_mulai')
                                                 <div class="text-danger mt-2 fs--1">{{ $message }}</div>
@@ -337,7 +351,8 @@
                                         </li>
                                         <li class="nav-item me-2 mb-2 me-lg-0">
                                             <label class="form-label">Jam Selesai</label>
-                                            <input class="form-control datetimepicker" id="datetimepicker"
+                                            <input required value="{{ $res->jam_selesai }}"
+                                                class="form-control datetimepicker" id="datetimepicker"
                                                 name="jam_selesai" type="text"
                                                 data-options='{"enableTime":true,"dateFormat":"Y/m/d H:i","disableMobile":true}' />
                                             @error('jam_selesai')

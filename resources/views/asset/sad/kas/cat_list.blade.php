@@ -34,7 +34,7 @@
                 <div class="card-header d-flex align-items-center z-index-1 p-0">
                     <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
                     <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Keuangan <span
+                        <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance <span
                                 class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
                         <h4 class="mb-0 text-primary fw-bold">Catering </h4>
                     </div>
@@ -210,8 +210,13 @@
                         <div class="col-sm-3">
                             <a href="{{ route('cat.c') }}">
                                 <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
-                                        class="fas fa-plus text-success" data-fa-transform="shrink-3"></span> Tambah<span
+                                        class="fas fa-plus text-success" data-fa-transform="shrink-3"></span><span
                                         class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
+                                </button>
+                            </a>
+                            <a href="{{ route('cat.excel', Crypt::EncryptString(Auth::user()->id)) }}" target="_blank"
+                                rel="noopener noreferrer">
+                                <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
                                 </button>
                             </a>
                         </div>

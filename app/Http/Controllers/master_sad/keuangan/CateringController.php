@@ -145,4 +145,33 @@ class CateringController extends Controller
         ]);
         return back()->with('success', 'Data Catering Berhasil Disetting');
     }
+
+
+    public function cat_excel()
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $cek = CateringMaster::where('master_id', $master->id)->count();
+        $cat_m = CateringMaster::where('master_id', $master->id)->first();
+        if ($cat_m) {
+            $cek_list = Catering::where('cat_id', $cat_m->id)->count();
+            $cat_list = Catering::where('cat_id', $cat_m->id)->get();
+            $ph = $cat_m->porsi_harga;
+            $harga_porsi = number_format($ph);
+            // Count
+            $pagi = Catering::where('cat_id', $cat_m->id)->sum('pagi');
+            $siang = Catering::where('cat_id', $cat_m->id)->sum('siang');
+            $sore = Catering::where('cat_id', $cat_m->id)->sum('sore');
+            $malam = Catering::where('cat_id', $cat_m->id)->sum('malam');
+            $total = $pagi + $siang + $sore + $malam;
+            $porsi_harga = $cat_m->porsi_harga;
+            $harga_raw = $total * $porsi_harga;
+            $harga = number_format($harga_raw);
+            return view('asset.sad.kas.cat_excel', compact('harga_porsi','nav', 'pagi', 'siang', 'sore', 'malam', 'total', 'harga', 'periode', 'master', 'cek', 'cek_list', 'cat_list', 'cat_m'));
+        }
+
+
+        return view('asset.sad.kas.cat_excel', compact('periode','nav', 'master', 'cek','cat_m'));
+    }
 }

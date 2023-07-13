@@ -486,11 +486,11 @@
                                                 HM Manual</span></div>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="#">
+                                {{-- <li class="nav-item"><a class="nav-link" href="#">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
                                                 Control OD</span></div>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item"><a class="nav-link" href="{{ route('ha.l') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
                                                 Hauling</span></div>
@@ -499,24 +499,23 @@
                             </ul>
                         </li>
 
-                        <!--Over Time-->
+                        <!--Mekanik-->
                         <li class="nav-item">
                             <a class="nav-link dropdown-indicator" href="#e-ot" role="button"
                                 data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                            class="fas fa-wrench"></span></span><span class="nav-link-text ps-1">Over
-                                        Time</span></div>
+                                            class="fas fa-wrench"></span></span><span
+                                        class="nav-link-text ps-1">Mechanic</span></div>
                             </a>
                             <ul class="nav collapse" id="e-ot">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('ot.l') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Over Time</span></div>
+                                                Helper</span></div>
                                     </a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('ot.k') }}">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Performa
-                                                Helper</span>
+                                                class="nav-link-text ps-1">Overtime</span>
                                         </div>
                                     </a><!-- more inner pages-->
                                 </li>
@@ -534,7 +533,7 @@
                                 data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                                             class="fas fa-coins"></span></span><span
-                                        class="nav-link-text ps-1">Keuangan</span></div>
+                                        class="nav-link-text ps-1">Finance</span></div>
                             </a>
                             <ul class="nav collapse" id="e-keu">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('kas.l') }}">
@@ -542,12 +541,45 @@
                                                 Kas Perusahaan</span></div>
                                     </a><!-- more inner pages-->
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('g.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Income
-                                                Karyawan
-                                            </span></div>
+                                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#course"
+                                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Karyawan</span></div>
                                     </a><!-- more inner pages-->
+                                    <ul class="nav collapse" id="course">
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('g.l') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Penghasilan
+                                                    </span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('adjust') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Adjustmen</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
                                 </li>
+                                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#ASU"
+                                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Rekap Sewa</span></div>
+                                    </a><!-- more inner pages-->
+                                    <ul class="nav collapse" id="ASU">
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('hm.sewa') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Hours Meter
+                                                    </span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('unit.sewa') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Unit</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
+                                </li>
+
                                 <li class="nav-item"><a class="nav-link" href="{{ route('cat.l') }}">
                                         <div class="d-flex align-items-center"><span
                                                 class="nav-link-text ps-1">Catering</span></div>
@@ -556,39 +588,7 @@
                             </ul>
                         </li>
 
-                        <!--Logistik-->
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-indicator" href="#e-0s0" role="button"
-                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                            class="fas fa-gas-pump"></span></span><span
-                                        class="nav-link-text ps-1">Logistik</span></div>
-                            </a>
-                            <ul class="nav collapse" id="e-0s0">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('log.e.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
-                                                Keluar</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('log.m') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
-                                                Masuk</span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('ond.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
-                                                Onderdil
-                                            </span></div>
-                                    </a>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('liq.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
-                                                Liquid
-                                            </span></div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+
 
                         <!-- Setting Master-->
                         <li class="nav-item">
@@ -772,6 +772,39 @@
                             </ul>
                         </li>
 
+                        <!--Logistik-->
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-indicator" href="#e-0s0" role="button"
+                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fas fa-gas-pump"></span></span><span
+                                        class="nav-link-text ps-1">Logistik</span></div>
+                            </a>
+                            <ul class="nav collapse" id="e-0s0">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('log.e.l') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
+                                                Keluar</span></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('log.m') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
+                                                Masuk</span></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('ond.l') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
+                                                Onderdil
+                                            </span></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('liq.l') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
+                                                Liquid
+                                            </span></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <a class="nav-link dropdown-indicator" href="#e-m" role="button"
                             data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">

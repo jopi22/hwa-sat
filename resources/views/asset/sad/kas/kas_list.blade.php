@@ -33,7 +33,7 @@
             <div class="card-header d-flex align-items-center z-index-1 p-0">
                 <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
                 <div class="ms-n3">
-                    <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Keuangan <span
+                    <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance <span
                             class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
                     <h4 class="mb-0 text-primary fw-bold">Kas Perusahaan </h4>
                 </div>
@@ -87,16 +87,7 @@
 
         <div class="card mb-3">
             <div class="card-header bg-light d-flex flex-between-center py-2">
-                <h3></h3>
-                <div class="dropdown font-sans-serif btn-reveal-trigger"><button
-                    class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal" type="button"
-                    id="dropdown-bandwidth-saved" data-bs-toggle="dropdown" data-boundary="viewport"
-                    aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs--2"></span></button>
-                <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown-bandwidth-saved">
-                    <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                        Excel</a>
-                </div>
-            </div>
+                {{-- // --}}
             </div>
             <div id="tableExample4"
                 data-list='{"valueNames":["id","no","tgl","unit","rem","tipe","des"],"filter":{"key":"tipe"}}'>
@@ -120,9 +111,14 @@
                     <div class="col-sm-3">
                         <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"
                             data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="fas fa-plus text-success"
-                                data-fa-transform="shrink-3"></span> Tambah<span
+                                data-fa-transform="shrink-3"></span><span
                                 class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
                         </button>
+                        <a href="{{ route('kas.excel', Crypt::EncryptString(Auth::user()->id)) }}" target="_blank"
+                            rel="noopener noreferrer">
+                            <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                            </button>
+                        </a>
                     </div>
                 </div>
                 @if ($cek == 0)
