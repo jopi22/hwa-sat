@@ -713,7 +713,8 @@
         <!-- <section> begin ============================-->
         <section class="py-0 overflow-hidden light" id="banner">
             <div class="bg-holder overlay"
-                style="background-image:url(../assets/img/generic/bg-1.jpg);background-position: center bottom;"></div>
+                style="background-image:url({{ asset('assets/img/generic/photo_6338839406810609585_y.jpg') }});background-position: center bottom;">
+            </div>
             <!--/.bg-holder-->
             <div class="container">
                 <div class="row flex-center pt-8 pt-lg-10 pb-lg-9 pb-xl-0">

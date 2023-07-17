@@ -174,36 +174,36 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
-        <div class="card mb-3 bg-100 shadow-none border">
-            <div class="row gx-0 flex-between-center">
-                <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                    <div>
-                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
-                        </h6>
-                        <h4 class="text-primary fw-bold mb-0">Hauling & Timbangan</h4>
+            <div class="card mb-3 bg-100 shadow-none border">
+                <div class="row gx-0 flex-between-center">
+                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                            width="90" />
+                        <div>
+                            <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
+                            </h6>
+                            <h4 class="text-primary fw-bold mb-0">Hauling & Timbangan</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-auto d-flex align-items-center">
+                        <form class="row align-items-center g-3">
+                            <div class="col-auto">
+                                <h6 class="text-info mb-0">Master Present :</h6>
+                            </div>
+                            <div class="col-md-auto">
+                                <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
+                            </div>
+                        </form>
+                        <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
+                            alt="" width="150" />
                     </div>
                 </div>
-                <div class="col-sm-auto d-flex align-items-center">
-                    <form class="row align-items-center g-3">
-                        <div class="col-auto">
-                            <h6 class="text-info mb-0">Master Present :</h6>
-                        </div>
-                        <div class="col-md-auto">
-                            <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
-                        </div>
-                    </form>
-                    <img class="ms-2 d-md-none d-lg-block"
-            src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
-            width="150" />
-                </div>
             </div>
-        </div>
 
             @include('comp.alert')
 
             <div class="card mb-3">
-                <div class="card-header bg-light">
+                <div class="card-header bg-light py-2">
                     {{-- // --}}
                 </div>
                 <div class="tab-content">
@@ -374,8 +374,8 @@
                         </div>
                     </div>
                     <div class="table-responsive scrollbar">
-                        <table class="table table-sm table-bordered mb-0 data-table fs--1"
-                            data-options='{"paging":false,"scrollY":"300px","searching":false,"scrollCollapse":true,"fixedColumns":{"left":1},"scrollX":true}'>
+                        <table class="table mb-0  table-bordered fs--1"
+                            data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true}'>
                             <thead class="bg-200 text-center text-900">
                                 <tr>
                                     <th class="sort bg-secondary text-white">#</th>
@@ -406,10 +406,10 @@
                                         </td>
                                         <td class="text-1000">{{ $asu->tgl->format('d-m-Y') }}</td>
                                         <td class="text-1000 nama">{{ $asu->kar_->name }}</td>
-                                        <td class="text-1000">{{ $asu->equip_->no_unit }}</td>
-                                        <td class="text-1000">{{ $asu->loc_s->location }}</td>
-                                        <td class="text-1000">{{ $asu->loc_e->location }}</td>
-                                        <td class="text-1000">{{ $asu->dedi_->dedicated }}</td>
+                                        <td class="text-1000 text-center">{{ $asu->equip_->no_unit }}</td>
+                                        <td class="text-1000 text-center">{{ $asu->loc_s->location }}</td>
+                                        <td class="text-1000 text-center">{{ $asu->loc_e->location }}</td>
+                                        <td class="text-1000 text-center">{{ $asu->dedi_->dedicated }}</td>
                                         <td class="text-end bg-200 text-1000">{{ $asu->timbangan }}</td>
                                     </tr>
                                 @endforeach
@@ -417,7 +417,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer bg-light d-flex flex-between-end py-2">
+                <div class="card-footer bg-light d-flex flex-between-end py-3">
                     {{-- // --}}
                 </div>
             </div>

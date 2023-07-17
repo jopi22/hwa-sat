@@ -17172,7 +17172,7 @@ var weeklyGoalsInit = function weeklyGoalsInit() {
                         type: "gauge",
                         startAngle: 90,
                         endAngle: -270,
-                        radius: "85%",
+                        radius: "88%",
                         pointer: {
                             show: false,
                         },

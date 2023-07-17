@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(HwaController::class)->group(function () {
         // Dashboard
         Route::get('/', 'dashboard')->name('dash');
+        // Route::get('hrga', 'hrga')->name('hrga');
         //HWA Profile
         Route::get('hwa_profil', 'hwaProfil')->name('hwa.g');
         Route::get('hwa_edit_profil', 'hwaEdit')->name('hwa.e');

@@ -25,50 +25,50 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3">
-    <div class="card-body d-flex justify-content-between">
-        <div>
-            <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                {{ date('F Y') }}</span>
-            <span class="mx-1 mx-sm-2 text-300">| </span>
-            <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.e') }}" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Back to Main Table">
-                <span class="fas fa-list"></span>
-            </a>
-            <span class="mx-1 mx-sm-2 text-300">| </span>
-            <span class=" fw-semi-bold text-primary"> Edit Hours Meter / {{ $equip_m->equip_->tipe }}</span>
-            <span class="mx-1 mx-sm-2 text-300">: </span>
-            <span class=" fw-semi-bold text-info"> {{$equip_m->equip_->no_unit}}</span>
-        </div>
-        <div class="col-auto d-flex align-items-center">
-            <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                <a href="{{ route('hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
-                    <button class="btn btn-sm  text-primary" data-bs-toggle="pill"
-                        data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button" role="tab"
-                        aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" aria-selected="false"
-                        id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
+    <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
+            <div>
+                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                    {{ date('F Y') }}</span>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.e') }}" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Back to Main Table">
+                    <span class="fas fa-list"></span>
                 </a>
-                <a href="{{ route('hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
-                    <button class="btn btn-sm active  text-warning" data-bs-toggle="pill"
-                        data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
-                        aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="true"
-                        id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
-                </a>
-                <a href="{{ route('hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
-                    <button class="btn btn-sm text-success" data-bs-toggle="pill"
-                        data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button" role="tab"
-                        aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" aria-selected="false"
-                        id="tab-dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc">Tambah</button>
-                </a>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <span class=" fw-semi-bold text-primary"> Edit Hours Meter / {{ $equip_m->equip_->tipe }}</span>
+                <span class="mx-1 mx-sm-2 text-300">: </span>
+                <span class=" fw-semi-bold text-info"> {{ $equip_m->equip_->no_unit }}</span>
             </div>
-            <div class="position-relative">&nbsp;
-                <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                        class="fas fa-truck-monster"></i></button>
+            <div class="col-auto d-flex align-items-center">
+                <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                    <a href="{{ route('hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
+                        <button class="btn btn-sm  text-primary" data-bs-toggle="pill"
+                            data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button" role="tab"
+                            aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" aria-selected="false"
+                            id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
+                    </a>
+                    <a href="{{ route('hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
+                        <button class="btn btn-sm active  text-warning" data-bs-toggle="pill"
+                            data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
+                            aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="true"
+                            id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
+                    </a>
+                    <a href="{{ route('hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
+                        <button class="btn btn-sm text-success" data-bs-toggle="pill"
+                            data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button" role="tab"
+                            aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" aria-selected="false"
+                            id="tab-dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc">Tambah</button>
+                    </a>
+                </div>
+                <div class="position-relative">&nbsp;
+                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+                            class="fas fa-truck-monster"></i></button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     @include('comp.alert')
 
@@ -87,55 +87,48 @@
                         </div>
                     </form>
                 </div>
-                @if ($cek == 0)
-                    <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
-                @else
-                    <div class="table-responsive scrollbar">
-                        <table class="table table-sm table-striped table-bordered mb-0 fs--1"
-                            data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
-                            <thead class="bg-200 text-800">
-                                <tr class="text-center">
-                                    <th style="min-width: 150px"
-                                        class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="tgl">
-                                        No Unit
-                                    </th>
-                                    <th style="min-width: 100px"
-                                        class="sort bg-primary text-white align-middle white-space-nowrap"
-                                        data-sort="payment">
-                                        Type
-                                    </th>
-                                    <th style="min-width: 50px"
-                                        class="bg-primary text-white align-middle white-space-nowrap">
-                                        Aksi
-                                    </th>
+                <div class="table-responsive scrollbar">
+                    <table class="table table-sm table-striped table-bordered mb-0 fs--1"
+                        data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
+                        <thead class="bg-200 text-800">
+                            <tr class="text-center">
+                                <th style="min-width: 150px"
+                                    class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="tgl">
+                                    Aksi
+                                </th>
+                                <th style="min-width: 100px"
+                                    class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="payment">
+                                    No Unit
+                                </th>
+                                <th style="min-width: 50px" class="bg-primary text-white align-middle white-space-nowrap">
+                                    Jenis
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-posts" class="list">
+                            @foreach ($equip_list as $res)
+                                <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
+                                    <td class="align-middle text-center text-1000 white-space-nowrap no">
+                                        <div class="btn-group  btn-group-sm" role="group">
+                                            <a href="{{ route('hm.e.i', Crypt::encryptString($res->equip_id)) }}"
+                                                class="btn btn-info" type="button"><i class="fas fa-info-circle"></i></a>
+                                            <a href="{{ route('hm.e.e', Crypt::encryptString($res->equip_id)) }}"
+                                                class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('hm.e.c', Crypt::encryptString($res->equip_id)) }}"
+                                                class="btn btn-success" type="button"><i
+                                                    class="fas fa-plus-square"></i></a>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap tgl">
+                                        {{ $res->equip_->no_unit }}</td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap payment">
+                                        {{ $res->equip_->tipe }}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody id="table-posts" class="list">
-                                @foreach ($equip_list as $res)
-                                    <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                        <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                            <div class="btn-group  btn-group-sm" role="group">
-                                                <a href="{{ route('hm.e.i', Crypt::encryptString($res->equip_id)) }}"
-                                                    class="btn btn-info" type="button"><i
-                                                        class="fas fa-info-circle"></i></a>
-                                                <a href="{{ route('hm.e.e', Crypt::encryptString($res->equip_id)) }}"
-                                                    class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
-                                                <a href="{{ route('hm.e.c', Crypt::encryptString($res->equip_id)) }}"
-                                                    class="btn btn-success" type="button"><i
-                                                        class="fas fa-plus-square"></i></a>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle text-1000 text-center white-space-nowrap tgl">
-                                            {{ $res->equip_->no_unit }}</td>
-                                        <td class="align-middle text-1000 text-center white-space-nowrap payment">
-                                            {{ $res->equip_->tipe }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -565,8 +558,10 @@
                 @endif
             </div>
             <div class="card-footer text-center bg-200">
-                <button class="btn btn-sm btn-warning" type="submit"><i class="fas fa-save"></i>
-                    Update</button>
+                @if ($cek > 0)
+                    <button class="btn btn-sm btn-warning" type="submit"><i class="fas fa-save"></i>
+                        Update</button>
+                @endif
             </div>
         </div>
     </form>

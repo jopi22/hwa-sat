@@ -5,16 +5,16 @@
         @include('home.superadmin')
     @else
         @if (Auth::user()->level == 3)
-            @include('home.admin')
+            @include('home.hrga')
         @else
             @if (Auth::user()->level == 4)
-                @include('home.pekerja')
+                @include('home.rental')
             @else
-                kosong
+                @if (Auth::user()->level == 5)
+                    @include('home.logistik')
+                @else
+                @endif
             @endif
-            kosong
         @endif
-        kosong
     @endif
-    kosong
 @endif

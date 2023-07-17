@@ -103,7 +103,7 @@
                         <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                     @else
                         <div class="table-responsive scrollbar">
-                            <table class="table table-sm table-striped table-bordered mb-0 fs--1"
+                            <table class="table table-striped table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">

@@ -32,6 +32,169 @@
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
             @if ($master->ket1 == 1)
+                {{-- @if ($cek_master == 1)
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4 border-lg-end border-lg-bottom border-lg-0 pb-3 pb-lg-0">
+                                    <div class="d-flex flex-between-center mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                                <span class="fs--2 fas fa-snowplow text-primary"></span></div>
+                                            <h6 class="mb-0">EXCA200 </h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">{{ $tot_exca200 }}</p>
+                                            <div class="d-flex flex-column">
+                                                @if ($last_exca200->hm_total > $rate_exca200)
+                                                    <span class="me-1 text-success fas fa-caret-up text-primary"></span>
+                                                @else
+                                                    <span class="me-1 text-danger fas fa-caret-down text-primary"></span>
+                                                @endif
+                                                <p class="fs--2 mb-0 text-nowrap">{{ $min_exca200 }} -
+                                                    {{ $max_exca200 }} </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                            data-echarts='{"series":[{"type":"line","data":[ @foreach ($exca200 as $item)
+                        {{ $item->hm_total }}, @endforeach {{ $last_exca200->hm_total }}],"color":"#2c7be5","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#2c7be53A"},{"offset":1,"color":"#2c7be50A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 border-lg-end border-lg-bottom border-lg-0 pb-3 pb-lg-0">
+                                    <div class="d-flex flex-between-center mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                                <span class="fs--2 fas fas fa-snowplow text-primary"></span></div>
+                                            <h6 class="mb-0">EXCA200LA </h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">{{ $tot_exca200la }}</p>
+                                            <div class="d-flex flex-column">
+                                                @if ($last_exca200la->hm_total > $rate_exca200la)
+                                                    <span class="me-1 text-success fas fa-caret-up text-primary"></span>
+                                                @else
+                                                    <span class="me-1 text-danger fas fa-caret-down text-primary"></span>
+                                                @endif
+                                                <p class="fs--2 mb-0 text-nowrap">{{ $min_exca200la }} -
+                                                    {{ $max_exca200la }} </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                            data-echarts='{"series":[{"type":"line","data":[ @foreach ($exca200la as $item)
+                        {{ $item->hm_total }}, @endforeach {{ $last_exca200la->hm_total }}],"color":"#2c7be5","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#2c7be53A"},{"offset":1,"color":"#2c7be50A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 border-lg-bottom border-lg-0 pb-3 pb-lg-0">
+                                    <div class="d-flex flex-between-center mb-3">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                                <span class="fs--2 fas fa-snowplow text-primary"></span></div>
+                                            <h6 class="mb-0">EXCA300 </h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">{{ $tot_exca300 }}</p>
+                                            <div class="d-flex flex-column">
+                                                @if ($last_exca300->hm_total > $rate_exca300)
+                                                    <span class="me-1 text-success fas fa-caret-up text-primary"></span>
+                                                @else
+                                                    <span class="me-1 text-danger fas fa-caret-down text-primary"></span>
+                                                @endif
+                                                <p class="fs--2 mb-0 text-nowrap">{{ $min_exca300 }} -
+                                                    {{ $max_exca300 }} </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                            data-echarts='{"series":[{"type":"line","data":[ @foreach ($exca300 as $item)
+                        {{ $item->hm_total }}, @endforeach {{ $last_exca300->hm_total }}],"color":"#2c7be5","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#2c7be53A"},{"offset":1,"color":"#2c7be50A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 border-lg-end border-bottom border-lg-0 pb-3 pb-lg-0">
+                                    <div class="d-flex flex-between-center mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                                <span class="fs--2 fas fas fa-tractor text-primary"></span></div>
+                                            <h6 class="mb-0">Vibro </h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <p class="font-sans-serif lh-1 fs-4 pe-2">{{ $tot_vibro }}</p>
+                                            <div class="d-flex flex-column">
+                                                @if ($last_vibro->hm_total > $rate_vibro)
+                                                    <span class="me-1 text-success fas fa-caret-up text-primary"></span>
+                                                @else
+                                                    <span class="me-1 text-danger fas fa-caret-down text-primary"></span>
+                                                @endif
+                                                <p class="fs--2 mb-0 text-nowrap">{{ $min_vibro }} -
+                                                    {{ $max_vibro }} </p>
+                                            </div>
+                                        </div>
+                                        <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                            data-echarts='{"series":[{"type":"line","data":[ @foreach ($vibro as $item)
+                        {{ $item->hm_total }}, @endforeach {{ $last_vibro->hm_total }}],"color":"#2c7be5","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#2c7be53A"},{"offset":1,"color":"#2c7be50A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 border-lg-end border-bottom border-lg-0 pb-3 pb-lg-0">
+                                    <div class="d-flex flex-between-center mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                                <span class="fs--2 fas fa-truck-monster text-primary"></span></div>
+                                            <h6 class="mb-0">HINO500 </h6>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="d-flex">
+                                            <p class="font-sans-serif lh-1 mb-1 fs-4 pe-2">{{ $tot_hino500 }}</p>
+                                            <div class="d-flex flex-column">
+                                                @if ($last_hino500->hm_total > $rate_hino500)
+                                                    <span class="me-1 text-success fas fa-caret-up text-primary"></span>
+                                                @else
+                                                    <span class="me-1 text-danger fas fa-caret-down text-primary"></span>
+                                                @endif
+                                                <p class="fs--2 mb-0 text-nowrap">{{ $min_hino500 }} -
+                                                    {{ $max_hino500 }} </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="echart-crm-statistics w-100 ms-2" data-echart-responsive="true"
+                                            data-echarts='{"series":[{"type":"line","data":[ @foreach ($hino500 as $item)
+                        {{ $item->hm_total }}, @endforeach {{ $last_hino500->hm_total }}],"color":"#2c7be5","areaStyle":{"color":{"colorStops":[{"offset":0,"color":"#2c7be53A"},{"offset":1,"color":"#2c7be50A"}]}}}],"grid":{"bottom":"-10px"}}'>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 border-bottom border-lg-0 pb-3 pb-lg-0">
+                                    <div class="d-flex flex-between-center mt-3">
+                                        <div class="d-flex align-items-center">
+                                            <div
+                                                class="icon-item icon-item-sm bg-soft-primary shadow-none me-2 bg-soft-primary">
+                                                <span class="fs--2 fas fa-truck-pickup text-primary"></span></div>
+                                            <h6 class="mb-0">OTHER </h6>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif --}}
                 <div class="card mb-3 bg-100 shadow-none border">
                     <div class="row gx-0 flex-between-center">
                         <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
@@ -66,8 +229,8 @@
                         <div class="row flex-between-left">
                             <div class="col-auto ms-2">
                                 <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                                    <a href="{{ route('hm.p') }}"><button class="btn btn-sm text-primary" type="button"><i
-                                                class="fas fa-stopwatch"></i> Hours Meter</button></a>
+                                    <a href="{{ route('hm.p') }}"><button class="btn btn-sm text-primary"
+                                            type="button"><i class="fas fa-stopwatch"></i> Hours Meter</button></a>
                                     <a href="{{ route('hm.p.u') }}"><button class="btn btn-sm active text-warning"
                                             type="button"><i class="fas fa-truck-monster"></i>
                                             Unit</button></a>
@@ -124,7 +287,7 @@
                                     </div>
                                 </div>
                                 <div class="table-responsive scrollbar">
-                                    <table class="table table-sm table-striped table-bordered mb-0 fs--1"
+                                    <table class="table table-striped table-bordered mb-0 fs--1"
                                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                         <thead class="bg-200 text-800">
                                             <tr class="text-center">
@@ -144,18 +307,8 @@
                                                 </th>
                                                 <th style="min-width: 100px"
                                                     class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                                    data-sort="kode">
-                                                    Kode Unit
-                                                </th>
-                                                <th style="min-width: 100px"
-                                                    class="sort bg-secondary text-white align-middle white-space-nowrap"
                                                     data-sort="model">
                                                     Model
-                                                </th>
-                                                <th style="min-width: 100px"
-                                                    class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                                    data-sort="jenis">
-                                                    Jenis
                                                 </th>
                                                 <th style="min-width: 100px"
                                                     class="sort bg-secondary text-white align-middle white-space-nowrap"
@@ -212,25 +365,10 @@
                                                             -
                                                         @endif
                                                     </td>
-                                                    <td class="align-middle text-1000 text-center white-space-nowrap kode">
-                                                        @if ($res->equip_id)
-                                                            {{ $res->equip_->kode_unit }}
-                                                        @else
-                                                            -
-                                                        @endif
-                                                    </td>
                                                     <td
                                                         class="align-middle text-1000 text-center white-space-nowrap model">
                                                         @if ($res->equip_id)
                                                             {{ $res->equip_->model }}
-                                                        @else
-                                                            -
-                                                        @endif
-                                                    </td>
-                                                    <td
-                                                        class="align-middle text-1000 text-center white-space-nowrap jenis">
-                                                        @if ($res->equip_id)
-                                                            {{ $res->equip_->jenis }}
                                                         @else
                                                             -
                                                         @endif
@@ -283,7 +421,7 @@
                                                         @if ($res->alokasi)
                                                             {{ $res->alokasi }}
                                                         @else
-                                                            -
+                                                            {{ $mitra->inisial }}
                                                         @endif
                                                     </td>
                                                 </tr>

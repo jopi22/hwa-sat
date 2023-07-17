@@ -116,7 +116,7 @@
                                                     class="text-center text-white bg-danger text-1000">Aksi
                                                 </th>
                                                 <th style="min-width: 250px" class="sort" data-sort="name">Nama</th>
-                                                <th style="min-width: 250px" class="sort" data-sort="id">ID Karyawan</th>
+                                                <th style="min-width: 250px" class="sort" data-sort="id">NIK</th>
                                             </tr>
                                         </thead>
                                         <tbody class="list">
@@ -148,7 +148,7 @@
                                                         {{ $res->karyawan_->name }}
                                                     </td>
                                                     <td class="id text-1000 fw-semi-bold align-middle">
-                                                        K{{ $res->karyawan_->tgl_gabung->format('ym') }}{{ $res->karyawan_->id }}
+                                                        {{ $res->karyawan_->username }}
                                                     </td>
                                                 </tr>
                                             @endforeach

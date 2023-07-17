@@ -13,6 +13,7 @@ use App\Models\KarMaster;
 use App\Models\Location;
 use App\Models\Lokasi;
 use App\Models\Master;
+use App\Models\Mitra;
 use App\Models\Navigator;
 use App\Models\User;
 use App\Models\Performa_hm;
@@ -88,7 +89,8 @@ class PerformaHMController extends Controller
             ->where('status', '<>', 'Delete')
             ->get();
         $shift = Shift::all();
-        return view('author.sad.pfm.hm_performance_unit', compact('cek_perform', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
+        $mitra = Mitra::where('status', 'Utama')->first();
+        return view('author.sad.pfm.hm_performance_unit', compact('cek_perform','mitra', 'nav', 'total_hm', 'kar_list', 'hitung_list', 'perform_list', 'equip', 'equipment', 'kar', 'lok', 'dedi', 'shift', 'master', 'periode'));
     }
 
 
@@ -328,10 +330,11 @@ class PerformaHMController extends Controller
             ->where('equip_id', $decryptID)
             ->where('master_id', $master->id)->get();
         $list = Performa_hm::where('equip_id', $decryptID)
+            ->orderBy('id', 'ASC')
             ->where('master_id', $master->id)
             ->get();
         $cek = Performa_hm::where('equip_id', $decryptID)
-            ->where('master_id', $master->id)
+            ->where('master_id', $master->id)->distinct('tgl')
             ->count();
         $cek_hm = Performa_hm::where('equip_id', $decryptID)
             ->where('master_id', $master->id)
@@ -347,7 +350,12 @@ class PerformaHMController extends Controller
         $max = Performa_hm::where('equip_id', $decryptID)
             ->where('master_id', $master->id)
             ->min('hm_awal');
-        return view('asset.sad.pfm.hm_equip_info', compact('list', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        if ($cek > 0) {
+            $rata2 = $sum / $cek;
+            return view('asset.sad.pfm.hm_equip_info', compact('list', 'rata2', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        } else {
+            return view('asset.sad.pfm.hm_equip_info', compact('list', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        }
     }
 
 

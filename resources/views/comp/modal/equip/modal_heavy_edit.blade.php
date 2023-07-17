@@ -53,7 +53,7 @@
                                         <div class="col-6">
                                             <div class="form-floating">
                                                 <select required name="tipe" class="form-control form-control-sm">
-                                                    <option value="{{ $res->tipe }}">{{ $res->tipe }}</option>
+                                                    <option value="{{ $asu->tipe }}">{{ $asu->tipe }}</option>
                                                     <option value="Excavator">Excavator</option>
                                                     <option value="Vibro">Vibro</option>
                                                     <option value="Bulldozer">Bulldozer</option>

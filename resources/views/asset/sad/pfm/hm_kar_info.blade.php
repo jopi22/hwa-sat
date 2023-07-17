@@ -58,7 +58,7 @@
                         <div class="dropdown font-sans-serif d-inline-block">
                             <a href="{{ route('hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
                                     class="btn btn-sm btn-falcon-success"type="button"><i
-                                    class="fas fa-file-excel"></i></button></a>
+                                        class="fas fa-file-excel"></i></button></a>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                                         <th style="min-width: 120px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
                                             data-sort="id">
-                                            ID O/D
+                                            NIK
                                         </th>
                                         <th style="min-width: 350px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
@@ -124,7 +124,7 @@
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap id">
                                                 @if ($res->kar_id)
-                                                    K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->kar_->id }}
+                                                    {{ $res->kar_->username }}
                                                 @else
                                                     -
                                                 @endif
@@ -166,10 +166,10 @@
                 </div>
                 <table>
                     <tr>
-                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">ID Operator/Driver</th>
+                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">NIK</th>
                         <th class="text-700 fw-normal fs--1">:</th>
                         <th class="text-1000 fw-normal fs--1">&nbsp; @if ($kar->kar_id)
-                                K{{ $kar->kar_->tgl_gabung->format('ym') }}{{ $kar->kar_->id }}
+                                {{ $kar->kar_->username }}
                             @else
                                 -
                             @endif
@@ -208,9 +208,19 @@
             <div class="card-body py-5 py-sm-3">
                 <div class="row g-5 g-sm-0">
                     <div class="col-sm-3">
+                        <div>
+                            <div class="text-center">
+                                <h6 class="text-danger">Total Potongan HM</h6>
+                                <h3 class="fw-normal text-danger"
+                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $insentif }}}'>0
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
                         <div class="border-sm-end border-300">
                             <div class="text-center">
-                                <h6 class="text-700">Total HM</h6>
+                                <h6 class="text-700">Jumlah HM</h6>
                                 <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $total_hm }}}'>0</h3>
                             </div>
                         </div>
@@ -218,7 +228,7 @@
                     <div class="col-sm-3">
                         <div class="border-sm-end border-300">
                             <div class="text-center">
-                                <h6 class="text-700">Total HM Manual</h6>
+                                <h6 class="text-700">Jumlah HM Manual</h6>
                                 <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $total_jam }}}'>0</h3>
                             </div>
                         </div>
@@ -226,18 +236,8 @@
                     <div class="col-sm-3">
                         <div class="border-sm-end border-300">
                             <div class="text-center">
-                                <h6 class="text-primary">Grand Total HM</h6>
+                                <h6 class="text-primary">Jumlah Grand HM</h6>
                                 <h3 class="fw-normal text-primary" data-countup='{"endValue":{{ $grand_total }}}'>0
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div>
-                            <div class="text-center">
-                                <h6 class="text-primary">Total Insentif</h6>
-                                <h3 class="fw-normal text-primary"
-                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $insentif }}}'>0
                                 </h3>
                             </div>
                         </div>
@@ -265,7 +265,7 @@
                     <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                 @else
                     <div class="table-responsive scrollbar">
-                        <table class="table table-sm table-striped table-bordered mb-0 fs--1"
+                        <table class="table table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">
@@ -294,11 +294,11 @@
                                     </th>
                                     <th style="min-width: 120px"
                                         class="sort bg-primary text-white align-middle white-space-nowrap">
-                                        HM Potongan
+                                        HM Total
                                     </th>
                                     <th style="min-width: 120px"
-                                        class="sort bg-primary text-white align-middle white-space-nowrap">
-                                        HM Total
+                                        class="sort bg-danger text-white align-middle white-space-nowrap">
+                                        HM Potongan
                                     </th>
                                     <th style="min-width: 350px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap"
@@ -312,10 +312,6 @@
                                     <th style="min-width: 120px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap">
                                         Jam Akhir
-                                    </th>
-                                    <th style="min-width: 120px"
-                                        class="sort bg-secondary text-white align-middle white-space-nowrap">
-                                        Jam Potongan
                                     </th>
                                     <th style="min-width: 120px"
                                         class="sort bg-secondary text-white align-middle white-space-nowrap">
@@ -357,16 +353,17 @@
                                                 -
                                             @endif
                                         </td>
-                                        <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            @if ($res->hm_pot)
-                                                {{ $res->hm_pot }}
+
+                                        <td class="align-middle text-1000 bg-200 text-center white-space-nowrap">
+                                            @if ($res->hm_total)
+                                                {{ $res->hm_total }}
                                             @else
                                                 -
                                             @endif
                                         </td>
                                         <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            @if ($res->hm_total)
-                                                {{ $res->hm_total }}
+                                            @if ($res->hm_pot)
+                                                {{ $res->hm_pot }}
                                             @else
                                                 -
                                             @endif
@@ -392,14 +389,7 @@
                                                 -
                                             @endif
                                         </td>
-                                        <td class="align-middle text-1000 text-center white-space-nowrap">
-                                            @if ($res->jam_pot)
-                                                {{ $res->jam_pot }}
-                                            @else
-                                                -
-                                            @endif
-                                        </td>
-                                        <td class="align-middle text-1000 text-center white-space-nowrap">
+                                        <td class="align-middle text-1000 bg-200 text-center white-space-nowrap">
                                             @if ($res->jam_total)
                                                 {{ $res->jam_total }}
                                             @else

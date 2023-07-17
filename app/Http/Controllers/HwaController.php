@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EquipMaster;
+use App\Models\Equipment;
 use App\Models\Hwa;
 use App\Models\Master;
 use App\Models\Navigator;
+use App\Models\PengajuanAbsensi;
+use App\Models\Performa_hm;
 use App\Models\Site;
+use App\Models\SP;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,14 +29,17 @@ class HwaController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $cek = Master::where('status', 'Present')->first();
-        $cek_null = Master::where('status', 'Present')->first();
-        return view('home.dashboard', compact('cek','cek_null', 'periode','nav'));
+        $master = Master::where('status', 'Present')->first();
+        $cek_master = Master::where('status', 'Present')->count();
+        $hwa = Site::Find(1);
+        return view('home.home', compact('hwa', 'periode','cek_master','cek', 'master', 'nav'));
     }
 
 
-    public function admin()
+    public function hrga()
     {
-        return view('home.admin');
+        $kar = 'asu';
+        return view('home.hrga', compact('kar'));
     }
 
 
@@ -46,7 +55,7 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $hwa = Site::Find(1);
-        return view('author.sad.hwa.hwa_profil', compact('hwa','periode','master','nav'));
+        return view('author.sad.hwa.hwa_profil', compact('hwa', 'periode', 'master', 'nav'));
     }
 
 
@@ -56,7 +65,7 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $hwa = Site::Find(1);
-        return view('author.sad.hwa.hwa_profil_edit', compact('hwa','periode','master','nav'));
+        return view('author.sad.hwa.hwa_profil_edit', compact('hwa', 'periode', 'master', 'nav'));
     }
 
 
@@ -106,7 +115,7 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $hwa = Site::Find(1);
-        return view('author.sad.hwa.hwa_struktur', compact('hwa','periode','master','nav'));
+        return view('author.sad.hwa.hwa_struktur', compact('hwa', 'periode', 'master', 'nav'));
     }
 
 
@@ -114,13 +123,13 @@ class HwaController extends Controller
     {
         // dd($request->all());
         $hwa = Site::Find(1);
-            $foto = $request->foto;
-            $new_foto = 'foto' . time() . $foto->getClientOriginalName();
-            $foto->move('file/hwa/profil/', $new_foto);
-            $hwa_data = [
-                'foto' => 'file/hwa/profil/' . $new_foto,
-            ];
-            $hwa->update($hwa_data);
+        $foto = $request->foto;
+        $new_foto = 'foto' . time() . $foto->getClientOriginalName();
+        $foto->move('file/hwa/profil/', $new_foto);
+        $hwa_data = [
+            'foto' => 'file/hwa/profil/' . $new_foto,
+        ];
+        $hwa->update($hwa_data);
         return back()->with('success', 'Data Struktur Berhasil Diubah');
     }
 
@@ -131,7 +140,7 @@ class HwaController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $hwa = Site::Find(1);
-        return view('author.sad.hwa.hwa_peraturan', compact('hwa','periode','master','nav'));
+        return view('author.sad.hwa.hwa_peraturan', compact('hwa', 'periode', 'master', 'nav'));
     }
 
 
@@ -139,13 +148,13 @@ class HwaController extends Controller
     {
         // dd($request->all());
         $hwa = Site::Find(1);
-            $foto = $request->foto;
-            $new_foto = 'foto' . time() . $foto->getClientOriginalName();
-            $foto->move('file/hwa/profil/', $new_foto);
-            $hwa_data = [
-                'foto2' => 'file/hwa/profil/' . $new_foto,
-            ];
-            $hwa->update($hwa_data);
+        $foto = $request->foto;
+        $new_foto = 'foto' . time() . $foto->getClientOriginalName();
+        $foto->move('file/hwa/profil/', $new_foto);
+        $hwa_data = [
+            'foto2' => 'file/hwa/profil/' . $new_foto,
+        ];
+        $hwa->update($hwa_data);
         return back()->with('success', 'Data Peraturan Berhasil Diubah');
     }
 }

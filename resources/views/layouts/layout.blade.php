@@ -165,7 +165,7 @@
                     <h5 class="text-white mb-0 me-2"><span class="fas fa-palette me-2 fs-0"></span>Interface</h5>
                     <button class="btn btn-primary btn-sm rounded-pill mt-0 mb-0" data-theme-control="reset"
                         style="font-size:12px"> <span class="fas fa-redo-alt me-1"
-                            data-fa-transform="shrink-3"></span>Setelan Pabrik</button>
+                            data-fa-transform="shrink-3"></span>Default</button>
                 </div>
                 <p class="mb-0 fs--1 text-white opacity-75"> Kustom Pengaturan Interface Anda</p>
             </div><button class="btn-close btn-close-white z-index-1 mt-0" type="button" data-bs-dismiss="offcanvas"
@@ -194,7 +194,7 @@
                 <div class="d-flex align-items-start"><img class="me-2"
                         src="assets/img/icons/left-arrow-from-left.svg" width="20" alt="" />
                     <div class="flex-1">
-                        <h5 class="fs-0"> Mode Arab</h5>
+                        <h5 class="fs-0"> Mode RTL</h5>
                     </div>
                 </div>
                 <div class="form-check form-switch"><input class="form-check-input ms-0" id="mode-rtl"
@@ -221,7 +221,7 @@
                             <option value="vertical">Vertikal</option>
                             <option value="top">Horizontal</option>
                             <option value="combo">Hybrid</option>
-                            <option value="double-top">Ganda Horizontal</option>
+                            {{-- <option value="double-top">Ganda Horizontal</option> --}}
                         </select></div>
                 </div>
             </div>
@@ -268,6 +268,8 @@
     <script src="{{ asset('polyfill.io/v3/polyfill.min58be.js?features=window.scroll') }}"></script>
     <script src="{{ asset('vendors/list.js/list.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
+    <script src="{{asset('vendors/echarts/echarts.min.js')}}"></script>
+    <script src="{{asset('vendors/dayjs/dayjs.min.js')}}"></script>
     @yield('script')
 </body>
 

@@ -29,31 +29,31 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
-        <div class="card mb-3 bg-100 shadow-none border">
-            <div class="row gx-0 flex-between-center">
-                <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                    <div>
-                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
-                        </h6>
-                        <h4 class="text-primary fw-bold mb-0">Kelola Hours Meter Manual</h4>
+            <div class="card mb-3 bg-100 shadow-none border">
+                <div class="row gx-0 flex-between-center">
+                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                            width="90" />
+                        <div>
+                            <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
+                            </h6>
+                            <h4 class="text-primary fw-bold mb-0">Kelola Hours Meter Manual</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-auto d-flex align-items-center">
+                        <form class="row align-items-center g-3">
+                            <div class="col-auto">
+                                <h6 class="text-info mb-0">Master Present :</h6>
+                            </div>
+                            <div class="col-md-auto">
+                                <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
+                            </div>
+                        </form>
+                        <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
+                            alt="" width="150" />
                     </div>
                 </div>
-                <div class="col-sm-auto d-flex align-items-center">
-                    <form class="row align-items-center g-3">
-                        <div class="col-auto">
-                            <h6 class="text-info mb-0">Master Present :</h6>
-                        </div>
-                        <div class="col-md-auto">
-                            <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
-                        </div>
-                    </form>
-                    <img class="ms-2 d-md-none d-lg-block"
-            src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
-            width="150" />
-                </div>
             </div>
-        </div>
 
             @include('comp.alert')
 
@@ -64,8 +64,8 @@
                             <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
                                 <a href="{{ route('hm.e') }}"><button class="btn btn-sm text-primary" type="button"><i
                                             class="fas fa-stopwatch"></i> Reguler</button></a>
-                                <a href="{{ route('hm.m') }}"><button class="btn active btn-sm text-warning" type="button"><i
-                                            class="fas fa-clock"></i> Manual</button></a>
+                                <a href="{{ route('hm.m') }}"><button class="btn active btn-sm text-warning"
+                                        type="button"><i class="fas fa-clock"></i> Manual</button></a>
                             </div>
                         </div>
                     </div>
@@ -90,9 +90,9 @@
                             </select>
                         </div>
                         <div class="col-auto col-sm-3">
-                            <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop"><span class="fas fa-plus text-success"
-                                    data-fa-transform="shrink-3"></span><span
+                            <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span
+                                    class="fas fa-plus text-success" data-fa-transform="shrink-3"></span><span
                                     class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
                             </button>
                         </div>
@@ -101,27 +101,29 @@
                         <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                     @else
                         <div class="table-responsive scrollbar">
-                            <table class="table table-sm table-bordered mb-0 fs--1"
+                            <table class="table table-bordered mb-0 fs--1"
                                 data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                 <thead class="bg-secondary text-white">
                                     <tr class="text-center">
-                                        <th style="min-width: 20px" class="align-middle white-space-nowrap">
-                                            #
-                                        </th>
                                         <th style="min-width: 50px" class="align-middle white-space-nowrap">
                                             Aksi
                                         </th>
-                                        <th style="min-width: 80px" class="sort align-middle white-space-nowrap" data-sort="tgl">
+                                        <th style="min-width: 20px" class="align-middle white-space-nowrap">
+                                            #
+                                        </th>
+                                        <th style="min-width: 80px" class="sort align-middle white-space-nowrap"
+                                            data-sort="tgl">
                                             Tanggal
                                         </th>
-                                        <th style="min-width: 80px" class="sort align-middle white-space-nowrap" data-sort="shift">
+                                        <th style="min-width: 80px" class="sort align-middle white-space-nowrap"
+                                            data-sort="shift">
                                             Shift
                                         </th>
                                         <th style="min-width: 80px" class="sort align-middle white-space-nowrap"
                                             data-sort="payment">No Unit
                                         </th>
-                                        <th style="min-width: 250px; max-width: 400px;" class="sort align-middle white-space-nowrap"
-                                            data-sort="name">Operator /
+                                        <th style="min-width: 250px; max-width: 400px;"
+                                            class="sort align-middle white-space-nowrap" data-sort="name">Operator /
                                             Driver
                                         </th>
                                         <th style="min-width: 80px" class="sort bg-primary align-middle white-space-nowrap">
@@ -140,26 +142,29 @@
                                             HM
                                             Potongan
                                         </th>
-                                        <th style="min-width: 200px; max-width: 400px;" class="sort align-middle white-space-nowrap"
-                                            data-sort="remark">Remark
+                                        <th style="min-width: 200px; max-width: 400px;"
+                                            class="sort align-middle white-space-nowrap" data-sort="remark">Remark
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-posts" class="list">
                                     @foreach ($all as $res)
-                                        <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                            <td class="align-middle text-center text-1000 white-space-nowrap ">
-                                                {{ $loop->iteration }}
-                                            </td>
+                                        <tr id="index_{{ $res->id }}"
+                                            class="btn-reveal-trigger text-1000 fw-semi-bold">
                                             <td class="align-middle text-center text-1000 white-space-nowrap">
                                                 <div class="btn-group  btn-group-sm" role="group">
-                                                    <a href="javascript:void(0)" data-bs-target="#edit-{{ $res->id }}"
-                                                        data-bs-toggle="modal" class="btn btn-warning" type="button"><i
+                                                    <a href="javascript:void(0)"
+                                                        data-bs-target="#edit-{{ $res->id }}" data-bs-toggle="modal"
+                                                        class="btn btn-warning" type="button"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#hapus-{{ $res->id }}" data-id="{{ $res->id }}"
-                                                        class="btn btn-danger" type="button"><i class="fas fa-trash-alt"></i></a>
+                                                        data-bs-target="#hapus-{{ $res->id }}"
+                                                        data-id="{{ $res->id }}" class="btn btn-danger"
+                                                        type="button"><i class="fas fa-trash-alt"></i></a>
                                                 </div>
+                                            </td>
+                                            <td class="align-middle text-center text-1000 white-space-nowrap ">
+                                                {{ $loop->iteration }}
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap tgl">
                                                 @if ($res->tgl)

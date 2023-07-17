@@ -146,11 +146,6 @@
         </li>
 
         <li class="nav-item">
-            <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip"
-                data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span
-                        class="toggle-line"></span></span></button>
-        </li>
-        <li class="nav-item">
             <a href="#settings-offcanvas" data-bs-toggle="offcanvas">
                 <div class="theme-control-toggle fa-icon-wait px-2">
                     <div class="settings-popover"><span class="ripple"><span

@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                                     <div class="table-responsive scrollbar">
-                                        <table class="table table-sm table-bordered mb-0 fs--1"
+                                        <table class="table table-bordered mb-0 fs--1"
                                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true}'>
                                             <thead class="bg-200 text-800">
                                                 <tr class="text-center bg-secondary text-white">

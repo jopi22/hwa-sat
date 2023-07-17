@@ -14,8 +14,7 @@
                         class="toggle-line"></span></span></button>
         </div><a class="navbar-brand" href="{{ route('dash') }}">
             <div class="d-flex align-middle py-3">
-                <img src="{{ asset('assets/img/logos/hubstaff.png') }}" alt="" width="30"
-                    height="30" />
+                <img src="{{ asset('assets/img/logos/hubstaff.png') }}" alt="" width="30" height="30" />
                 <span class="font-sans-serif">HWA SAT</span>
             </div>
         </a>
@@ -32,7 +31,7 @@
                         @include('layouts.sidebar.sidebar_sad')
                     @else
                         @if (Auth::user()->level == 3)
-                        @include('layouts.sidebar.sidebar_hrga')
+                            @include('layouts.sidebar.sidebar_hrga')
                         @else
                             @if (Auth::user()->level == 4)
                                 {{-- // --}}
