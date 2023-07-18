@@ -206,6 +206,6 @@
             </div>
         </div>
     @else
-        Harap Melakukan Update Master Data
+    @include('comp.card.card404')
     @endif
 @endsection

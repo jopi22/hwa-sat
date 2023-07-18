@@ -101,7 +101,7 @@
                                 <td class="text-black text-center fw-semi-bold">{{ $loop->iteration }}</td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap id">
                                     <div class="btn-group  btn-group-sm" role="group">
-                                        @if ($res->level == 1)
+                                        @if ($res->level < 3)
                                             <span class="id fs--1 text-400"><i>Hidden</i></span>
                                         @else
                                             @if ($res->level == 2)
@@ -118,7 +118,7 @@
                                                                 class="fas fa-power-off"></i></button>
                                                     </form>
                                                 @else
-                                                    @if ($res->password)
+                                                    @if ($res->password_view)
                                                         <button data-bs-toggle="modal"
                                                             data-bs-target="#off-{{ $res->id }}"
                                                             class="btn btn-danger"><i class="fas fa-power-off"></i></button>
@@ -126,7 +126,7 @@
                                                             data-bs-target="#reset-{{ $res->id }}"
                                                             class="btn btn-warning"><i class="fas fa-edit"></i></button>
                                                     @endif
-                                                    @if ($res->password == null)
+                                                    @if ($res->password_view == null)
                                                         <button data-bs-toggle="modal"
                                                             data-bs-target="#on-{{ $res->id }}"
                                                             class="btn btn-info"><i class="fas fa-power-off"></i></button>

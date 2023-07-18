@@ -124,10 +124,7 @@
                     }
                 </script>
 
-
                 @yield('konten')
-
-
 
                 <!-- ===============================================-->
                 <!--    joo-footer-->
@@ -268,8 +265,8 @@
     <script src="{{ asset('polyfill.io/v3/polyfill.min58be.js?features=window.scroll') }}"></script>
     <script src="{{ asset('vendors/list.js/list.min.js') }}"></script>
     <script src="{{ asset('assets/js/theme.js') }}"></script>
-    <script src="{{asset('vendors/echarts/echarts.min.js')}}"></script>
-    <script src="{{asset('vendors/dayjs/dayjs.min.js')}}"></script>
+    <script src="{{ asset('vendors/echarts/echarts.min.js') }}"></script>
+    <script src="{{ asset('vendors/dayjs/dayjs.min.js') }}"></script>
     @yield('script')
 </body>
 

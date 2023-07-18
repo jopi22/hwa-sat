@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Validator;
 class RekapController extends Controller
 {
     public function rekap_index()
-    {
+    {   $periode = date('m-Y');
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $master = Master::where('status', 'Validasi')->first();
         $val = Master::where('status', 'Validasi')->count();
         $pres = Master::where('status', 'Present')->count();
-        return view('author.sad.rekap.rekap_index', compact('master','pres','val', 'nav'));
+        return view('author.sad.rekap.rekap_index', compact('master','pres','val','periode', 'nav'));
     }
 
 

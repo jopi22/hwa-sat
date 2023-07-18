@@ -33,8 +33,21 @@
         </div>
     </div>
 
+    <div class="card mt-3">
+        <div class="card-body overflow-hidden p-lg-6">
+            <div class="row align-items-center">
+                <div class="col-lg-6"><img class="img-fluid" src="assets/img/icons/spot-illustrations/21.png"
+                        alt="" /></div>
+                <div class="col-lg-6 ps-lg-4 my-5 text-center text-lg-start">
+                    <h3 class="text-primary">{{ Auth::user()->name }}</h3>
+                    <p class="lead">Admin HRGA</p><a class="btn btn-falcon-primary" href="#">Getting started</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- KARYAWAN --}}
-    <div class="card mb-3">
+    {{-- <div class="card mb-3">
         <div class="card-body px-xxl-0 pt-4">
             <div class="row g-0">
                 <div
@@ -73,7 +86,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- PELAYANAN --}}
     {{-- <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
@@ -259,7 +272,7 @@
         </div>
     </div> --}}
 
-    <div class="kanban-container scrollbar me-n3">
+    {{-- <div class="kanban-container scrollbar me-n3">
         <div class="kanban-column">
             <div class="kanban-column-header">
                 <h5 class="fs-0 mb-0">Pengajuan Absensi <span class="text-info"> New({{ $pengabs_count }})</span></h5>
@@ -602,5 +615,5 @@
                 data-bs-target="#addListForm" aria-expanded="false" aria-controls="addListForm"><span
                     class="fas fa-plus me-1"> </span>Add another list</button>
         </div>
-    </div>
+    </div> --}}
 @endsection

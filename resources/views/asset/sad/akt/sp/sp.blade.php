@@ -148,7 +148,7 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-1000 white-space-nowrap nama">
-                                        @if ($res->kar_->name)
+                                        @if ($res->kar_id)
                                             {{ $res->kar_->name }}
                                         @else
                                             -

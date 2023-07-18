@@ -10,7 +10,7 @@
                 <div class="col-lg-6 ps-lg-4 my-5 text-center text-lg-start">
                     <h3 class="text-primary">Pekerja</h3>
                     <p class="lead">Create Something Beautiful.</p><a class="btn btn-falcon-primary"
-                        href="../documentation/getting-started.html">Getting started</a>
+                        href="#">Getting started</a>
                 </div>
             </div>
         </div>

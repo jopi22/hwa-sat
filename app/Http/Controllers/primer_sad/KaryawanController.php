@@ -4,7 +4,6 @@ namespace App\Http\Controllers\primer_sad;
 
 use App\Helpers\LogActivity;
 use App\Http\Controllers\Controller;
-use App\Models\Bank;
 use App\Models\Hwa;
 use App\Models\Jabatan;
 use App\Models\Master;
@@ -307,7 +306,6 @@ class KaryawanController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $kar = User::Find($decryptID);
-        $bnk = Bank::all();
         $jab = Jabatan::all();
         $kar_list = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Trash')
@@ -318,6 +316,6 @@ class KaryawanController extends Controller
         $hwa = Site::where('id', 1)->first();
         // History
         $h_user = User::where('author', $decryptID)->get();
-        return view('asset.sad.kar.kar_info_print_pdf', compact('kar', 'nav', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
+        return view('asset.sad.kar.kar_info_print_pdf', compact('kar', 'nav', 'jab',  'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
     }
 }

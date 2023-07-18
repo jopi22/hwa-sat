@@ -339,7 +339,11 @@
                                         <th class="text-700 fw-normal fs-0" style="min-width: 150px">Tgl Resign/Mutasi
                                         </th>
                                         <th class="text-700 fw-normal fs-0">:</th>
-                                        <th class="text-1000 fw-normal fs-0">&nbsp;{{ $kar->tgl_resign->format('d F Y') }}
+                                        <th class="text-1000 fw-normal fs-0">&nbsp;@if ($kar->tgl_resign)
+                                            {{ $kar->tgl_resign->format('d F Y') }}
+                                        @else
+                                            -
+                                        @endif
                                         </th>
                                     </tr>
                                 @endif

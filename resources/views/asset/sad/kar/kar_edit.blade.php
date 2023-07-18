@@ -491,14 +491,12 @@
                         <div class="mb-3">
                             <label class="form-label">Nama Bank<code>*</code></label>
                             <select class="form-select" name="bank" aria-label="Default select example">
-                                <option value="{{ $kar->bank }}">
-                                    @if ($kar->bank)
-                                        {{ $kar->bank }}
-                                    @endif
-                                </option>
-                                @foreach ($bank as $res)
-                                    <option value="{{ $res->bank }}">{{ $res->bank }}</option>
-                                @endforeach
+                                <option value="{{ $res->bank }}">{{ $res->bank }}</option>
+                                <option value="BRI">BRI</option>
+                                <option value="BNI">BNI</option>
+                                <option value="Mandiri">Mandiri</option>
+                                <option value="BCA">BCA</option>
+                                <option value="Kalbar">Kalbar</option>
                             </select>
                         </div>
                     </div>

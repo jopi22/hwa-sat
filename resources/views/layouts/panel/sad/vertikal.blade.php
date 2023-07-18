@@ -34,8 +34,12 @@
                             @include('layouts.sidebar.sidebar_hrga')
                         @else
                             @if (Auth::user()->level == 4)
-                                {{-- // --}}
+                                @include('layouts.sidebar.sidebar_rental')
                             @else
+                                @if (Auth::user()->level == 5)
+                                    @include('layouts.sidebar.sidebar_log')
+                                @else
+                                @endif
                             @endif
                         @endif
                     @endif

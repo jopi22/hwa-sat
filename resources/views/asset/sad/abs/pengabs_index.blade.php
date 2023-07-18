@@ -572,6 +572,6 @@
             @include('comp.card.card404_kalender')
         @endif
     @else
-        Harap Melakukan Update Master Data
+        @include('comp.card.card404')
     @endif
 @endsection

@@ -162,7 +162,7 @@
                     <th><span>Tgl Lahir</span></th>
                     <td>
                         <span>
-                            @if ($kar->tgl_lahir->format('d-m-Y'))
+                            @if ($kar->tgl_lahir)
                                 {{ $kar->tgl_lahir->format('d-m-Y') }}
                             @else
                                 -

@@ -5,10 +5,10 @@
 @endsection
 
 @section('sad_menu')
-    @if ($pres == 1)
+    @if ($master->periode == $periode)
         @include('layouts.panel.sad.vertikal_rekap')
     @else
-        @include('layouts.panel.sad.vertikal')
+        @include('layouts.panel.sad.vertikal_off')
     @endif
 @endsection
 

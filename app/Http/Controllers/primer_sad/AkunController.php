@@ -60,7 +60,7 @@ class AkunController extends Controller
     {
         $akun = User::Find($id);
         $akun_data = [
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'password_view' => $request->password,
         ];
         $akun->update($akun_data);
