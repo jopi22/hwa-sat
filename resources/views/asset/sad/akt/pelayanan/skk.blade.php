@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Permohonan Resign | HWA &bull; SAT
+    Data Pengajuan SKK | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -36,7 +36,7 @@
                     src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
                 <div>
                     <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
-                    <h4 class="mb-0 text-primary fw-bold">Permohonan Resign</h4>
+                    <h4 class="mb-0 text-primary fw-bold">Surat Keterangan Kerja</h4>
                 </div>
             </div>
             <div class="col-sm-auto d-flex align-items-center">
@@ -146,8 +146,7 @@
                                             <th style="width: 400px" class="sort align-middle white-space-nowrap"
                                                 data-sort="name">Nama Karyawan
                                             </th>
-                                            <th style="width: 200px"
-                                                class="sort align-middle white-space-nowrap"
+                                            <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Status
                                             </th>
@@ -162,31 +161,8 @@
                                                 <td class="text-center">{{ $loop->iteration }}</td>
                                                 <td class="align-middle text-center white-space-nowrap ">
                                                     <div class="btn-group  btn-group-sm" role="group">
-                                                        @if ($res->status == 'Belum')
-                                                            <a href="{{asset($res->surat)}}" target="_blank"
-                                                                class="btn btn-primary" type="button"><i
-                                                                    class="fas fa-file-alt"></i></a>
-                                                            {{-- <a data-bs-toggle="modal"
-                                                                data-bs-target="#info-{{ $res->id }}"
-                                                                class="btn btn-primary" type="button"><i
-                                                                    class="fas fa-file-alt"></i></a> --}}
-                                                            <a data-bs-toggle="modal"
-                                                                data-bs-target="#terima-{{ $res->id }}"
-                                                                class="btn btn-success" type="button"><i
-                                                                    class="fas fa-check-circle"></i></a>
-                                                        @else
-                                                            <a data-bs-toggle="modal"
-                                                                data-bs-target="#info-{{ $res->id }}"
-                                                                class="btn btn-primary" type="button"><i
-                                                                    class="fas fa-file-alt"></i></a>
-                                                            <a data-bs-toggle="modal"
-                                                                data-bs-target="#sinkron-{{ $res->karyawan }}"
-                                                                class="btn btn-info" type="button"><i
-                                                                    class="fab fa-slack"></i></a>
-                                                        @endif
-                                                        {{-- <a class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#hapus-{{ $res->id }}" data-bs-placement="top"
-                                                            title="Hapus Surat"><i class="fas fa-trash-alt"></i></a> --}}
+                                                        <a href="{{ route('skk.i', Crypt::EncryptString($res->id)) }}"
+                                                            class="btn btn-info" type="button"><i class="fas fa-eye"></i> Lihat</a>
                                                     </div>
                                                 </td>
                                                 <td class="align-middle text-center white-space-nowrap idp">
@@ -254,8 +230,7 @@
                                             <th style="width: 400px" class="sort align-middle white-space-nowrap"
                                                 data-sort="name">Nama Karyawan
                                             </th>
-                                            <th style="width: 200px"
-                                                class="sort align-middle white-space-nowrap"
+                                            <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Status
                                             </th>
@@ -359,8 +334,7 @@
                                             <th style="width: 400px" class="sort align-middle white-space-nowrap"
                                                 data-sort="name">Nama Karyawan
                                             </th>
-                                            <th style="width: 200px"
-                                                class="sort align-middle white-space-nowrap"
+                                            <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Status
                                             </th>

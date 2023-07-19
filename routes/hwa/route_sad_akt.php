@@ -3,6 +3,7 @@
 use App\Http\Controllers\primer_sad\EventController;
 use App\Http\Controllers\primer_sad\MitraController;
 use App\Http\Controllers\primer_sad\ResignController;
+use App\Http\Controllers\primer_sad\SKKController;
 use App\Http\Controllers\primer_sad\SPController;
 use App\Http\Controllers\primer_sad\TamuController;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('resign_terima/{resign}', 'resign_terima')->name('res.t');
         Route::put('resign_sinkron/{resign}', 'resign_sinkron')->name('res.sinkron');
         Route::post('resign_delete', 'resign_delete')->name('res.d');
+    });
+
+
+    // Surat SKK
+    Route::controller(SKKController::class)->group(function () {
+        Route::get('permohonan_skk', 'skk_index')->name('skk.g');
+        Route::get('skk_show/{skk}', 'skk_show')->name('skk.i');
+        Route::put('skk_terima/{skk}', 'skk_terima')->name('skk.t');
+        Route::put('skk_sinkron/{skk}', 'skk_sinkron')->name('skk.sinkron');
+        Route::post('skk_delete', 'skk_delete')->name('skk.d');
     });
 
     // Event

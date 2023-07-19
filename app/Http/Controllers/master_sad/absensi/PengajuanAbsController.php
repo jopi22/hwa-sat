@@ -182,7 +182,7 @@ class PengajuanAbsController extends Controller
 
             PengajuanAbsensiList::create($list);
         }
-        return redirect()->route('peng.abs.g')->with('success', 'Pengajuan Surat Berhasil Ditambah, Harap Ente Segera Merespon Data Tersebut');
+        return back()->with('success', 'Pengajuan Surat Berhasil Ditambah, Harap Ente Segera Merespon Data Tersebut');
     }
 
 

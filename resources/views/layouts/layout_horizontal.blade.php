@@ -162,19 +162,18 @@
                             <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
                                 aria-labelledby="documentations">
                                 <div class="bg-white dark__bg-1000 rounded-3 py-2">
-                                    <a class="dropdown-item link-600 fw-medium" href="{{ route('dash') }}">Pengajuan
+                                    <a class="dropdown-item link-600 fw-medium"
+                                        href="{{ route('peng.absensi') }}">Pengajuan
                                         Absensi
-                                    </a>
-                                    <a class="dropdown-item link-600 fw-medium" href="{{ route('dash') }}">Pengajuan
-                                        Cuti
                                     </a>
                                     <a class="dropdown-item link-600 fw-medium"
                                         href="{{ route('dash') }}">Sertifikasi Kompetensi
                                     </a>
-                                    <a class="dropdown-item link-600 fw-medium" href="{{ route('dash') }}">Pengajuan
-                                        SK2
+                                    <a class="dropdown-item link-600 fw-medium" href="{{ route('peng.skk') }}">Pengajuan
+                                        SKK
                                     </a>
-                                    <a class="dropdown-item link-600 fw-medium" href="{{ route('dash') }}">Permohonan
+                                    <a class="dropdown-item link-600 fw-medium"
+                                        href="{{ route('peng.resign') }}">Permohonan
                                         Resign
                                     </a>
                                 </div>

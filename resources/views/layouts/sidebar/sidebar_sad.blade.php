@@ -272,13 +272,18 @@
                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Pelayanan</span></div>
             </a><!-- more inner pages-->
             <ul class="nav collapse" id="asubabi222">
-                <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
-                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data
-                                Resign</span></div>
+                <li class="nav-item"><a class="nav-link" href="{{ route('skk.g') }}">
+                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data SKK
+                            </span></div>
                     </a><!-- more inner pages-->
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('kim.g') }}">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">KIMPER</span></div>
+                    </a><!-- more inner pages-->
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
+                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data
+                                Resign</span></div>
                     </a><!-- more inner pages-->
                 </li>
             </ul>
