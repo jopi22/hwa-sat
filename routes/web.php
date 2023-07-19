@@ -5,6 +5,7 @@ use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 include 'hwa/route_sad_kar.php';
+include 'hwa/route_karyawan.php';
 include 'hwa/route_sad_abs.php';
 include 'hwa/route_sad_pfm.php';
 include 'hwa/route_sad_log.php';
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('hwa_profil', 'hwaProfil')->name('hwa.g');
         Route::get('hwa_edit_profil', 'hwaEdit')->name('hwa.e');
         Route::put('hwa_Update', 'hwaUpdate')->name('hwa.u');
+        // Route::get('hwa_Update', 'hwaUpdate')->name('hwa.u');
     });
 });
 

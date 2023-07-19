@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\Hwa;
@@ -9,6 +10,7 @@ use App\Models\Master;
 use App\Models\Navigator;
 use App\Models\PengajuanAbsensi;
 use App\Models\Performa_hm;
+use App\Models\Performa_ot;
 use App\Models\Site;
 use App\Models\SP;
 use App\Models\User;
@@ -32,7 +34,27 @@ class HwaController extends Controller
         $master = Master::where('status', 'Present')->first();
         $cek_master = Master::where('status', 'Present')->count();
         $hwa = Site::Find(1);
-        return view('home.home', compact('hwa', 'periode','cek_master','cek', 'master', 'nav'));
+
+        //Karyawan
+        $hadir = Absensi::where('karyawan', Auth::user()->id)->where('periode_id', $master->id)
+            ->where('status', 1)
+            ->count();
+        $performa_hm = Performa_hm::where('kar_id', Auth::user()->id)->where('master_id', $master->id)
+            ->sum('hm_total');
+        $performa_ot = Performa_ot::where('kar_id', Auth::user()->id)->where('master_id', $master->id)
+            ->sum('jam_total');
+
+        return view('home.home', compact(
+            'hwa',
+            'hadir',
+            'performa_hm',
+            'performa_ot',
+            'periode',
+            'cek_master',
+            'cek',
+            'master',
+            'nav'
+        ));
     }
 
 

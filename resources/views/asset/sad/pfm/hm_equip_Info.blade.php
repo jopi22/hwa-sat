@@ -265,6 +265,9 @@
                         <thead class="bg-200 text-800">
                             <tr class="text-center text-white bg-secondary">
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="no">
+                                    Aksi
+                                </th>
+                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
                                 </th>
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap"

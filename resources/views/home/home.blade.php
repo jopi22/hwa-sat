@@ -13,6 +13,15 @@
                 @if (Auth::user()->level == 5)
                     @include('home.logistik')
                 @else
+                    @if (Auth::user()->level == 6)
+                        @include('home.karyawan')
+                    @else
+                        @if (Auth::user()->level == 7)
+                            @include('home.manajer')
+                        @else
+                            @include('home.404')
+                        @endif
+                    @endif
                 @endif
             @endif
         @endif

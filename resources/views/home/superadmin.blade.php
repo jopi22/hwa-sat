@@ -26,8 +26,9 @@
                         <div>
                             <h6 class="text-primary fs--1 mb-0">Welcome to HWA-SAT </h6>
                             <h4 class="text-primary fw-bold mb-0">{{ Auth::user()->name }} </h4>
-                        </div><img class="ms-n4 d-md-none d-lg-block"
-                            src="{{ asset('assets/img/illustrations/crm-line-chart.png') }}" width="150" />
+                        </div>
+                        {{-- <img class="ms-n4 d-md-none d-lg-block"
+                            src="{{ asset('assets/img/illustrations/crm-line-chart.png') }}" width="150" /> --}}
                     </div>
                     @if ($cek_master == 1)
                         <div class="col-md-auto p-3">

@@ -3,8 +3,8 @@
         data-bs-target="#navbarVerticalCollapse" aria-controls="navbarVerticalCollapse" aria-expanded="false"
         aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
     <a class="navbar-brand me-1 me-sm-3" href="index.html">
-        <div class="d-flex align-items-center"><img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png"
-                alt="" width="40" /><span class="font-sans-serif">hmmm</span></div>
+        <div class="d-flex align-items-center"><img class="me-2" src="{{asset('assets/img/logos/hubstaff.png')}}"
+                alt="" width="40" /><span class="font-sans-serif">HWA SAT</span></div>
     </a>
 
     {{-- // Favorite // --}}

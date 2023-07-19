@@ -125,7 +125,7 @@ class IncomeController extends Controller
         $hitung = $master->pokok / $master->total;
         $str_harian = number_format($hitung);
         $gaji_pokok_raw = $hitung * $hari_valid;
-        $gaji_pokok = $gaji_pokok_raw + $adjust;
+        $gaji_pokok = $gaji_pokok_raw + $adjust_t;
 
         //Perhitungan Insentif
         $str_ins = number_format($master->insentif);
@@ -156,7 +156,42 @@ class IncomeController extends Controller
         $a = number_format($gaji_pokok);
 
 
-        return view('asset.sad.gaji.gaji_info', compact('kar_list', 'adjust', 'tunj', 'pinj_t', 'tunj_t', 'adjust_t', 'pinj', 'cek_kar', 'nav', 'str_harian', 'str_bulanan', 'str_ins', 'str_lem', 'a', 'ai', 'al', 'master', 'tot_hm', 'tot_jam', 'grand_tot', 'insentif', 'kar_m', 'tot_jam_lemburan', 'lemburan', 'gaji_pokok_raw', 'periode', 'kar', 'abs_h', 'abs_s', 'hari_valid', 'abs_stk', 'abs_i', 'abs_a', 'abs_c'));
+        return view('asset.sad.gaji.gaji_info', compact(
+            'kar_list',
+            'adjust',
+            'tunj',
+            'pinj_t',
+            'tunj_t',
+            'adjust_t',
+            'pinj',
+            'cek_kar',
+            'nav',
+            'str_harian',
+            'str_bulanan',
+            'str_ins',
+            'str_lem',
+            'a',
+            'ai',
+            'al',
+            'master',
+            'tot_hm',
+            'tot_jam',
+            'grand_tot',
+            'insentif',
+            'kar_m',
+            'tot_jam_lemburan',
+            'lemburan',
+            'gaji_pokok_raw',
+            'periode',
+            'kar',
+            'abs_h',
+            'abs_s',
+            'hari_valid',
+            'abs_stk',
+            'abs_i',
+            'abs_a',
+            'abs_c'
+        ));
     }
 
     public function adjust()
