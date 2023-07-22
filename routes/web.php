@@ -26,6 +26,7 @@ Route::get('print2', function () {
     return view('print');
 });
 
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -33,7 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(HwaController::class)->group(function () {
         // Dashboard
+        Route::get('404', 'not_found')->name('not_found');
         Route::get('/', 'dashboard')->name('dash');
+
         // Route::get('hrga', 'hrga')->name('hrga');
         //HWA Profile
         Route::get('hwa_profil', 'hwaProfil')->name('hwa.g');

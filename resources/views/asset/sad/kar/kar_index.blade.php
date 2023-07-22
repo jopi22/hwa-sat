@@ -190,14 +190,15 @@
                                                             class="btn btn-info" type="button" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" title="Detail Karyawan"><i
                                                                 class="fas fa-info-circle"></i></a>
+                                                        @if ($res->level > 1)
                                                         <a href="{{ route('kar.e', Crypt::encryptString($res->id)) }}"
                                                             class="btn btn-warning" type="button"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             title="Edit Karyawan"><i class="fas fa-edit"></i></a>
-                                                        <a class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#hapus-{{ $res->id }}"
-                                                            data-bs-placement="top" title="Absensi Karyawan"><i
-                                                                class="fas fa-trash-alt"></i></a>
+                                                        @else
+                                                            Master
+                                                        @endif
+
                                                     </div>
                                                 </td>
                                                 <td class="align-middle text-1000 text-center white-space-nowrap nik">

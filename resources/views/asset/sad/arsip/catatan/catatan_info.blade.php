@@ -235,18 +235,14 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3">
-    <div class="card-body d-flex justify-content-between">
+<div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+    <div class="col d-flex align-items-center">
         <div>
-            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                Division Data</span>
-            <span class="mx-1 mx-sm-2 text-300">| </span>
-            <a class="btn btn-falcon-default btn-sm" href="{{ route('catat.g') }}" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Back to Main Table">
-                <span class="fas fa-list"></span>
-            </a>
-            <span class="mx-1 mx-sm-2 text-300">| </span>
-            <span class=" fw-semi-bold text-primary"> Info Catatan : <span class="text-info">{{$catat->judul}}</span></span>
+            <a href="{{ route('catat.g') }}"><button class="btn btn-falcon-default btn-sm"><i
+                        class="fas fa-arrow-left"></i></button></a>
+        </div>
+        <div class="ms-1">&nbsp;
+            <span class=" fw-semi-bold text-primary">  {{$catat->judul}}</span>
         </div>
     </div>
 </div>

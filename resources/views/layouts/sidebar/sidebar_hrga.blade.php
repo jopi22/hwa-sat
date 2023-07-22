@@ -35,9 +35,9 @@
 <!--Karyawan-->
 <li class="nav-item">
     <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-        <div class="col-auto navbar-vertical-label"><span class="text-success">Karyawan Data</span></div>
+        <div class="col-auto navbar-vertical-label"><span class="text-primary">Karyawan Data</span></div>
         <div class="col ps-0">
-            <hr class="mb-0 navbar-vertical-divider text-success" />
+            <hr class="mb-0 navbar-vertical-divider text-primary" />
         </div>
     </div>
 </li>
@@ -64,9 +64,9 @@
 <!--Pelayanan-->
 <li class="nav-item">
     <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-        <div class="col-auto navbar-vertical-label"><span class="text-success">Pelayanan</span></div>
+        <div class="col-auto navbar-vertical-label"><span class="text-primary">Pelayanan</span></div>
         <div class="col ps-0">
-            <hr class="mb-0 navbar-vertical-divider text-success" />
+            <hr class="mb-0 navbar-vertical-divider text-primary" />
         </div>
     </div>
 </li>

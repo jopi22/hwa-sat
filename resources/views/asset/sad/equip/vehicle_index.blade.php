@@ -29,27 +29,17 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3 bg-100 shadow-none border">
-    <div class="row gx-0 flex-between-center">
-        <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                width="90" />
-            <div>
-                <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
-                </h6>
-                <h4 class="text-primary fw-bold mb-0">Vehicle</h4>
-            </div>
-        </div>
-        <div class="col-sm-auto d-flex align-items-center">
-            <form class="row align-items-center g-3">
-                <div class="col-auto">
-                    <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                        Division Data</span>
-                </div>
-            </form>
-            <img class="ms-2 d-md-none d-lg-block"
-                src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}" alt=""
-                width="130" />
+<div class="card mb-2 bg-light shadow-none">
+    <div class="bg-holder bg-card d-none d-sm-block"
+        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+    <!--/.bg-holder-->
+    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="ms-n3">
+            <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance</h6>
+            <h4 class="mb-0 text-primary fw-bold">Vehicle
+                <span class="text-info fw-medium"></span>
+            </h4>
         </div>
     </div>
 </div>
@@ -58,16 +48,43 @@
 
     <div class="card mb-3">
         <div class="card-header bg-light">
-            <div class="row flex-between-left">
-                <div class="col-auto ms-2">
-                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                        <a href="{{ route('heavy.l') }}"><button class="btn btn-sm  text-primary"
-                                type="button"><i class="fas fa-snowplow"></i> Heavy</button></a>
-                        <a href="{{ route('vehicle.l') }}"><button class="btn active btn-sm text-warning"
-                                type="button"><i class="fas fa-truck-monster"></i>
-                                Vehicle</button></a>
-                        <a href="{{ route('support.l') }}"><button class="btn btn-sm text-primary"
-                                type="button"><i class="fas fa-toolbox"></i> Support</button></a>
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                            <a href="{{ route('heavy.l') }}"><button class="btn btn-sm  text-primary"
+                                    type="button"><i class="fas fa-snowplow"></i> Heavy</button></a>
+                            <a href="{{ route('vehicle.l') }}"><button class="btn active btn-sm text-warning"
+                                    type="button"><i class="fas fa-truck-monster"></i>
+                                    Vehicle</button></a>
+                            <a href="{{ route('support.l') }}"><button class="btn btn-sm text-primary"
+                                    type="button"><i class="fas fa-toolbox"></i> Support</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <div class="btn-group  btn-group-sm mx-2" role="group">
+                            <a href="{{ route('vehicle.c') }}"><button class="btn btn-sm btn-falcon-success mx-2"
+                                    type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
+                                </button></a>
+                            <div class="dropdown font-sans-serif d-inline-block">
+                                <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
+                                    type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                        class="fas fa-print"></i></button>
+                                <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
+                                    <a target="_blank" class="dropdown-item text-success"
+                                        href="{{ route('vehicle.p.excel', Auth::user()->id) }}"><i class="fas fa-file-excel"></i>
+                                        Print Excel
+                                    </a>
+                                    <a target="_blank" class="dropdown-item text-warning"
+                                        href="{{ route('vehicle.p.pdf', Auth::user()->id) }}"><i class="fas fa-file-pdf"></i>
+                                        Print PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -97,28 +114,6 @@
                         <option value="Kompresor">Kompresor</option>
                     </select>
                 </div>&nbsp;
-                <div class="col-sm-auto">
-                    <div class="btn-group  btn-group-sm mx-2" role="group">
-                        <a href="{{ route('vehicle.c') }}"><button class="btn btn-sm btn-falcon-success mx-2"
-                                type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
-                            </button></a>
-                        <div class="dropdown font-sans-serif d-inline-block">
-                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-print"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a target="_blank" class="dropdown-item text-success"
-                                    href="{{ route('vehicle.p.excel', Auth::user()->id) }}"><i class="fas fa-file-excel"></i>
-                                    Print Excel
-                                </a>
-                                <a target="_blank" class="dropdown-item text-warning"
-                                    href="{{ route('vehicle.p.pdf', Auth::user()->id) }}"><i class="fas fa-file-pdf"></i>
-                                    Print PDF
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             @if ($cek == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>

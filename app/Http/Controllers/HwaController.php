@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\Auth;
 
 class HwaController extends Controller
 {
+    public function not_found()
+    {
+        return view('home.404');
+    }
+
+
     public function developer()
     {
         $rekap = Master::where('status', 'Proses Validasi')->first();
@@ -35,7 +41,7 @@ class HwaController extends Controller
         $cek_master = Master::where('status', 'Present')->count();
         $hwa = Site::Find(1);
 
-        //Karyawan
+        // Karyawan
         $hadir = Absensi::where('karyawan', Auth::user()->id)->where('periode_id', $master->id)
             ->where('status', 1)
             ->count();
@@ -56,7 +62,6 @@ class HwaController extends Controller
             'nav'
         ));
     }
-
 
     public function hrga()
     {

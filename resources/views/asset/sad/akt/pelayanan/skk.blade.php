@@ -30,27 +30,19 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-100 shadow-none border">
-        <div class="row gx-0 flex-between-center">
-            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                <div>
-                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
-                    <h4 class="mb-0 text-primary fw-bold">Surat Keterangan Kerja</h4>
-                </div>
-            </div>
-            <div class="col-sm-auto d-flex align-items-center">
-                <form class="row align-items-center g-3">
-                    <div class="col-auto">
-                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                            Division Data</span>
-                    </div>
-                </form>
-                <img class="ms-2 d-md-none d-lg-block"
-                    src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}" alt="" width="130" />
-            </div>
+<div class="card mb-2 bg-light shadow-none">
+    <div class="bg-holder bg-card d-none d-sm-block"
+        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+    <!--/.bg-holder-->
+    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="ms-n3">
+            <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+            <h4 class="mb-0 text-primary fw-bold">Surat Keterangan Kerja
+                <span class="text-info fw-medium"></span></h4>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 

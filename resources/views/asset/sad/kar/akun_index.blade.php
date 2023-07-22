@@ -78,13 +78,13 @@
                     <thead class="bg-200 text-800 text-center">
                         <tr>
                             <th style="max-width: 50px" class="sort" data-sort="#">#</th>
-                            <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
-                            <th style="min-width: 100px" class="sort" data-sort="status">Status Akun</th>
-                            <th style="min-width: 100px" class="sort" data-sort="username">
+                            <th style="min-width: 150px" class="sort" data-sort="aksi">Aksi</th>
+                            <th style="min-width: 150px" class="sort" data-sort="status">Status Akun</th>
+                            <th style="min-width: 150px" class="sort" data-sort="username">
                                 NIK / ID</th>
                             <th style="min-width: 250px" class="sort" data-sort="name">
                                 Nama</th>
-                            <th style="min-width: 100px" class="sort" data-sort="password">Password</th>
+                            <th style="min-width: 150px" class="sort" data-sort="password">Password</th>
                             <th style="min-width: 150px" class="sort" data-sort="level">Role Akun</th>
                         </tr>
                     </thead>

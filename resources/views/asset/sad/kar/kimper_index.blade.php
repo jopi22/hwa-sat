@@ -26,17 +26,17 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-light shadow-none">
+    <div class="card mb-2 bg-light shadow-none">
         <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
+            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
         <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
             <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
-                        class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                    </span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Kartu Izin Mengemudi Perusahaan</h4>
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                <h4 class="mb-0 text-primary fw-bold">Kartu Izin Mengemudi Perusahaan
+                    <span class="text-info fw-medium"></span>
+                </h4>
             </div>
         </div>
     </div>

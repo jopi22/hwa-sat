@@ -19,15 +19,15 @@
     <!-- ===============================================-->
     <!--    Favicons-->
     <!-- ===============================================-->
-    <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicons/favicon-16x16.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicons/favicon.ico">
-    <link rel="manifest" href="../assets/img/favicons/manifest.json">
-    <meta name="msapplication-TileImage" content="../assets/img/favicons/mstile-150x150.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/logos/hubstaff.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/logos/hubstaff.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/logos/hubstaff.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logos/hubstaff.png') }}">
+    <link rel="manifest" href="{{ asset('assets/img/favicons/manifest.json') }}">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
-    <script src="../assets/js/config.js"></script>
-    <script src="../vendors/simplebar/simplebar.min.js"></script>
+    <script src="{{ asset('assets/js/config.js') }}"></script>
+    <script src="{{ asset('vendors/simplebar/simplebar.min.js') }}"></script>
 
     <!-- ===============================================-->
     <!--    Stylesheets-->
@@ -67,578 +67,12 @@
         <nav class="navbar navbar-standard navbar-expand-lg fixed-top navbar-dark"
             data-navbar-darken-on-scroll="data-navbar-darken-on-scroll">
             <div class="container"><a class="navbar-brand" href="../index.html"><span
-                        class="text-white dark__text-white">HWA SAT</span></a><button class="navbar-toggler collapsed"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarStandard"
-                    aria-controls="navbarStandard" aria-expanded="false" aria-label="Toggle navigation"><span
-                        class="navbar-toggler-icon"></span></button>
+                        class="text-white dark__text-white">HWA Sarana Administrasi Terpadu (SAT)</span></a><button
+                    class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false"
+                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
-                    <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                id="dashboards">Dashboard</a>
-                            <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                aria-labelledby="dashboards">
-                                <div class="bg-white dark__bg-1000 rounded-3 py-2"><a
-                                        class="dropdown-item link-600 fw-medium" href="../index.html">Default</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../dashboard/analytics.html">Analytics</a><a
-                                        class="dropdown-item link-600 fw-medium" href="../dashboard/crm.html">CRM</a><a
-                                        class="dropdown-item link-600 fw-medium" href="../dashboard/e-commerce.html">E
-                                        commerce</a><a class="dropdown-item link-600 fw-medium"
-                                        href="../dashboard/lms.html">LMS<span
-                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../dashboard/project-management.html">Management</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../dashboard/saas.html">SaaS</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../dashboard/support-desk.html">Support desk<span
-                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a></div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                id="apps">App</a>
-                            <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                aria-labelledby="apps">
-                                <div class="card navbar-card-app shadow-none dark__bg-1000">
-                                    <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
-                                            src="../assets/img/icons/spot-illustrations/authentication-corner.png"
-                                            width="130" alt="" />
-                                        <div class="row">
-                                            <div class="col-6 col-md-4">
-                                                <div class="nav flex-column"><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/calendar.html">Calendar</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/chat.html">Chat</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/kanban.html">Kanban</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Social</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/social/feed.html">Feed</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/social/activity-log.html">Activity log</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/social/notifications.html">Notifications</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/social/followers.html">Followers</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Support Desk</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/table-view.html">Table view</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/card-view.html">Card view</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/contacts.html">Contacts</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/contact-details.html">Contact
-                                                        details</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/tickets-preview.html">Tickets
-                                                        preview</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/quick-links.html">Quick links</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/support-desk/reports.html">Reports</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-md-4">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">E-Learning</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-learning/course/course-list.html">Course
-                                                        list</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-learning/course/course-grid.html">Course
-                                                        grid</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-learning/course/course-details.html">Course
-                                                        details</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-learning/course/create-a-course.html">Create a
-                                                        course</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-learning/student-overview.html">Student
-                                                        overview</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-learning/trainer-profile.html">Trainer
-                                                        profile</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Events</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/events/create-an-event.html">Create an event</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/events/event-detail.html">Event detail</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/events/event-list.html">Event list</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Email</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/email/inbox.html">Inbox</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/email/email-detail.html">Email detail</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/email/compose.html">Compose</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-md-4">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">E-Commerce</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/product/product-list.html">Product
-                                                        list</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/product/product-grid.html">Product
-                                                        grid</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/product/product-details.html">Product
-                                                        details</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/orders/order-list.html">Order
-                                                        list</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/orders/order-details.html">Order
-                                                        details</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/customers.html">Customers</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/customer-details.html">Customer
-                                                        details</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/shopping-cart.html">Shopping cart</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/checkout.html">Checkout</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/billing.html">Billing</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../app/e-commerce/invoice.html">Invoice</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                id="pagess">Pages</a>
-                            <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                aria-labelledby="pagess">
-                                <div class="card navbar-card-pages shadow-none dark__bg-1000">
-                                    <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
-                                            src="../assets/img/icons/spot-illustrations/authentication-corner.png"
-                                            width="130" alt="" />
-                                        <div class="row">
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Simple Auth</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/login.html">Login</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/logout.html">Logout</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/register.html">Register</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/forgot-password.html">Forgot
-                                                        password</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/confirm-mail.html">Confirm
-                                                        mail</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/reset-password.html">Reset
-                                                        password</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/simple/lock-screen.html">Lock screen</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Card Auth</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/login.html">Login</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/logout.html">Logout</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/register.html">Register</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/forgot-password.html">Forgot
-                                                        password</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/confirm-mail.html">Confirm mail</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/reset-password.html">Reset
-                                                        password</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/card/lock-screen.html">Lock screen</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Split Auth</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/login.html">Login</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/logout.html">Logout</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/register.html">Register</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/forgot-password.html">Forgot
-                                                        password</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/confirm-mail.html">Confirm
-                                                        mail</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/reset-password.html">Reset
-                                                        password</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/split/lock-screen.html">Lock screen</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Layouts</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../demo/navbar-vertical.html">Navbar vertical</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../demo/navbar-top.html">Top nav</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../demo/navbar-double-top.html">Double top<span
-                                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../demo/combo-nav.html">Combo nav</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Others</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="starter.html">Starter</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="landing.html">Landing</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">User</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="user/profile.html">Profile</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="user/settings.html">Settings</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Pricing</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="pricing/pricing-default.html">Pricing default</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="pricing/pricing-alt.html">Pricing alt</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Errors</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="errors/404.html">404</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="errors/500.html">500</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Miscellaneous</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="miscellaneous/associations.html">Associations</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="miscellaneous/invite-people.html">Invite people</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="miscellaneous/privacy-policy.html">Privacy policy</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">FAQ</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="faq/faq-basic.html">Faq basic</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="faq/faq-alt.html">Faq alt</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="faq/faq-accordion.html">Faq accordion</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Other Auth</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="authentication/wizard.html">Wizard</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../index-2.html#authentication-modal"
-                                                        data-bs-toggle="modal">Modal</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                id="moduless">Modules</a>
-                            <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                aria-labelledby="moduless">
-                                <div class="card navbar-card-components shadow-none dark__bg-1000">
-                                    <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
-                                            src="../assets/img/icons/spot-illustrations/authentication-corner.png"
-                                            width="130" alt="" />
-                                        <div class="row">
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Components</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/maps/google-map.html">Google map</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/maps/leaflet-map.html">Leaflet map</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/accordion.html">Accordion</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/alerts.html">Alerts</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/anchor.html">Anchor</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/animated-icons.html">Animated
-                                                        icons</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/background.html">Background</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/badges.html">Badges</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/bottom-bar.html">Bottom bar<span
-                                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/breadcrumbs.html">Breadcrumbs</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/buttons.html">Buttons</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/calendar.html">Calendar</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column mt-md-4 pt-md-1"><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/cards.html">Cards</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/carousel/bootstrap.html">Bootstrap
-                                                        carousel</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/carousel/swiper.html">Swiper</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/collapse.html">Collapse</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/cookie-notice.html">Cookie
-                                                        notice</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/countup.html">Countup</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/draggable.html">Draggable</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/dropdowns.html">Dropdowns</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/jquery-components.html">Jquery<span
-                                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/list-group.html">List group</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/modals.html">Modals</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/navs.html">Navs</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column mt-xxl-4 pt-xxl-1"><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/navbar.html">Navbar</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/vertical-navbar.html">Navbar
-                                                        vertical</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/top-navbar.html">Top
-                                                        nav</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/double-top-navbar.html">Double
-                                                        top<span
-                                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/combo-navbar.html">Combo
-                                                        nav</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/navs-and-tabs/tabs.html">Tabs</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/offcanvas.html">Offcanvas</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/pictures/avatar.html">Avatar</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/pictures/images.html">Images</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/pictures/figures.html">Figures</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/pictures/hoverbox.html">Hoverbox</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/pictures/lightbox.html">Lightbox</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column mt-xxl-4 pt-xxl-1"><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/progress-bar.html">Progress
-                                                        bar</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/placeholder.html">Placeholder</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/pagination.html">Pagination</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/popovers.html">Popovers</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/scrollspy.html">Scrollspy</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/search.html">Search</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/spinners.html">Spinners</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/timeline.html">Timeline</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/toasts.html">Toasts</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Forms</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/basic/form-control.html">Form
-                                                        control</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/basic/input-group.html">Input
-                                                        group</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/basic/select.html">Select</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/basic/checks.html">Checks</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/basic/range.html">Range</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/basic/layout.html">Layout</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/advance/advance-select.html">Advance
-                                                        select</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/advance/date-picker.html">Date
-                                                        picker</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/advance/editor.html">Editor</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/advance/emoji-button.html">Emoji
-                                                        button</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/advance/file-uploader.html">File
-                                                        uploader</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/advance/rating.html">Rating</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/floating-labels.html">Floating
-                                                        labels</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/wizard.html">Wizard</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/forms/validation.html">Validation</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Tables</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/tables/basic-tables.html">Basic tables</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/tables/advance-tables.html">Advance
-                                                        tables</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/tables/bulk-select.html">Bulk select</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Charts</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/chartjs.html">Chartjs</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">ECharts</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/d3js.html">D3js<span
-                                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/line-charts.html">Line
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/bar-charts.html">Bar
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/candlestick-charts.html">Candlestick
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/geo-map.html">Geo map</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/scatter-charts.html">Scatter
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/pie-charts.html">Pie
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/gauge-charts.html">Gauge
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/radar-charts.html">Radar
-                                                        charts</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Utilities</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/tooltips.html">Tooltips</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/treeview.html">Treeview</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/typed-text.html">Typed text</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/videos/embed.html">Embed</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/components/videos/plyr.html">Plyr</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/borders.html">Borders</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/clearfix.html">Clearfix</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/colors.html">Colors</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/colored-links.html">Colored
-                                                        links</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/display.html">Display</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/flex.html">Flex</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/float.html">Float</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/grid.html">Grid</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/overlayscrollbar.html">Overlay
-                                                        scrollbar<span
-                                                            class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/utilities/position.html">Position</a>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xxl-3">
-                                                <div class="nav flex-column pt-xxl-1">
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Icons</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/heatmap-charts.html">Heatmap
-                                                        charts</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/charts/echarts/how-to-use.html">How to
-                                                        use</a><a class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/icons/font-awesome.html">Font awesome</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/icons/bootstrap-icons.html">Bootstrap
-                                                        icons</a>
-                                                    <p class="nav-link text-700 mb-0 fw-bold">Maps</p><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/icons/feather.html">Feather</a><a
-                                                        class="nav-link py-1 link-600 fw-medium"
-                                                        href="../modules/icons/material-icons.html">Material icons</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                id="documentations">Documentation</a>
-                            <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
-                                aria-labelledby="documentations">
-                                <div class="bg-white dark__bg-1000 rounded-3 py-2"><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/getting-started.html">Getting started</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/customization/configuration.html">Configuration</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/customization/styling.html">Styling<span
-                                            class="badge rounded-pill ms-2 badge-soft-success">Updated</span></a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/customization/dark-mode.html">Dark mode</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/customization/plugin.html">Plugin</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/faq.html">Faq</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/gulp.html">Gulp</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../documentation/design-file.html">Design file</a><a
-                                        class="dropdown-item link-600 fw-medium"
-                                        href="../changelog.html">Changelog</a></div>
-                            </div>
-                        </li>
-                    </ul>
+
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item d-flex align-items-center me-2">
                             <div class="nav-link theme-switch-toggle fa-icon-wait p-0"><input
@@ -661,6 +95,8 @@
                 </div>
             </div>
         </nav>
+
+        {{-- //modal --}}
         <div class="modal fade" id="auth" tabindex="-1" role="dialog"
             aria-labelledby="authentication-modal-label" aria-hidden="true">
             <div class="modal-dialog mt-6" role="document">
@@ -676,7 +112,7 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-3">
-                                <label class="form-label" for="split-login-email">No Handphone
+                                <label class="form-label" for="split-login-email">NIK
                                 </label>
                                 <input class="form-control  @error('no_hp') is-invalid @enderror"
                                     value="{{ old('no_hp') }}" required autocomplete="no_hp" autofocus
@@ -709,6 +145,59 @@
             </div>
         </div>
 
+        <div class="modal fade" id="bro" tabindex="-1" role="dialog"
+            aria-labelledby="authentication-modal-label" aria-hidden="true">
+            <div class="modal-dialog mt-6" role="document">
+                <div class="modal-content border-0">
+                    <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
+                        <div class="position-relative z-index-1 light">
+                            <h4 class="mb-0 text-white" id="authentication-modal-label">Login</h4>
+                            <p class="fs--1 mb-0 text-white">HWA Sistem Administrasi Terpadu</p>
+                        </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-4 px-5">
+                        <label for="">Pilih Role Anda</label>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="no_hp" value="2">
+                            <input type="hidden" name="password" value="1212">
+                            <div class="mb-3"><button class="btn btn-danger d-block w-100 mt-3" type="submit"
+                                    name="submit">Superadmin</button></div>
+                        </form>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="no_hp" value="3">
+                            <input type="hidden" name="password" value="1212">
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                    name="submit">Admin HRGA</button></div>
+                        </form>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="no_hp" value="4">
+                            <input type="hidden" name="password" value="1212">
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                    name="submit">Admin Rental</button></div>
+                        </form>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="no_hp" value="5">
+                            <input type="hidden" name="password" value="1212">
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                    name="submit">Admin Logistik</button></div>
+                        </form>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="no_hp" value="6">
+                            <input type="hidden" name="password" value="1212">
+                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                    name="submit">Karyawan</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- ============================================-->
         <!-- <section> begin ============================-->
         <section class="py-0 overflow-hidden light" id="banner">
@@ -718,21 +207,23 @@
             <!--/.bg-holder-->
             <div class="container">
                 <div class="row flex-center pt-8 pt-lg-10 pb-lg-9 pb-xl-0">
-                    <div class="col-md-11 col-lg-8 col-xl-4 pb-7 pb-xl-9 text-center text-xl-start"><a
-                            class="btn btn-outline-danger mb-4 fs--1 border-2 rounded-pill" href="#!"><span
-                                class="me-2" role="img" aria-label="Gift">🎁</span>Become a pro</a>
-                        <h1 class="text-white fw-light">Bring <span class="typed-text fw-bold"
-                                data-typed-text='["design","beauty","elegance","perfection"]'></span><br />to your
-                            webapp</h1>
-                        <p class="lead text-white opacity-75">With the power of Falcon, you can now focus only on
-                            functionaries for your digital products, while leaving the UI design on us!</p><a
+                    <div class="col-md-11 col-lg-8 col-xl-4 pb-7 pb-xl-9 text-center text-xl-start">
+                        <a data-bs-toggle="modal" data-bs-target="#bro"
                             class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-0 py-2"
-                            href="#!">Start building with the falcon<span class="fas fa-play ms-2"
+                            href="#!">Mulai Menjelajahi Aplikasi<span class="fas fa-play ms-2"
                                 data-fa-transform="shrink-6 down-1"></span></a>
+                        <h1 class="text-white fw-light">Lebih <span class="typed-text fw-bold"
+                                data-typed-text='["Menarique","Elegan","Perfekto","Chong!!","Bau"]'></span><br />to your
+                            webapp</h1>
+                        <p class="lead text-white opacity-75">
+                            With the power of Falcon, you can now focus only on
+                            functionaries for your digital products, while leaving the UI design on us!
+                        </p>
+
                     </div>
                     <div class="col-xl-7 offset-xl-1 align-self-end mt-4 mt-xl-0"><a
                             class="img-landing-banner rounded" href="../index.html"><img class="img-fluid"
-                                src="../assets/img/generic/dashboard-alt.jpg" alt="" /></a></div>
+                                src="{{ asset('assets/img/management/Profil-Perusahaan-Info-HWA-•-SAT.png') }}" alt="" /></a></div>
                 </div>
             </div><!-- end of .container-->
         </section><!-- <section> close ============================-->
@@ -760,7 +251,8 @@
                     <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="40"
                             src="../assets/img/logos/b%26w/12.png" alt="" /></div>
                 </div>
-            </div><!-- end of .container-->
+            </div>
+            <!-- end of .container-->
         </section><!-- <section> close ============================-->
         <!-- ============================================-->
 
@@ -1110,8 +602,8 @@
                             data-fa-transform="shrink-3"></span>Reset</button>
                 </div>
                 <p class="mb-0 fs--1 text-white opacity-75"> Set your own customized style</p>
-            </div><button class="btn-close btn-close-white z-index-1 mt-0" type="button"
-                data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div><button class="btn-close btn-close-white z-index-1 mt-0" type="button" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <div class="offcanvas-body scrollbar-overlay px-x1 h-100" id="themeController">
             <h5 class="fs-0">Color Scheme</h5>
@@ -1122,8 +614,8 @@
                             type="radio" value="light" data-theme-control="theme" /><label
                             class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span
                                 class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0"
-                                    src="../assets/img/generic/falcon-mode-default.jpg"
-                                    alt="" /></span><span class="label-text">Light</span></label></div>
+                                    src="../assets/img/generic/falcon-mode-default.jpg" alt="" /></span><span
+                                class="label-text">Light</span></label></div>
                     <div class="col-6"><input class="btn-check" id="themeSwitcherDark" name="theme-color"
                             type="radio" value="dark" data-theme-control="theme" /><label
                             class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span
@@ -1211,7 +703,8 @@
                     target="_blank">Purchase</a>
             </div>
         </div>
-    </div><a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
+    </div>
+    {{-- <a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
         <div class="card-body d-flex align-items-center py-md-2 px-2 py-1">
             <div class="bg-soft-primary position-relative rounded-start" style="height:34px;width:28px">
                 <div class="settings-popover"><span class="ripple"><span
@@ -1226,7 +719,7 @@
             </div><small
                 class="text-uppercase text-primary fw-bold bg-soft-primary py-2 pe-2 ps-1 rounded-end">customize</small>
         </div>
-    </a>
+    </a> --}}
 
     <!-- ===============================================-->
     <!--    JavaScripts-->

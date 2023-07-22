@@ -6,7 +6,7 @@
                     class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base" data-bs-dismiss="modal"
                     aria-label="Close"></button></div>
             <div class="modal-body p-0">
-                <form action="{{ route('r.ot.s') }}" method="post">
+                <form action="{{ route('ot.s') }}" method="post">
                     @csrf
                     <div class="bg-success rounded-top-lg py-3 ps-4 pe-6">
                         <h4 class="mb-1 text-white" id="staticBackdropLabel">

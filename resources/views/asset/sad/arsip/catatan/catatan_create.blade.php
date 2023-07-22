@@ -235,21 +235,14 @@
 @endsection
 
 @section('konten')
-    {{-- // Header // --}}
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
         <div class="col d-flex align-items-center">
             <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('catat.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="{{ route('catat.c') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="far fa-dot-circle"></i>
-                    Sekunder</span>
+                <a href="{{ route('catat.g') }}"><button class="btn btn-falcon-default btn-sm"><i
+                            class="fas fa-arrow-left"></i></button></a>
             </div>
             <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Buat Catatan</span>
+                <span class=" fw-semi-bold text-primary"> Buat Catatan </span>
             </div>
         </div>
     </div>
@@ -263,8 +256,8 @@
                         type="text" aria-describedby="email-to" placeholder="Judul" />
                 </div>
                 <div class="border border-top-0 border-200 mt-3">
-                    <input required class="form-control border-0 rounded-0 outline-none px-x1" maxlength="50" name="kategori"
-                        type="text" aria-describedby="email-to" placeholder="Kategori" />
+                    <input required class="form-control border-0 rounded-0 outline-none px-x1" maxlength="50"
+                        name="kategori" type="text" aria-describedby="email-to" placeholder="Kategori" />
                 </div>
                 <div class="min-vh-50 mt-3">
                     <textarea class="d-none" name="isi" id="editor"></textarea>

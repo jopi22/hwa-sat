@@ -95,6 +95,7 @@ class KaryawanController extends Controller
         foreach ($request->name as $key => $value) {
             $kar['name'] = $request->name[$key];
             $kar['username'] = $request->username[$key];
+            $kar['no_hp'] = $request->username[$key];
             $kar['tipe_gaji'] = $request->tipe_gaji[$key];
             $kar['jabatan'] = $request->jabatan[$key];
             $kar['tgl_gabung'] = $request->tgl_gabung[$key];
@@ -203,7 +204,6 @@ class KaryawanController extends Controller
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tipe_gaji' => $request->tipe_gaji,
-            'no_hp' => $request->no_hp,
             'no_ktp' => $request->no_ktp,
             'no_sim_a' => $request->no_sim_a,
             'no_sim_b1' => $request->no_sim_b1,

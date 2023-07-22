@@ -119,25 +119,17 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-100 shadow-none border">
-        <div class="row gx-0 flex-between-center">
-            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                <div>
-                    <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
-                    </h6>
-                    <h4 class="text-primary fw-bold mb-0">Category</h4>
-                </div>
-            </div>
-            <div class="col-sm-auto d-flex align-items-center">
-                <form class="row align-items-center g-3">
-                    <div class="col-auto">
-                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                            Division Data</span>
-                    </div>
-                </form>
-                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
-                    alt="" width="130" />
+    <div class="card mb-2 bg-light shadow-none">
+        <div class="bg-holder bg-card d-none d-sm-block"
+            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+        <!--/.bg-holder-->
+        <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+            <div class="ms-n3">
+                <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance</h6>
+                <h4 class="mb-0 text-primary fw-bold">Category
+                    <span class="text-info fw-medium"></span>
+                </h4>
             </div>
         </div>
     </div>
@@ -147,7 +139,21 @@
 
     <div class="card mb-3">
         <div class="card-header py-2 bg-light">
-            {{-- // --}}
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        {{-- // --}}
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <a href="#"><button class="btn btn-sm btn-falcon-success mx-2" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample" type="button"><span data-fa-transform="shrink-3"
+                                    class="fas fa-plus"></span></button></a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab-content">
             <div class="tab-pane preview-tab-pane active" role="tabpanel"
@@ -220,13 +226,6 @@
                         </div>
                     </form>
                 </div>&nbsp;
-                <div class="col-sm-auto">
-                    <div class="btn-group  btn-group-sm mx-2" role="group">
-                        <a href="#"><button class="btn btn-sm btn-falcon-success mx-2" data-bs-toggle="collapse"
-                                data-bs-target="#collapseExample" type="button"><span data-fa-transform="shrink-3"
-                                    class="fas fa-plus"></span></button></a>
-                    </div>
-                </div>
             </div>
             @if ($cek == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
@@ -241,8 +240,7 @@
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
                                     Aksi
                                 </th>
-                                <th style="min-width: 150px" class="sort align-middle white-space-nowrap"
-                                    data-sort="akt">
+                                <th style="min-width: 150px" class="sort align-middle white-space-nowrap" data-sort="akt">
                                     Category
                                 </th>
                                 <th style="min-width: 300px" class="sort align-middle white-space-nowrap"

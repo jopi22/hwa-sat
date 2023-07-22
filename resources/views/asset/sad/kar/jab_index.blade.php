@@ -31,33 +31,38 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-100 shadow-none border">
-        <div class="row gx-0 flex-between-center">
-            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                <div>
-                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
-                    <h4 class="mb-0 text-primary fw-bold">Jabatan Karyawan</h4>
-                </div>
-            </div>
-            <div class="col-sm-auto d-flex align-items-center">
-                <form class="row align-items-center g-3">
-                    <div class="col-auto">
-                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                            Division Data</span>
-                    </div>
-                </form>
-                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
-                    alt="" width="130" />
-            </div>
+<div class="card mb-2 bg-light shadow-none">
+    <div class="bg-holder bg-card d-none d-sm-block"
+        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+    <!--/.bg-holder-->
+    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="ms-n3">
+            <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+            <h4 class="mb-0 text-primary fw-bold">Jabatan Karyawan
+                <span class="text-info fw-medium"></span></h4>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 
     <div class="card mb-3">
         <div class="card-header py-2 bg-light">
-            {{-- // --}}
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        {{-- // --}}
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm btn-falcon-success mx-2"
+                        type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span> </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="tableExample3"
             data-list='{"valueNames":["id","name","username","status","level"],"page":10,"pagination":true}'>
@@ -69,24 +74,20 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-sm-auto">
-                    <button data-bs-toggle="modal" data-bs-target="#modal-create" class="btn btn-sm btn-falcon-success mx-2"
-                        type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span> </button>
-                </div>
             </div>
             <div class="table-responsive scrollbar">
                 <table class="table table-sm table-striped table-bordered fs--1 mb-0 overflow-hidden">
                     <thead class="bg-200 text-800 text-center">
                         <tr>
-                            <th style="min-width: 10px" class="sort" data-sort="#">#</th>
+                            <th style="min-width: 50px" class="sort" data-sort="#">#</th>
                             <th style="min-width: 150px" class="sort" data-sort="aksi">Aksi</th>
-                            <th style="min-width: 300px" class="sort" data-sort="jab">
+                            <th style="min-width: 200px" class="sort" data-sort="jab">
                                 Jabatan
                             </th>
                             <th style="min-width: 250px" class="sort" data-sort="div">
                                 Divisi
                             </th>
-                            <th style="min-width: 300px" class="sort" data-sort="ket">
+                            <th style="min-width: 400px" class="sort" data-sort="ket">
                                 Keterangan
                             </th>
                         </tr>

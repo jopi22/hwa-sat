@@ -1,8 +1,8 @@
 @extends('layouts.layout_horizontal')
 {{-- @extends('layouts.layout') --}}
 
-@section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+@section('judul')
+    HWA - Sarana Administrasi Terpadu
 @endsection
 
 @section('konten')
@@ -15,7 +15,7 @@
             <div class="position-relative z-index-2">
                 <div>
                     <h3 class="text-primary mb-1">Welcome, {{ Auth::user()->name }}!</h3>
-                    <p>Here’s what happening with your store today </p>
+                    <p>Selamat Datang Di Aplikasi HWA Sarana Administrasi Terpadu..</p>
                 </div>
                 <div class="d-flex py-3">
                     <div class="pe-3">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-body p-0">
+        {{-- <div class="card-body p-0">
             <ul class="mb-0 list-unstyled">
                 <li class="alert mb-0 rounded-0 py-3 px-x1 alert-warning border-x-0 border-top-0">
                     <div class="row flex-between-center">
@@ -78,7 +78,7 @@
                     </div>
                 </li>
             </ul>
-        </div>
+        </div> --}}
     </div>
 
     <div class="card">

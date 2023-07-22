@@ -202,10 +202,10 @@
 <!--REKAPITULASI DATA-->
 <li class="nav-item">
     <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-        <div class="col-auto navbar-vertical-label"><span class="text-danger">Rekapitulasi
+        <div class="col-auto navbar-vertical-label"><span class="text-primary">Rekapitulasi
                 Data</span></div>
         <div class="col ps-0">
-            <hr class="mb-0 navbar-vertical-divider text-danger" />
+            <hr class="mb-0 navbar-vertical-divider text-primary" />
         </div>
     </div>
 </li>
@@ -228,10 +228,10 @@
 <!--DIVISION DATA-->
 <li class="nav-item">
     <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-        <div class="col-auto navbar-vertical-label"><span class="text-success">Division
+        <div class="col-auto navbar-vertical-label"><span class="text-primary">Division
                 Data</span></div>
         <div class="col ps-0">
-            <hr class="mb-0 navbar-vertical-divider text-success" />
+            <hr class="mb-0 navbar-vertical-divider text-primary" />
         </div>
     </div>
 </li>

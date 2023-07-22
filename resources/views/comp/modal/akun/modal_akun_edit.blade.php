@@ -24,9 +24,9 @@
                                 <input required type="email" class="form-control" name="username"
                                     value="{{ $res->email }}">
                             @else
-                                <label>ID</label>
+                                <label>NIK</label>
                                 <input type="text" class="form-control" disabled
-                                    value="{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}">
+                                    value="{{ $res->username }}">
                                 <input type="hidden" name="username"
                                     value="{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}">
                             @endif

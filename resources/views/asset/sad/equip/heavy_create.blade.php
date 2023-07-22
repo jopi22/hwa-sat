@@ -36,25 +36,24 @@
             $("#tableEstimate tbody").append(`
             <tr class="btn-reveal-trigger text-center text-1000 fw-semi-bold">
                     <td class="align-middle white-space-nowrap">
-                        <a href="javascript:void(0)" class="text-success" title="Add" id="addBtn"><i
-                class="fas fa-plus-square fs-2"></i></a>
+                        <a href="javascript:void(0)" class="text-danger remove" title="Remove"><i class="fas fa-minus-square fs-2"></i></a>
                                 <input type="hidden" name="jenis[]" value="Heavy Equipment">
                                 <input type="hidden" name="status[]" value="Aktif">
                     </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control form-control-sm"
+                        <input required type="text" maxlength="50" class="form-control "
                             name="no_unit[]">
                     </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control form-control-sm"
+                        <input required type="text" maxlength="50" class="form-control "
                             name="kode_unit[]">
                     </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control form-control-sm"
+                        <input required type="text" maxlength="50" class="form-control "
                             name="model[]">
                     </td>
                     <td class="align-middle white-space-nowrap">
-                                    <select required name="tipe[]" class="form-control form-control-sm">
+                                    <select required name="tipe[]" class="form-control ">
                                         <option></option>
                                         <option value="Excavator">Excavator</option>
                                         <option value="Vibro">Vibro</option>
@@ -62,15 +61,15 @@
                                     </select>
                                 </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control form-control-sm"
+                        <input required type="text" maxlength="50" class="form-control "
                             name="brand[]">
                     </td>
 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                    <input required type="text" maxlength="50" class="form-control "
                                         name="no_rangka[]">
                                 </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="date" class="form-control form-control-sm"
+                        <input required type="date" class="form-control "
                                         name="start_op[]">
                     </td>
                 </tr>
@@ -145,18 +144,14 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3">
-    <div class="card-body d-flex justify-content-between">
+<div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+    <div class="col d-flex align-items-center">
         <div>
-            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                Division Data</span>
-            <span class="mx-1 mx-sm-2 text-300">| </span>
-            <a class="btn btn-falcon-default btn-sm" href="{{ route('heavy.l') }}" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Back to Main Table">
-                <span class="fas fa-list"></span>
-            </a>
-            <span class="mx-1 mx-sm-2 text-300">| </span>
-            <span class=" fw-semi-bold text-primary"> Tambah Heavy Equipment</span>
+            <a href="{{ route('heavy.l') }}"><button class="btn  btn-falcon-default btn-sm"><i
+                class="fas fa-arrow-left"></i></button></a>
+        </div>
+        <div class="ms-1">&nbsp;
+            <span class=" fw-semi-bold text-primary">Tambah Heavy Equipment</span>
         </div>
     </div>
 </div>
@@ -166,7 +161,7 @@
         <input type="hidden" name="heavy" value="1">
         <div class="card mb-3">
             <div class="card-header text-center bg-success py-2">
-                <h5 class="text-white"><i class="fas fa-snowplow"></i> Form Tambah Heavy Equipment</h5>
+                <h6 class="text-white"> Form Tambah Heavy Equipment</h6>
             </div>
             <div class="card-header bg-light">
                 <p class="fs--1 mb-0"><strong>Notes: </strong>Kolom Berwarna
@@ -223,19 +218,19 @@
                                     <input type="hidden" name="status[]" value="Aktif">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                    <input required type="text" maxlength="50" class="form-control "
                                         name="no_unit[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                    <input required type="text" maxlength="50" class="form-control "
                                         name="kode_unit[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                    <input required type="text" maxlength="50" class="form-control "
                                         name="model[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <select required name="tipe[]" class="form-control form-control-sm">
+                                    <select required name="tipe[]" class="form-control ">
                                         <option></option>
                                         <option value="Excavator">Excavator</option>
                                         <option value="Vibro">Vibro</option>
@@ -243,15 +238,15 @@
                                     </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                    <input required type="text" maxlength="50" class="form-control "
                                         name="brand[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control form-control-sm"
+                                    <input required type="text" maxlength="50" class="form-control "
                                         name="no_rangka[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="date" class="form-control form-control-sm" name="start_op[]">
+                                    <input required type="date" class="form-control " name="start_op[]">
                                 </td>
                             </tr>
                         </tbody>

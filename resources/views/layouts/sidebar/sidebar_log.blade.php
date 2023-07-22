@@ -1,8 +1,8 @@
 <!--MASTER DATA-->
 <li class="nav-item">
     <div class="row navbar-vertical-label-wrapper mb-2">
-        <div class="col-auto navbar-vertical-label"><span class="text-primary">Master
-                Present</span></div>
+        <div class="col-auto navbar-vertical-label"><span class="text-primary">
+                Division Data</span></div>
         <div class="col ps-0">
             <hr class="mb-0 navbar-vertical-divider text-primary" />
         </div>

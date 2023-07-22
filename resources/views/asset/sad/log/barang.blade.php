@@ -20,33 +20,57 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-100 shadow-none border">
-        <div class="row gx-0 flex-between-center">
-            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                <div>
-                    <h6 class="mb-1 text-primary"><i class="fas fa-gas-pump"></i> Logistic Division</h6>
-                    <h4 class="mb-0 text-primary fw-bold">Data Barang</h4>
-                </div>
-            </div>
-            <div class="col-sm-auto d-flex align-items-center">
-                <form class="row align-items-center g-3">
-                    <div class="col-auto">
-                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                            Division Data</span>
-                    </div>
-                </form>
-                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
-                    alt="" width="130" />
-            </div>
+<div class="card mb-2 bg-light shadow-none">
+    <div class="bg-holder bg-card d-none d-sm-block"
+        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+    <!--/.bg-holder-->
+    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="ms-n3">
+            <h6 class="mb-1 text-primary"><i class="fas fa-archive"></i> Logistic Division</h6>
+            <h4 class="mb-0 text-primary fw-bold">Data Barang
+                <span class="text-info fw-medium"></span>
+            </h4>
         </div>
     </div>
-
+</div>
     @include('comp.alert')
 
     <div class="card mb-3">
         <div class="card-header bg-light py-2">
-            {{-- // --}}
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        {{-- // --}}
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <div class="btn-group  btn-group-sm mx-2" role="group">
+                            <a data-bs-toggle="modal" data-bs-target="#tambah"><button
+                                    class="btn btn-sm btn-falcon-success mx-2" type="button"><span data-fa-transform="shrink-3"
+                                        class="fas fa-plus"></span>
+                                </button></a>
+                            <div class="dropdown font-sans-serif d-inline-block">
+                                <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
+                                    type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                        class="fas fa-print"></i></button>
+                                <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
+                                    <a target="_blank" class="dropdown-item text-success"
+                                        href="{{ route('barang.excel', Crypt::EncryptString(Auth::user()->id)) }}"><i class="fas fa-file-excel"></i>
+                                        Print Excel
+                                    </a>
+                                    {{-- <a target="_blank" class="dropdown-item text-warning"
+                                        href="{{ route('barang.pdf', Auth::user()->id) }}"><i class="fas fa-file-pdf"></i>
+                                        Print PDF
+                                    </a> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="tableExample3"
             data-list='{"valueNames":["id","no","unit","kode","barang","jenis","status","kat"],"page":10,"pagination":true,"filter":{"key":"kat"}}'>
@@ -68,29 +92,6 @@
                         <option value="Lain-lain">Lain-lain</option>
                     </select>
                 </div>&nbsp;
-                <div class="col-sm-auto">
-                    <div class="btn-group  btn-group-sm mx-2" role="group">
-                        <a data-bs-toggle="modal" data-bs-target="#tambah"><button
-                                class="btn btn-sm btn-falcon-success mx-2" type="button"><span data-fa-transform="shrink-3"
-                                    class="fas fa-plus"></span>
-                            </button></a>
-                        <div class="dropdown font-sans-serif d-inline-block">
-                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-print"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a target="_blank" class="dropdown-item text-success"
-                                    href="{{ route('barang.excel', Crypt::EncryptString(Auth::user()->id)) }}"><i class="fas fa-file-excel"></i>
-                                    Print Excel
-                                </a>
-                                {{-- <a target="_blank" class="dropdown-item text-warning"
-                                    href="{{ route('barang.pdf', Auth::user()->id) }}"><i class="fas fa-file-pdf"></i>
-                                    Print PDF
-                                </a> --}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             @if ($cek == 0)
                 <div class="row align-items-center">

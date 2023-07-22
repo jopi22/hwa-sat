@@ -14,7 +14,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>404 Not Found</title>
+    <title>401 Unauthorized</title>
 
     <!-- ===============================================-->
     <!--    Favicons-->
@@ -80,9 +80,9 @@
                             class="font-sans-serif fw-bolder fs-5 d-inline-block">HWA SAT</span></a>
                     <div class="card">
                         <div class="card-body p-4 p-sm-5">
-                            <img src="{{ asset('assets/img/generic/photo_6338839406810609585_y.jpg') }}" height="200px" width="200px">
-                            <p class="lead mt-4 text-900 font-sans-serif fw-semi-bold w-md-75 w-xl-100 mx-auto">404
-                            <p>Halaman Dalam Proses Pembangunan</a>.</p><a
+                            <img src="{{ asset('assets/img/team/imam.jpg') }}" height="200px" width="200px">
+                            <p class="lead mt-4 text-800 font-sans-serif fw-semi-bold w-md-75 w-xl-100 mx-auto">401
+                            <p>Anda Tidak Berhak Mengakses Halaman Ini</a>.</p><a
                                 class="btn btn-primary btn-sm mt-3" href="{{ route('dash') }}"><span
                                     class="fas fa-home me-2"></span>Kembali Ke Dashboard</a>
                         </div>

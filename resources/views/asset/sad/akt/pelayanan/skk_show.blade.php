@@ -47,11 +47,6 @@
                     <span class="fas fa-check-double text-success fs--1 ms-2"></span>
                 </div>
                 @else
-                    <div class="text-center">
-                        <button class="btn btn-success bn-sm" type="button" data-bs-toggle="modal"
-                            data-bs-target="#error-modal"><i class="fas fa-check-circle"></i>
-                            Konfirmasi</button>
-                    </div>
                 @endif
             </div>
         </div>
