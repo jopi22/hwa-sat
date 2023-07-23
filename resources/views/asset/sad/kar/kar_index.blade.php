@@ -26,19 +26,20 @@
 @endsection
 
 @section('konten')
-<div class="card mb-2 bg-light shadow-none">
-    <div class="bg-holder bg-card d-none d-sm-block"
-        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-    <!--/.bg-holder-->
-    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
-            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-        <div class="ms-n3">
-            <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
-            <h4 class="mb-0 text-primary fw-bold">Karyawan PT Harapan Wahyu Abadi
-                <span class="text-info fw-medium"></span></h4>
+    <div class="card mb-2 bg-light shadow-none">
+        <div class="bg-holder bg-card d-none d-sm-block"
+            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+        <!--/.bg-holder-->
+        <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+            <div class="ms-n3">
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                <h4 class="mb-0 text-primary fw-bold">Karyawan PT Harapan Wahyu Abadi
+                    <span class="text-info fw-medium"></span>
+                </h4>
+            </div>
         </div>
     </div>
-</div>
 
     @include('comp.alert')
 
@@ -190,13 +191,17 @@
                                                             class="btn btn-info" type="button" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" title="Detail Karyawan"><i
                                                                 class="fas fa-info-circle"></i></a>
-                                                        @if ($res->level > 1)
-                                                        <a href="{{ route('kar.e', Crypt::encryptString($res->id)) }}"
-                                                            class="btn btn-warning" type="button"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="Edit Karyawan"><i class="fas fa-edit"></i></a>
+                                                        @if ($res->level > 2)
+                                                            <a href="{{ route('kar.e', Crypt::encryptString($res->id)) }}"
+                                                                class="btn btn-warning" type="button"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="Edit Karyawan"><i class="fas fa-edit"></i></a>
+                                                            <a class="btn btn-danger" type="button"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#hapus-{{ $res->id }}"
+                                                                title="Hapus Karyawan"><i
+                                                                    class="fas fa-trash-alt"></i></a>
                                                         @else
-                                                            Master
                                                         @endif
 
                                                     </div>
@@ -431,7 +436,8 @@
                                                                     <span
                                                                         class="badge rounded-pill bg-warning">Mutasi</span>
                                                                 @else
-                                                                    <span class="badge rounded-pill bg-dark text-white">PHK</span>
+                                                                    <span
+                                                                        class="badge rounded-pill bg-dark text-white">PHK</span>
                                                                 @endif
                                                             @endif
                                                         @endif

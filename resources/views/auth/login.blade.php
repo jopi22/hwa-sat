@@ -104,7 +104,7 @@
                     <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
                         <div class="position-relative z-index-1 light">
                             <h4 class="mb-0 text-white" id="authentication-modal-label">Login</h4>
-                            <p class="fs--1 mb-0 text-white">HWA Sistem Administrasi Terpadu</p>
+                            <p class="fs--1 mb-0 text-white">HWA Sarana Administrasi Terpadu</p>
                         </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -128,10 +128,10 @@
                                 <div class="d-flex justify-content-between">
                                     <label class="form-label" for="split-login-password">Password</label>
                                 </div>
-                                <input class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password" id="split-login-password"
+                                <input class="form-control @error('password') is-invalid @enderror" autofocus name="password"
+                                    required autocomplete="password" id="split-login-password" value="{{ old('password') }}"
                                     type="password" />
-                                @error('password')
+                                @error('no_hp')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -152,7 +152,7 @@
                     <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
                         <div class="position-relative z-index-1 light">
                             <h4 class="mb-0 text-white" id="authentication-modal-label">Login</h4>
-                            <p class="fs--1 mb-0 text-white">HWA Sistem Administrasi Terpadu</p>
+                            <p class="fs--1 mb-0 text-white">HWA Sarana Administrasi Terpadu</p>
                         </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
