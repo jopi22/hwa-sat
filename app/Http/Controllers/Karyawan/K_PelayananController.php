@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\karyawan;
+namespace App\Http\Controllers\Karyawan;
 
 use App\Http\Controllers\Controller;
 use App\Models\Absensi;

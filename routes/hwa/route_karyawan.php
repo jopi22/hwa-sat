@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\karyawan\K_PelayananController;
-use App\Http\Controllers\karyawan\K_PerformaController;
+use App\Http\Controllers\Karyawan\K_PelayananController;
+use App\Http\Controllers\Karyawan\K_PerformaController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
