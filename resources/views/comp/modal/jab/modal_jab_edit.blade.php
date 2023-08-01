@@ -20,6 +20,17 @@
                         <input class="form-control" id="nama_jabatan_edit" type="text" maxlength="25" required />
                     </div>
                     <div class="form-group">
+                        <label class="form-label">Divisi</label>
+                        <select required class="form-control" id="divisi_edit">
+                            <option value=""></option>
+                            <option value="Human Resource & General Affairs">Human Resource & General Affairs</option>
+                            <option value="Rental Performance">Rental Performance</option>
+                            <option value="Mechanic">Mechanic</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Health, Safety, and Environment">Health, Safety, and Environment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label class="form-label">Keterangan</label>
                         <input class="form-control" id="keterangan_edit" type="text" maxlength="50" required />
                     </div>
@@ -58,6 +69,7 @@
                 $('#jabatan_id').val(response.data.id);
                 $('#nama_jabatan_edit').val(response.data.jabatan);
                 $('#keterangan_edit').val(response.data.ket);
+                $('#divisi_edit').val(response.data.divisi);
 
                 //-- membuka modal --
                 $(`#modal-edit`).modal('show');
@@ -73,6 +85,7 @@
         let jabatan_id = $('#jabatan_id').val();
         let jabatan = $('#nama_jabatan_edit').val();
         let ket = $('#keterangan_edit').val();
+        let divisi = $('#divisi_edit').val();
         let token = $("meta[name='csrf-token']").attr("content");
 
         //-- proses update data --
@@ -84,6 +97,7 @@
             data: {
                 "jabatan": jabatan,
                 "ket": ket,
+                "divisi": divisi,
                 "_token": token
             },
             success: function(response) {
@@ -108,6 +122,9 @@
                     </td>
                     <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                         ${response.data.jabatan}
+                    </td>
+                    <td class="text-black text-center fw-semi-bold align-middle white-space-nowrap div">
+                        ${response.data.divisi}
                     </td>
                     <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                         ${response.data.ket}

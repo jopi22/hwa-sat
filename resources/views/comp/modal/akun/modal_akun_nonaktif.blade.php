@@ -13,7 +13,6 @@
                 <form action="{{ route('akun.sakelar', $res->id) }}" method="POST">
                     @csrf
                     @method('put')
-                    <input type="hidden" name="username" value="">
                     <div class="modal-header bg-danger">
                         <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fas fa-power-off"></i>
                             {{ $res->name }}</h5>

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Account | HWA &bull; SAT
+    Kelola Pengguna | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -26,18 +26,24 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
-                        class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                    </span>
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Kelola Akun</h4>
+    <div class="card mb-3 bg-100 shadow-none border">
+        <div class="row gx-0 flex-between-center">
+            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                <div>
+                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                    <h4 class="mb-0 text-primary fw-bold">Kelola Pengguna</h4>
+                </div>
+            </div>
+            <div class="col-sm-auto d-flex align-items-center">
+                <form class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                            Division Data</span>
+                    </div>
+                </form>
+                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
+                    alt="" width="130" />
             </div>
         </div>
     </div>
@@ -76,17 +82,17 @@
             </div>
             <div class="table-responsive scrollbar">
                 <table class="table table-sm table-striped table-bordered fs--1 mb-0 overflow-hidden">
-                    <thead class="bg-secondary text-white text-center">
+                    <thead class="bg-200 text-800 text-center">
                         <tr>
-                            <th style="min-width: 20px" class="sort" data-sort="#">#</th>
+                            <th style="max-width: 50px" class="sort" data-sort="#">#</th>
                             <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
+                            <th style="min-width: 100px" class="sort" data-sort="status">Status Akun</th>
+                            <th style="min-width: 200px" class="sort" data-sort="username">
+                                NIK / ID</th>
                             <th style="min-width: 300px" class="sort" data-sort="name">
                                 Nama</th>
-                            <th style="min-width: 300px" class="sort bg-primary" data-sort="username">
-                                NIK / ID</th>
-                            <th style="min-width: 100px" class="sort bg-primary" data-sort="password">Password</th>
-                            <th style="min-width: 100px" class="sort bg-primary" data-sort="level">Role Akun</th>
-                            <th style="min-width: 80px" class="sort bg-primary" data-sort="status">Status Akun</th>
+                            <th style="min-width: 100px" class="sort" data-sort="password">Password</th>
+                            <th style="min-width: 200px" class="sort" data-sort="level">Role Akun</th>
                         </tr>
                     </thead>
                     <tbody id="table-posts" class="list">
@@ -106,15 +112,13 @@
                                                     <form action="{{ route('akun.n.a', $res->id) }}" method="post">
                                                         @csrf
                                                         @method('put')
-                                                        <input type="hidden" name="username"
-                                                            value="{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}">
                                                         <input type="hidden" name="password" value="hwa">
                                                         <input type="hidden" name="level" value="4">
                                                         <button type="submit" class="btn btn-sm btn-success"><i
                                                                 class="fas fa-power-off"></i></button>
                                                     </form>
                                                 @else
-                                                    @if ($res->username)
+                                                    @if ($res->password)
                                                         <button data-bs-toggle="modal"
                                                             data-bs-target="#off-{{ $res->id }}"
                                                             class="btn btn-danger"><i class="fas fa-power-off"></i></button>
@@ -122,32 +126,40 @@
                                                             data-bs-target="#reset-{{ $res->id }}"
                                                             class="btn btn-warning"><i class="fas fa-edit"></i></button>
                                                     @endif
-                                                    @if ($res->username == null)
+                                                    @if ($res->password == null)
                                                         <button data-bs-toggle="modal"
                                                             data-bs-target="#on-{{ $res->id }}"
                                                             class="btn btn-info"><i class="fas fa-power-off"></i></button>
-                                                        <button data-bs-toggle="modal"
+                                                        {{-- <button data-bs-toggle="modal"
                                                             data-bs-target="#reset-{{ $res->id }}"
-                                                            class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                                            class="btn btn-warning"><i class="fas fa-edit"></i></button> --}}
                                                     @endif
                                                 @endif
                                             @endif
                                         @endif
                                     </div>
                                 </td>
-                                <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
-                                    {{ $res->name }}</td>
-                                <td class="text-black fw-semi-bold align-middlefs-0 white-space-nowrap payment">
+                                <td class="text-black text-center fw-semi-bold align-middle white-space-nowrap">
                                     @if ($res->level == null)
-                                        -
+                                        <span class="badge rounded-pill bg-secondary">Baru</span>
                                     @else
-                                        @if ($res->username)
-                                            {{ $res->username }}
+                                        @if ($res->password == null)
+                                            <span class="badge rounded-pill bg-danger">Tidak Aktif</span>
                                         @else
-                                            <span class="id fs--1 text-400">Akun Tidak Aktif</span>
+                                            <span class="badge rounded-pill bg-info">Aktif</span>
                                         @endif
                                     @endif
                                 </td>
+                                <td
+                                    class="text-black text-center fw-semi-bold align-middlefs-0 white-space-nowrap payment">
+                                    @if ($res->username)
+                                        {{ $res->username }}
+                                    @else
+                                        -
+                                    @endif
+                                </td>
+                                <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
+                                    {{ $res->name }}</td>
                                 <td
                                     class="text-black fw-semi-bold text-center align-middlefs-0 white-space-nowrap payment">
                                     @if ($res->level == 1)
@@ -156,7 +168,7 @@
                                         @if ($res->level == null)
                                             -
                                         @else
-                                            @if ($res->username == null)
+                                            @if ($res->password == null)
                                                 -
                                             @else
                                                 <button class="btn btn-info btn-sm" type="button"
@@ -184,17 +196,6 @@
                                                     -
                                                 @endif
                                             @endif
-                                        @endif
-                                    @endif
-                                </td>
-                                <td class="text-black text-center fw-semi-bold align-middle white-space-nowrap">
-                                    @if ($res->level == null)
-                                        <span class="badge rounded-pill bg-secondary">Baru</span>
-                                    @else
-                                        @if ($res->username == null)
-                                            <span class="badge rounded-pill bg-danger">Tidak Aktif</span>
-                                        @else
-                                            <span class="badge rounded-pill bg-info">Aktif</span>
                                         @endif
                                     @endif
                                 </td>

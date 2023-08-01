@@ -28,21 +28,22 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
-                        class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
-                    </span>
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Surat Peringatan</h4>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                Division Data</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('sp.g') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Back to Main Table">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Surat Peringatan : </span>
+            <span class="text-info fw-semi-bold">{{$sp->no}}</span>
         </div>
     </div>
+</div>
 
     <div class="card mb-3">
         <div class="card-header py-2 bg-light">

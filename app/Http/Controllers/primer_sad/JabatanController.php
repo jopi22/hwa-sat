@@ -27,6 +27,7 @@ class JabatanController extends Controller
         $jab = Jabatan::create([
             'jabatan'     => $request->jabatan,
             'ket'     => $request->ket,
+            'divisi'     => $request->divisi,
         ]);
         return response()->json([
             'success' => true,
@@ -52,6 +53,7 @@ class JabatanController extends Controller
         $jab->update([
             'jabatan'     => $request->jabatan,
             'ket'     => $request->ket,
+            'divisi'     => $request->divisi,
         ]);
         return response()->json([
             'success' => true,

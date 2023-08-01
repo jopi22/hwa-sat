@@ -13,8 +13,8 @@
                 <form action="{{ route('akun.sakelar', $res->id) }}" method="POST">
                     @csrf
                     @method('put')
-                    <input type="hidden" name="username"
-                        value="{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}">
+                    <input type="hidden" name="aktif" value="aktif">
+                    <input type="hidden" name="password" value="{{ $res->username }}">
                     <div class="modal-header bg-info">
                         <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fas fa-power-off"></i>
                             {{ $res->name }}</h5>

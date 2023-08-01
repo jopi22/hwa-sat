@@ -1,4 +1,4 @@
-@foreach ($kar as $del)
+@foreach ($aktif as $del)
     <div class="modal fade" id="hapus-{{ $del->id }}" tabindex="-1" role="dialog"
         aria-labelledby="authentication-modal-label" aria-hidden="true">
         <div class="modal-dialog mt-6" style="max-width: 500px">

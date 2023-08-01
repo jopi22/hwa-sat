@@ -9,11 +9,11 @@ class SP extends Model
 {
     use HasFactory;
     protected $table = 'hwa_sp';
-    protected $fillable = ['no','karyawan','surat'];
+    protected $guarded = ['id'];
     protected $dates = ['created_at'];
 
-    public function karyawan_()
+    public function kar_()
     {
-        return $this->belongsTo(User::class, 'karyawan');
+        return $this->belongsTo(User::class, 'kar_id');
     }
 }

@@ -24,7 +24,7 @@ class AkunController extends Controller
             ->count();
         $on = User::where('username', '<>', null)
             ->count();
-        return view('author.sad.kar.akun_index', compact('kar','nav', 'cek', 'periode', 'master','off','on'));
+        return view('author.sad.kar.akun_index', compact('kar', 'nav', 'cek', 'periode', 'master', 'off', 'on'));
     }
 
 
@@ -33,8 +33,6 @@ class AkunController extends Controller
         // dd($request->all());
         $akun = User::Find($id);
         $akun_data = [
-            'username' => $request->username,
-            'email' => $request->username,
             'password' => bcrypt($request->password),
             'password_view' => $request->password,
             'level' => $request->level,
@@ -48,7 +46,6 @@ class AkunController extends Controller
     {
         $akun = User::Find($id);
         $akun_data = [
-            'username' => $request->username,
             'email' => $request->username,
             'password' => bcrypt($request->password),
             'password_view' => $request->password,
@@ -63,10 +60,14 @@ class AkunController extends Controller
     {
         $akun = User::Find($id);
         $akun_data = [
-            'username' => $request->username,
+            'password' => $request->password,
+            'password_view' => $request->password,
         ];
         $akun->update($akun_data);
-        return back()->with('success', 'Akun Berhasil Diaktifkan');
+        if ($request->has('aktif')) {
+            return back()->with('success', 'Akun Berhasil Diaktifkan');
+        } else {
+            return back()->with('success', 'Akun Berhasil Dimatikan');
+        }
     }
-
 }

@@ -13,6 +13,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(SPController::class)->group(function () {
         Route::get('surat_peringatan', 'sp_index')->name('sp.g');
         Route::get('surat_peringatan_info/{sp}', 'sp_info')->name('sp.i');
+        Route::put('sp_phk/{sp}', 'sp_phk')->name('sp.phk');
         Route::post('sp_save', 'sp_save')->name('sp.s');
         Route::post('sp_delete', 'sp_delete')->name('sp.d');
     });

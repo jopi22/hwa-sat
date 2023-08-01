@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Jabatan | HWA &bull; SAT
+    Jabatan Karyawan | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -31,18 +31,24 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
-                        class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
-                    </span>
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Jabatan</h4>
+    <div class="card mb-3 bg-100 shadow-none border">
+        <div class="row gx-0 flex-between-center">
+            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                <div>
+                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                    <h4 class="mb-0 text-primary fw-bold">Jabatan Karyawan</h4>
+                </div>
+            </div>
+            <div class="col-sm-auto d-flex align-items-center">
+                <form class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                            Division Data</span>
+                    </div>
+                </form>
+                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
+                    alt="" width="130" />
             </div>
         </div>
     </div>
@@ -70,15 +76,17 @@
             </div>
             <div class="table-responsive scrollbar">
                 <table class="table table-sm table-striped table-bordered fs--1 mb-0 overflow-hidden">
-                    <thead class="bg-secondary text-white text-center">
+                    <thead class="bg-200 text-800 text-center">
                         <tr>
-                            <th style="min-width: 50px" class="sort" data-sort="#">#</th>
-
-                            <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
-                            <th style="min-width: 400px" class="sort" data-sort="jab">
+                            <th style="min-width: 10px" class="sort" data-sort="#">#</th>
+                            <th style="min-width: 150px" class="sort" data-sort="aksi">Aksi</th>
+                            <th style="min-width: 300px" class="sort" data-sort="jab">
                                 Jabatan
                             </th>
-                            <th style="min-width: 500px" class="sort" data-sort="ket">
+                            <th style="min-width: 250px" class="sort" data-sort="div">
+                                Divisi
+                            </th>
+                            <th style="min-width: 300px" class="sort" data-sort="ket">
                                 Keterangan
                             </th>
                         </tr>
@@ -101,6 +109,13 @@
                                 </td>
                                 <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                                     {{ $res->jabatan }}
+                                </td>
+                                <td class="text-black text-center fw-semi-bold align-middle white-space-nowrap div">
+                                    @if ($res->divisi)
+                                        {{ $res->divisi }}
+                                    @else
+                                        -
+                                    @endif
                                 </td>
                                 <td class="text-black fw-semi-bold align-middle white-space-nowrap ket">
                                     @if ($res->ket)

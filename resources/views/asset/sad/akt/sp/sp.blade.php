@@ -28,18 +28,24 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
-                        class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
-                    </span>
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Surat Peringatan</h4>
+    <div class="card mb-3 bg-100 shadow-none border">
+        <div class="row gx-0 flex-between-center">
+            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                <div>
+                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                    <h4 class="mb-0 text-primary fw-bold">Surat Peringatan</h4>
+                </div>
+            </div>
+            <div class="col-sm-auto d-flex align-items-center">
+                <form class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                            Division Data</span>
+                    </div>
+                </form>
+                <img class="ms-2 d-md-none d-lg-block"
+                    src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}" alt="" width="130" />
             </div>
         </div>
     </div>
@@ -60,11 +66,15 @@
                     </form>
                 </div>&nbsp;
                 <div class="col-sm-auto">
-                    <div class="btn-group  btn-group-sm mx-2" role="group">
-                        <button class="btn btn-sm btn-falcon-success mx-2" type="button" data-bs-toggle="modal"
-                            data-bs-target="#error-modal"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
-                        </button>
-                    </div>
+                    <button class="btn btn-sm btn-falcon-success mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#sp1">SP-1
+                    </button>
+                    <button class="btn btn-sm btn-falcon-warning mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#sp2">SP-2
+                    </button>
+                    <button class="btn btn-sm btn-falcon-danger mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#sp3">SP-3
+                    </button>
                 </div>
             </div>
             @if ($cek == 0)
@@ -72,7 +82,7 @@
             @else
                 <div class="table-responsive scrollbar">
                     <table class="table table-sm table-striped table-bordered mb-0 fs--1 overflow-hidden">
-                        <thead class="bg-secondary text-white">
+                        <thead class="bg-200 text-800">
                             <tr class="text-center">
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
@@ -83,6 +93,9 @@
                                 <th style="min-width: 100px" class="sort  align-middle white-space-nowrap"
                                     data-sort="surat">
                                     Nomor Surat
+                                </th>
+                                <th style="min-width: 80px" class="sort  align-middle white-space-nowrap" data-sort="surat">
+                                    Jenis SP
                                 </th>
                                 <th style="min-width: 200px" class="sort align-middle white-space-nowrap" data-sort="nama">
                                     Nama Karyawan
@@ -100,12 +113,16 @@
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                                         <div class="btn-group  btn-group-sm" role="group">
-                                            <a class="btn btn-primary" type="button" data-bs-toggle="modal"
-                                                data-bs-target="#info-{{ $res->id }}" data-bs-placement="top"
-                                                title="Info Surat"><i class="fas fa-file-alt"></i></a>
+                                            @if ($res->jenis == 'SP-3')
+                                                <a class="btn btn-dark" type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#phk-{{ $res->id }}" data-bs-placement="top"
+                                                    title="PHK">PHK</a>
+                                            @endif
+                                            <a href="{{ route('sp.i', Crypt::EncryptString($res->id)) }}"
+                                                class="btn btn-primary" type="button"><i class="fas fa-file-alt"></i></a>
                                             <a class="btn btn-danger" type="button" data-bs-toggle="modal"
                                                 data-bs-target="#hapus-{{ $res->id }}" data-bs-placement="top"
-                                                title="Hapus Surat"><i class="fas fa-trash-alt"></i></a>
+                                                title="Hapus SP"><i class="fas fa-trash-alt"></i></a>
                                         </div>
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap surat">
@@ -115,9 +132,24 @@
                                             -
                                         @endif
                                     </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap surat">
+                                        @if ($res->jenis == 'SP-1')
+                                            <span class="badge bg-success rounded-pill">SP-1</span>
+                                        @else
+                                            @if ($res->jenis == 'SP-2')
+                                                <span class="badge bg-warning rounded-pill">SP-2</span>
+                                            @else
+                                                @if ($res->jenis == 'SP-3')
+                                                    <span class="badge bg-danger rounded-pill">SP-3</span>
+                                                @else
+                                                    -
+                                                @endif
+                                            @endif
+                                        @endif
+                                    </td>
                                     <td class="align-middle text-1000 white-space-nowrap nama">
-                                        @if ($res->karyawan_->name)
-                                            {{ $res->karyawan_->name }}
+                                        @if ($res->kar_->name)
+                                            {{ $res->kar_->name }}
                                         @else
                                             -
                                         @endif
@@ -144,7 +176,7 @@
     </div>
 
     @include('comp.modal.sp.modal_sp_create')
-    @include('comp.modal.sp.modal_sp_info')
+    {{-- @include('comp.modal.sp.modal_sp_info') --}}
     @include('comp.modal.sp.modal_sp_delete')
 
 @endsection

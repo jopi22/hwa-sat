@@ -23,15 +23,18 @@ class KaryawanController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $kar = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Delete')
+        $all = User::where('status', '<>', 'Delete')
             ->orderBy('username', 'ASC')
             ->get();
-        $cek = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Trash')
+        $aktif = User::where('status', 'Aktif')
+            ->orderBy('username', 'ASC')
+            ->get();
+        $all_cek = User::where('status', '<>', 'Delete')
+            ->count();
+        $all_aktif = User::where('status', 'Aktif')
             ->count();
         $jab_f = Jabatan::all();
-        return view('author.sad.kar.kar_index', compact('cek', 'nav', 'kar', 'jab_f', 'master', 'periode',));
+        return view('author.sad.kar.kar_index', compact('all_cek', 'aktif', 'all_aktif', 'nav', 'all', 'jab_f', 'master', 'periode',));
     }
 
 
@@ -107,6 +110,9 @@ class KaryawanController extends Controller
             $kar['no_rek'] = $request->no_rek[$key];
             $kar['bank'] = $request->bank[$key];
             $kar['site_id'] = $request->site_id[$key];
+            $kar['password_view'] = $request->username[$key];
+            $kar['level'] = $request->level[$key];
+            $kar['password'] = bcrypt($request->username[$key]);
             $kar['token'] = $token;
             $kar['author'] = Auth::user()->id;
             User::create($kar);

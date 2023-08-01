@@ -20,6 +20,17 @@
                         <input required maxlength="25" class="form-control" id="jabatan" type="text" />
                     </div>
                     <div class="form-group">
+                        <label class="form-label" for="jabatan">Divisi</label>
+                        <select required class="form-control" id="divisi">
+                            <option value=""></option>
+                            <option value="Human Resource & General Affairs">Human Resource & General Affairs</option>
+                            <option value="Rental Performance">Rental Performance</option>
+                            <option value="Mechanic">Mechanic</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Health, Safety, and Environment">Health, Safety, and Environment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label class="form-label" for="jabatan">Keterangan</label>
                         <input required maxlength="50" class="form-control" id="ket" type="text" />
                     </div>
@@ -48,6 +59,7 @@
         //-- identifikasi variable di ajax --
         let jabatan = $('#jabatan').val();
         let ket = $('#ket').val();
+        let divisi = $('#divisi').val();
         let token = $("meta[name='csrf-token']").attr("content");
 
         //-- proses store data --
@@ -58,6 +70,7 @@
             data: {
                 "jabatan": jabatan,
                 "ket": ket,
+                "divisi": divisi,
                 "_token": token
             },
             success: function(response) {
@@ -82,6 +95,9 @@
                     <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                         ${response.data.jabatan}
                     </td>
+                    <td class="text-black text-center fw-semi-bold align-middle white-space-nowrap div">
+                        ${response.data.divisi}
+                    </td>
                     <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                         ${response.data.ket}
                     </td>
@@ -94,6 +110,7 @@
                 //clear form
                 $('#jabatan').val('');
                 $('#ket').val('');
+                $('#divisi').val('');
 
                 //close modal
                 $('#modal-create').modal('hide');
