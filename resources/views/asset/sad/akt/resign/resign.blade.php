@@ -130,7 +130,7 @@
                         @else
                             <div class="table-responsive scrollbar">
                                 <table class="table table-bordered table-sm fs--1 mb-0">
-                                    <thead class="bg-secondary text-white">
+                                    <thead class="bg-200 text-800">
                                         <tr class="text-center">
                                             <th style="width: 50px" class="sort align-middle white-space-nowrap">#
                                             </th>
@@ -147,7 +147,7 @@
                                                 data-sort="name">Nama Karyawan
                                             </th>
                                             <th style="width: 200px"
-                                                class="sort bg-primary align-middle white-space-nowrap"
+                                                class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Status
                                             </th>
@@ -235,7 +235,7 @@
                         @else
                             <div class="table-responsive scrollbar">
                                 <table class="table table-bordered table-sm fs--1 mb-0">
-                                    <thead class="bg-secondary text-white">
+                                    <thead class="bg-200 text-800">
                                         <tr class="text-center">
                                             <th style="width: 50px" class="sort align-middle white-space-nowrap">#
                                             </th>
@@ -252,7 +252,7 @@
                                                 data-sort="name">Nama Karyawan
                                             </th>
                                             <th style="width: 200px"
-                                                class="sort bg-primary align-middle white-space-nowrap"
+                                                class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Status
                                             </th>
@@ -340,7 +340,7 @@
                         @else
                             <div class="table-responsive scrollbar">
                                 <table class="table table-bordered table-sm fs--1 mb-0">
-                                    <thead class="bg-secondary text-white">
+                                    <thead class="bg-200 text-800">
                                         <tr class="text-center">
                                             <th style="width: 50px" class="sort align-middle white-space-nowrap">#
                                             </th>
@@ -357,7 +357,7 @@
                                                 data-sort="name">Nama Karyawan
                                             </th>
                                             <th style="width: 200px"
-                                                class="sort bg-primary align-middle white-space-nowrap"
+                                                class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Status
                                             </th>

@@ -405,7 +405,8 @@
                     @if (Auth::user()->level == 2)
                         <li class="nav-item">
                             <div class="row navbar-vertical-label-wrapper mb-2">
-                                <div class="col-auto navbar-vertical-label"><span class="text-primary">Master Present</span></div>
+                                <div class="col-auto navbar-vertical-label"><span class="text-primary">Master
+                                        Present</span></div>
                                 <div class="col ps-0">
                                     <hr class="mb-0 navbar-vertical-divider text-primary" />
                                 </div>
@@ -588,8 +589,6 @@
                             </ul>
                         </li>
 
-
-
                         <!-- Setting Master-->
                         <li class="nav-item">
                             <a class="nav-link dropdown-indicator" href="#master" role="button"
@@ -623,7 +622,8 @@
 
                         <li class="nav-item">
                             <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-                                <div class="col-auto navbar-vertical-label"><span class="text-danger">Rekapitulasi Data</span></div>
+                                <div class="col-auto navbar-vertical-label"><span class="text-danger">Rekapitulasi
+                                        Data</span></div>
                                 <div class="col ps-0">
                                     <hr class="mb-0 navbar-vertical-divider text-danger" />
                                 </div>
@@ -647,7 +647,8 @@
 
                         <li class="nav-item">
                             <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-                                <div class="col-auto navbar-vertical-label"><span class="text-success">Division Data</span></div>
+                                <div class="col-auto navbar-vertical-label"><span class="text-success">Division
+                                        Data</span></div>
                                 <div class="col ps-0">
                                     <hr class="mb-0 navbar-vertical-divider text-success" />
                                 </div>
@@ -663,21 +664,50 @@
                                         HRGA</span></div>
                             </a>
                             <ul class="nav collapse" id="e-learning">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('kar.g') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Karyawan</span></div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('akun.g') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                                                Kelola Akun</span></div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('jab.g') }}">
+                                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#asubabi"
+                                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                                         <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Jabatan</span>
-                                        </div>
+                                                class="nav-link-text ps-1">Karyawan</span></div>
                                     </a><!-- more inner pages-->
+                                    <ul class="nav collapse" id="asubabi">
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('kar.g') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">
+                                                        Kelola Data</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('akun.g') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">
+                                                        Kelola Akun</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('jab.g') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Jabatan</span>
+                                                </div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item"><a class="nav-link dropdown-indicator" href="#asubabi222"
+                                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Pelayanan</span></div>
+                                    </a><!-- more inner pages-->
+                                    <ul class="nav collapse" id="asubabi222">
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">Data
+                                                        Resign</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('kim.g') }}">
+                                                <div class="d-flex align-items-center"><span
+                                                        class="nav-link-text ps-1">KIMPER</span></div>
+                                            </a><!-- more inner pages-->
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('sp.g') }}">
@@ -685,19 +715,9 @@
                                                 Peringatan</span></div>
                                     </a><!-- more inner pages-->
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('res.g') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data
-                                                Resign</span></div>
-                                    </a><!-- more inner pages-->
-                                </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('mut.g') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Mutasi</span></div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('kim.g') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">KIMPER</span></div>
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Mutasi
+                                                & PHK</span></div>
                                     </a><!-- more inner pages-->
                                 </li>
                             </ul>

@@ -23,8 +23,7 @@ class MutasiController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $kar = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Delete')
+        $kar = User::where('status', 'Aktif')
             ->orderBy('username', 'ASC')
             ->get();
         $site = Site::all();
@@ -61,9 +60,10 @@ class MutasiController extends Controller
             'site_id' => $request->site_id,
             'tgl_mutasi' => $request->tgl_mutasi,
             'status' => $request->status,
+            'password' => $request->password,
+            'password_view' => $request->password_view,
         ];
         $mut->update($data);
         return back()->with('success', 'Proses Mutasi Karyawan Berhasil');
     }
-
 }

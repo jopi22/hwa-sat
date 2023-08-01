@@ -154,7 +154,7 @@
         aria-labelledby="authentication-modal-label" aria-hidden="true">
         <div class="modal-dialog mt-6" style="max-width: 500px">
             <div class="modal-content border-0">
-                <div class="modal-header px-5 position-relative modal-shape-header bg-danger">
+                <div class="modal-header px-5 position-relative modal-shape-header bg-dark">
                     <div class="position-relative z-index-1 light">
                         <h5 class="mb-0 text-white" id="authentication-modal-label"><i class="fas fa-trash-alt"></i>
                             {{ $phk->kar_->name }}</h5>
@@ -167,12 +167,12 @@
                     <input type="hidden" name="status" value="PHK">
                     <div class="modal-body py-4 px-5">
                         <h5 class="text text-900">Anda Yakin, Untuk
-                            Melakukan PHK Untuk Data Ini</h5>
+                            Melakukan PHK Untuk Karyawan Ini</h5>
                     </div>
                     <div class="modal-footer">
                         <button data-bs-dismiss="modal" aria-label="Close" type="button" class=" btn btn-light"><i
                                 class="fas fa-times"></i> Batal</button>
-                        <button type="submit" class="btn btn-danger ms-2"><i class="fas fa-trash"></i> Ya,
+                        <button type="submit" class="btn btn-dark ms-2"><i class="fas fa-trash"></i> Ya,
                             Hapus</button>
                     </div>
                 </form>

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Mutasi | HWA &bull; SAT
+    Mutasi & PHK | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -26,27 +26,27 @@
 @endsection
 
 @section('superadmin')
-<div class="card mb-3 bg-100 shadow-none border">
-    <div class="row gx-0 flex-between-center">
-        <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-            <div>
-                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
-                <h4 class="mb-0 text-primary fw-bold">Mutasi Karyawan</h4>
+    <div class="card mb-3 bg-100 shadow-none border">
+        <div class="row gx-0 flex-between-center">
+            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                <div>
+                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                    <h4 class="mb-0 text-primary fw-bold">Mutasi & PHK</h4>
+                </div>
+            </div>
+            <div class="col-sm-auto d-flex align-items-center">
+                <form class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                            Division Data</span>
+                    </div>
+                </form>
+                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
+                    alt="" width="130" />
             </div>
         </div>
-        <div class="col-sm-auto d-flex align-items-center">
-            <form class="row align-items-center g-3">
-                <div class="col-auto">
-                    <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                        Division Data</span>
-                </div>
-            </form>
-            <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
-                alt="" width="130" />
-        </div>
     </div>
-</div>
 
     @include('comp.alert')
 
@@ -73,7 +73,7 @@
                         @endforeach
                     </select>
                 </div>&nbsp;
-                <div class="col-sm-auto">
+                {{-- <div class="col-sm-auto">
                     <div class="btn-group  btn-group-sm mx-2" role="group">
                         <div class="dropdown font-sans-serif d-inline-block">
                             <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
@@ -88,14 +88,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             @if ($cek == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
             @else
                 <div class="table-responsive scrollbar">
                     <table class="table table-sm table-striped table-bordered mb-0 fs--1 overflow-hidden">
-                        <thead class="bg-secondary text-white">
+                        <thead class="bg-200 text-800">
                             <tr class="text-center">
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
@@ -106,14 +106,14 @@
                                 <th style="min-width: 200px" class="sort align-middle white-space-nowrap" data-sort="name">
                                     Nama Karyawan
                                 </th>
-                                <th style="min-width: 200px" class="sort align-middle white-space-nowrap" data-sort="tgl">
-                                    Tgl Mutasi
-                                </th>
                                 <th style="min-width: 200px" class="sort align-middle white-space-nowrap" data-sort="site">
                                     Site
                                 </th>
+                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="site">
+                                    PHK
+                                </th>
                                 <th style="min-width: 500px" class="sort align-middle white-space-nowrap">
-                                    Pilih Mutasi
+                                    Pilih Site Mutasi
                                 </th>
                             </tr>
                         </thead>
@@ -137,19 +137,22 @@
                                             -
                                         @endif
                                     </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap tgl">
-                                        @if ($res->tgl_mutasi)
-                                            {{ $res->tgl_mutasi }}
-                                        @else
-                                            -
-                                        @endif
-                                    </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap site">
                                         @if ($res->site_id)
                                             {{ $res->site_->nama }}
                                         @else
                                             -
                                         @endif
+                                    </td>
+                                    <td class="align-middle text-center text-1000 white-space-nowrap site">
+                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="status" value="PHK">
+                                            <input type="hidden" name="tgl_mutasi" value="{{ date('d-m-Y') }}">
+                                            <button type="submit" class="btn btn-sm btn-dark">
+                                                PHK</button>
+                                        </form>
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                                         @if ($res->status == 'Resign')
@@ -255,5 +258,4 @@
         </div>
     </div>
 
-    @include('comp.modal.kar.modal_kar_delete')
 @endsection
