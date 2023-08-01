@@ -69,7 +69,7 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3">
+<div class="card mb-2">
     <div class="card-body d-flex justify-content-between">
         <div>
             <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
@@ -182,7 +182,7 @@
     </div>
 
    <div id="invoice">
-    <div class="card mb-3 font-sans-serif">
+    <div class="card mb-2 font-sans-serif">
         <div class="bg-holder bg-card d-none d-sm-block"
             style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
         <div class="card-body ">

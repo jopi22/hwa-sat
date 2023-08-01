@@ -38,92 +38,81 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3 bg-100 shadow-none border">
-    <div class="row gx-0 flex-between-center">
-        <div class="col-sm-auto d-flex align-items-center"><img class="ms-2"
-                src="{{ asset('assets/img/illustrations/reports-greeting.png') }}" alt="" width="60" />
-            <div class="ms-4">
-                <h6 class="text-primary fs--1 mb-0"><i class="fas fa-users"></i> Human Resource & General Affairs
-                </h6>
-                <h4 class="text-primary fw-bold mb-0">Kalender {{ $cek->created_at->format('F Y') }}</h4>
+    <div class="card mb-3 bg-light shadow-none">
+        <div class="bg-holder bg-card d-none d-sm-block"
+            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+        <!--/.bg-holder-->
+        <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+            <div class="ms-n3">
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
+                        class="text-danger">{{ $cek->created_at->format('F Y') }}</span></h6>
+                <h4 class="mb-0 text-primary fw-bold">Kalender Absen {{ $cek->created_at->format('F Y') }}<span
+                        class="text-info fw-medium"></span></h4>
             </div>
-        </div>
-        <div class="col-sm-auto d-flex align-items-center">
-            <form class="row align-items-center g-3">
-                <div class="col-auto">
-                    <h6 class="text-danger mb-0">Rekapitulasi Master :</h6>
-                </div>
-                <div class="col-md-auto">
-                    <h6 class="mb-0">{{ $cek->created_at->format('F Y') }}</h6>
-                </div>
-            </form>
-            <img class="ms-2 d-md-none d-lg-block"
-                src="{{ asset('assets/img/icons/spot-illustrations/corner-1.png') }}" alt=""
-                width="90" />
         </div>
     </div>
-</div>
 
-<div class="card mb-3">
-    <div class="card-body py-5 py-sm-3">
-        <div class="row g-5 g-sm-0">
-            <div class="col-sm-2">
-                <div class="border-sm-end border-300">
-                    <div class="text-center">
-                        <h6 class="text-success">Kehadiran Total</h6>
-                        <h3 class="fw-normal text-success" data-countup='{"endValue":{{ $hadir }}}'>0
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="border-sm-end border-300">
-                    <div class="text-center">
-                        <h6 class="text-danger">Alpha Total</h6>
-                        <h3 class="fw-normal text-danger" data-countup='{"endValue":{{ $alpha }}}'>0
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="border-sm-end border-300">
-                    <div class="text-center">
-                        <h6 class="text-warning">Cuti Total</h6>
-                        <h3 class="fw-normal text-warning" data-countup='{"endValue":{{ $cuti }}}'>0
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="border-sm-end border-300">
-                    <div class="text-center">
-                        <h6 class="text-info">Izin Ket/Tanpa Ket</h6>
+    <div class="card mb-3">
+        <div class="card-body py-5 py-sm-3">
+            <div class="row g-5 g-sm-0">
+                <div class="col-sm-2">
+                    <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h3 class="fw-normal text-info">{{ $izin_k }}/{{ $izin_tk }}</h3>
+                            <h6 class="text-success">Kehadiran Total</h6>
+                            <h3 class="fw-normal text-success" data-countup='{"endValue":{{ $hadir }}}'>0
+                            </h3>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="border-sm-end border-300">
-                    <div class="text-center">
-                        <h6 class="text-info">Sakit Ket/Tanpa Ket</h6>
-                        <h3 class="fw-normal text-info">{{ $sakit_k }}/{{ $sakit_tk }}</h3>
+                <div class="col-sm-2">
+                    <div class="border-sm-end border-300">
+                        <div class="text-center">
+                            <h6 class="text-danger">Alpha Total</h6>
+                            <h3 class="fw-normal text-danger" data-countup='{"endValue":{{ $alpha }}}'>0
+                            </h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-2">
-                <div>
-                    <div class="text-center">
-                        <h6 class="text-700">Progres Absensi (%)</h6>
-                        <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $progres }}}'>0</h3>
+                <div class="col-sm-2">
+                    <div class="border-sm-end border-300">
+                        <div class="text-center">
+                            <h6 class="text-warning">Cuti Total</h6>
+                            <h3 class="fw-normal text-warning" data-countup='{"endValue":{{ $cuti }}}'>0
+                            </h3>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-sm-2">
+                    <div class="border-sm-end border-300">
+                        <div class="text-center">
+                            <h6 class="text-info">Izin Ket/Tanpa Ket</h6>
+                            <div class="text-center">
+                                <h3 class="fw-normal text-info">{{ $izin_k }}/{{ $izin_tk }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="border-sm-end border-300">
+                        <div class="text-center">
+                            <h6 class="text-info">Sakit Ket/Tanpa Ket</h6>
+                            <h3 class="fw-normal text-info">{{ $sakit_k }}/{{ $sakit_tk }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div>
+                        <div class="text-center">
+                            <h6 class="text-700">Progres Absensi (%)</h6>
+                            <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $progres }}}'>0</h3>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 
     @foreach ($abs as $item)
         @if ($item->periode_id)
@@ -552,7 +541,7 @@
                             @foreach ($kar as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger">
                                     <td class="align-middle white-space-nowrap fw-semi-bold text-black">
-                                        K{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}</td>
+                                        {{ $res->username }}</td>
                                     <td class="align-middle white-space-nowrap fw-semi-bold text-black">
                                         {{ $res->name }}</td>
                                     @foreach ($res->absensi_ as $item)

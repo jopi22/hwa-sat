@@ -174,37 +174,50 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
-            <div class="card mb-3 bg-100 shadow-none border">
-                <div class="row gx-0 flex-between-center">
-                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                            width="90" />
-                        <div>
-                            <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
-                            </h6>
-                            <h4 class="text-primary fw-bold mb-0">Hauling & Timbangan</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-auto d-flex align-items-center">
-                        <form class="row align-items-center g-3">
-                            <div class="col-auto">
-                                <h6 class="text-info mb-0">Master Present :</h6>
-                            </div>
-                            <div class="col-md-auto">
-                                <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
-                            </div>
-                        </form>
-                        <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
-                            alt="" width="150" />
+            <div class="card mb-2 bg-light shadow-none">
+                <div class="bg-holder bg-card d-none d-sm-block"
+                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                <!--/.bg-holder-->
+                <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                        width="96" />
+                    <div class="ms-n3">
+                        <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
+                                class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                        <h4 class="mb-0 text-primary fw-bold">Hauling & Timbangan
+                            <span class="text-info fw-medium"></span>
+                        </h4>
                     </div>
                 </div>
             </div>
 
+
             @include('comp.alert')
 
-            <div class="card mb-3">
+            <div class="card mb-2">
                 <div class="card-header bg-light py-2">
-                    {{-- // --}}
+                    <div class="d-lg-flex justify-content-between">
+                        <div class="row flex-between-center gy-2 px-x1">
+                            <div class="col-auto pe-0">
+                                {{-- // --}}
+                            </div>
+                        </div>
+                        <div class="border-bottom border-200 my-3"></div>
+                        <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                            <div class="col-auto pe-0">
+                                <div class="btn-group  btn-group-sm mx-2" role="group">
+                                    <a href="#"><button class="btn btn-sm btn-falcon-success mx-2"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseExample" type="button"><span
+                                                data-fa-transform="shrink-3" class="fas fa-plus"></span></button></a>
+                                    <a href="{{ route('ha.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
+                                        target="_blank" rel="noopener noreferrer">
+                                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane preview-tab-pane active" role="tabpanel"
@@ -219,7 +232,7 @@
                                             <table id="tableEstimate"
                                                 class="table table-sm table-striped table-bordered mb-0 fs--1"
                                                 data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
-                                                <thead class="bg-200 text-800">
+                                                <thead class="">
                                                     <tr class="text-center bg-secondary text-white">
                                                         <th style="min-width: 20px"
                                                             class="sort bg-secondary text-white align-middle white-space-nowrap">
@@ -360,62 +373,55 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-auto">
-                            <div class="btn-group  btn-group-sm mx-2" role="group">
-                                <a href="#"><button class="btn btn-sm btn-falcon-success mx-2"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseExample" type="button"><span
-                                            data-fa-transform="shrink-3" class="fas fa-plus"></span></button></a>
-                                <a href="{{ route('ha.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
                     </div>
-                    <div class="table-responsive scrollbar">
-                        <table class="table mb-0  table-bordered fs--1"
-                            data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true}'>
-                            <thead class="bg-200 text-center text-900">
-                                <tr>
-                                    <th class="sort bg-secondary text-white">#</th>
-                                    <th class="sort bg-secondary text-white">Aksi</th>
-                                    <th class="sort bg-secondary text-white">Tanggal</th>
-                                    <th class="sort bg-secondary text-white" sorted="nama">Driver</th>
-                                    <th class="sort bg-secondary text-white">No Unit</th>
-                                    <th class="sort bg-secondary text-white">Start Location</th>
-                                    <th class="sort bg-secondary text-white">End Location</th>
-                                    <th class="sort bg-secondary text-white">Dedicated</th>
-                                    <th class="sort text-end bg-primary text-white">Timbangan</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($hauling as $asu)
-                                    <tr class="fw-semi-bold">
-                                        <td class="text-1000">{{ $loop->iteration }}</td>
-                                        <td class="text-center">
-                                            <div class="btn-group  btn-group-sm" role="group">
-                                                <a class="btn btn-warning" type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-{{ $asu->id }}"><i
-                                                        class="fas fa-edit"></i></a>
-                                                <a class="btn btn-danger" type="button" data-bs-toggle="modal"
-                                                    data-bs-target="#hapus-{{ $asu->id }}" data-bs-placement="top"
-                                                    title="Absensi Karyawan"><i class="fas fa-trash-alt"></i></a>
-
-                                            </div>
-                                        </td>
-                                        <td class="text-1000">{{ $asu->tgl->format('d-m-Y') }}</td>
-                                        <td class="text-1000 nama">{{ $asu->kar_->name }}</td>
-                                        <td class="text-1000 text-center">{{ $asu->equip_->no_unit }}</td>
-                                        <td class="text-1000 text-center">{{ $asu->loc_s->location }}</td>
-                                        <td class="text-1000 text-center">{{ $asu->loc_e->location }}</td>
-                                        <td class="text-1000 text-center">{{ $asu->dedi_->dedicated }}</td>
-                                        <td class="text-end bg-200 text-1000">{{ $asu->timbangan }}</td>
+                    @if ($cek == 0)
+                        <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
+                    @else
+                        <div class="table-responsive scrollbar">
+                            <table class="table mb-0 table-sm  table-bordered fs--1"
+                                data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true}'>
+                                <thead class="bg-200 text-center text-900">
+                                    <tr>
+                                        <th class="sort bg-secondary text-white">#</th>
+                                        <th class="sort bg-secondary text-white">Aksi</th>
+                                        <th class="sort bg-secondary text-white">Tanggal</th>
+                                        <th class="sort bg-secondary text-white" sorted="nama">Driver</th>
+                                        <th class="sort bg-secondary text-white">No Unit</th>
+                                        <th class="sort bg-secondary text-white">Start Location</th>
+                                        <th class="sort bg-secondary text-white">End Location</th>
+                                        <th class="sort bg-secondary text-white">Dedicated</th>
+                                        <th class="sort text-end bg-primary text-white">Timbangan</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody>
+                                    @foreach ($hauling as $asu)
+                                        <tr class="fw-semi-bold">
+                                            <td class="text-1000">{{ $loop->iteration }}</td>
+                                            <td class="text-center">
+                                                <div class="btn-group  btn-group-sm" role="group">
+                                                    <a class="btn btn-warning" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#edit-{{ $asu->id }}"><i
+                                                            class="fas fa-edit"></i></a>
+                                                    <a class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#hapus-{{ $asu->id }}"
+                                                        data-bs-placement="top" title="Absensi Karyawan"><i
+                                                            class="fas fa-trash-alt"></i></a>
+
+                                                </div>
+                                            </td>
+                                            <td class="text-1000">{{ $asu->tgl->format('d-m-Y') }}</td>
+                                            <td class="text-1000 nama">{{ $asu->kar_->name }}</td>
+                                            <td class="text-1000 text-center">{{ $asu->equip_->no_unit }}</td>
+                                            <td class="text-1000 text-center">{{ $asu->loc_s->location }}</td>
+                                            <td class="text-1000 text-center">{{ $asu->loc_e->location }}</td>
+                                            <td class="text-1000 text-center">{{ $asu->dedi_->dedicated }}</td>
+                                            <td class="text-end bg-200 text-1000">{{ $asu->timbangan }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
                 </div>
                 <div class="card-footer bg-light d-flex flex-between-end py-3">
                     {{-- // --}}

@@ -7,6 +7,7 @@ use App\Models\CateringMaster;
 use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\KarMaster;
+use App\Models\Kas;
 use App\Models\Master;
 use App\Models\Navigator;
 use App\Models\User;
@@ -33,7 +34,7 @@ class MasterController extends Controller
         $per = Master::where('status', 'Present')->first();
         $equip = Equipment::where('status', 'Aktif')->get();
         $cek_cat = CateringMaster::where('master_id', $cek->id)->count();
-        return view('author.sad.mas.mas_generate', compact('cek','nav', 'cek_null', 'pokok', 'cek_cat', 'insentif', 'lemburan', 'periode', 'kar', 'per', 'equip'));
+        return view('author.sad.mas.mas_generate', compact('cek', 'nav', 'cek_null', 'pokok', 'cek_cat', 'insentif', 'lemburan', 'periode', 'kar', 'per', 'equip'));
     }
 
 
@@ -51,7 +52,7 @@ class MasterController extends Controller
         $kar_m = KarMaster::where('master_id', $cek->id)->count();
         $kar_list = KarMaster::where('master_id', $cek->id)->get();
         $kar_all = KarMaster::all()->count();
-        return view('author.sad.mas.mas_kar', compact('cek','nav', 'periode', 'kar', 'per', 'equip', 'kar_m', 'kar_all', 'kar_list'));
+        return view('author.sad.mas.mas_kar', compact('cek', 'nav', 'periode', 'kar', 'per', 'equip', 'kar_m', 'kar_all', 'kar_list'));
     }
 
 
@@ -64,7 +65,7 @@ class MasterController extends Controller
         $equip_m = EquipMaster::where('master_id', $cek->id)->count();
         $equip_all = EquipMaster::all()->count();
         $equip = Equipment::where('status', 'Aktif')->get();
-        return view('author.sad.mas.mas_equip', compact('periode','nav' ,'cek', 'equip_list', 'equip_m', 'equip_all', 'equip'));
+        return view('author.sad.mas.mas_equip', compact('periode', 'nav', 'cek', 'equip_list', 'equip_m', 'equip_all', 'equip'));
     }
 
 
@@ -105,6 +106,33 @@ class MasterController extends Controller
             'lemburan' => $request->lemburan_old,
             'created_at' => $request->created_at_old,
             'updated_at' => $request->updated_at_old,
+        ]);
+
+
+
+        $master = Master::where('status', 'Present')->first();
+        $valid = Master::where('status', 'Validasi')->first();
+        $debit = Kas::where('master_id', $valid->id)->where('tipe', 'Debit')->sum('jumlah');
+        $kredit = Kas::where('master_id', $valid->id)->where('tipe', 'Kredit')->sum('jumlah');
+        $saldo = $debit - $kredit;
+        $debit_pusat = Kas::where('master_id', $valid->id)->where('tipe', 'Debit Pusat')->sum('jumlah');
+        $kredit_pusat = Kas::where('master_id', $valid->id)->where('tipe', 'Kredit Pusat')->sum('jumlah');
+        $saldo_pusat = $debit_pusat - $kredit_pusat;
+
+        $status = 'Master';
+        $site = 'Debit';
+        $pusat = 'Debit Pusat';
+        Kas::create([
+            'jumlah' => $saldo,
+            'master_id' => $master->id,
+            'status' => $status,
+            'tipe' => $site,
+        ]);
+        Kas::create([
+            'jumlah' => $saldo_pusat,
+            'master_id' => $master->id,
+            'status' => $status,
+            'tipe' => $pusat,
         ]);
         return back()->with('success', 'Update Data Master Berhasil');
     }
@@ -321,5 +349,4 @@ class MasterController extends Controller
         ]);
         return back()->with('success', 'Generate Data Equipment Berhasil');
     }
-
 }

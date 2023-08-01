@@ -83,6 +83,7 @@ class AbsensiController extends Controller
             $abs['status'] = $request->status[$key];
             $abs['periode_id'] = $request->periode_id[$key];
             $abs['kode_unik'] = $request->kode_unik[$key];
+            $abs['kontrol'] = $request->kontrol[$key];
             Absensi::create($abs);
         }
         return redirect()->back()->with('success', 'Absensi Berhasil Disimpan');

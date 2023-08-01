@@ -92,12 +92,13 @@ Kelola Absensi | Rekapitulasi
                             <table id="tblToExcl" class="table table-bordered table-striped fs--1 mb-0">
                                 <thead class="bg-200 text-900">
                                     <tr>
-                                        <th style="min-width: 250px">ID Absensi</th>
-                                        <th style="min-width: 250px">Tgl Absensi</th>
-                                        <th style="min-width: 250px" class="text-center text-white bg-danger text-1000">Aksi
+                                        <th style="min-width: 150px">Tgl Absensi</th>
+                                        <th style="min-width: 250px"
+                                            class="text-center text-white bg-danger text-1000">Aksi
                                         </th>
                                         <th style="min-width: 250px" class="sort" data-sort="name">Nama</th>
-                                        <th style="min-width: 250px" class="sort" data-sort="id">ID Karyawan</th>
+                                        <th style="min-width: 250px" class="sort" data-sort="id">NIK</th>
+                                        <th style="min-width: 250px">ID Absensi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
@@ -107,11 +108,12 @@ Kelola Absensi | Rekapitulasi
                                         <input type="hidden" name="tgl[]" value="{{ $res->tgl }}">
                                         <input type="hidden" name="karyawan[]" value="{{ $res->karyawan }}">
                                         <input type="hidden" name="periode_id[]" value="{{ $res->periode_id }}">
-                                        <input type="hidden" name="pengajuan_fk[]" value="{{ $res->pengajuan_fk }}">
+                                        <input type="hidden" name="kontrol[]" value="{{ $res->kontrol }}">
+                                        <input type="hidden" name="pengajuan_fk[]"
+                                            value="{{ $res->pengajuan_fk }}">
                                         <input type="hidden" name="kode_unik[]" value="{{ $res->kode_unik }}">
                                         <tr>
-                                            <td class="align-middle text-1000 fw-semi-bold">{{ $res->id }}
-                                            </td>
+
                                             <td class="align-middle text-1000 fw-semi-bold">{{ $res->tgl }}
                                             </td>
                                             <td class="align-middle text-1000 fw-semi-bold text-center">
@@ -121,31 +123,32 @@ Kelola Absensi | Rekapitulasi
                                                     <option value="1">Hadir</option>
                                                     <option value="7">Alpha / AFK</option>
                                                     <option value="2">Sakit</option>
-                                                    <option value="4">Izin Tanpa Keterangan</option>
-                                                    <option value="5">Izin Disertai Keterangan</option>
+                                                    <option value="4">Izin</option>
                                                 </select>
                                             </td>
                                             <td class="name text-1000 fw-semi-bold align-middle">
                                                 {{ $res->karyawan_->name }}
                                             </td>
                                             <td class="id text-1000 fw-semi-bold align-middle">
-                                                K{{ $res->karyawan_->tgl_gabung->format('ym') }}{{ $res->karyawan_->id }}
+                                                {{ $res->karyawan_->username }}
+                                            </td>
+                                            <td class="align-middle text-1000 fw-semi-bold">{{ $res->id }}
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th style="min-width: 250px">ID Absensi</th>
-                                        <th style="min-width: 250px">Tgl Absensi</th>
-                                        <th style="min-width: 250px" class="text-center bg-200 text-1000">
+                                        <th>ID Absensi</th>
+                                        <th class="text-center bg-200 text-1000">
                                             <div class="d-grid gap-2">
                                                 <button class="btn btn-success btn-block" type="submit"><i
                                                         class="fas fa-save me-1"></i>Simpan</button>
                                             </div>
                                         </th>
-                                        <th style="min-width: 250px">Nama</th>
-                                        <th style="min-width: 250px">ID Karyawan</th>
+                                        <th>Tgl Absensi</th>
+                                        <th>Nama</th>
+                                        <th>ID Karyawan</th>
                                     </tr>
                                 </tfoot>
                             </table>

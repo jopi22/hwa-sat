@@ -26,68 +26,16 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3">
-        <div class="card-body d-flex justify-content-between">
-            <div>
-                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ date('F Y') }}</span>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.e') }}" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Back to Main Table">
-                    <span class="fas fa-list"></span>
-                </a>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <span class=" fw-semi-bold text-primary"> Performance Hours Meter / {{ $equip_m->equip_->tipe }} / <span
-                        class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+        <div class="col d-flex align-items-center">
+            <div class="ms-1">&nbsp;
+                <span class=" fw-semi-bold text-primary"> Performance /
+                    <span class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
             </div>
-            <div class="col-auto d-flex align-items-center">
-                <form action="{{ route('hm.e.r') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="equip_id_bro" value="{{ $equip_m->equip_id }}">
-                    <input type="hidden" name="delete_id_m" value="{{ $equip_m->id }}">
-                    <input type="hidden" name="id_m" value="{{ $equip_m->id }}">
-                    <input type="hidden" name="master_id_m" value="{{ $equip_m->master_id }}">
-                    <input type="hidden" name="equip_id_m" value="{{ $equip_m->equip_id }}">
-                    <input type="hidden" name="kode_unik" value="{{ $equip_m->kode_unik }}">
-                    <button class="btn btn-falcon-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
-                        Sinkronisasi</button>
-                </form>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                    <a href="{{ route('hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
-                        <button class="btn btn-sm active text-primary" data-bs-toggle="pill"
-                            data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button" role="tab"
-                            aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" aria-selected="true"
-                            id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
-                    </a>
-                    <a href="{{ route('hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
-                        <button class="btn btn-sm  text-warning" data-bs-toggle="pill"
-                            data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
-                            aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="false"
-                            id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
-                    </a>
-                    <a href="{{ route('hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
-                        <button class="btn btn-sm text-success" data-bs-toggle="pill"
-                            data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button" role="tab"
-                            aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" aria-selected="false"
-                            id="tab-dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc">Tambah</button>
-                    </a>
-                </div>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <div class="position-relative">&nbsp;
-                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                            class="fas fa-truck-monster"></i></button>
-                </div>
-                <div class="position-relative">&nbsp;
-                    <div class="dropdown font-sans-serif d-inline-block">
-                        <a target="_blank"
-                            href="{{ route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id)) }}"><button
-                                class="btn btn-sm btn-falcon-success" type="button"><i
-                                    class="fas fa-file-excel"></i></button></a>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+            <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ date('F Y') }}</span>
         </div>
     </div>
 
@@ -111,19 +59,18 @@
                 <div class="table-responsive scrollbar">
                     <table class="table table-sm table-striped table-bordered mb-0 fs--1"
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
-                        <thead class="bg-200 text-800">
+                        <thead class="bg-secondary text-white">
                             <tr class="text-center">
                                 <th style="min-width: 150px"
                                     class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="tgl">
-                                    No Unit
+                                    Aksi
                                 </th>
                                 <th style="min-width: 100px"
-                                    class="sort bg-primary text-white align-middle white-space-nowrap"
-                                    data-sort="payment">
-                                    Type
+                                    class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="payment">
+                                    No Unit
                                 </th>
                                 <th style="min-width: 50px" class="bg-primary text-white align-middle white-space-nowrap">
-                                    Aksi
+                                    Tipe
                                 </th>
                             </tr>
                         </thead>
@@ -133,8 +80,7 @@
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         <div class="btn-group  btn-group-sm" role="group">
                                             <a href="{{ route('hm.e.i', Crypt::encryptString($res->equip_id)) }}"
-                                                class="btn btn-info" type="button"><i
-                                                    class="fas fa-info-circle"></i></a>
+                                                class="btn btn-info" type="button"><i class="fas fa-info-circle"></i></a>
                                             <a href="{{ route('hm.e.e', Crypt::encryptString($res->equip_id)) }}"
                                                 class="btn btn-warning" type="button"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('hm.e.c', Crypt::encryptString($res->equip_id)) }}"
@@ -191,8 +137,8 @@
                         <div>
                             <div class="text-center">
                                 <h6 class="text-primary">Jumlah Grand HM</h6>
-                                <h3 class="fw-normal text-primary"
-                                    data-countup='{"endValue":{{ $equip_m->grand_total }}}'>0
+                                <h3 class="fw-normal text-primary" data-countup='{"endValue":{{ $equip_m->grand_total }}}'>
+                                    0
                                 </h3>
                             </div>
                         </div>
@@ -206,9 +152,8 @@
                 <div class="row g-0">
                     <div class="col-md-12 border-200 border-md-200 border-bottom  pb-x1 pe-md-x1">
                         <div class="row g-0">
-                            <div class="col-2"><img class="mt-1"
-                                    src="{{ asset('assets/img/tickets/reports/7.png') }}" alt=""
-                                    width="39" />
+                            <div class="col-2"><img class="mt-1" src="{{ asset('assets/img/tickets/reports/7.png') }}"
+                                    alt="" width="39" />
                                 <h2 class="mt-2 mb-1 text-700 fw-normal">{{ $rata2 }}<span
                                         class="fas fa-caret-up ms-2 me-1 fs--1 text-primary"></span></h2>
                                 <h6 class="mb-0">Rata2 HM/Hari</h6>
@@ -233,8 +178,65 @@
     @endif
 
     <div class="card mt-3 mb-3">
-        <div class="card-header bg-light d-flex flex-between-center py-1">
-            {{-- // --}}
+        <div class="card-header border-bottom border-200 px-0">
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.e') }}" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Back to Main Table">
+                            <span class="fas fa-arrow-left"></span>
+                        </a>
+                    </div>
+
+                    <div class="col-auto pe-0">
+                        <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                            <a href="{{ route('hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
+                                <button class="btn btn-sm active text-primary" data-bs-toggle="pill"
+                                    data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button"
+                                    role="tab" aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77"
+                                    aria-selected="true" id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
+                            </a>
+                            <a href="{{ route('hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
+                                <button class="btn btn-sm  text-warning" data-bs-toggle="pill"
+                                    data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
+                                    aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="false"
+                                    id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
+                            </a>
+                            <a href="{{ route('hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
+                                <button class="btn btn-sm text-success" data-bs-toggle="pill"
+                                    data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button"
+                                    role="tab" aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc"
+                                    aria-selected="false"
+                                    id="tab-dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc">Tambah</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <form action="{{ route('hm.e.r') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="equip_id_bro" value="{{ $equip_m->equip_id }}">
+                        <input type="hidden" name="delete_id_m" value="{{ $equip_m->id }}">
+                        <input type="hidden" name="id_m" value="{{ $equip_m->id }}">
+                        <input type="hidden" name="master_id_m" value="{{ $equip_m->master_id }}">
+                        <input type="hidden" name="equip_id_m" value="{{ $equip_m->equip_id }}">
+                        <input type="hidden" name="kode_unik" value="{{ $equip_m->kode_unik }}">
+                        <button class="btn btn-falcon-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
+                            Sinkronisasi</button>
+                    </form>
+                    <div class="bg-300 mx-3 d-none d-lg-block" style="width:1px; height:29px"></div>
+                    <div class="d-flex align-items-center" id="table-ticket-replace-element">
+                        <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+                                class="fas fa-truck-monster"></i></button>
+                        <a target="_blank"
+                            href="{{ route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id)) }}"><button
+                                class="btn btn-sm btn-falcon-success ms-2" type="button"><i
+                                    class="fas fa-file-excel"></i></button></a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="tableExample4"
             data-list='{"valueNames":["id","no","tgl","nik","payment","dedi","lokasi","shift","remark"],"filter":{"key":"payment"}}'>
@@ -260,10 +262,10 @@
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
             @else
                 <div class="table-responsive scrollbar">
-                    <table class="table table-bordered mb-0 fs--1"
+                    <table class="table table-sm table-bordered mb-0 fs--1"
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
-                        <thead class="bg-200 text-800">
-                            <tr class="text-center text-white bg-secondary">
+                        <thead class="bg-secondary text-white">
+                            <tr class="text-center">
                                 <th style="min-width: 100px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     Aksi
                                 </th>
@@ -285,16 +287,19 @@
                                     data-sort="payment">Operator /
                                     Driver
                                 </th>
-                                <th style="min-width: 80px" class="sort bg-primary align-middle white-space-nowrap">
+                                <th style="min-width: 80px"
+                                    class="sort bg-primary text-white align-middle white-space-nowrap">
                                     HM Awal</th>
                                 <th style="min-width: 80px"
-                                    class="sort bg-primary align-middle white-space-nowrap text-center">
+                                    class="sort bg-primary text-white align-middle white-space-nowrap text-center">
                                     HM Akhir
                                 </th>
-                                <th style="min-width: 80px" class="sort bg-primary align-middle white-space-nowrap">
+                                <th style="min-width: 80px"
+                                    class="sort bg-primary text-white align-middle white-space-nowrap">
                                     Jumlah HM
                                 </th>
-                                <th style="min-width: 80px" class="sort align-middle bg-danger white-space-nowrap">
+                                <th style="min-width: 80px"
+                                    class="sort align-middle bg-danger text-white white-space-nowrap">
                                     HM
                                     Potongan
                                 </th>

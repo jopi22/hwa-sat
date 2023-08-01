@@ -5,11 +5,11 @@
 @endsection
 
 @section('sad_menu')
-    @if ($master->periode == $periode)
+    {{-- @if ($master->periode == $periode) --}}
         @include('layouts.panel.sad.vertikal_rekap')
-    @else
+    {{-- @else
         @include('layouts.panel.sad.vertikal_off')
-    @endif
+    @endif --}}
 @endsection
 
 @section('link')

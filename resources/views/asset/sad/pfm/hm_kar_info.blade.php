@@ -26,44 +26,18 @@
 
 @section('konten')
     @if ($master->periode == $periode)
-        <div class="card mb-3">
-            <div class="card-body d-flex justify-content-between">
-                <div>
-                    <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                        {{ date('F Y') }}</span>
-                    <span class="mx-1 mx-sm-2 text-300">| </span>
-                    <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.p.od') }}" data-bs-toggle="tooltip"
-                        data-bs-placement="top" title="Back to Main Table">
-                        <span class="fas fa-list"></span>
-                    </a>
-                    <span class="mx-1 mx-sm-2 text-300">| </span>
-                    <span class=" fw-semi-bold text-primary"> Performance :
-                        <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
-                </div>
-                <div class="col-auto d-flex align-items-center">
-                    <form action="{{ route('hm.k.r') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="bro_id" value="{{ $kar->id }}">
-                        <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i
-                                class="fab fa-slack"></i>
-                            Sinkron</button>
-                    </form>
-                    <div class="position-relative">&nbsp;
-                        <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                                class="fas fa-users"></i></button>
-                    </div>
-                    <span class="mx-1 mx-sm-2 text-300">| </span>
-                    <div class="position-relative">&nbsp;
-                        <div class="dropdown font-sans-serif d-inline-block">
-                            <a href="{{ route('hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
-                                    class="btn btn-sm btn-falcon-success"type="button"><i
-                                        class="fas fa-file-excel"></i></button></a>
-                        </div>
-                    </div>
-                </div>
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+        <div class="col d-flex align-items-center">
+            <div class="ms-1">&nbsp;
+                <span class=" fw-semi-bold text-primary"> Performance O/D /
+                    <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
             </div>
         </div>
+        <div class="col-auto d-flex align-items-center">
+            <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ date('F Y') }}</span>
+        </div>
+    </div>
 
         @include('comp.alert')
 
@@ -294,8 +268,42 @@
         </div> --}}
 
         <div class="card mb-3">
-            <div class="card-header bg-light">
-                {{-- // --}}
+            <div class="card-header border-bottom border-200 px-0">
+                <div class="d-lg-flex justify-content-between">
+                    <div class="row flex-between-center gy-2 px-x1">
+                        <div class="col-auto pe-0">
+                            <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.p.od') }}"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Back to Main Table">
+                                <span class="fas fa-arrow-left"></span>
+                            </a>
+                        </div>
+                        <div class="col-auto pe-0">
+                            <form action="{{ route('hm.k.r') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="bro_id" value="{{ $kar->id }}">
+                                <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i
+                                        class="fab fa-slack"></i>
+                                    Sinkronisasi</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="border-bottom border-200 my-3"></div>
+
+                    <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                        {{-- <div class="bg-300 mx-3 d-none d-lg-block" style="width:1px; height:29px"></div> --}}
+                        <div class="d-flex align-items-center" id="table-ticket-replace-element">
+                            <button class="btn btn-falcon-default text-info btn-sm" type="button"
+                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                aria-controls="offcanvasRight"><i class="fas fa-truck-monster"></i></button>
+                        </div>
+                        <div class="dropdown ms-2 font-sans-serif d-inline-block">
+                            <a href="{{ route('hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
+                                    class="btn btn-sm btn-falcon-success"type="button"><i
+                                        class="fas fa-file-excel"></i></button></a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="tableExample4"
                 data-list='{"valueNames":["nama","id", "payment","ins","hm"],"filter":{"key":"payment"}}'>
@@ -312,7 +320,7 @@
                     <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                 @else
                     <div class="table-responsive scrollbar">
-                        <table class="table table-bordered mb-0 fs--1"
+                        <table class="table table-sm table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">
@@ -455,6 +463,6 @@
             </div>
         </div>
     @else
-    @include('comp.card.card404')
+        @include('comp.card.card404')
     @endif
 @endsection

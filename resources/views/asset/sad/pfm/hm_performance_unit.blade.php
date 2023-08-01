@@ -195,48 +195,50 @@
                         </div>
                     </div>
                 @endif --}}
-                <div class="card mb-3 bg-100 shadow-none border">
-                    <div class="row gx-0 flex-between-center">
-                        <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                                width="90" />
-                            <div>
-                                <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
-                                </h6>
-                                <h4 class="text-primary fw-bold mb-0">Performance Unit</h4>
-                            </div>
-                        </div>
-                        <div class="col-sm-auto d-flex align-items-center">
-                            <form class="row align-items-center g-3">
-                                <div class="col-auto">
-                                    <h6 class="text-info mb-0">Master Present :</h6>
-                                </div>
-                                <div class="col-md-auto">
-                                    <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
-                                </div>
-                            </form>
-                            <img class="ms-2 d-md-none d-lg-block"
-                                src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
-                                width="150" />
+                <div class="card mb-2 bg-light shadow-none">
+                    <div class="bg-holder bg-card d-none d-sm-block"
+                        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                    <!--/.bg-holder-->
+                    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                            width="96" />
+                        <div class="ms-n3">
+                            <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
+                                    class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                            <h4 class="mb-0 text-primary fw-bold">Performance Unit
+                                <span class="text-info fw-medium"></span>
+                            </h4>
                         </div>
                     </div>
                 </div>
 
                 @include('comp.alert')
 
-                <div class="card overflow-hidden mb-3">
+                <div class="card overflow-hidden mb-2">
                     <div class="card-header bg-light">
-                        <div class="row flex-between-left">
-                            <div class="col-auto ms-2">
-                                <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                                    <a href="{{ route('hm.p') }}"><button class="btn btn-sm text-primary"
-                                            type="button"><i class="fas fa-stopwatch"></i> Hours Meter</button></a>
-                                    <a href="{{ route('hm.p.u') }}"><button class="btn btn-sm active text-warning"
-                                            type="button"><i class="fas fa-truck-monster"></i>
-                                            Unit</button></a>
-                                    <a href="{{ route('hm.p.od') }}"><button class="btn btn-sm text-primary"
-                                            type="button"><i class="fas fa-users"></i> Operator &
-                                            Driver</button></a>
+                        <div class="d-lg-flex justify-content-between">
+                            <div class="row flex-between-center gy-2 px-x1">
+                                <div class="col-auto pe-0">
+                                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                                        <a href="{{ route('hm.p') }}"><button class="btn btn-sm text-primary"
+                                                type="button"><i class="fas fa-stopwatch"></i> Hours Meter</button></a>
+                                        <a href="{{ route('hm.p.u') }}"><button class="btn btn-sm active text-warning"
+                                                type="button"><i class="fas fa-truck-monster"></i>
+                                                Unit</button></a>
+                                        <a href="{{ route('hm.p.od') }}"><button class="btn btn-sm text-primary"
+                                                type="button"><i class="fas fa-users"></i> Operator &
+                                                Driver</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="border-bottom border-200 my-3"></div>
+                            <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                                <div class="col-auto pe-0">
+                                    <a href="{{ route('hm.u.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
+                                        target="_blank" rel="noopener noreferrer">
+                                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -275,19 +277,9 @@
                                             <option value="Kompresor">Kompresor</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-auto">
-                                        <div class="btn-group  btn-group-sm mx-2" role="group">
-                                            <a href="{{ route('hm.u.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
-                                                target="_blank" rel="noopener noreferrer">
-                                                <button class="btn btn-sm btn-falcon-success mx-2"><i
-                                                        class="fas fa-file-excel"></i>
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="table-responsive scrollbar">
-                                    <table class="table table-striped table-bordered mb-0 fs--1"
+                                    <table class="table table-sm table-striped table-bordered mb-0 fs--1"
                                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                         <thead class="bg-200 text-800">
                                             <tr class="text-center">

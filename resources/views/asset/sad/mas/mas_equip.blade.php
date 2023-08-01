@@ -17,29 +17,16 @@
 @endsection
 
 @section('konten')
-<div class="card mb-3 bg-100 shadow-none border">
-    <div class="row gx-0 flex-between-center">
-        <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                width="90" />
-            <div>
-                <h6 class="text-primary fs--1 mb-0"><i class="fas fa-chess-queen"></i> Master Setting
-                </h6>
-                <h4 class="text-primary fw-bold mb-0">Generate Manual Data Unit</h4>
-            </div>
-        </div>
-        <div class="col-sm-auto d-flex align-items-center">
-            <form class="row align-items-center g-3">
-                <div class="col-auto">
-                    <h6 class="text-info mb-0">Master Present :</h6>
-                </div>
-                <div class="col-md-auto">
-                    <h6 class="mb-0">{{ date('F Y') }}</h6>
-                </div>
-            </form>
-            <img class="ms-2 d-md-none d-lg-block"
-                src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
-                width="150" />
+<div class="card mb-3 bg-light shadow-none">
+    <div class="bg-holder bg-card d-none d-sm-block"
+        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+    <!--/.bg-holder-->
+    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+        <div class="ms-n3">
+            <h6 class="mb-1 text-primary">Master Setting <span class="text-info">{{ date('F Y') }}</span></h6>
+            <h4 class="mb-0 text-primary fw-bold">Generate Equipment Manual<span
+                    class="text-info fw-medium"></span></h4>
         </div>
     </div>
 </div>

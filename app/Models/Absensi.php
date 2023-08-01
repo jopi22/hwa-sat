@@ -10,7 +10,7 @@ class Absensi extends Model
     use HasFactory;
 
     protected $table = 'hwa_absensi';
-    protected $fillable = ['id','tgl','karyawan','status','periode_id','pengajuan_fk','kode_unik'];
+    protected $fillable = ['id','tgl','karyawan','status','periode_id','pengajuan_fk','kode_unik','kontrol'];
     protected $dates = ['tanggal'];
 
     public function karyawan_()

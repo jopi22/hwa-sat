@@ -9,5 +9,5 @@ class Kas extends Model
 {
     use HasFactory;
     protected $table = 'hwa_kas';
-    protected $fillable = ['id','tipe', 'tgl','rincian','master_id','jumlah'];
+    protected $fillable = ['id','tipe','status', 'tgl','rincian','master_id','jumlah'];
 }

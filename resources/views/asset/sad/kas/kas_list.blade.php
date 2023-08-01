@@ -27,67 +27,102 @@
 
 @section('konten')
     @if ($master->periode == $periode)
-        <div class="card mb-3 bg-100 shadow-none border">
-            <div class="row gx-0 flex-between-center">
-                <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                    <div>
-                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-coins"></i> Finance Division
-                        </h6>
-                        <h4 class="text-primary fw-bold mb-0">Kas Perusahaan</h4>
-                    </div>
-                </div>
-                <div class="col-sm-auto d-flex align-items-center">
-                    <form class="row align-items-center g-3">
-                        <div class="col-auto">
-                            <h6 class="text-info mb-0">Master Present :</h6>
-                        </div>
-                        <div class="col-md-auto">
-                            <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
-                        </div>
-                    </form>
-                    <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
-                        alt="" width="150" />
+        <div class="card mb-2 bg-light shadow-none">
+            <div class="bg-holder bg-card d-none d-sm-block"
+                style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+            <!--/.bg-holder-->
+            <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+                <div class="ms-n3">
+                    <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance Divison <span
+                            class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                    <h4 class="mb-0 text-primary fw-bold">Kas Perusahaan
+                        <span class="text-info fw-medium"></span>
+                    </h4>
                 </div>
             </div>
         </div>
+
         @include('comp.alert')
 
-        <div class="row">
-            <div class="col-6">
-                <div class="card h-100">
-                    <div class="card-header d-flex flex-between-center border-bottom border-200 py-2">
-                        <h6 class="mb-0">Saldo HWA Site</h6>
-                        <h6 class="mb-0">No Rek : xxxxxxxxx</h6>
-                    </div>
-                    <div class="card-body d-flex align-items-center">
-                        <div class="col-12">
-                            <div class="w-100">
-                                <h3 class="text-700 mb-6"
-                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $saldo }}}'>0</h3>
-                                <div class="progress overflow-visible rounded-3 font-sans-serif fw-medium fs--1 mt-xxl-auto"
-                                    style="height: 20px;">
-                                    <div class="progress-bar overflow-visible bg-progress-gradient border-end border-white border-2 rounded-end rounded-pill text-start"
-                                        role="progressbar" style="width: {{ $per_debit }}%" aria-valuenow="0"
-                                        aria-valuemin="50" aria-valuemax="100">
-                                        <span class="text-700 mt-n6"
-                                            data-countup='{"suffix":"%","endValue":{{ $per_debit }}}'>0</span>
+        @if ($debit > 0)
+            <div class="row g-3 mb-2">
+                <div class="col-md-6 col-xxl-3">
+                    <div class="card h-100">
+                        <div class="card-header d-flex flex-between-center border-bottom border-200 py-2">
+                            <h6 class="mb-0">Saldo HWA Site</h6>
+                            <h6 class="mb-0">No Rek : xxxxxxxxx</h6>
+                        </div>
+                        <div class="card-body d-flex align-items-center">
+                            <div class="col-12">
+                                <div class="w-100">
+                                    <h3 class="text-700 mb-6"
+                                        data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $saldo }}}'>0</h3>
+                                    <div class="progress overflow-visible rounded-3 font-sans-serif fw-medium fs--1 mt-xxl-auto"
+                                        style="height: 20px;">
+                                        <div class="progress-bar overflow-visible bg-progress-gradient border-end border-white border-2 rounded-end rounded-pill text-start"
+                                            role="progressbar" style="width: {{ $per_debit }}%" aria-valuenow="0"
+                                            aria-valuemin="50" aria-valuemax="100">
+                                            <span class="text-700 mt-n6"
+                                                data-countup='{"suffix":"%","endValue":{{ $per_debit }}}'>0</span>
+                                        </div>
+                                        <div class="progress-bar overflow-visible bg-danger rounded-start rounded-pill text-start"
+                                            role="progressbar" style="width: {{ $per_kredit }}%" aria-valuenow="11"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <span class="text-700 mt-n6"
+                                                data-countup='{"suffix":"%","endValue":{{ $per_kredit }}}'>0</span>
+                                        </div>
                                     </div>
-                                    <div class="progress-bar overflow-visible bg-danger rounded-start rounded-pill text-start"
-                                        role="progressbar" style="width: {{ $per_kredit }}%" aria-valuenow="11"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <span class="text-700 mt-n6"
-                                            data-countup='{"suffix":"%","endValue":{{ $per_kredit }}}'>0</span>
+                                    <div class="row fs--1 fw-semi-bold text-500 mt-3 g-0 mt-3 mt-xxl-4">
+                                        <div class="col-auto d-flex align-items-center pe-3"><span class="dot bg-primary">
+                                            </span><span class="text-900"
+                                                data-countup='{"prefix":"Total&nbsp;Debit&nbsp;Rp&nbsp;","endValue":{{ $debit }}}'>0</span>
+                                        </div>
+                                        <div class="col-auto d-flex align-items-center"><span
+                                                class="dot bg-danger"></span><span class="text-900"
+                                                data-countup='{"prefix":"Total&nbsp;Kredit&nbsp;Rp&nbsp","endValue":{{ $kredit }}}'>0</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row fs--1 fw-semi-bold text-500 mt-3 g-0 mt-3 mt-xxl-4">
-                                    <div class="col-auto d-flex align-items-center pe-3"><span class="dot bg-primary">
-                                        </span><span class="text-900"
-                                            data-countup='{"prefix":"Total&nbsp;Debit&nbsp;Rp&nbsp;","endValue":{{ $debit }}}'>0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xxl-3">
+                    <div class="card h-100">
+                        <div class="card-header d-flex flex-between-center border-bottom border-200 py-2">
+                            <h6 class="mb-0">Saldo HWA Pusat</h6>
+                            <h6 class="mb-0">No Rek : xxxxxxxxx</h6>
+                        </div>
+                        <div class="card-body d-flex align-items-center">
+                            <div class="col-12">
+                                <div class="w-100">
+                                    <h3 class="text-700 mb-6"
+                                        data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $saldo_pusat }}}'>0</h3>
+                                    <div class="progress overflow-visible rounded-3 font-sans-serif fw-medium fs--1 mt-xxl-auto"
+                                        style="height: 20px;">
+                                        <div class="progress-bar overflow-visible bg-progress-gradient border-end border-white border-2 rounded-end rounded-pill text-start"
+                                            role="progressbar" style="width: {{ $per_debit_pusat }}%" aria-valuenow="50"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <span class="text-700 mt-n6"
+                                                data-countup='{"suffix":"%","endValue":{{ $per_debit_pusat }}}'>0</span>
+                                        </div>
+                                        <div class="progress-bar overflow-visible bg-danger rounded-start rounded-pill text-start"
+                                            role="progressbar" style="width: {{ $per_kredit_pusat }}%" aria-valuenow="11"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                            <span class="text-700 mt-n6"
+                                                data-countup='{"suffix":"%","endValue":{{ $per_kredit_pusat }}}'>0</span>
+                                        </div>
                                     </div>
-                                    <div class="col-auto d-flex align-items-center"><span class="dot bg-danger"></span><span
-                                            class="text-900"
-                                            data-countup='{"prefix":"Total&nbsp;Kredit&nbsp;Rp&nbsp","endValue":{{ $kredit }}}'>0</span>
+                                    <div class="row fs--1 fw-semi-bold text-500 mt-3 g-0 mt-3 mt-xxl-4">
+                                        <div class="col-auto d-flex align-items-center pe-3"><span
+                                                class="dot bg-primary"></span><span class="text-900"
+                                                data-countup='{"prefix":"Total&nbsp;Debit&nbsp;Rp&nbsp;","endValue":{{ $debit_pusat }}}'>0</span>
+                                        </div>
+                                        <div class="col-auto d-flex align-items-center"><span
+                                                class="dot bg-danger"></span><span class="text-900"
+                                                data-countup='{"prefix":"Total&nbsp;Kredit&nbsp;Rp&nbsp;","endValue":{{ $kredit_pusat }}}'>0</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -95,51 +130,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="card h-100">
-                    <div class="card-header d-flex flex-between-center border-bottom border-200 py-2">
-                        <h6 class="mb-0">Saldo HWA Pusat</h6>
-                        <h6 class="mb-0">No Rek : xxxxxxxxx</h6>
-                    </div>
-                    <div class="card-body d-flex align-items-center">
-                        <div class="col-12">
-                            <div class="w-100">
-                                <h3 class="text-700 mb-6"
-                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $saldo_pusat }}}'>0</h3>
-                                <div class="progress overflow-visible rounded-3 font-sans-serif fw-medium fs--1 mt-xxl-auto"
-                                    style="height: 20px;">
-                                    <div class="progress-bar overflow-visible bg-progress-gradient border-end border-white border-2 rounded-end rounded-pill text-start"
-                                        role="progressbar" style="width: {{ $per_debit_pusat }}%" aria-valuenow="50"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <span class="text-700 mt-n6"
-                                            data-countup='{"suffix":"%","endValue":{{ $per_debit_pusat }}}'>0</span>
-                                    </div>
-                                    <div class="progress-bar overflow-visible bg-danger rounded-start rounded-pill text-start"
-                                        role="progressbar" style="width: {{ $per_kredit_pusat }}%" aria-valuenow="11"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <span class="text-700 mt-n6"
-                                            data-countup='{"suffix":"%","endValue":{{ $per_kredit_pusat }}}'>0</span>
-                                    </div>
-                                </div>
-                                <div class="row fs--1 fw-semi-bold text-500 mt-3 g-0 mt-3 mt-xxl-4">
-                                    <div class="col-auto d-flex align-items-center pe-3"><span
-                                            class="dot bg-primary"></span><span class="text-900"
-                                            data-countup='{"prefix":"Total&nbsp;Debit&nbsp;Rp&nbsp;","endValue":{{ $debit_pusat }}}'>0</span>
-                                    </div>
-                                    <div class="col-auto d-flex align-items-center"><span class="dot bg-danger"></span><span
-                                            class="text-900"
-                                            data-countup='{"prefix":"Total&nbsp;Kredit&nbsp;Rp&nbsp;","endValue":{{ $kredit_pusat }}}'>0</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endif
 
 
-        <div class="card mt-3 mb-3">
+        <div class="card mb-2">
             <div class="card-header bg-light d-flex flex-between-center py-2">
                 {{-- // --}}
             </div>
@@ -179,7 +173,7 @@
                     <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                 @else
                     <div class="table-responsive scrollbar">
-                        <table class="table table-striped table-bordered mb-0 fs--1"
+                        <table class="table table-striped table-sm table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">
