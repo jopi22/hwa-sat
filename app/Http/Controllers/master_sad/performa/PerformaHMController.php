@@ -239,17 +239,20 @@ class PerformaHMController extends Controller
         $cek_perform = Performa_hm::where('master_id', $master->id)
             ->count();
         $data = Performa_hm::where('master_id', $master->id)
-            ->where('kar_id', $kar->kar_id)
+            ->where('kar_id', $kar->kar_id)->orderBy('id', 'ASC')
             ->get();
         $total_hm = Performa_hm::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
             ->sum('hm_total');
+        $total_pot = Performa_hm::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->sum('hm_pot');
         $total_jam = Performa_hm::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
             ->sum('jam_total');
         $grand_total = $total_hm + $total_jam;
         $insentif = $grand_total * $master->insentif;
-        return view('asset.sad.pfm.hm_kar_info', compact('cek_perform', 'kar_list', 'nav', 'insentif', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_hm', 'total_jam', 'grand_total'));
+        return view('asset.sad.pfm.hm_kar_info', compact('cek_perform','total_pot', 'kar_list', 'nav', 'insentif', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_hm', 'total_jam', 'grand_total'));
     }
 
 
@@ -351,7 +354,8 @@ class PerformaHMController extends Controller
             ->where('master_id', $master->id)
             ->min('hm_awal');
         if ($cek > 0) {
-            $rata2 = $sum / $cek;
+            $rata = $sum / $cek;
+            $rata2 = number_format($rata);
             return view('asset.sad.pfm.hm_equip_info', compact('list', 'rata2', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
         } else {
             return view('asset.sad.pfm.hm_equip_info', compact('list', 'nav', 'master', 'periode', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));

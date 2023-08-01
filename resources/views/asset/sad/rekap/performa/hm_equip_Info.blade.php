@@ -202,6 +202,35 @@
         </div>
     </div>
 
+    <div class="card mb-2 h-100">
+        <div class="card-body">
+            <div class="row g-0">
+                <div class="col-md-12 border-200 border-md-200 border-bottom  pb-x1 pe-md-x1">
+                    <div class="row g-0">
+                        <div class="col-2"><img class="mt-1"
+                                src="{{ asset('assets/img/tickets/reports/7.png') }}" alt=""
+                                width="39" />
+                            <h2 class="mt-2 mb-1 text-700 fw-normal">{{ $rata2 }}<span
+                                    class="fas fa-caret-up ms-2 me-1 fs--1 text-primary"></span></h2>
+                            <h6 class="mb-0">Rata2 HM/Hari</h6>
+                        </div>
+                        <div class="col-9 d-flex align-items-center px-0">
+                            <div class="h-50 w-100"
+                                data-echarts='{"tooltip":{"trigger":"axis","formatter":"{b0} : {c0}"},"xAxis":{"data":["#"
+                            @foreach ($list as $item)
+                            ,"{{ $item->tgl }}" @endforeach
+                        ]},"series":[{"type":"line","data":[0
+                            @foreach ($list as $item)
+                            ,{{ $item->hm_total }} @endforeach
+                            ],"color":"#2c7be5","smooth":true,"lineStyle":{"width":2},"areaStyle":{"color":{"type":"linear","x":0,"y":0,"x2":0,"y2":1,"colorStops":[{"offset":0,"color":"rgba(44, 123, 229, .25)"},{"offset":1,"color":"rgba(44, 123, 229, 0)"}]}}}],"grid":{"bottom":"2%","top":"2%","right":"0","left":"0px"}}'
+                                data-echart-responsive="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="card mb-3">
         <div class="card-header bg-light  d-flex flex-between-center py-1">
             <div class="row">

@@ -10,7 +10,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::controller(KasController::class)->group(function () {
         // Kas
         Route::get('kas_list', 'kas_list')->name('kas.l');
-        Route::get('kas_excel/{kas}', 'kas_excel')->name('kas.excel');
+        Route::get('kas_excel_bro/{kas}', 'kas_excel')->name('kas.excel.bro');
         Route::post('kas_store', 'kas_store')->name('kas.s');
         Route::post('kas_update', 'kas_update')->name('kas.u');
         Route::post('kas_delete', 'kas_delete')->name('kas.d');

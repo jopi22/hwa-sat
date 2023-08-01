@@ -172,7 +172,7 @@
                     </li>
 
                     <!-- Setting Master-->
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link dropdown-indicator" href="#master" role="button"
                             data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                             <div class="d-flex align-items-center"><span class="nav-link-icon"><span
@@ -199,7 +199,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <li class="nav-item">
                         <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
@@ -418,11 +418,11 @@
                             <a class="nav-link" href="{{ route('dash') }}">
                                 <div class="d-flex align-items-center">
                                     <span class="nav-link-icon">
-                                        <span class="fas fa-home">
+                                        <span class="fas fa-calendar-alt">
                                         </span>
                                     </span>
                                     <span class="nav-link-text ps-1">
-                                        Dashboard
+                                        {{date('F Y')}}
                                     </span>
                                 </div>
                             </a>
@@ -617,7 +617,7 @@
                         </li>
 
                         <!-- Setting Master-->
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link dropdown-indicator" href="#master" role="button"
                                 data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
                                 <div class="d-flex align-items-center"><span class="nav-link-icon"><span
@@ -645,7 +645,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
 
 
                         <li class="nav-item">

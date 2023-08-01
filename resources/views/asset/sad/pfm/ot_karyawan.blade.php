@@ -27,32 +27,31 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket1 == 1)
-        <div class="card mb-3 bg-100 shadow-none border">
-            <div class="row gx-0 flex-between-center">
-                <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                        width="90" />
-                    <div>
-                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-wrench"></i> Mechanic Division
-                        </h6>
-                        <h4 class="text-primary fw-bold mb-0">Overtime</h4>
+            <div class="card mb-3 bg-100 shadow-none border">
+                <div class="row gx-0 flex-between-center">
+                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                            width="90" />
+                        <div>
+                            <h6 class="text-primary fs--1 mb-0"><i class="fas fa-tools"></i> Mechanic Division
+                            </h6>
+                            <h4 class="text-primary fw-bold mb-0">Overtime</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-auto d-flex align-items-center">
+                        <form class="row align-items-center g-3">
+                            <div class="col-auto">
+                                <h6 class="text-info mb-0">Master Present :</h6>
+                            </div>
+                            <div class="col-md-auto">
+                                <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
+                            </div>
+                        </form>
+                        <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
+                            alt="" width="150" />
                     </div>
                 </div>
-                <div class="col-sm-auto d-flex align-items-center">
-                    <form class="row align-items-center g-3">
-                        <div class="col-auto">
-                            <h6 class="text-info mb-0">Master Present :</h6>
-                        </div>
-                        <div class="col-md-auto">
-                            <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
-                        </div>
-                    </form>
-                    <img class="ms-2 d-md-none d-lg-block"
-                        src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
-                        width="150" />
-                </div>
             </div>
-        </div>
 
             @include('comp.alert')
 
@@ -62,7 +61,7 @@
                         <div class="col-auto ms-2">
                             <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
                                 <a href="{{ route('ot.l') }}"><button class="btn btn-sm text-primary" type="button"><i
-                                            class="fas fa-wrench"></i> Helper</button></a>
+                                            class="fas fa-tools"></i> Helper</button></a>
                                 <a href="{{ route('ot.k') }}"><button class="btn active btn-sm text-warning"
                                         type="button"><i class="fas fa-users"></i>
                                         Overtime</button></a>
@@ -101,7 +100,7 @@
                         <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                     @else
                         <div class="table-responsive scrollbar">
-                            <table class="table table-sm table-sm table-bordered mb-0 fs--1"
+                            <table class="table table-bordered mb-0 fs--1"
                                 data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                 <thead class="bg-200 text-800">
                                     <tr class="text-center">
@@ -154,7 +153,7 @@
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap id">
                                                 @if ($res->kar_id)
-                                                    K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->kar_->id }}
+                                                    {{ $res->kar_->username }}
                                                 @else
                                                     -
                                                 @endif

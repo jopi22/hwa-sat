@@ -26,48 +26,50 @@
 
 @section('konten')
     @if ($master->periode == $periode)
-    <div class="card mb-3">
-        <div class="card-body d-flex justify-content-between">
-            <div>
-                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ date('F Y') }}</span>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <a class="btn btn-falcon-default btn-sm" href="{{ route('ot.k') }}" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Back to Main Table">
-                    <span class="fas fa-list"></span>
-                </a>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <span class=" fw-semi-bold text-primary"> Performance :
-                    <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
-            </div>
-            <div class="col-auto d-flex align-items-center">
-                <form action="{{ route('ot.k.r') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="bro_id" value="{{ $kar->id }}">
-                    <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
-                        Sinkron</button>
-                </form>
-                <div class="position-relative">&nbsp;
-                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                            class="fas fa-users"></i></button>
-                </div>
-                <div class="position-relative">&nbsp;
-                    <a href="{{ route('ot.k.i.excel', Crypt::EncryptString($kar->id)) }}" target="_blank"
-                        rel="noopener noreferrer">
-                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
-                        </button>
+        <div class="card mb-3">
+            <div class="card-body d-flex justify-content-between">
+                <div>
+                    <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                        {{ date('F Y') }}</span>
+                    <span class="mx-1 mx-sm-2 text-300">| </span>
+                    <a class="btn btn-falcon-default btn-sm" href="{{ route('ot.k') }}" data-bs-toggle="tooltip"
+                        data-bs-placement="top" title="Back to Main Table">
+                        <span class="fas fa-list"></span>
                     </a>
+                    <span class="mx-1 mx-sm-2 text-300">| </span>
+                    <span class=" fw-semi-bold text-primary"> Performance Helper & Mechanic :
+                        <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                    <form action="{{ route('ot.k.r') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="bro_id" value="{{ $kar->id }}">
+                        <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i
+                                class="fab fa-slack"></i>
+                            Sinkron</button>
+                    </form>
+                    <div class="position-relative">&nbsp;
+                        <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+                                class="fas fa-users"></i></button>
+                    </div>
+                    <span class="mx-1 mx-sm-2 text-300">| </span>
+                    <div class="position-relative">
+                        <a href="{{ route('ot.k.i.excel', Crypt::EncryptString($kar->id)) }}" target="_blank"
+                            rel="noopener noreferrer">
+                            <button class="btn btn-sm btn-falcon-success"><i class="fas fa-file-excel"></i>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
         @include('comp.alert')
 
         <div class="offcanvas offcanvas-end" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel"><i class="fas fa-wrench"></i> Performa Helper</h5><button
+                <h5 id="offcanvasRightLabel"><i class="fas fa-wrench"></i> Performance Helper</h5><button
                     class="btn-close text-reset" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -97,7 +99,7 @@
                                         <th style="min-width: 120px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
                                             data-sort="id">
-                                            ID O/D
+                                            NIK
                                         </th>
                                         <th style="min-width: 350px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
@@ -122,7 +124,7 @@
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap id">
                                                 @if ($res->kar_id)
-                                                    K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->kar_->id }}
+                                                    {{ $res->kar_->username }}
                                                 @else
                                                     -
                                                 @endif
@@ -158,16 +160,16 @@
                 <div class="avatar avatar-4xl">
                     <img class="rounded-soft"
                         src="@if ($kar->kar_->image) {{ asset($kar->kar_->image) }}
-                @else
-                {{ asset('assets/img/team/avatar.png') }} @endif"
+            @else
+            {{ asset('assets/img/team/avatar.png') }} @endif"
                         alt="" />
                 </div>
                 <table>
                     <tr>
-                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">ID Operator/Driver</th>
+                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">NIK</th>
                         <th class="text-700 fw-normal fs--1">:</th>
                         <th class="text-1000 fw-normal fs--1">&nbsp; @if ($kar->kar_id)
-                                K{{ $kar->kar_->tgl_gabung->format('ym') }}{{ $kar->kar_->id }}
+                                {{ $kar->kar_->username }}
                             @else
                                 -
                             @endif
@@ -200,43 +202,56 @@
                     </tr>
                 </table>
             </div>
+
         </div>
 
-        <div class="card mb-2">
-            <div class="card-body py-5 py-sm-3">
+        <div class="card h-100 bg-line-chart-gradient">
+            <div class="card-header mt-3 bg-transparent light">
                 <div class="row g-5 g-sm-0">
-                    <div class="col-sm-4">
-                        <div class="border-sm-end border-300">
-                            <div class="text-center">
-                                <h6 class="text-700">Standar Lemburan/Jam</h6>
-                                <h3 class="fw-normal text-700"
-                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $master->lemburan }}}'>0</h3>
-                            </div>
+                    <div class="col-sm-4 text-center border-lg-end">
+                        <h6 class="fw-normal text-white">Jumlah Shift Kerja</h6>
+                        <h5 class="text-white mb-2"
+                            data-countup='{"suffix":"&nbsp Shift","endValue":{{ $cek }}}'>0
+                        </h5>
+                        <div class="echart-goal-charts mb-1" data-echart-responsive="true"
+                            data-echarts='{"tooltip":{"show":false},"series":[{"type":"bar","data":[
+                            -
+                            ],"symbol":"none","itemStyle":{"barBorderRadius":[5,5,0,0]}}],"grid":{"right":"16px","left":"0","bottom":"0","top":"0"}}'>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="border-sm-end border-300">
-                            <div class="text-center">
-                                <h6 class="text-700">Total Jam</h6>
-                                <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $total_jam }}}'>0</h3>
-                            </div>
+                    <div class="col-sm-4 text-center border-lg-end">
+                        <h6 class="fw-normal text-white">Jumlah Potongan</h6>
+                        <h5 class="text-white mb-2" data-countup='{"suffix":"&nbsp;Jam","endValue":{{ $total_pot }}}'>
+                            0
+                        </h5>
+                        <div class="echart-goal-charts mb-1" data-echart-responsive="true"
+                            data-echarts='{"tooltip":{"show":false},"series":[{"type":"bar","data":[0
+                                @foreach ($data as $item)
+                                    ,@if ($item->jam_pot)
+                                    {{ $item->jam_pot }}
+                                    @else
+                                        0
+                                    @endif @endforeach
+                                ],"symbol":"none","itemStyle":{"barBorderRadius":[5,5,0,0]}}],"grid":{"right":"16px","left":"0","bottom":"0","top":"0"}}'>
                         </div>
                     </div>
-                    <div class="col-sm-4">
-                        <div>
-                            <div class="text-center">
-                                <h6 class="text-primary">Total Lemburan</h6>
-                                <h3 class="fw-normal text-primary"
-                                    data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $lemburan }}}'>0
-                                </h3>
-                            </div>
+                    <div class="col-sm-4 text-center">
+                        <h6 class="fw-normal text-white">Jumlah Lemburan</h6>
+                        <h5 class="text-white mb-2" data-countup='{"suffix":"&nbsp;Jam","endValue":{{ $total_jam }}}'>
+                            0
+                        </h5>
+                        <div class="echart-goal-charts mb-1" data-echart-responsive="true"
+                            data-echarts='{"tooltip":{"show":false},"series":[{"type":"bar","data":[0
+                            @foreach ($data as $item)
+                            ,{{ $item->jam_total }} @endforeach
+                                ],"symbol":"none","itemStyle":{"barBorderRadius":[5,5,0,0]}}],"grid":{"right":"16px","left":"0","bottom":"0","top":"0"}}'>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card mb-3">
+        <div class="card mt-2 mb-3">
             <div class="card-header bg-light d-flex flex-between-end py-2">
                 {{-- // --}}
             </div>
@@ -255,7 +270,7 @@
                         </div>
                     </div>
                     <div class="table-responsive scrollbar">
-                        <table class="table table-sm table-striped table-bordered mb-0 fs--1"
+                        <table class="table table-striped table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">

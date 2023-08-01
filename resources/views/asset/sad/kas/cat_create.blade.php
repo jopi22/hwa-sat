@@ -404,7 +404,10 @@
 @csrf
     <div class="card mb-3">
         <div class="card-header bg-light">
-            {{-- // --}}
+            <p class="fs--1 mb-0"><strong>Notes: </strong>Kolom Berwarna
+                Merah <i class="fas fa-square text-danger"></i> Wajib Diisi | Tekan Tombol <i
+                    class="fas fa-plus-square text-success"></i> Untuk Tambah
+                Baris</p>
         </div>
         <div id="tableExample4">
             <div class="table-responsive scrollbar">
@@ -416,28 +419,28 @@
                                 data-sort="no">
                                 Add Row
                             </th>
-                            <th style="min-width: 180px" class="sort align-middle white-space-nowrap"
+                            <th style="min-width: 180px" class="sort bg-danger align-middle white-space-nowrap"
                                 data-sort="tgl">
                                 Tanggal
                             </th>
-                            <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                            <th style="min-width: 100px" class="sort bg-danger align-middle white-space-nowrap"
                                 data-sort="shift">
                                 Pagi
                             </th>
-                            <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                            <th style="min-width: 100px" class="sort bg-danger align-middle white-space-nowrap"
                                 data-sort="shift">
                                 Siang
                             </th>
-                            <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                            <th style="min-width: 100px" class="sort bg-danger align-middle white-space-nowrap"
                                 data-sort="shift">
                                 Sore
                             </th>
-                            <th style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                            <th style="min-width: 100px" class="sort bg-danger align-middle white-space-nowrap"
                                 data-sort="shift">
                                 Malam
                             </th>
                             <th style="min-width: 400px; max-width: 400px;"
-                                class="sort align-middle white-space-nowrap" data-sort="name">
+                                class="sort align-middle bg-danger white-space-nowrap" data-sort="name">
                                 Keterangan
                             </th>
                         </tr>
@@ -723,7 +726,7 @@
                 </table>
             </div>
         </div>
-        <div class="card-footer bg-light">
+        <div class="card-footer text-center bg-light">
             <button class="btn btn-sm btn-success" type="submit"><i class="fas fa-save"></i>
                 Simpan</button>
         </div>

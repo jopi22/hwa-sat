@@ -32,8 +32,8 @@
                     <span class="fas fa-list"></span>
                 </a>
                 <span class="mx-1 mx-sm-2 text-300">| </span>
-                <span class=" fw-semi-bold text-primary"> Performance / {{$kar->kar_->jabatan}} /</span>
-                <span class=" fw-semi-bold text-info"> {{$kar->kar_->name}}</span>
+                <span class=" fw-semi-bold text-primary"> Performance / {{ $kar->kar_->jabatan }} /</span>
+                <span class=" fw-semi-bold text-info"> {{ $kar->kar_->name }}</span>
             </div>
             <div class="col-auto d-flex align-items-center">
                 <form action="{{ route('hm.k.r') }}" method="post">
@@ -91,8 +91,7 @@
                                         Aksi
                                     </th>
                                     <th style="min-width: 120px"
-                                        class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                        data-sort="id">
+                                        class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="id">
                                         ID O/D
                                     </th>
                                     <th style="min-width: 350px"
@@ -197,7 +196,54 @@
         </div>
     </div>
 
-    <div class="card mb-2">
+    <div class="card mb-2 h-100 bg-line-chart-gradient">
+        <div class="card-header mt-3 bg-transparent light">
+            <div class="row g-5 g-sm-0">
+                <div class="col-sm-4 text-center border-lg-end">
+                    <h6 class="fw-normal text-white">Jumlah Potongan HM</h6>
+                    <h5 class="text-white mb-2" data-countup='{"suffix":"&nbsp;Jam","endValue":{{ $total_pot }}}'>
+                        0
+                    </h5>
+                    <div class="echart-goal-charts mb-1" data-echart-responsive="true"
+                        data-echarts='{"tooltip":{"show":false},"series":[{"type":"bar","data":[0
+                            @foreach ($data as $item)
+                                ,@if ($item->hm_pot)
+                                {{ $item->hm_pot }}
+                                @else
+                                    0
+                                @endif @endforeach
+                            ],"symbol":"none","itemStyle":{"barBorderRadius":[5,5,0,0]}}],"grid":{"right":"16px","left":"0","bottom":"0","top":"0"}}'>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center border-lg-end">
+                    <h6 class="fw-normal text-white">Jumlah HM Manual</h6>
+                    <h5 class="text-white mb-2" data-countup='{"suffix":"&nbsp;Jam","endValue":{{ $total_jam }}}'>
+                        0
+                    </h5>
+                    <div class="echart-goal-charts mb-1" data-echart-responsive="true"
+                        data-echarts='{"tooltip":{"show":false},"series":[{"type":"bar","data":[0
+                            @foreach ($data as $item)
+                            ,{{ $item->jam_total }} @endforeach
+                                ],"symbol":"none","itemStyle":{"barBorderRadius":[5,5,0,0]}}],"grid":{"right":"16px","left":"0","bottom":"0","top":"0"}}'>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <h6 class="fw-normal text-white">Jumlah Grand HM</h6>
+                    <h5 class="text-white mb-2" data-countup='{"suffix":"&nbsp;Jam","endValue":{{ $grand_total }}}'>
+                        0
+                    </h5>
+                    <div class="echart-goal-charts mb-1" data-echart-responsive="true"
+                        data-echarts='{"tooltip":{"show":false},"series":[{"type":"bar","data":[0
+                        @foreach ($data as $item)
+                        ,{{ $item->jam_total }} @endforeach
+                            ],"symbol":"none","itemStyle":{"barBorderRadius":[5,5,0,0]}}],"grid":{"right":"16px","left":"0","bottom":"0","top":"0"}}'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- <div class="card mb-2">
         <div class="card-body py-5 py-sm-3">
             <div class="row g-5 g-sm-0">
                 <div class="col-sm-3">
@@ -237,7 +283,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="card mb-3">
         <div class="card-header bg-light">

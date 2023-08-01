@@ -6,9 +6,9 @@
 
 @section('sad_menu')
     @if ($pres == 1)
-        @include('layouts.panel.sad.vertikal_off')
-    @else
         @include('layouts.panel.sad.vertikal_rekap')
+    @else
+        @include('layouts.panel.sad.vertikal')
     @endif
 @endsection
 
@@ -230,50 +230,22 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="col-md-6 mb-3 col-xxl-4">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center"><img class="me-2"
-                                src="{{ asset('assets/img/tickets/open-tickets.png') }}" alt=""
-                                height="35" />
-                            <h5 class="fs-0 fw-normal text-800 mb-0">Logistik</h5>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="scrollbar-overlay pt-0 px-x1 ask-analytics">
-                            <div
-                                class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
-                                <div class="d-flex align-items-center">
-                                    <span class="far fa-share-square text-primary"></span>
-                                    <a class="stretched-link text-decoration-none" href="{{ route('r.log.e.l') }}">
-                                        <h5 class="fs--1 text-600 mb-0 ps-3">Barang Keluar</h5>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-light text-end py-2">
-                        {{-- // --}}
+        <div class="col-md-12 mb-3 col-xxl-4">
+            <div class="card h-100">
+                <div class="card-header text-center">
+                    <div class="d-flex align-items-center text-center"><img class="me-2"
+                            src="{{ asset('assets/img/tickets/unassigned.png') }}" alt="" height="35" />
+                        <h5 class="fs-0 fw-normal text-center text-800 mb-0">Proses Akhir Validasi</h5>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-6 mb-3 col-xxl-4">
-                <div class="card h-100">
-                    <div class="card-header">
-                        <div class="d-flex align-items-center"><img class="me-2"
-                                src="{{ asset('assets/img/tickets/unassigned.png') }}" alt="" height="35" />
-                            <h5 class="fs-0 fw-normal text-800 mb-0">Proses Akhir Validasi</h5>
-                        </div>
-                    </div>
-                    <div class="card-body p-0">
-                        <button type="button" class="btn btn-success ms-3" data-bs-toggle="modal"
-                            data-bs-target="#finish"><i class="fas fa-flag-checkered"></i> Arsipkan Master Data</button>
-                    </div>
-                    <div class="card-footer bg-light text-end py-2">
-                        {{-- // --}}
-                    </div>
+                <div class="card-body p-0">
+                    <button type="button" class="btn btn-success ms-3" data-bs-toggle="modal"
+                        data-bs-target="#finish"><i class="fas fa-flag-checkered"></i> Arsipkan Master Data</button>
+                </div>
+                <div class="card-footer bg-light text-end py-2">
+                    {{-- // --}}
                 </div>
             </div>
         </div>

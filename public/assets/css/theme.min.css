@@ -357,6 +357,7 @@
     --falcon-bg-shape-bg-ltd: linear-gradient(-45deg, #4695ff, #1970e2);
     --falcon-bg-shape-bg-dtl: linear-gradient(-45deg, #1970e2, #4695ff);
     --falcon-line-chart-gradient: linear-gradient(-45deg, #014ba7, #0183d0);
+    --falcon-line-chart-gradient-red: linear-gradient(-10deg, #ac0707, #d00101fd);
     --falcon-card-gradient: linear-gradient(-45deg, #1970e2, #4695ff);
     --falcon-progress-gradient: linear-gradient(-45deg, #1970e2, #4695ff);
     --falcon-bg-circle-shape: none;
@@ -27970,6 +27971,11 @@ h5,
 }
 
 .bg-line-chart-gradient {
+    background-image: var(--falcon-line-chart-gradient);
+    background-position: center
+}
+
+.bg-line-chart-gradient-red {
     background-image: var(--falcon-line-chart-gradient);
     background-position: center
 }

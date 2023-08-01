@@ -119,16 +119,6 @@
                                         </th>
                                         <th style="min-width: 80px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                            data-sort="tipe">
-                                            Type
-                                        </th>
-                                        <th style="min-width: 80px"
-                                            class="sort bg-secondary text-white align-middle white-space-nowrap"
-                                            data-sort="kode">
-                                            Code Unit
-                                        </th>
-                                        <th style="min-width: 80px"
-                                            class="sort bg-secondary text-white align-middle white-space-nowrap"
                                             data-sort="unit">
                                             No Unit
                                         </th>
@@ -142,7 +132,7 @@
                                         </th>
                                         <th style="min-width: 80px"
                                             class="sort bg-primary text-white align-middle white-space-nowrap">
-                                            Total (Hours)
+                                            Jumlah (Hours)
                                         </th>
                                         <th style="min-width: 100px"
                                             class="bg-secondary text-white align-middle white-space-nowrap"
@@ -185,20 +175,6 @@
                                                     -
                                                 @endif
                                             </td>
-                                            <td class="align-middle text-center text-1000 white-space-nowrap tipe">
-                                                @if ($res->equip_id)
-                                                    {{ $res->equip_->tipe }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
-                                            <td class="align-middle text-center text-1000 white-space-nowrap kode">
-                                                @if ($res->equip_id)
-                                                    {{ $res->equip_->kode_unit }}
-                                                @else
-                                                    -
-                                                @endif
-                                            </td>
                                             <td class="align-middle text-1000 white-space-nowrap unit">
                                                 @if ($res->equip_id)
                                                     {{ $res->equip_->no_unit }}
@@ -220,7 +196,7 @@
                                                     -
                                                 @endif
                                             </td>
-                                            <td class="align-middle text-1000 text-center white-space-nowrap">
+                                            <td class="align-middle text-1000 bg-200 text-center white-space-nowrap">
                                                 @if ($res->jam_total)
                                                     {{ $res->jam_total }}
                                                 @else

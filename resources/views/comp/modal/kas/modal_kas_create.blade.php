@@ -289,7 +289,9 @@
                                                     <option></option>
                                                     <option value="Debit">Debit / Masuk</option>
                                                     <option value="Kredit">Kredit / Keluar</option>
+                                                    <option value="Debit Pusat">Debit Dari Pusat</option>
                                                     <option value="Kredit Pusat">Kredit Dari Pusat</option>
+
                                                 </select>
                                                 <label for="floatingSelect">Pilih Tipe Kas</label>
                                             </div>

@@ -35,7 +35,7 @@
                         src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
                         width="90" />
                     <div>
-                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-wrench"></i> Mechanic Division
+                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-tools"></i> Mechanic Division
                         </h6>
                         <h4 class="text-primary fw-bold mb-0">Helper</h4>
                     </div>
@@ -64,7 +64,7 @@
                         <div class="col-auto ms-2">
                             <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
                                 <a href="{{ route('ot.l') }}"><button class="btn btn-sm active text-warning"
-                                        type="button"><i class="fas fa-wrench"></i> Helper</button></a>
+                                        type="button"><i class="fas fa-tools"></i> Helper</button></a>
                                 <a href="{{ route('ot.k') }}"><button class="btn btn-sm text-primary" type="button"><i
                                             class="fas fa-users"></i>
                                         Overtime</button></a>
@@ -108,7 +108,7 @@
                         <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                     @else
                         <div class="table-responsive scrollbar">
-                            <table class="table table-sm table-bordered mb-0 fs--1"
+                            <table class="table table-bordered mb-0 fs--1"
                                 data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                 <thead class="bg-200 text-800">
                                     <tr class="text-center">
@@ -116,16 +116,16 @@
                                             class="sort bg-secondary text-white align-middle white-space-nowrap">
                                             #
                                         </th>
-                                        <th style="min-width: 50px"
+                                        <th style="min-width: 60px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap">
                                             Aksi
                                         </th>
-                                        <th style="min-width: 80px"
+                                        <th style="min-width: 100px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
                                             data-sort="tgl">
                                             Tanggal
                                         </th>
-                                        <th style="min-width: 80px"
+                                        <th style="min-width: 100px"
                                             class="sort bg-secondary text-white align-middle white-space-nowrap"
                                             data-sort="unit">
                                             No Unit
@@ -174,7 +174,7 @@
                                                     <a href="javascript:void(0)" data-bs-target="#edit-{{ $res->id }}"
                                                         data-id="{{ $res->id }}" data-bs-toggle="modal"
                                                         class="btn btn-warning" type="button"><i
-                                                            class="fas fa-edit"></i></a>
+                                                            class="fas fa-pencil-alt"></i></a>
                                                     <a href="javascript:void(0)"
                                                         data-bs-target="#hapus-{{ $res->id }}"
                                                         data-id="{{ $res->id }}" data-bs-toggle="modal"

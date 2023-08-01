@@ -147,7 +147,7 @@ class PerformaOTController extends Controller
         $cek_perform = Performa_ot::where('master_id', $master->id)
             ->count();
         $data = Performa_ot::where('master_id', $master->id)
-            ->where('kar_id', $kar->kar_id)
+            ->where('kar_id', $kar->kar_id)->orderBy('id', 'ASC')
             ->get();
         $cek = Performa_ot::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
@@ -158,8 +158,11 @@ class PerformaOTController extends Controller
         $total_jam = Performa_ot::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
             ->sum('jam_total');
+        $total_pot = Performa_ot::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->sum('jam_pot');
         $lemburan = $total_jam * $master->lemburan;
-        return view('asset.sad.pfm.ot_kar_info', compact('cek_perform','cek', 'nav', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_jam'));
+        return view('asset.sad.pfm.ot_kar_info', compact('cek_perform','cek','total_pot', 'nav', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_jam'));
     }
 
 

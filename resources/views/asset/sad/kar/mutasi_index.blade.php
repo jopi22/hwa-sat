@@ -145,99 +145,107 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap site">
-                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                            @csrf
-                                            @method('PUT')
-                                            <input type="hidden" name="status" value="PHK">
-                                            <input type="hidden" name="tgl_mutasi" value="{{ date('d-m-Y') }}">
-                                            <button type="submit" class="btn btn-sm btn-dark">
-                                                PHK</button>
-                                        </form>
+                                        @if ($res->level < 3)
+                                            -
+                                        @else
+                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="status" value="PHK">
+                                                <input type="hidden" name="tgl_mutasi" value="{{ date('d-m-Y') }}">
+                                                <button type="submit" class="btn btn-sm btn-dark">
+                                                    PHK</button>
+                                            </form>
+                                        @endif
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
-                                        @if ($res->status == 'Resign')
-                                            Resign
+                                        @if ($res->level < 3)
+                                            -
                                         @else
-                                            <div class="row">
-                                                @if ($res->site_id == 1)
-                                                    <div class="col-lg-2">
-                                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="site_id" value="2">
-                                                            <input type="hidden" name="status" value="Mutasi">
-                                                            <input type="hidden" name="tgl_mutasi"
-                                                                value="{{ date('d-m-Y') }}">
-                                                            <button type="submit" class="btn btn-sm btn-primary">
-                                                                Air Upas</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-lg-2 ms-2">
-                                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="site_id" value="3">
-                                                            <input type="hidden" name="status" value="Mutasi">
-                                                            <input type="hidden" name="tgl_mutasi"
-                                                                value="{{ date('d-m-Y') }}">
-                                                            <button type="submit" class="btn btn-sm btn-primary">
-                                                                Melak</button>
-                                                        </form>
-                                                    </div>
-                                                @endif
-                                                @if ($res->site_id == 2)
-                                                    <div class="col-lg-2">
-                                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="site_id" value="1">
-                                                            <input type="hidden" name="status" value="Mutasi">
-                                                            <input type="hidden" name="tgl_mutasi"
-                                                                value="{{ date('d-m-Y') }}">
-                                                            <button type="submit" class="btn btn-sm btn-primary">
-                                                                Sandai</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-lg-2 ms-2">
-                                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="site_id" value="3">
-                                                            <input type="hidden" name="status" value="Mutasi">
-                                                            <input type="hidden" name="tgl_mutasi"
-                                                                value="{{ date('d-m-Y') }}">
-                                                            <button type="submit" class="btn btn-sm btn-primary">
-                                                                Melak</button>
-                                                        </form>
-                                                    </div>
-                                                @endif
-                                                @if ($res->site_id == 3)
-                                                    <div class="col-lg-2">
-                                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="site_id" value="1">
-                                                            <input type="hidden" name="status" value="Mutasi">
-                                                            <input type="hidden" name="tgl_mutasi"
-                                                                value="{{ date('d-m-Y') }}">
-                                                            <button type="submit" class="btn btn-sm btn-primary">
-                                                                Sandai</button>
-                                                        </form>
-                                                    </div>
-                                                    <div class="col-lg-2">
-                                                        <form action="{{ route('mut.s', $res->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <input type="hidden" name="site_id" value="2">
-                                                            <input type="hidden" name="status" value="Mutasi">
-                                                            <input type="hidden" name="tgl_mutasi"
-                                                                value="{{ date('d-m-Y') }}">
-                                                            <button type="submit" class="btn btn-sm btn-primary">
-                                                                Air Upas</button>
-                                                        </form>
-                                                    </div>
-                                                @endif
-                                            </div>
+                                            @if ($res->status == 'Resign')
+                                                Resign
+                                            @else
+                                                <div class="row">
+                                                    @if ($res->site_id == 1)
+                                                        <div class="col-lg-2">
+                                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="site_id" value="2">
+                                                                <input type="hidden" name="status" value="Mutasi">
+                                                                <input type="hidden" name="tgl_mutasi"
+                                                                    value="{{ date('d-m-Y') }}">
+                                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                                    Air Upas</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-lg-2 ms-2">
+                                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="site_id" value="3">
+                                                                <input type="hidden" name="status" value="Mutasi">
+                                                                <input type="hidden" name="tgl_mutasi"
+                                                                    value="{{ date('d-m-Y') }}">
+                                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                                    Melak</button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
+                                                    @if ($res->site_id == 2)
+                                                        <div class="col-lg-2">
+                                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="site_id" value="1">
+                                                                <input type="hidden" name="status" value="Mutasi">
+                                                                <input type="hidden" name="tgl_mutasi"
+                                                                    value="{{ date('d-m-Y') }}">
+                                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                                    Sandai</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-lg-2 ms-2">
+                                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="site_id" value="3">
+                                                                <input type="hidden" name="status" value="Mutasi">
+                                                                <input type="hidden" name="tgl_mutasi"
+                                                                    value="{{ date('d-m-Y') }}">
+                                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                                    Melak</button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
+                                                    @if ($res->site_id == 3)
+                                                        <div class="col-lg-2">
+                                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="site_id" value="1">
+                                                                <input type="hidden" name="status" value="Mutasi">
+                                                                <input type="hidden" name="tgl_mutasi"
+                                                                    value="{{ date('d-m-Y') }}">
+                                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                                    Sandai</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <form action="{{ route('mut.s', $res->id) }}" method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <input type="hidden" name="site_id" value="2">
+                                                                <input type="hidden" name="status" value="Mutasi">
+                                                                <input type="hidden" name="tgl_mutasi"
+                                                                    value="{{ date('d-m-Y') }}">
+                                                                <button type="submit" class="btn btn-sm btn-primary">
+                                                                    Air Upas</button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>

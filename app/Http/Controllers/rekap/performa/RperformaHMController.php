@@ -182,6 +182,9 @@ class RperformaHMController extends Controller
         $data = Performa_hm::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
             ->get();
+            $total_pot = Performa_hm::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->sum('hm_pot');
         $total_hm = Performa_hm::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
             ->sum('hm_total');
@@ -190,7 +193,7 @@ class RperformaHMController extends Controller
             ->sum('jam_total');
         $grand_total = $total_hm + $total_jam;
         $insentif = $grand_total * $master->insentif;
-        return view('asset.sad.rekap.performa.hm_kar_info', compact('cek_perform', 'nav', 'kar_list', 'insentif', 'kar', 'jabatan', 'master',  'data', 'total_hm', 'total_jam', 'grand_total'));
+        return view('asset.sad.rekap.performa.hm_kar_info', compact('cek_perform','total_pot', 'nav', 'kar_list', 'insentif', 'kar', 'jabatan', 'master',  'data', 'total_hm', 'total_jam', 'grand_total'));
     }
 
 
@@ -310,7 +313,14 @@ class RperformaHMController extends Controller
         $max = Performa_hm::where('equip_id', $decryptID)
             ->where('master_id', $master->id)
             ->min('hm_awal');
-        return view('asset.sad.rekap.performa.hm_equip_info', compact('list', 'nav', 'master', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        if ($cek > 0) {
+            $rata = $sum / $cek;
+            $rata2 = number_format($rata);
+            return view('asset.sad.rekap.performa.hm_equip_info', compact('list', 'rata2', 'nav', 'master', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        } else {
+            return view('asset.sad.rekap.performa.hm_equip_info', compact('list', 'rata2', 'nav', 'master', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
+        }
+        return view('asset.sad.rekap.performa.hm_equip_info', compact('list', 'rata2', 'nav', 'master', 'equip_list', 'cek_hm', 'cek_manual', 'kar_filter', 'equip_m', 'cek', 'sum', 'max'));
     }
 
     public function hm_equip_edit($id)

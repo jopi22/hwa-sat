@@ -220,7 +220,7 @@
                             data-theme-control="navbarPosition">
                             <option value="vertical">Vertikal</option>
                             <option value="top">Horizontal</option>
-                            <option value="combo">Hybrid</option>
+                            {{-- <option value="combo">Hybrid</option> --}}
                             {{-- <option value="double-top">Ganda Horizontal</option> --}}
                         </select></div>
                 </div>

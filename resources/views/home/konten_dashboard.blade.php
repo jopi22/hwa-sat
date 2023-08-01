@@ -723,7 +723,7 @@
 
 
     <div class="card">
-        <div class="card-body py-5 py-sm-3">
+        <div class="card-body bg-line-chart-gradient py-5 py-sm-3">
             <div class="row g-5 g-sm-0">
                 <div class="col-sm-4">
                     <div class="border-sm-end border-300">

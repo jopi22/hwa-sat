@@ -386,13 +386,13 @@
         aria-expanded="false" aria-controls="e-learning">
         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                     class="fab fa-hornbill"></span></span><span class="nav-link-text ps-1">
-                Perusahaan </span></div>
+                PT. HWA </span></div>
     </a>
     <ul class="nav collapse" id="sdads-learning">
 
         <li class="nav-item"><a class="nav-link" href="{{ route('hwa.g') }}">
                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
-                        Profil Perusahaan</span>
+                        Profil PT. HWA</span>
                 </div>
             </a><!-- more inner pages-->
         </li>
