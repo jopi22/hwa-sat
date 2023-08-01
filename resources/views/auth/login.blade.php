@@ -2,7 +2,7 @@
 <html lang="en-US" dir="ltr">
 
 
-<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:10 GMT -->
+<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/authentication/card/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:07 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
@@ -32,16 +32,15 @@
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
-    <link href="../vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com/">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap"
         rel="stylesheet">
-    <link href="../vendors/simplebar/simplebar.min.css" rel="stylesheet">
-    <link href="../assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
-    <link href="../assets/css/theme.min.css" rel="stylesheet" id="style-default">
-    <link href="../assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
-    <link href="../assets/css/user.min.css" rel="stylesheet" id="user-style-default">
+    <link href="../../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+    <link href="../../../assets/css/theme-rtl.min.css" rel="stylesheet" id="style-rtl">
+    <link href="../../../assets/css/theme.min.css" rel="stylesheet" id="style-default">
+    <link href="../../../assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
+    <link href="../../../assets/css/user.min.css" rel="stylesheet" id="user-style-default">
     <script>
         var isRTL = JSON.parse(localStorage.getItem('isRTL'));
         if (isRTL) {
@@ -64,524 +63,86 @@
     <!--    Main Content-->
     <!-- ===============================================-->
     <main class="main" id="top">
-        <nav class="navbar navbar-standard navbar-expand-lg fixed-top navbar-dark"
-            data-navbar-darken-on-scroll="data-navbar-darken-on-scroll">
-            <div class="container"><a class="navbar-brand" href="../index.html"><span
-                        class="text-white dark__text-white">HWA Sarana Administrasi Terpadu (SAT)</span></a><button
-                    class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false"
-                    aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
-
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item d-flex align-items-center me-2">
-                            <div class="nav-link theme-switch-toggle fa-icon-wait p-0"><input
-                                    class="form-check-input ms-0 theme-switch-toggle-input" id="themeControlToggle"
-                                    type="checkbox" data-theme-control="theme" value="dark"><label
-                                    class="mb-0 theme-switch-toggle-label theme-switch-toggle-light"
-                                    for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Switch to light theme"><span class="fas fa-sun"></span></label><label
-                                    class="mb-0 py-2 theme-switch-toggle-light d-lg-none"
-                                    for="themeControlToggle"><span>Switch to light theme</span></label><label
-                                    class="mb-0 theme-switch-toggle-label theme-switch-toggle-dark"
-                                    for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left"
-                                    title="Switch to dark theme"><span class="fas fa-moon"></span></label><label
-                                    class="mb-0 py-2 theme-switch-toggle-dark d-lg-none"
-                                    for="themeControlToggle"><span>Switch to dark theme</span></label></div>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="#!" data-bs-toggle="modal"
-                                data-bs-target="#auth">LOGIN</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        {{-- //modal --}}
-        <div class="modal fade" id="auth" tabindex="-1" role="dialog"
-            aria-labelledby="authentication-modal-label" aria-hidden="true">
-            <div class="modal-dialog mt-6" role="document">
-                <div class="modal-content border-0">
-                    <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
-                        <div class="position-relative z-index-1 light">
-                            <h4 class="mb-0 text-white" id="authentication-modal-label">Login</h4>
-                            <p class="fs--1 mb-0 text-white">HWA Sarana Administrasi Terpadu</p>
-                        </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body py-4 px-5">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label class="form-label" for="split-login-email">NIK
-                                </label>
-                                <input class="form-control  @error('no_hp') is-invalid @enderror"
-                                    value="{{ old('no_hp') }}" required autocomplete="no_hp" autofocus
-                                    id="split-login-email" name="no_hp" type="text" />
-                                @error('no_hp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3">
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="split-login-password">Password</label>
-                                </div>
-                                <input class="form-control @error('password') is-invalid @enderror" autofocus name="password"
-                                    required autocomplete="password" id="split-login-password" value="{{ old('password') }}"
-                                    type="password" />
-                                @error('no_hp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                    name="submit">Log in</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="bro" tabindex="-1" role="dialog"
-            aria-labelledby="authentication-modal-label" aria-hidden="true">
-            <div class="modal-dialog mt-6" role="document">
-                <div class="modal-content border-0">
-                    <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
-                        <div class="position-relative z-index-1 light">
-                            <h4 class="mb-0 text-white" id="authentication-modal-label">Login</h4>
-                            <p class="fs--1 mb-0 text-white">HWA Sarana Administrasi Terpadu</p>
-                        </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body py-4 px-5">
-                        <label for="">Pilih Role Anda</label>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <input type="hidden" name="no_hp" value="2">
-                            <input type="hidden" name="password" value="1212">
-                            <div class="mb-3"><button class="btn btn-danger d-block w-100 mt-3" type="submit"
-                                    name="submit">Superadmin</button></div>
-                        </form>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <input type="hidden" name="no_hp" value="3">
-                            <input type="hidden" name="password" value="1212">
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                    name="submit">Admin HRGA</button></div>
-                        </form>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <input type="hidden" name="no_hp" value="4">
-                            <input type="hidden" name="password" value="1212">
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                    name="submit">Admin Rental</button></div>
-                        </form>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <input type="hidden" name="no_hp" value="5">
-                            <input type="hidden" name="password" value="1212">
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                    name="submit">Admin Logistik</button></div>
-                        </form>
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <input type="hidden" name="no_hp" value="6">
-                            <input type="hidden" name="password" value="1212">
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                    name="submit">Karyawan</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="py-0 overflow-hidden light" id="banner">
-            <div class="bg-holder overlay"
-                style="background-image:url({{ asset('assets/img/generic/photo_6338839406810609585_y.jpg') }});background-position: center bottom;">
-            </div>
-            <!--/.bg-holder-->
-            <div class="container">
-                <div class="row flex-center pt-8 pt-lg-10 pb-lg-9 pb-xl-0">
-                    <div class="col-md-11 col-lg-8 col-xl-4 pb-7 pb-xl-9 text-center text-xl-start">
-                        <a data-bs-toggle="modal" data-bs-target="#bro"
-                            class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-0 py-2"
-                            href="#!">Mulai Menjelajahi Aplikasi<span class="fas fa-play ms-2"
-                                data-fa-transform="shrink-6 down-1"></span></a>
-                        <h1 class="text-white fw-light">Lebih <span class="typed-text fw-bold"
-                                data-typed-text='["Menarique","Elegan","Perfekto","Chong!!","Bau"]'></span><br />to your
-                            webapp</h1>
-                        <p class="lead text-white opacity-75">
-                            With the power of Falcon, you can now focus only on
-                            functionaries for your digital products, while leaving the UI design on us!
-                        </p>
-
-                    </div>
-                    <div class="col-xl-7 offset-xl-1 align-self-end mt-4 mt-xl-0"><a
-                            class="img-landing-banner rounded" href="../index.html"><img class="img-fluid"
-                                src="{{ asset('assets/img/management/Profil-Perusahaan-Info-HWA-•-SAT.png') }}" alt="" /></a></div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="py-3 bg-light shadow-sm">
-            <div class="container">
-                <div class="row flex-center">
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="40"
-                            src="../assets/img/logos/b%26w/6.png" alt="" /></div>
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="45"
-                            src="../assets/img/logos/b%26w/11.png" alt="" /></div>
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="30"
-                            src="../assets/img/logos/b%26w/2.png" alt="" /></div>
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="30"
-                            src="../assets/img/logos/b%26w/4.png" alt="" /></div>
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="35"
-                            src="../assets/img/logos/b%26w/1.png" alt="" /></div>
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="40"
-                            src="../assets/img/logos/b%26w/10.png" alt="" /></div>
-                    <div class="col-3 col-sm-auto my-1 my-sm-3 px-x1"><img class="landing-cta-img" height="40"
-                            src="../assets/img/logos/b%26w/12.png" alt="" /></div>
-                </div>
-            </div>
-            <!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section>
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8 col-xl-7 col-xxl-6">
-                        <h1 class="fs-2 fs-sm-4 fs-md-5">WebApp theme of the future</h1>
-                        <p class="lead">Built on top of Bootstrap 5, super modular Falcon provides you gorgeous
-                            design &amp; streamlined UX for your WebApp.</p>
-                    </div>
-                </div>
-                <div class="row flex-center mt-8">
-                    <div class="col-md col-lg-5 col-xl-4 ps-lg-6"><img class="img-fluid px-6 px-md-0"
-                            src="../assets/img/icons/spot-illustrations/50.png" alt="" /></div>
-                    <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
-                        <h5 class="text-danger"><span class="far fa-lightbulb me-2"></span>PLAN</h5>
-                        <h3>Blueprint &amp; design </h3>
-                        <p>With Falcon as your guide, now you have a fine-tuned state of the earth tool to make your
-                            wireframe a reality.</p>
-                    </div>
-                </div>
-                <div class="row flex-center mt-7">
-                    <div class="col-md col-lg-5 col-xl-4 pe-lg-6 order-md-2"><img class="img-fluid px-6 px-md-0"
-                            src="../assets/img/icons/spot-illustrations/49.png" alt="" /></div>
-                    <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
-                        <h5 class="text-info"> <span class="far fa-object-ungroup me-2"></span>BUILD</h5>
-                        <h3>38 Sets of components</h3>
-                        <p>Build any UI effortlessly with Falcon's robust set of layouts, 38 sets of built-in elements,
-                            carefully chosen colors, typography, and css helpers.</p>
-                    </div>
-                </div>
-                <div class="row flex-center mt-7">
-                    <div class="col-md col-lg-5 col-xl-4 ps-lg-6"><img class="img-fluid px-6 px-md-0"
-                            src="../assets/img/icons/spot-illustrations/48.png" alt="" /></div>
-                    <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
-                        <h5 class="text-success"><span class="far fa-paper-plane me-2"></span>DEPLOY</h5>
-                        <h3>Review and test</h3>
-                        <p>From IE to iOS, rigorously tested and optimized Falcon will give the near perfect finishing
-                            to your webapp; from the landing page to the logout screen.</p>
-                    </div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="bg-light text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1 class="fs-2 fs-sm-4 fs-md-5">Here's what's in it for you</h1>
-                        <p class="lead">Things you will get right out of the box with Falcon.</p>
-                    </div>
-                </div>
-                <div class="row mt-6">
-                    <div class="col-lg-4">
-                        <div class="card card-span h-100">
-                            <div class="card-span-img"><span class="fab fa-sass fs-4 text-info"></span></div>
-                            <div class="card-body pt-6 pb-4">
-                                <h5 class="mb-2">Bootstrap 5.x</h5>
-                                <p>Build your webapp with the world's most popular front-end component library along
-                                    with Falcon's 32 sets of carefully designed elements.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt-6 mt-lg-0">
-                        <div class="card card-span h-100">
-                            <div class="card-span-img"><span class="fab fa-node-js fs-5 text-success"></span></div>
-                            <div class="card-body pt-6 pb-4">
-                                <h5 class="mb-2">SCSS &amp; Javascript files</h5>
-                                <p>With your purchased copy of Falcon, you will get all the uncompressed & documented
-                                    SCSS and Javascript source code files.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mt-6 mt-lg-0">
-                        <div class="card card-span h-100">
-                            <div class="card-span-img"><span class="fab fa-gulp fs-6 text-danger"></span></div>
-                            <div class="card-body pt-6 pb-4">
-                                <h5 class="mb-2">Gulp based workflow</h5>
-                                <p>All the painful or time-consuming tasks in your development workflow such as
-                                    compiling the SCSS or transpiring the JS are automated.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="bg-200 text-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9 col-xl-8">
-                        <div class="swiper-container theme-slider"
-                            data-swiper='{"autoplay":true,"spaceBetween":5,"loop":true,"loopedSlides":5,"slideToClickedSlide":true}'>
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="px-5 px-sm-6">
-                                        <p class="fs-sm-1 fs-md-2 fst-italic text-dark">Falcon is the best option if
-                                            you are looking for a theme built with Bootstrap. On top of that,
-                                            Falcon&apos;s creators and support staff are very brilliant and attentive to
-                                            users&apos; needs.</p>
-                                        <p class="fs-0 text-600">- Scott Tolinski, Web Developer</p><img
-                                            class="w-auto mx-auto" src="../assets/img/logos/google.png"
-                                            alt="" height="45" />
+        <div class="container-fluid">
+            <div class="row min-vh-100 flex-center g-0">
+                <div class="col-lg-8 col-xxl-5 py-3 position-relative"><img class="bg-auth-circle-shape"
+                        src="../../../assets/img/icons/spot-illustrations/bg-shape.png" alt=""
+                        width="250"><img class="bg-auth-circle-shape-2"
+                        src="../../../assets/img/icons/spot-illustrations/shape-1.png" alt="" width="150">
+                    <div class="card overflow-hidden z-index-1">
+                        <div class="card-body p-0">
+                            <div class="row g-0 h-100">
+                                <div class="col-md-5 text-center bg-card-gradient">
+                                    <div class="position-relative p-4 pt-md-5 pb-md-7 light">
+                                        <div class="bg-holder bg-auth-card-shape"
+                                            style="background-image:url(../../../assets/img/icons/spot-illustrations/half-circle.png);">
+                                        </div>
+                                        <!--/.bg-holder-->
+                                        <div class="z-index-1 position-relative"><a
+                                                class="link-light mb-4 font-sans-serif fs-4 d-inline-block fw-bolder"
+                                                href="../../../index.html">HWA SAT</a>
+                                            {{-- <p class="opacity-75 text-white">With the power of Falcon, you can now focus
+                                                only on functionaries for your digital products, while leaving the UI
+                                                design on us!
+                                            </p> --}}
+                                        </div>
                                     </div>
+                                    {{-- <div class="mt-3 mb-4 mt-md-4 mb-md-5 light">
+                                        <p class="text-white">Don't have an account?<br><a
+                                                class="text-decoration-underline link-light" href="register.html">Get
+                                                started!</a></p>
+                                        <p class="mb-0 mt-4 mt-md-5 fs--1 fw-semi-bold text-white opacity-75">Read our
+                                            <a class="text-decoration-underline text-white" href="#!">terms</a> and
+                                            <a class="text-decoration-underline text-white" href="#!">conditions
+                                            </a>
+                                        </p>
+                                    </div> --}}
                                 </div>
-                                <div class="swiper-slide">
-                                    <div class="px-5 px-sm-6">
-                                        <p class="fs-sm-1 fs-md-2 fst-italic text-dark">We&apos;ve become fanboys! Easy
-                                            to change the modular design, great dashboard UI, enterprise-class support,
-                                            fast loading time. What else do you want from a Bootstrap Theme?</p>
-                                        <p class="fs-0 text-600">- Jeff Escalante, Developer</p><img
-                                            class="w-auto mx-auto" src="../assets/img/logos/netflix.png"
-                                            alt="" height="30" />
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="px-5 px-sm-6">
-                                        <p class="fs-sm-1 fs-md-2 fst-italic text-dark">When I first saw Falcon, I was
-                                            totally blown away by the care taken in the interface. It felt like
-                                            something that I&apos;d really want to use and something I could see being a
-                                            true modern replacement to the current class of Bootstrap themes.</p>
-                                        <p class="fs-0 text-600">- Liam Martens, Designer</p><img
-                                            class="w-auto mx-auto" src="../assets/img/logos/paypal.png"
-                                            alt="" height="45" />
+                                <div class="col-md-7 d-flex flex-center">
+                                    <div class="p-4 p-md-5 flex-grow-1">
+                                        <div class="row flex-between-center">
+                                            <div class="col-auto">
+                                                <h3>Pilih Role Anda</h3>
+                                            </div>
+                                        </div>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="2">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-danger d-block w-100 mt-3"
+                                                    type="submit" name="submit">Superadmin</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="3">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
+                                                    type="submit" name="submit">Admin HRGA</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="4">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
+                                                    type="submit" name="submit">Admin Rental</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="5">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
+                                                    type="submit" name="submit">Admin Logistik</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="6">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
+                                                    type="submit" name="submit">Karyawan</button></div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <div class="swiper-nav">
-                                <div class="swiper-button-next swiper-button-white"></div>
-                                <div class="swiper-button-prev swiper-button-white"> </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="light bg-dark">
-            <div class="bg-holder overlay"
-                style="background-image:url(../assets/img/generic/bg-2.jpg);background-position: center top;"></div>
-            <!--/.bg-holder-->
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8">
-                        <p class="fs-3 fs-sm-4 text-white">Join our community of 20,000+ developers and content
-                            creators on their mission to build better sites and apps.</p><button
-                            class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-0 py-2"
-                            type="button">Start your webapp</button>
-                    </div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="bg-dark pt-8 pb-4 light">
-            <div class="container">
-                <div class="position-absolute btn-back-to-top bg-dark"><a class="text-600" href="#banner"
-                        data-bs-offset-top="0"><span class="fas fa-chevron-up"
-                            data-fa-transform="rotate-45"></span></a></div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <h5 class="text-uppercase text-white opacity-85 mb-3">Our Mission</h5>
-                        <p class="text-600">Falcon enables front end developers to build custom streamlined user
-                            interfaces in a matter of hours, while it gives backend developers all the UI elements they
-                            need to develop their web app.And it's rich design can be easily integrated with backends
-                            whether your app is based on ruby on rails, laravel, express or any other server side
-                            system.</p>
-                        <div class="icon-group mt-4"><a class="icon-item bg-white text-facebook" href="#!"><span
-                                    class="fab fa-facebook-f"></span></a><a class="icon-item bg-white text-twitter"
-                                href="#!"><span class="fab fa-twitter"></span></a><a
-                                class="icon-item bg-white text-google-plus" href="#!"><span
-                                    class="fab fa-google-plus-g"></span></a><a
-                                class="icon-item bg-white text-linkedin" href="#!"><span
-                                    class="fab fa-linkedin-in"></span></a><a class="icon-item bg-white"
-                                href="#!"><span class="fab fa-medium-m"></span></a></div>
-                    </div>
-                    <div class="col ps-lg-6 ps-xl-8">
-                        <div class="row mt-5 mt-lg-0">
-                            <div class="col-6 col-md-3">
-                                <h5 class="text-uppercase text-white opacity-85 mb-3">Company</h5>
-                                <ul class="list-unstyled">
-                                    <li class="mb-1"><a class="link-600" href="#!">About</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Contact</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Careers</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Blog</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Terms</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Privacy</a></li>
-                                    <li><a class="link-600" href="#!">Imprint</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <h5 class="text-uppercase text-white opacity-85 mb-3">Product</h5>
-                                <ul class="list-unstyled">
-                                    <li class="mb-1"><a class="link-600" href="#!">Features</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Roadmap</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Changelog</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Pricing</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Docs</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">System Status</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Agencies</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">Enterprise</a></li>
-                                </ul>
-                            </div>
-                            <div class="col mt-5 mt-md-0">
-                                <h5 class="text-uppercase text-white opacity-85 mb-3">From the Blog</h5>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <h5 class="fs-0 mb-0"><a class="link-600" href="#!"> Interactive graphs
-                                                and charts</a></h5>
-                                        <p class="text-600 opacity-50">Jan 15 &bull; 8min read </p>
-                                    </li>
-                                    <li>
-                                        <h5 class="fs-0 mb-0"><a class="link-600" href="#!"> Lifetime free
-                                                updates</a></h5>
-                                        <p class="text-600 opacity-50">Jan 5 &bull; 3min read &starf;</p>
-                                    </li>
-                                    <li>
-                                        <h5 class="fs-0 mb-0"><a class="link-600" href="#!"> Merry Christmas
-                                                From us</a></h5>
-                                        <p class="text-600 opacity-50">Dec 25 &bull; 2min read</p>
-                                    </li>
-                                    <li>
-                                        <h5 class="fs-0 mb-0"><a class="link-600" href="#!"> The New Falcon
-                                                Theme</a></h5>
-                                        <p class="text-600 opacity-50">Dec 23 &bull; 10min read </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section class="py-0 bg-dark light">
-            <div>
-                <hr class="my-0 text-600 opacity-25" />
-                <div class="container py-3">
-                    <div class="row justify-content-between fs--1">
-                        <div class="col-12 col-sm-auto text-center">
-                            <p class="mb-0 text-600 opacity-85">Thank you for creating with Falcon <span
-                                    class="d-none d-sm-inline-block">| </span><br class="d-sm-none" /> 2022 &copy;
-                                <a class="text-white opacity-85" href="https://themewagon.com/">Themewagon</a>
-                            </p>
-                        </div>
-                        <div class="col-12 col-sm-auto text-center">
-                            <p class="mb-0 text-600 opacity-85">v3.14.0</p>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end of .container-->
-        </section><!-- <section> close ============================-->
-        <!-- ============================================-->
-
-        <div class="modal fade" id="authentication-modal" tabindex="-1" role="dialog"
-            aria-labelledby="authentication-modal-label" aria-hidden="true">
-            <div class="modal-dialog mt-6" role="document">
-                <div class="modal-content border-0">
-                    <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
-                        <div class="position-relative z-index-1 light">
-                            <h4 class="mb-0 text-white" id="authentication-modal-label">Register</h4>
-                            <p class="fs--1 mb-0 text-white">Please create your free Falcon account</p>
-                        </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
-                            data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body py-4 px-5">
-                        <form>
-                            <div class="mb-3"><label class="form-label" for="modal-auth-name">Name</label><input
-                                    class="form-control" type="text" autocomplete="on" id="modal-auth-name" />
-                            </div>
-                            <div class="mb-3"><label class="form-label" for="modal-auth-email">Email
-                                    address</label><input class="form-control" type="email" autocomplete="on"
-                                    id="modal-auth-email" /></div>
-                            <div class="row gx-2">
-                                <div class="mb-3 col-sm-6"><label class="form-label"
-                                        for="modal-auth-password">Password</label><input class="form-control"
-                                        type="password" autocomplete="on" id="modal-auth-password" /></div>
-                                <div class="mb-3 col-sm-6"><label class="form-label"
-                                        for="modal-auth-confirm-password">Confirm Password</label><input
-                                        class="form-control" type="password" autocomplete="on"
-                                        id="modal-auth-confirm-password" /></div>
-                            </div>
-                            <div class="form-check"><input class="form-check-input" type="checkbox"
-                                    id="modal-auth-register-checkbox" /><label class="form-label"
-                                    for="modal-auth-register-checkbox">I accept the <a href="#!">terms </a>and
-                                    <a href="#!">privacy policy</a></label></div>
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                                    name="submit">Register</button></div>
-                        </form>
-                        <div class="position-relative mt-5">
-                            <hr />
-                            <div class="divider-content-center">or register with</div>
-                        </div>
-                        <div class="row g-2 mt-2">
-                            <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100"
-                                    href="#"><span class="fab fa-google-plus-g me-2"
-                                        data-fa-transform="grow-8"></span> google</a></div>
-                            <div class="col-sm-6"><a class="btn btn-outline-facebook btn-sm d-block w-100"
-                                    href="#"><span class="fab fa-facebook-square me-2"
-                                        data-fa-transform="grow-8"></span> facebook</a></div>
                         </div>
                     </div>
                 </div>
@@ -614,24 +175,24 @@
                             type="radio" value="light" data-theme-control="theme" /><label
                             class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherLight"> <span
                                 class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0"
-                                    src="../assets/img/generic/falcon-mode-default.jpg" alt="" /></span><span
-                                class="label-text">Light</span></label></div>
+                                    src="../../../assets/img/generic/falcon-mode-default.jpg"
+                                    alt="" /></span><span class="label-text">Light</span></label></div>
                     <div class="col-6"><input class="btn-check" id="themeSwitcherDark" name="theme-color"
                             type="radio" value="dark" data-theme-control="theme" /><label
                             class="btn d-inline-block btn-navbar-style fs--1" for="themeSwitcherDark"> <span
                                 class="hover-overlay mb-2 rounded d-block"><img class="img-fluid img-prototype mb-0"
-                                    src="../assets/img/generic/falcon-mode-dark.jpg" alt="" /></span><span
-                                class="label-text"> Dark</span></label></div>
+                                    src="../../../assets/img/generic/falcon-mode-dark.jpg"
+                                    alt="" /></span><span class="label-text"> Dark</span></label></div>
                 </div>
             </div>
             <hr />
             <div class="d-flex justify-content-between">
                 <div class="d-flex align-items-start"><img class="me-2"
-                        src="../assets/img/icons/left-arrow-from-left.svg" width="20" alt="" />
+                        src="../../../assets/img/icons/left-arrow-from-left.svg" width="20" alt="" />
                     <div class="flex-1">
                         <h5 class="fs-0">RTL Mode</h5>
                         <p class="fs--1 mb-0">Switch your language direction </p><a class="fs--1"
-                            href="../documentation/customization/configuration.html">RTL Documentation</a>
+                            href="../../../documentation/customization/configuration.html">RTL Documentation</a>
                     </div>
                 </div>
                 <div class="form-check form-switch"><input class="form-check-input ms-0" id="mode-rtl"
@@ -639,19 +200,19 @@
             </div>
             <hr />
             <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-start"><img class="me-2" src="../assets/img/icons/arrows-h.svg"
-                        width="20" alt="" />
+                <div class="d-flex align-items-start"><img class="me-2"
+                        src="../../../assets/img/icons/arrows-h.svg" width="20" alt="" />
                     <div class="flex-1">
                         <h5 class="fs-0">Fluid Layout</h5>
                         <p class="fs--1 mb-0">Toggle container layout system </p><a class="fs--1"
-                            href="../documentation/customization/configuration.html">Fluid Documentation</a>
+                            href="../../../documentation/customization/configuration.html">Fluid Documentation</a>
                     </div>
                 </div>
                 <div class="form-check form-switch"><input class="form-check-input ms-0" id="mode-fluid"
                         type="checkbox" data-theme-control="isFluid" /></div>
             </div>
             <hr />
-            <div class="d-flex align-items-start"><img class="me-2" src="../assets/img/icons/paragraph.svg"
+            <div class="d-flex align-items-start"><img class="me-2" src="../../../assets/img/icons/paragraph.svg"
                     width="20" alt="" />
                 <div class="flex-1">
                     <h5 class="fs-0 d-flex align-items-center">Navigation Position</h5>
@@ -668,34 +229,35 @@
             <hr />
             <h5 class="fs-0 d-flex align-items-center">Vertical Navbar Style</h5>
             <p class="fs--1 mb-0">Switch between styles for your vertical navbar </p>
-            <p> <a class="fs--1" href="../modules/components/navs-and-tabs/vertical-navbar.html#navbar-styles">See
+            <p> <a class="fs--1"
+                    href="../../../modules/components/navs-and-tabs/vertical-navbar.html#navbar-styles">See
                     Documentation</a></p>
             <div class="btn-group d-block w-100 btn-group-navbar-style">
                 <div class="row gx-2">
                     <div class="col-6"><input class="btn-check" id="navbar-style-transparent" type="radio"
                             name="navbarStyle" value="transparent" data-theme-control="navbarStyle" /><label
                             class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-transparent"> <img
-                                class="img-fluid img-prototype" src="../assets/img/generic/default.png"
+                                class="img-fluid img-prototype" src="../../../assets/img/generic/default.png"
                                 alt="" /><span class="label-text"> Transparent</span></label></div>
                     <div class="col-6"><input class="btn-check" id="navbar-style-inverted" type="radio"
                             name="navbarStyle" value="inverted" data-theme-control="navbarStyle" /><label
                             class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-inverted"> <img
-                                class="img-fluid img-prototype" src="../assets/img/generic/inverted.png"
+                                class="img-fluid img-prototype" src="../../../assets/img/generic/inverted.png"
                                 alt="" /><span class="label-text"> Inverted</span></label></div>
                     <div class="col-6"><input class="btn-check" id="navbar-style-card" type="radio"
                             name="navbarStyle" value="card" data-theme-control="navbarStyle" /><label
                             class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-card"> <img
-                                class="img-fluid img-prototype" src="../assets/img/generic/card.png"
+                                class="img-fluid img-prototype" src="../../../assets/img/generic/card.png"
                                 alt="" /><span class="label-text"> Card</span></label></div>
                     <div class="col-6"><input class="btn-check" id="navbar-style-vibrant" type="radio"
                             name="navbarStyle" value="vibrant" data-theme-control="navbarStyle" /><label
                             class="btn d-block w-100 btn-navbar-style fs--1" for="navbar-style-vibrant"> <img
-                                class="img-fluid img-prototype" src="../assets/img/generic/vibrant.png"
+                                class="img-fluid img-prototype" src="../../../assets/img/generic/vibrant.png"
                                 alt="" /><span class="label-text"> Vibrant</span></label></div>
                 </div>
             </div>
-            <div class="text-center mt-5"><img class="mb-4" src="../assets/img/icons/spot-illustrations/47.png"
-                    alt="" width="120" />
+            <div class="text-center mt-5"><img class="mb-4"
+                    src="../../../assets/img/icons/spot-illustrations/47.png" alt="" width="120" />
                 <h5>Like What You See?</h5>
                 <p class="fs--1">Get Falcon now and create beautiful dashboards with hundreds of widgets.</p><a
                     class="mb-3 btn btn-primary"
@@ -703,8 +265,7 @@
                     target="_blank">Purchase</a>
             </div>
         </div>
-    </div>
-    {{-- <a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
+    </div><a class="card setting-toggle" href="#settings-offcanvas" data-bs-toggle="offcanvas">
         <div class="card-body d-flex align-items-center py-md-2 px-2 py-1">
             <div class="bg-soft-primary position-relative rounded-start" style="height:34px;width:28px">
                 <div class="settings-popover"><span class="ripple"><span
@@ -719,25 +280,23 @@
             </div><small
                 class="text-uppercase text-primary fw-bold bg-soft-primary py-2 pe-2 ps-1 rounded-end">customize</small>
         </div>
-    </a> --}}
+    </a>
 
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="../vendors/popper/popper.min.js"></script>
-    <script src="../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../vendors/is/is.min.js"></script>
-    <script src="../vendors/swiper/swiper-bundle.min.js"></script>
-    <script src="../vendors/typed.js/typed.js"></script>
-    <script src="../vendors/fontawesome/all.min.js"></script>
-    <script src="../vendors/lodash/lodash.min.js"></script>
-    <script src="../../../../polyfill.io/v3/polyfill.min58be.js?features=window.scroll"></script>
-    <script src="../vendors/list.js/list.min.js"></script>
-    <script src="../assets/js/theme.js"></script>
+    <script src="../../../vendors/popper/popper.min.js"></script>
+    <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+    <script src="../../../vendors/is/is.min.js"></script>
+    <script src="../../../vendors/fontawesome/all.min.js"></script>
+    <script src="../../../vendors/lodash/lodash.min.js"></script>
+    <script src="../../../../../../polyfill.io/v3/polyfill.min58be.js?features=window.scroll"></script>
+    <script src="../../../vendors/list.js/list.min.js"></script>
+    <script src="../../../assets/js/theme.js"></script>
 </body>
 
 
-<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:16 GMT -->
+<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/authentication/card/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:07 GMT -->
 
 </html>
