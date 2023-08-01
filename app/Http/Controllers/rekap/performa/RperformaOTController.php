@@ -80,6 +80,43 @@ class RperformaOTController extends Controller
     }
 
 
+    public function ot_store(Request $request)
+    {
+        // dd($request->all());
+        $messages = [
+            'tgl.required' => 'Tanggal Wajib Diisi',
+            'jam_mulai.required' => 'Jam Mulai Wajib Diisi',
+            'jam_selesai.required' => 'Jam Selesai Wajib Diisi',
+        ];
+        $this->validate($request, [
+            'tgl'     => 'required',
+            'jam_mulai'     => 'required',
+            'jam_selesai'     => 'required',
+        ], $messages);
+
+        $awal = strtotime($request->jam_mulai);
+        $akhir = strtotime($request->jam_selesai);
+        $tot_detik = $akhir - $awal;
+        $tot_jam_kotor = floor($tot_detik / (60 * 60));
+        $pot = $request->jam_pot;
+        $tot_jam_bersih = $tot_jam_kotor - $pot;
+
+        $master = Master::where('status', 'Validasi')->first();
+        Performa_ot::create([
+            'tgl' => $request->tgl,
+            'kar_id' => $request->kar_id,
+            'equip_id' => $request->equip_id,
+            'master_id' => $master->id,
+            'remark' => $request->remark,
+            'jam_mulai' => $request->jam_mulai,
+            'jam_selesai' => $request->jam_selesai,
+            'jam_pot' => $request->jam_pot,
+            'jam_total' => $tot_jam_kotor,
+        ]);
+        return back()->with('success', 'Data Helper Berhasil Ditambahkan');
+    }
+
+
     public function ot_kar_refresh(Request $request)
     {
         // dd($request->all());

@@ -10,5 +10,5 @@ class Master  extends Model
     use HasFactory;
 
     protected $table ='hwa_master';
-    protected $fillable =['id','periode','total','status','ket','ket1','ket2','gaji','created_at','insentif','lemburan','pokok'];
+    protected $fillable =['id','biaya_sewa', 'periode','total','status','ket','ket1','ket2','gaji','created_at','insentif','lemburan','pokok'];
 }

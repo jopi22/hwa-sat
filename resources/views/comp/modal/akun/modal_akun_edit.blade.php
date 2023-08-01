@@ -41,33 +41,23 @@
                         <div class="form-group">
                             <label>Role</label><br>
                             <select required name="level" class="form-control">
-                                @if ($res->level == 1)
-                                    <option value="1">Developer</option>
-                                @else
-                                    @if ($res->level == 2)
-                                        <option value="2">Superadmin</option>
-                                    @else
-                                        @if ($res->level == 3)
-                                            <option selected value="3">Admin</option>
-                                            <option value="4">Pekerja</option>
-                                        @else
-                                            @if ($res->level == 4)
-                                                <option selected value="4">Pekerja</option>
-                                                <option value="3">Admin</option>
-                                            @else
-                                            @endif
-                                        @endif
-                                    @endif
-                                @endif
+                                <option value="{{ $res->level }}">{{ $res->level }}</option>
+                                {{-- <option value="1">Developer</option> --}}
+                                <option value="2">Superadmin (2)</option>
+                                <option value="3">Admin HRGA (3)</option>
+                                <option value="4">Admin Rental (4)</option>
+                                <option value="5">Admin Logistik (5)</option>
+                                <option value="6">Karyawan (6)</option>
+                                <option value="7">Manajer (7)</option>
                             </select>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal"
-                            aria-label="Close"><i class="fas fa-times"></i> Tutup</span>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal" aria-label="Close"><i
+                                class="fas fa-times"></i> Tutup</span>
                         </button>
-                        <button class="btn btn-warning" type="submit"><span
-                                class="fas fa-magic"></span> Update </button>
+                        <button class="btn btn-warning" type="submit"><span class="fas fa-magic"></span> Update
+                        </button>
                     </div>
                 </form>
             </div>

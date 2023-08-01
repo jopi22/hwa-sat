@@ -28,22 +28,21 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($cek > 0)
-        <div class="card mb-2 bg-light shadow-none">
-            <div class="bg-holder bg-card d-none d-sm-block"
-                style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-            <!--/.bg-holder-->
-            <div class="card-header d-flex align-items-center z-index-1 p-0"><img
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                    width="96" />
-                <div class="ms-n3">
-                    <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance Divison <span
-                            class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                    <h4 class="mb-0 text-primary fw-bold">Catering
-                        <span class="text-info fw-medium"></span>
-                    </h4>
+            <div class="card mb-2 bg-light shadow-none">
+                <div class="bg-holder bg-card d-none d-sm-block"
+                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                <!--/.bg-holder-->
+                <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+                    <div class="ms-n3">
+                        <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance Divison <span
+                                class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                        <h4 class="mb-0 text-primary fw-bold">Catering
+                            <span class="text-info fw-medium"></span>
+                        </h4>
+                    </div>
                 </div>
             </div>
-        </div>
 
             @include('comp.alert')
 
@@ -90,116 +89,154 @@
             </div>
         </div> --}}
 
-            <div class="card mb-2 font-sans-serif">
-                <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-                <div class="card-body ">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="mb-0">Detail Data Catering</h6>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#setting"
+                                    class="btn btn-sm btn-warning"><i class="fas fa-cog"></i>
+                                    Setting</button>&nbsp;
+                                </div>
+                    </div>
+                </div>
+                <div class="card-body bg-light border-top">
                     <div class="row">
-                        <div
-                            class="col-6 d-flex gap-3 flex-column flex-sm-row align-items-center border-md-end border-bottom border-md-bottom-0 border-dashed">
+                        <div class="col-lg col-xxl-5">
                             @if ($cat_m->porsi_harga == null)
                                 Belum Disetting
                             @else
-                            <table>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Periode</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ date('F Y') }}</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Kantin </th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;PT HWA</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Pengurus Kantin</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $cat_m->atas_nama }}</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Bank</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $cat_m->bank }} </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">No Rek</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $cat_m->no_rek }} </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Harga / Porsi</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $harga_porsi }} </th>
-                                </tr>
-                            </table>
+                                <table>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Periode</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ date('F Y') }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Kantin </th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;PT HWA</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Pengurus Kantin</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $cat_m->atas_nama }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Bank</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $cat_m->bank }} </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">No Rek</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $cat_m->no_rek }} </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Harga / Porsi</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $harga_porsi }} </th>
+                                    </tr>
+                                </table>
                             @endif
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg col-xxl-5 mt-4 mt-lg-0 offset-xxl-1">
                             @if ($cat_m->tot_porsi == null)
                                 Belum disinkronisai
                             @else
-                            <table>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Pagi Total</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $pagi }} Porsi</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Siang Total</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $siang }} Porsi</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Sore Total</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $sore }} Porsi</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Malam Total</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $malam }} Porsi</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Grand Porsi</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;{{ $total }} Porsi</th>
-                                </tr>
-                                <tr>
-                                    <th class="text-700 fw-normal fs--1" style="min-width: 180px">Total Harga</th>
-                                    <th class="text-700 fw-normal fs--1">:</th>
-                                    <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $harga }} </th>
-                                </tr>
-                            </table>
+                                <table>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Pagi Total
+                                        </th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $pagi }} Porsi</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Siang Total
+                                        </th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $siang }} Porsi</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Sore Total
+                                        </th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $sore }} Porsi</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Porsi Malam Total
+                                        </th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $malam }} Porsi</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Grand Porsi</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;{{ $total }} Porsi</th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-700 fw-normal fs--1" style="min-width: 180px">Total Harga</th>
+                                        <th class="text-700 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $harga }} </th>
+                                    </tr>
+                                </table>
                             @endif
                         </div>
                     </div>
                 </div>
+                <div class="card-footer border-top text-end">
+                    {{-- // --}}
+                </div>
             </div>
 
             <div class="card mb-3">
-                <div class="card-header bg-light d-flex flex-between-justify py-2">
-                    <h3></h3>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#setting" class="btn btn-sm btn-warning"><i class="fas fa-cog"></i>
-                        Setting</button>&nbsp;
-                    @if ($cat_m->porsi_harga != null)
-                    <form action="{{ route('cat.r') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="delete" value="{{ $cat_m->id }}">
-                        <input type="hidden" name="id" value="{{ $cat_m->id }}">
-                        <input type="hidden" name="master_id" value="{{ $cat_m->master_id }}">
-                        <input type="hidden" name="atas_nama" value="{{ $cat_m->atas_nama }}">
-                        <input type="hidden" name="porsi_harga" value="{{ $cat_m->porsi_harga }}">
-                        <input type="hidden" name="bank" value="{{ $cat_m->bank }}">
-                        <input type="hidden" name="no_rek" value="{{ $cat_m->no_rek }}">
-                        <input type="hidden" name="tot_pagi" value="{{ $pagi }}">
-                        <input type="hidden" name="tot_siang" value="{{ $siang }}">
-                        <input type="hidden" name="tot_sore" value="{{ $sore }}">
-                        <input type="hidden" name="tot_malam" value="{{ $malam }}">
-                        <input type="hidden" name="tot_porsi" value="{{ $total }}">
-                        <input type="hidden" name="tot_harga" value="{{ $harga }}">
-                        <button class="btn btn-sm btn-info"><i class="fab fa-slack"></i> Sinkronisai</button>
-                    </form>
-                    @endif
+                <div class="card-header bg-light">
+                    <div class="d-lg-flex justify-content-between">
+                        <div class="row flex-between-center gy-2 px-x1">
+                            <div class="col-auto pe-0">
+                                @if ($cat_m->porsi_harga != null)
+                                    <form action="{{ route('cat.r') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="delete" value="{{ $cat_m->id }}">
+                                        <input type="hidden" name="id" value="{{ $cat_m->id }}">
+                                        <input type="hidden" name="master_id" value="{{ $cat_m->master_id }}">
+                                        <input type="hidden" name="atas_nama" value="{{ $cat_m->atas_nama }}">
+                                        <input type="hidden" name="porsi_harga" value="{{ $cat_m->porsi_harga }}">
+                                        <input type="hidden" name="bank" value="{{ $cat_m->bank }}">
+                                        <input type="hidden" name="no_rek" value="{{ $cat_m->no_rek }}">
+                                        <input type="hidden" name="tot_pagi" value="{{ $pagi }}">
+                                        <input type="hidden" name="tot_siang" value="{{ $siang }}">
+                                        <input type="hidden" name="tot_sore" value="{{ $sore }}">
+                                        <input type="hidden" name="tot_malam" value="{{ $malam }}">
+                                        <input type="hidden" name="tot_porsi" value="{{ $total }}">
+                                        <input type="hidden" name="tot_harga" value="{{ $harga }}">
+                                        <button class="btn btn-sm btn-info"><i class="fab fa-slack"></i>
+                                            Sinkronisai</button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="border-bottom border-200 my-3"></div>
+                        <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                            <div class="col-auto pe-0">
+                                <a href="{{ route('cat.c') }}">
+                                    <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
+                                            class="fas fa-plus text-success" data-fa-transform="shrink-3"></span><span
+                                            class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
+                                    </button>
+                                </a>
+                                <a href="{{ route('cat.excel', Crypt::EncryptString(Auth::user()->id)) }}"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
                 <div id="tableExample4"
                     data-list='{"valueNames":["id","no","tgl","unit","rem","tipe","des"],"filter":{"key":"tipe"}}'>
@@ -211,19 +248,6 @@
                                 </div>
                             </form>
                         </div>&nbsp;
-                        <div class="col-sm-3">
-                            <a href="{{ route('cat.c') }}">
-                                <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
-                                        class="fas fa-plus text-success" data-fa-transform="shrink-3"></span><span
-                                        class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
-                                </button>
-                            </a>
-                            <a href="{{ route('cat.excel', Crypt::EncryptString(Auth::user()->id)) }}" target="_blank"
-                                rel="noopener noreferrer">
-                                <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
-                                </button>
-                            </a>
-                        </div>
                     </div>
                     @if ($cek_list == 0)
                         <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>

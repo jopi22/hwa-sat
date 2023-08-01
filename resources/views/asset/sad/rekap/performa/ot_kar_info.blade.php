@@ -21,40 +21,16 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3">
-        <div class="card-body d-flex justify-content-between">
-            <div>
-                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ $master->created_at->format('F Y') }}</span>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <a class="btn btn-falcon-default btn-sm" href="{{ route('r.ot.k') }}" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Back to Main Table">
-                    <span class="fas fa-list"></span>
-                </a>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <span class=" fw-semi-bold text-primary"> Performance :
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+        <div class="col d-flex align-items-center">
+            <div class="ms-1">&nbsp;
+                <span class=" fw-semi-bold text-primary"> Performance Helper /
                     <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
             </div>
-            <div class="col-auto d-flex align-items-center">
-                <form action="{{ route('ot.k.r') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="bro_id" value="{{ $kar->id }}">
-                    <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
-                        Sinkron</button>
-                </form>
-                <div class="position-relative">&nbsp;
-                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                            class="fas fa-users"></i></button>
-                </div>
-                <div class="position-relative">&nbsp;
-                    <a href="{{ route('r.ot.k.i.excel', Crypt::EncryptString($kar->id)) }}" target="_blank"
-                        rel="noopener noreferrer">
-                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
-                        </button>
-                    </a>
-                </div>
-            </div>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+            <span class="badge bg-soft-danger text-danger bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ $master->created_at->format('F Y') }}</span>
         </div>
     </div>
 
@@ -195,14 +171,14 @@
         </div>
     </div>
 
-    <div class="card mb-2">
-        <div class="card-body py-5 py-sm-3">
+    <div class="card mb-2 bg-line-chart-gradient">
+        <div class="card-body py-5 py-sm-3 bg-transparent light">
             <div class="row g-5 g-sm-0">
                 <div class="col-sm-4">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700">Standar Lemburan/Jam</h6>
-                            <h3 class="fw-normal text-700"
+                            <h6 class="text-white">Standar Lemburan/Jam</h6>
+                            <h3 class="fw-normal text-white"
                                 data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $master->lemburan }}}'>0</h3>
                         </div>
                     </div>
@@ -210,16 +186,16 @@
                 <div class="col-sm-4">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700">Total Jam</h6>
-                            <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $total_jam }}}'>0</h3>
+                            <h6 class="text-white">Total Jam</h6>
+                            <h3 class="fw-normal text-white" data-countup='{"endValue":{{ $total_jam }}}'>0</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div>
                         <div class="text-center">
-                            <h6 class="text-primary">Total Lemburan</h6>
-                            <h3 class="fw-normal text-primary"
+                            <h6 class="text-white">Total Lemburan</h6>
+                            <h3 class="fw-normal text-white"
                                 data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $lemburan }}}'>0
                             </h3>
                         </div>
@@ -230,8 +206,30 @@
     </div>
 
     <div class="card mb-3">
-        <div class="card-header bg-light d-flex flex-between-end py-2">
-            {{-- // --}}
+        <div class="card-header bg-light">
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        <form action="{{ route('ot.k.r') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="bro_id" value="{{ $kar->id }}">
+                            <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i
+                                    class="fab fa-slack"></i>
+                                Sinkronisasi</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-users"></i>
+                        </button>
+                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         @if ($cek == 0)
             <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>

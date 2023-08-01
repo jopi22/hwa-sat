@@ -81,6 +81,7 @@ class MasterController extends Controller
         $pokok = 1700000;
         $ins = 20000;
         $lem = 15000;
+        $sewa = 250000;
         // Buat Master Baru
         Master::create([
             'total' => $request->total_new,
@@ -90,6 +91,7 @@ class MasterController extends Controller
             'pokok' => $pokok,
             'insentif' => $ins,
             'lemburan' => $lem,
+            'biaya_sewa' => $sewa,
             'created_at' => $request->created_at_new,
             'updated_at' => $request->updated_at_new,
         ]);
@@ -104,6 +106,7 @@ class MasterController extends Controller
             'pokok' => $request->pokok_old,
             'insentif' => $request->insentif_old,
             'lemburan' => $request->lemburan_old,
+            'biaya_sewa' => $request->biaya_sewa_old,
             'created_at' => $request->created_at_old,
             'updated_at' => $request->updated_at_old,
         ]);
@@ -157,6 +160,7 @@ class MasterController extends Controller
             'status' => $request->status_new,
             'ket' => $request->ket_new,
             'pokok' => $pokok,
+            'biaya_sewa' => $request->biaya_sewa,
             'insentif' => $ins,
             'lemburan' => $lem,
             'created_at' => $request->created_at_new,

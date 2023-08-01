@@ -32,43 +32,45 @@
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
             @if ($master->ket1 == 1)
-            <div class="card mb-2 bg-light shadow-none">
-                <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-                <!--/.bg-holder-->
-                <div class="card-header d-flex align-items-center z-index-1 p-0"><img
-                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
-                        width="96" />
-                    <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance Divison <span
-                                class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                        <h4 class="mb-0 text-primary fw-bold">Rekap Sewa Unit
-                            <span class="text-info fw-medium"></span>
-                        </h4>
+                <div class="card mb-2 bg-light shadow-none">
+                    <div class="bg-holder bg-card d-none d-sm-block"
+                        style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                    <!--/.bg-holder-->
+                    <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                            width="96" />
+                        <div class="ms-n3">
+                            <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Finance Divison <span
+                                    class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                            <h4 class="mb-0 text-primary fw-bold">Rekap Biaya Sewa Unit
+                                <span class="text-info fw-medium"></span>
+                            </h4>
+                        </div>
                     </div>
                 </div>
-            </div>
 
                 @include('comp.alert')
 
                 <div class="card overflow-hidden mb-3">
                     <div class="card-header bg-light">
-                        <div class="row flex-between-end">
-                            <div class="col-auto ms-2">
-                                <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                                    <a href="{{ route('hm.sewa') }}"><button class="btn btn-sm text-primary"
-                                            type="button"><i class="fas fa-stopwatch"></i> Hours Meter</button></a>
-                                    <a href="{{ route('unit.sewa') }}"><button class="btn active btn-sm text-warning"
-                                            type="button"><i class="fas fa-truck-monster"></i>
-                                            Unit</button></a>
+                        <div class="d-lg-flex justify-content-between">
+                            <div class="row flex-between-center gy-2 px-x1">
+                                <div class="col-auto pe-0">
+                                    <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                                        <a href="{{ route('hm.sewa') }}"><button class="btn btn-sm text-primary"
+                                                type="button"><i class="fas fa-stopwatch"></i> Hours Meter</button></a>
+                                        <a href="{{ route('unit.sewa') }}"><button class="btn active btn-sm text-warning"
+                                                type="button"><i class="fas fa-truck-monster"></i>
+                                                Unit</button></a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-auto">
-                                <div class="btn-group  btn-group-sm mx-2" role="group">
+                            <div class="border-bottom border-200 my-3"></div>
+                            <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                                <div class="col-auto pe-0">
                                     <a href="{{ route('hm.u.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
                                         target="_blank" rel="noopener noreferrer">
-                                        <button class="btn btn-sm btn-falcon-success mx-2"><i
-                                                class="fas fa-file-excel"></i>
+                                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
                                         </button>
                                     </a>
                                 </div>
@@ -102,7 +104,7 @@
                                         <option value="Kompresor">Kompresor</option>
                                     </select>
                                 </div>
-                                                           </div>
+                            </div>
                             @if ($cek_perform == 0)
                                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                             @else
@@ -202,14 +204,16 @@
                                                             -
                                                         @endif
                                                     </td>
-                                                    <td class="align-middle text-1000 text-center white-space-nowrap model">
+                                                    <td
+                                                        class="align-middle text-1000 text-center white-space-nowrap model">
                                                         @if ($res->equip_id)
                                                             {{ $res->equip_->model }}
                                                         @else
                                                             -
                                                         @endif
                                                     </td>
-                                                    <td class="align-middle text-1000 text-center white-space-nowrap jenis">
+                                                    <td
+                                                        class="align-middle text-1000 text-center white-space-nowrap jenis">
                                                         @if ($res->equip_id)
                                                             {{ $res->equip_->jenis }}
                                                         @else
@@ -224,7 +228,8 @@
                                                             -
                                                         @endif
                                                     </td>
-                                                    <td class="align-middle text-1000 text-center white-space-nowrap brand">
+                                                    <td
+                                                        class="align-middle text-1000 text-center white-space-nowrap brand">
                                                         @if ($res->equip_id)
                                                             {{ $res->equip_->brand }}
                                                         @else

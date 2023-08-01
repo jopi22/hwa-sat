@@ -5,7 +5,7 @@
 @endsection
 
 @section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
@@ -21,43 +21,18 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3">
-        <div class="card-body d-flex justify-content-between">
-            <div>
-                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ $master->created_at->format('F Y') }}</span>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <a class="btn btn-falcon-default btn-sm" href="{{ route('r.hm.k') }}" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Back to Main Table">
-                    <span class="fas fa-list"></span>
-                </a>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <span class=" fw-semi-bold text-primary"> Performance / {{ $kar->kar_->jabatan }} /</span>
-                <span class=" fw-semi-bold text-info"> {{ $kar->kar_->name }}</span>
-            </div>
-            <div class="col-auto d-flex align-items-center">
-                <form action="{{ route('hm.k.r') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="bro_id" value="{{ $kar->id }}">
-                    <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
-                        Sinkron</button>
-                </form>
-                <div class="position-relative">&nbsp;
-                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                            class="fas fa-users"></i></button>
-                </div>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <div class="position-relative">&nbsp;
-                    <div class="dropdown font-sans-serif d-inline-block">
-                        <a href="{{ route('r.hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
-                                class="btn btn-sm btn-falcon-success"type="button"><i
-                                    class="fas fa-file-excel"></i></button></a>
-                    </div>
-                </div>
-            </div>
+<div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+    <div class="col d-flex align-items-center">
+        <div class="ms-1">&nbsp;
+            <span class=" fw-semi-bold text-primary"> Performance O/D /
+                <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
         </div>
     </div>
+    <div class="col-auto d-flex align-items-center">
+        <span class="badge bg-soft-danger text-danger bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+            {{ $master->created_at->format('F Y') }}</span>
+    </div>
+</div>
 
     @include('comp.alert')
 
@@ -287,7 +262,31 @@
 
     <div class="card mb-3">
         <div class="card-header bg-light">
-            {{-- // --}}
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        <form action="{{ route('hm.k.r') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="bro_id" value="{{ $kar->id }}">
+                            <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
+                                Sinkronisasi</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <div class="position-relative">&nbsp;
+                            <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+                                    class="fas fa-users"></i></button>
+                                    <a class="ms-2" href="{{ route('r.hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
+                                        class="btn btn-sm btn-falcon-success"type="button"><i
+                                            class="fas fa-file-excel"></i></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="tableExample4" data-list='{"valueNames":["nama","id", "payment","ins","hm"],"filter":{"key":"payment"}}'>
             <div class="row mt-2 ms-3 mb-2 g-0 flex-between-end">

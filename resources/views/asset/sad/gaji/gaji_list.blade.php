@@ -46,7 +46,7 @@
 
         @include('comp.alert')
 
-        <div class="card mb-2 bg-line-chart-gradient">
+        {{-- <div class="card mb-2 bg-line-chart-gradient">
             <div class="card-body py-5 py-sm-3 bg-transparent light">
                 <div class="row g-5 g-sm-0">
                     <div class="col-sm-3">
@@ -79,15 +79,15 @@
                     <div class="col-sm-3">
                         <div class="border-sm-end border-300">
                             <div class="text-center">
-                                <h6 class="fw-normal text-primary">Grand Total</h6>
-                                <h5 class="text-primary"
+                                <h6 class="fw-normal text-white">Grand Total</h6>
+                                <h5 class="text-white"
                                     data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $grand }}}'>0</h5>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="card mb-3">
             <div class="card-header bg-light py-2">

@@ -360,6 +360,7 @@
                                             <input type="hidden" name="pokok_old" value="{{ $cek->pokok }}">
                                             <input type="hidden" name="lemburan_old" value="{{ $cek->lemburan }}">
                                             <input type="hidden" name="insentif_old" value="{{ $cek->insentif }}">
+                                            <input type="hidden" name="biaya_sewa_old" value="{{ $cek->biaya_sewa }}">
                                             <input type="hidden" name="status_old" value="Validasi">
                                             <input type="hidden" name="ket_old" value="1">
                                             <input type="hidden" name="created_at_old" value="{{ $cek->created_at }}">

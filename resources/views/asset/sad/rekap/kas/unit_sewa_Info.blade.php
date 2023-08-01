@@ -5,11 +5,7 @@
 @endsection
 
 @section('sad_menu')
-    @if ($master->periode == $periode)
-        @include('layouts.panel.sad.vertikal')
-    @else
-        @include('layouts.panel.sad.vertikal_off')
-    @endif
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
@@ -26,35 +22,16 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3">
-        <div class="card-body d-flex justify-content-between">
-            <div>
-                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ date('F Y') }}</span>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <a class="btn btn-falcon-default btn-sm" href="{{ route('unit.sewa') }}" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Back to Main Table">
-                    <span class="fas fa-list"></span>
-                </a>
-                <span class="mx-1 mx-sm-2 text-300">| </span>
-                <span class=" fw-semi-bold text-primary"> Rekap Biaya Sewa / {{ $equip_m->equip_->tipe }} / <span
-                        class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+        <div class="col d-flex align-items-center">
+            <div class="ms-1">&nbsp;
+                <span class=" fw-semi-bold text-primary"> Biaya Sewa Unit /
+                    <span class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
             </div>
-            <div class="col-auto d-flex align-items-center">
-                <div class="position-relative">&nbsp;
-                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                            class="fas fa-truck-monster"></i></button>
-                </div>
-                <div class="position-relative">&nbsp;
-                    <div class="dropdown font-sans-serif d-inline-block">
-                        <a target="_blank"
-                            href="{{ route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id)) }}"><button
-                                class="btn btn-sm btn-falcon-success" type="button"><i
-                                    class="fas fa-file-excel"></i></button></a>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="col-auto d-flex align-items-center">
+            <span class="badge bg-soft-danger text-danger bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ $master->created_at->format('F Y') }}</span>
         </div>
     </div>
 
@@ -86,16 +63,15 @@
                                 <tr class="text-center">
                                     <th style="min-width: 150px"
                                         class="sort bg-primary text-white align-middle white-space-nowrap" data-sort="tgl">
-                                        No Unit
-                                    </th>
+                                        Aksi </th>
                                     <th style="min-width: 100px"
                                         class="sort bg-primary text-white align-middle white-space-nowrap"
                                         data-sort="payment">
-                                        Type
+                                        No Unit
                                     </th>
                                     <th style="min-width: 50px"
                                         class="bg-primary text-white align-middle white-space-nowrap">
-                                        Aksi
+                                        Type
                                     </th>
                                 </tr>
                             </thead>
@@ -124,58 +100,61 @@
         </div>
     </div>
 
-    <div class="card mb-3">
-        <div class="card-body py-5 py-sm-3">
+    <div class="card mb-2 bg-line-chart-gradient">
+        <div class="card-body py-5 py-sm-3 bg-transparent light">
             <div class="row g-5 g-sm-0">
-                <div class="col-sm-1">
+                <div class="col-sm-4">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-danger fw-normal">Potongan HM</h6>
-                            <h6 class=" text-danger" data-countup='{"endValue":{{ $hm_pot }}}'>0
+                            <h6 class="text-white fw-normal">Potongan HM</h6>
+                            <h6 class=" text-white" data-countup='{"endValue":{{ $hm_pot }}}'>0
                             </h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700 fw-normal">Total HM</h6>
-                            <h6 class=" text-700" data-countup='{"endValue":{{ $hm_total }}}'>0</h6>
+                            <h6 class="text-white fw-normal">Total HM</h6>
+                            <h6 class=" text-white" data-countup='{"endValue":{{ $hm_total }}}'>0</h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
+                <div class="col-sm-4">
+                    <div>
                         <div class="text-center">
-                            <h6 class="fw-normal text-700">Total HM Manual</h6>
-                            <h6 class=" text-700" data-countup='{"endValue":{{ $hm_jam }}}'>0</h6>
+                            <h6 class="fw-normal text-white">Total HM Manual</h6>
+                            <h6 class=" text-white" data-countup='{"endValue":{{ $hm_jam }}}'>0</h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
+            </div>
+            <hr>
+            <div class="row g-5 g-sm-0">
+                <div class="col-sm-4">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="fw-normal text-primary">Grand Total HM</h6>
-                            <h6 class=" text-primary" data-countup='{"endValue":{{ $hm_grand }}}'>0
+                            <h6 class="fw-normal text-white">Grand Total HM</h6>
+                            <h6 class=" text-white" data-countup='{"endValue":{{ $hm_grand }}}'>0
                             </h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-4">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="fw-normal text-success">Standar Biaya Sewa per HM</h6>
-                            <h6 class="text-success" data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $str_sewa }}}'>
+                            <h6 class="fw-normal text-white">Standar Biaya Sewa per HM</h6>
+                            <h6 class="text-white" data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $str_sewa }}}'>
                                 0
                             </h6>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div>
                         <div class="text-center">
-                            <h6 class="fw-normal text-primary">Total Biaya Sewa</h6>
-                            <h6 class="text-primary" data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $tot_sewa }}}'>
+                            <h6 class="fw-normal text-white">Total Biaya Sewa</h6>
+                            <h6 class="text-white" data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $tot_sewa }}}'>
                                 0
                             </h6>
                         </div>
@@ -184,9 +163,33 @@
             </div>
         </div>
     </div>
-    <div class="card mb-3">
-        <div class="card-header bg-light d-flex flex-between-center py-1">
-            {{-- // --}}
+
+    <div class="card mb-2">
+        <div class="card-header bg-light">
+            <div class="d-lg-flex justify-content-between">
+                <div class="row flex-between-center gy-2 px-x1">
+                    <div class="col-auto pe-0">
+                        <a class="btn btn-falcon-default btn-sm" href="{{ route('r.unit.sewa') }}" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Back to Main Table">
+                            <span class="fas fa-arrow-left"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="border-bottom border-200 my-3"></div>
+                <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
+                    <div class="col-auto pe-0">
+                        <div class="position-relative">&nbsp;
+                            <button class="btn btn-falcon-default text-info btn-sm" type="button"
+                                data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                aria-controls="offcanvasRight"><i class="fas fa-truck-monster"></i></button>
+                            <a class="ms-2" target="_blank"
+                                href="{{ route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id)) }}"><button
+                                    class="btn btn-sm btn-falcon-success" type="button"><i
+                                        class="fas fa-file-excel"></i></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="tableExample4"
             data-list='{"valueNames":["id","no","tgl","nik","payment","dedi","lokasi","shift","remark"],"filter":{"key":"payment"}}'>

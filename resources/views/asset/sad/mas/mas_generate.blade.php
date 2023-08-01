@@ -1575,6 +1575,10 @@
                         <label>Standar Lemburan /Jam (Rp)</label>
                         <input required max="100000000" type="number" class="form-control form-control-sm"
                             name="lemburan" value="{{ $per->lemburan }}">
+                            <hr>
+                        <label>Standar Biaya Sewa HM /Jam (Rp)</label>
+                        <input required max="100000000000" type="number" class="form-control form-control-sm"
+                            name="biaya_sewa" value="{{ $per->lemburan }}">
                     </div>
                     <div class="modal-footer">
                         <button data-bs-dismiss="modal" aria-label="Close" type="button" class="btn btn-light"><i

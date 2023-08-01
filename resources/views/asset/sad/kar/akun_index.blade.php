@@ -26,24 +26,17 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-100 shadow-none border">
-        <div class="row gx-0 flex-between-center">
-            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
-                <div>
-                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
-                    <h4 class="mb-0 text-primary fw-bold">Kelola Pengguna</h4>
-                </div>
-            </div>
-            <div class="col-sm-auto d-flex align-items-center">
-                <form class="row align-items-center g-3">
-                    <div class="col-auto">
-                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
-                            Division Data</span>
-                    </div>
-                </form>
-                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
-                    alt="" width="130" />
+    <div class="card mb-2 bg-light shadow-none">
+        <div class="bg-holder bg-card d-none d-sm-block"
+            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+        <!--/.bg-holder-->
+        <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+            <div class="ms-n3">
+                <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs</h6>
+                <h4 class="mb-0 text-primary fw-bold">Kelola Pengguna
+                    <span class="text-info fw-medium"></span>
+                </h4>
             </div>
         </div>
     </div>
@@ -87,12 +80,12 @@
                             <th style="max-width: 50px" class="sort" data-sort="#">#</th>
                             <th style="min-width: 100px" class="sort" data-sort="aksi">Aksi</th>
                             <th style="min-width: 100px" class="sort" data-sort="status">Status Akun</th>
-                            <th style="min-width: 200px" class="sort" data-sort="username">
+                            <th style="min-width: 100px" class="sort" data-sort="username">
                                 NIK / ID</th>
-                            <th style="min-width: 300px" class="sort" data-sort="name">
+                            <th style="min-width: 250px" class="sort" data-sort="name">
                                 Nama</th>
                             <th style="min-width: 100px" class="sort" data-sort="password">Password</th>
-                            <th style="min-width: 200px" class="sort" data-sort="level">Role Akun</th>
+                            <th style="min-width: 150px" class="sort" data-sort="level">Role Akun</th>
                         </tr>
                     </thead>
                     <tbody id="table-posts" class="list">
@@ -150,8 +143,7 @@
                                         @endif
                                     @endif
                                 </td>
-                                <td
-                                    class="text-black text-center fw-semi-bold align-middlefs-0 white-space-nowrap payment">
+                                <td class="text-black text-center fw-semi-bold align-middlefs-0 white-space-nowrap payment">
                                     @if ($res->username)
                                         {{ $res->username }}
                                     @else
@@ -160,8 +152,7 @@
                                 </td>
                                 <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                                     {{ $res->name }}</td>
-                                <td
-                                    class="text-black fw-semi-bold text-center align-middlefs-0 white-space-nowrap payment">
+                                <td class="text-black fw-semi-bold text-center align-middlefs-0 white-space-nowrap payment">
                                     @if ($res->level == 1)
                                         <span class="id fs--1 text-400"><i>Hidden</i></span>
                                     @else
@@ -171,9 +162,8 @@
                                             @if ($res->password == null)
                                                 -
                                             @else
-                                                <button class="btn btn-info btn-sm" type="button"
-                                                    data-bs-container="body" data-bs-toggle="popover"
-                                                    data-bs-placement="top"
+                                                <button class="btn btn-info btn-sm" type="button" data-bs-container="body"
+                                                    data-bs-toggle="popover" data-bs-placement="top"
                                                     data-bs-content="{{ $res->password_view }}"><i
                                                         class="fas fa-eye"></i></button>
                                             @endif
@@ -188,12 +178,24 @@
                                             Superadmin
                                         @else
                                             @if ($res->level == 3)
-                                                Admin
+                                                Admin HRGA
                                             @else
                                                 @if ($res->level == 4)
-                                                    Pekerja
+                                                    Admin Rental
                                                 @else
-                                                    -
+                                                    @if ($res->level == 5)
+                                                        Admin Logistik
+                                                    @else
+                                                        @if ($res->level == 6)
+                                                            Karyawan
+                                                        @else
+                                                            @if ($res->level == 7)
+                                                                Manajer
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        @endif
+                                                    @endif
                                                 @endif
                                             @endif
                                         @endif
