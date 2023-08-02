@@ -26,22 +26,19 @@
 
 @section('superadmin')
     @if ($master->periode == $periode)
-        <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-            <div class="col d-flex align-items-center">
-                <div>
-                    <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                                class="fas fa-home text-primary"></i></button></a>
-                    <a href="{{ route('ot.k') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                                class="fas fa-list text-primary"></i></button></a>
-                    <a href="{{ route('ot.k.i', Crypt::encryptString($kar->id)) }}"><button
-                            class="btn btn-link btn-dark btn-sm p-0"><i class="fas fa-spinner text-primary"></i></button></a>
-                    <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                        {{ date('F Y') }}</span>
-                </div>
-                <div class="ms-1">&nbsp;
-                    <span class=" fw-semi-bold text-primary"> Performance Helper /
-                        <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
-                </div>
+    <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
+            <div>
+                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                    {{ date('F Y') }}</span>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <a class="btn btn-falcon-default btn-sm" href="{{ route('ot.k') }}" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Back to Main Table">
+                    <span class="fas fa-list"></span>
+                </a>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <span class=" fw-semi-bold text-primary"> Performance :
+                    <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
             </div>
             <div class="col-auto d-flex align-items-center">
                 <form action="{{ route('ot.k.r') }}" method="post">
@@ -64,6 +61,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
         @include('comp.alert')
 

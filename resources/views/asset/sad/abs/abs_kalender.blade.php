@@ -14,6 +14,8 @@
 
 @section('link')
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
+    {{-- // Eksport Excel // --}}
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 @endsection
 
 @section('script')
@@ -22,21 +24,48 @@
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
+    {{-- // Eksport Excel // --}}
+    <script type="text/javascript">
+        function htmlTableToExcel(type) {
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {
+                sheet: "sheet1"
+            });
+            XLSX.write(excelFile, {
+                bookType: type,
+                bookSST: true,
+                type: 'base64'
+            });
+            XLSX.writeFile(excelFile, 'Rekap Absensi.' + type);
+        }
+    </script>
 @endsection
 
-@section('konten')
+@section('superadmin')
     @if ($cek->periode == $periode)
         @if ($cek->ket == 1)
-            <div class="card mb-3 bg-light shadow-none">
-                <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-                <!--/.bg-holder-->
-                <div class="card-header d-flex align-items-center z-index-1 p-0">
-                    <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
-                    <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Absensi <span
-                                class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
-                        <h4 class="mb-0 text-primary fw-bold">Kalender </h4>
+            <div class="card mb-3 bg-100 shadow-none border">
+                <div class="row gx-0 flex-between-center">
+                    <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                        <div>
+                            <h6 class="text-primary fs--1 mb-0"><i class="fas fa-users"></i> Human Resource & General Affairs
+                            </h6>
+                            <h4 class="text-primary fw-bold mb-0">Kalender {{ $cek->created_at->format('F Y') }}</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-auto d-flex align-items-center">
+                        <form class="row align-items-center g-3">
+                            <div class="col-auto">
+                                <h6 class="text-info mb-0">Master Present :</h6>
+                            </div>
+                            <div class="col-md-auto">
+                                <h6 class="mb-0">{{ $cek->created_at->format('F Y') }}</h6>
+                            </div>
+                        </form>
+                        <img class="ms-2 d-md-none d-lg-block"
+                src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
+                width="150" />
                     </div>
                 </div>
             </div>
@@ -90,7 +119,7 @@
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="border-sm-end border-300">
+                            <div>
                                 <div class="text-center">
                                     <h6 class="text-700">Progres Absensi (%)</h6>
                                     <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $progres }}}'>0</h3>
@@ -107,16 +136,16 @@
                     <div class="card mb-3">
                         <div class="card-header bg-light">
                             <div class="row flex-between-center">
-                                <div class="col-6 col-sm-auto d-flex align-items-center pe-0">
-                                    <h5>Kalender {{ date('F Y') }}</h5>
-                                </div>
                                 <div class="col-6 col-sm-auto ms-auto text-end ps-0">
-                                    {{-- // --}}
+                                    {{-- <button class="btn btn-sm btn-falcon-warning" id="printButton" onclick="print()"><i
+                                            class="fas fa-file-pdf"></i></button> --}}
+                                    <button class="btn btn-sm btn-falcon-success" id="button"
+                                        onclick="htmlTableToExcel('xlsx')"><i class="fas fa-file-excel"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body px-0 pt-0">
-                            <table class="table mb-0 data-table fs--1"
+                            <table id="tblToExcl" class="table mb-0 data-table fs--1"
                                 data-options='{"paging":false,"scrollY":"1000px","searching":false,"scrollCollapse":true,"fixedColumns":{"left":2},"scrollX":true}'>
                                 <thead class="bg-200 text-900">
                                     <tr>
@@ -202,10 +231,12 @@
                                             <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
                                                 26
                                             </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                            <td
+                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
                                                 27
                                             </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                            <td
+                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
                                                 28
                                             </td>
                                         @else
@@ -558,9 +589,6 @@
                                                 K{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}</td>
                                             <td class="align-middle white-space-nowrap fw-semi-bold text-black">
                                                 {{ $res->name }}</td>
-
-
-
                                             @foreach ($res->absensi_ as $item)
                                                 @if ($item->periode_id == $per->id)
                                                     <td
@@ -578,14 +606,14 @@
                                                                         <span class="badge bg-info">I</span>
                                                                     @else
                                                                         @if ($item->status == 4)
-                                                                            <span class="badge bg-info">?</span>
+                                                                            <span class="badge bg-info">N</span>
                                                                         @else
                                                                             @if ($item->status == 3)
                                                                                 <span class="badge bg-secondary">S</span>
                                                                             @else
                                                                                 @if ($item->status == 2)
                                                                                     <span
-                                                                                        class="badge bg-secondary">?</span>
+                                                                                        class="badge bg-secondary">T</span>
                                                                                 @else
                                                                                     @if ($item->status == 1)
                                                                                         <span
@@ -609,18 +637,7 @@
                             </table>
                         </div>
                         <div class="card-footer bg-light d-flex flex-between-center py-2">
-                            <div class="dropdown font-sans-serif btn-reveal-trigger"><button
-                                    class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                                    type="button" id="dropdown-bandwidth-saved" data-bs-toggle="dropdown"
-                                    data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
-                                        class="fas fa-ellipsis-h fs--2"></span></button>
-                                <div class="dropdown-menu dropdown-menu-end border py-2"
-                                    aria-labelledby="dropdown-bandwidth-saved">
-                                    <a class="dropdown-item text-success" href="#!"><i
-                                            class="fas fa-file-excel"></i> Print
-                                        Excel</a>
-                                </div>
-                            </div>
+                            {{-- // --}}
                         </div>
                     </div>
                 @endif
@@ -637,13 +654,13 @@
                                 Cuti</span></div>
                         <div class="col-auto"> <span class="badge bg-info">I</span><span class="text-1000 fs--1"> Izin
                                 Disertai Keterangan</span></div>
-                        <div class="col-auto"> <span class="badge bg-info">?</span><span class="text-1000 fs--1"> Izin
+                        <div class="col-auto"> <span class="badge bg-info">N</span><span class="text-1000 fs--1"> Izin
                                 Tanpa
                                 Keterangan</span></div>
                         <div class="col-auto"> <span class="badge bg-secondary">S</span><span class="text-1000 fs--1">
                                 Sakit
                                 Disertai Keterangan</span></div>
-                        <div class="col-auto"> <span class="badge bg-secondary">?</span><span class="text-1000 fs--1">
+                        <div class="col-auto"> <span class="badge bg-secondary">T</span><span class="text-1000 fs--1">
                                 Sakit
                                 Tanpa Keterangan</span></div>
                     </div>

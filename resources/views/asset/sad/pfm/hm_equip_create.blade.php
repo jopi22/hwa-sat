@@ -37,7 +37,7 @@
             <tr class="btn-reveal-trigger text-1000 fw-semi-bold">
                 <td class="align-middle text-1000 text-center white-space-nowrap"><a href="javascript:void(0)" class="text-danger remove" title="Remove"><i class="fas fa-minus-square fs-2"></i></a>
     <input type="hidden" name="equip_id[]" value="{{ $equip_m->equip_id }}">
-                <input type="hidden" name="master_id[]" value="{{ $equip_m->master_id }}">
+                <input type="hidden" name="master_id[]" value="{{ $master->id }}">
     </td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap tgl">
                                     <select required name="tgl[]" class="form-select form-select-sm">
@@ -439,22 +439,20 @@
 @endsection
 
 @section('superadmin')
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-        <div class="col d-flex align-items-center">
-            <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('hm.e') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="{{ route('hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}"><button
-                        class="btn btn-link btn-dark btn-sm p-0"><i class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ date('F Y') }}</span>
-            </div>
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Tambah Hours Meter / {{ $equip_m->equip_->tipe }} / <span
-                        class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ date('F Y') }}</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('hm.e') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Back to Main Table">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Tambah Hours Meter / {{ $equip_m->equip_->tipe }}</span>
+            <span class="mx-1 mx-sm-2 text-300">: </span>
+            <span class=" fw-semi-bold text-info"> {{$equip_m->equip_->no_unit}}</span>
         </div>
         <div class="col-auto d-flex align-items-center">
             <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
@@ -484,6 +482,7 @@
             </div>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 
@@ -622,7 +621,7 @@
                                     <a href="javascript:void(0)" class="text-success" title="Add" id="addBtn"><i
                                             class="fas fa-plus-square fs-2"></i></a>
                                     <input type="hidden" name="equip_id[]" value="{{ $equip_m->equip_id }}">
-                                    <input type="hidden" name="master_id[]" value="{{ $equip_m->master_id }}">
+                                    <input type="hidden" name="master_id[]" value="{{ $master->id }}">
                                 </td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap tgl">
                                     <select required name="tgl[]" class="form-select form-select-sm">

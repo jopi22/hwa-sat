@@ -1,15 +1,15 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Validasi | HWA &bull; SAT
+    Rekapitulasi Master| HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-@if ($master == 1)
-@include('layouts.panel.sad.vertikal')
-@else
-@include('layouts.panel.sad.vertikal_off')
-@endif
+    @if ($pres == 1)
+        @include('layouts.panel.sad.vertikal_off')
+    @else
+        @include('layouts.panel.sad.vertikal_rekap')
+    @endif
 @endsection
 
 @section('link')
@@ -26,25 +26,25 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-            <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Validasi
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Proses Validasi <span class="mb-1 text-info"></span> </h4>
+    @include('comp.alert')
+    @if ($val == 0)
+        @include('comp.card.card_validasi')
+    @else
+        <div class="card mb-3 bg-light shadow-none">
+            <div class="bg-holder bg-card d-none d-sm-block"
+                style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
+            <!--/.bg-holder-->
+            <div class="card-header d-flex align-items-center z-index-1 p-0">
+                <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
+                <div class="ms-n0">
+                    <h6 class="mb-1 text-primary"><i class="fas fa-clipboard-check"></i> Rekapitulasi Data <span
+                            class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
+                    <h4 class="mb-0 text-primary fw-bold">Rekapitulasi Periode {{ $master->created_at->format('F Y') }}
+                        <span class="mb-1 text-info"></span>
+                    </h4>
+                </div>
             </div>
         </div>
-    </div>
-
-    @include('comp.alert')
-
-    @if ($cek == 0)
-        @include('comp.card.card_kosong')
-    @else
         <div class="row">
             <div class="col-md-6 mb-3 col-xxl-4">
                 <div class="card h-100">
@@ -150,7 +150,6 @@
                     </div>
                     <div class="card-body p-0">
                         <div class="scrollbar-overlay pt-0 px-x1 ask-analytics">
-
                             <div class="border border-1 border-300 rounded-2 p-3 ask-analytics-item position-relative mb-3">
                                 <div class="d-flex align-items-center">
                                     <span class="fas fa-clock text-primary"></span>

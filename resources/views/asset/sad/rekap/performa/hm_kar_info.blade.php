@@ -5,7 +5,7 @@
 @endsection
 
 @section('sad_menu')
-@include('layouts.panel.sad.vertikal')
+    @include('layouts.panel.sad.vertikal')
 @endsection
 
 @section('link')
@@ -21,42 +21,38 @@
 @endsection
 
 @section('superadmin')
-
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-        <div class="col d-flex align-items-center">
+    <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
             <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('hm.k') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="{{ route('hm.k.i', Crypt::encryptString($kar->id)) }}"><button
-                        class="btn btn-link btn-dark btn-sm p-0"><i class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
                     {{ $master->created_at->format('F Y') }}</span>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <a class="btn btn-falcon-default btn-sm" href="{{ route('r.hm.k') }}" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Back to Main Table">
+                    <span class="fas fa-list"></span>
+                </a>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <span class=" fw-semi-bold text-primary"> Performance / {{$kar->kar_->jabatan}} /</span>
+                <span class=" fw-semi-bold text-info"> {{$kar->kar_->name}}</span>
             </div>
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Performa O/D :
-                    <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
-            </div>
-        </div>
-        <div class="col-auto d-flex align-items-center">
-            <form action="{{ route('hm.k.r') }}" method="post">
-                @csrf
-                <input type="hidden" name="bro_id" value="{{ $kar->id }}">
-                <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
-                    Sinkron</button>
-            </form>
-            <div class="position-relative">&nbsp;
-                <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-users"></i></button>
-            </div>
-            <div class="position-relative">&nbsp;
-                <div class="dropdown font-sans-serif d-inline-block">
-                    <button class="btn btn-sm btn-falcon-default dropdown-toggle" id="dropdownMenuButton" type="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                            Excel</a>
+            <div class="col-auto d-flex align-items-center">
+                <form action="{{ route('hm.k.r') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="bro_id" value="{{ $kar->id }}">
+                    <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i class="fab fa-slack"></i>
+                        Sinkron</button>
+                </form>
+                <div class="position-relative">&nbsp;
+                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+                            class="fas fa-users"></i></button>
+                </div>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <div class="position-relative">&nbsp;
+                    <div class="dropdown font-sans-serif d-inline-block">
+                        <a href="{{ route('r.hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
+                                class="btn btn-sm btn-falcon-success"type="button"><i
+                                    class="fas fa-file-excel"></i></button></a>
                     </div>
                 </div>
             </div>
@@ -95,7 +91,8 @@
                                         Aksi
                                     </th>
                                     <th style="min-width: 120px"
-                                        class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="id">
+                                        class="sort bg-secondary text-white align-middle white-space-nowrap"
+                                        data-sort="id">
                                         ID O/D
                                     </th>
                                     <th style="min-width: 350px"

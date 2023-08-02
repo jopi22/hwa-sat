@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Pengajuan Absensi | Validasi | HWA &bull; SAT
+    Pengajuan Absensi | Rekapitulasi | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
@@ -57,24 +57,34 @@
 @section('superadmin')
     @if ($master->status == 'Validasi')
         @if ($cek->ket == 1)
-            <div class="card mb-3 bg-light shadow-none">
-                <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
-                <!--/.bg-holder-->
-                <div class="card-header d-flex align-items-center z-index-1 p-0">
-                    <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-                    <div class="ms-n0">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Absensi <span
-                                class="text-danger">Validasi</span> <span
-                                class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
-                        <h4 class="mb-0 text-primary fw-bold">Pengajuan Absensi </h4>
+        <div class="card mb-3 bg-100 shadow-none border">
+            <div class="row gx-0 flex-between-center">
+                <div class="col-sm-auto d-flex align-items-center"><img class="ms-2"
+                        src="{{ asset('assets/img/illustrations/reports-greeting.png') }}" alt="" width="60" />
+                    <div class="ms-4">
+                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-users"></i> Human Resource & General Affairs
+                        </h6>
+                        <h4 class="text-primary fw-bold mb-0">Pengajuan Absen</h4>
                     </div>
                 </div>
+                <div class="col-sm-auto d-flex align-items-center">
+                    <form class="row align-items-center g-3">
+                        <div class="col-auto">
+                            <h6 class="text-danger mb-0">Rekapitulasi Master :</h6>
+                        </div>
+                        <div class="col-md-auto">
+                            <h6 class="mb-0">{{ $cek->created_at->format('F Y') }}</h6>
+                        </div>
+                    </form>
+                    <img class="ms-2 d-md-none d-lg-block"
+                        src="{{ asset('assets/img/icons/spot-illustrations/corner-1.png') }}" alt=""
+                        width="90" />
+                </div>
             </div>
+        </div>
 
             @include('comp.alert')
 
-            {{-- // Konten // --}}
             <div class="card overflow-hidden mb-3">
                 <div class="card-header bg-light p-0">
                     <div class="row">
@@ -135,9 +145,17 @@
                         </div>
                         {{-- <div class="col-auto mt-4">
                             <div class="col-auto">
-                                <a href="{{ route('r.peng.abs.cm') }}">
+                                <a href="{{ route('peng.abs.cm') }}">
                                     <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
-                                            class="fas fa-plus text-success" data-fa-transform="shrink-3"></span> Tambah<span
+                                            class="fas fa-plus text-success" data-fa-transform="shrink-3"></span>
+                                        Tambah<span
+                                            class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
+                                    </button>
+                                </a>
+                                <a href="{{ route('peng.abs.c') }}">
+                                    <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
+                                            class="fas fa-user-plus text-success" data-fa-transform="shrink-3"></span>
+                                        Saya<span
                                             class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
                                     </button>
                                 </a>
@@ -151,35 +169,34 @@
                         <div class="tab-pane active" id="popularPaid" role="tabpanel" aria-labelledby="popularPaid-tab">
                             <div id="tableExample4"
                                 data-list='{"valueNames":["idp","idk","name","tgl","payment"],"filter":{"key":"payment"}}'>
-                                <div class="row justify-content-center mt-2 g-0">
-                                    <div class="col-auto col-sm-3">
-                                        <form>
-                                            <div class="input-group"><input
-                                                    class="form-control form-control-sm shadow-none search" type="search"
-                                                    placeholder="Pencarian..." aria-label="search" />
-                                            </div>
-                                        </form>
-                                    </div>&nbsp;
-                                    <div class="col-auto col-sm-3">
-                                        <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
-                                            data-list-filter="data-list-filter">
-                                            <option selected="" value="">Filter Perihal</option>
-                                            <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
-                                            <option value="Pengajuan Izin">Pengajuan Izin</option>
-                                            <option value="Pengajuan Cuti">Pengajuan Cuti</option>
-                                        </select>
-                                    </div>&nbsp;
-                                    <div class="col-auto col-sm-3">
-                                        <button class="btn btn-sm btn-falcon-info" id="button"
-                                            onclick="htmlTableToExcel1('xlsx')"><i class="fas fa-print"></i>
-                                            Print</button>
-                                    </div>
-                                </div>
                                 @if ($cek_all == 0)
-                                    <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12 ps-lg-4 my-5 text-center text-lg-start">
+                                            <h5 class="text-secondary text-center">-- Data Kosong --</h5>
+                                        </div>
+                                    </div>
                                 @else
+                                    <div class="row justify-content-center mt-2 g-0">
+                                        <div class="col-auto col-sm-3">
+                                            <form>
+                                                <div class="input-group"><input
+                                                        class="form-control form-control-sm shadow-none search"
+                                                        type="search" placeholder="Pencarian..." aria-label="search" />
+                                                </div>
+                                            </form>
+                                        </div>&nbsp;
+                                        <div class="col-auto col-sm-3">
+                                            <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
+                                                data-list-filter="data-list-filter">
+                                                <option selected="" value="">Filter Perihal</option>
+                                                <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
+                                                <option value="Pengajuan Izin">Pengajuan Izin</option>
+                                                <option value="Pengajuan Cuti">Pengajuan Cuti</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive scrollbar">
-                                        <table id="tblToExcl1" class="table table-bordered table-sm fs--1 mb-0">
+                                        <table class="table table-bordered table-sm fs--1 mb-0">
                                             <thead class="bg-200 text-900">
                                                 <tr class="text-center">
                                                     <th style="width: 50px" class="sort align-middle white-space-nowrap">#
@@ -233,7 +250,7 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
@@ -257,36 +274,34 @@
                         <div class="tab-pane" id="popularFree" role="tabpanel" aria-labelledby="popularFree-tab">
                             <div id="tableExample4"
                                 data-list='{"valueNames":["idp","idk","name","tgl","payment"],"filter":{"key":"payment"}}'>
-                                <div class="row justify-content-center mt-2 g-0">
-                                    <div class="col-auto col-sm-3">
-                                        <form>
-                                            <div class="input-group"><input
-                                                    class="form-control form-control-sm shadow-none search" type="search"
-                                                    placeholder="Pencarian..." aria-label="search" />
-                                            </div>
-                                        </form>
-                                    </div>&nbsp;
-                                    <div class="col-auto col-sm-3">
-                                        <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
-                                            data-list-filter="data-list-filter">
-                                            <option selected="" value="">Filter Perihal</option>
-                                            <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
-                                            <option value="Pengajuan Izin">Pengajuan Izin</option>
-                                            <option value="Pengajuan Cuti">Pengajuan Cuti</option>
-                                        </select>
-                                    </div>
-                                    {{-- &nbsp;
-                                    <div class="col-auto col-sm-3">
-                                        <button class="btn btn-sm btn-falcon-info" id="button"
-                                            onclick="htmlTableToExcel2('xlsx')"><i class="fas fa-print"></i>
-                                            Print</button>
-                                    </div> --}}
-                                </div>
                                 @if ($cek_nores == 0)
-                                    <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12 ps-lg-4 my-5 text-center text-lg-start">
+                                            <h5 class="text-secondary text-center">-- Data Kosong --</h5>
+                                        </div>
+                                    </div>
                                 @else
+                                    <div class="row justify-content-center mt-2 g-0">
+                                        <div class="col-auto col-sm-3">
+                                            <form>
+                                                <div class="input-group"><input
+                                                        class="form-control form-control-sm shadow-none search"
+                                                        type="search" placeholder="Pencarian..." aria-label="search" />
+                                                </div>
+                                            </form>
+                                        </div>&nbsp;
+                                        <div class="col-auto col-sm-3">
+                                            <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
+                                                data-list-filter="data-list-filter">
+                                                <option selected="" value="">Filter Perihal</option>
+                                                <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
+                                                <option value="Pengajuan Izin">Pengajuan Izin</option>
+                                                <option value="Pengajuan Cuti">Pengajuan Cuti</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive scrollbar">
-                                        <table id="tblToExcl2" class="table table-bordered table-sm fs--1 mb-0">
+                                        <table class="table table-bordered table-sm fs--1 mb-0">
                                             <thead class="bg-200 text-900">
                                                 <tr class="text-center">
                                                     <th style="width: 50px" class="sort align-middle white-space-nowrap">#
@@ -340,12 +355,12 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('a.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
                                                             @else
-                                                                <a href="{{ route('a.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
                                                             @endif
@@ -364,28 +379,32 @@
                         <div class="tab-pane" id="topPaid" role="tabpanel" aria-labelledby="topPaid-tab">
                             <div id="tableExample4"
                                 data-list='{"valueNames":["idp","idk","name","tgl","payment"],"filter":{"key":"payment"}}'>
-                                <div class="row justify-content-center mt-2 g-0">
-                                    <div class="col-auto col-sm-3">
-                                        <form>
-                                            <div class="input-group"><input
-                                                    class="form-control form-control-sm shadow-none search" type="search"
-                                                    placeholder="Pencarian..." aria-label="search" />
-                                            </div>
-                                        </form>
-                                    </div>&nbsp;
-                                    <div class="col-auto col-sm-3">
-                                        <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
-                                            data-list-filter="data-list-filter">
-                                            <option selected="" value="">Filter Perihal</option>
-                                            <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
-                                            <option value="Pengajuan Izin">Pengajuan Izin</option>
-                                            <option value="Pengajuan Cuti">Pengajuan Cuti</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 @if ($cek_ter == 0)
-                                    <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12 ps-lg-4 my-5 text-center text-lg-start">
+                                            <h5 class="text-secondary text-center">-- Data Kosong --</h5>
+                                        </div>
+                                    </div>
                                 @else
+                                    <div class="row justify-content-center mt-2 g-0">
+                                        <div class="col-auto col-sm-3">
+                                            <form>
+                                                <div class="input-group"><input
+                                                        class="form-control form-control-sm shadow-none search"
+                                                        type="search" placeholder="Pencarian..." aria-label="search" />
+                                                </div>
+                                            </form>
+                                        </div>&nbsp;
+                                        <div class="col-auto col-sm-3">
+                                            <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
+                                                data-list-filter="data-list-filter">
+                                                <option selected="" value="">Filter Perihal</option>
+                                                <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
+                                                <option value="Pengajuan Izin">Pengajuan Izin</option>
+                                                <option value="Pengajuan Cuti">Pengajuan Cuti</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive scrollbar">
                                         <table class="table table-bordered table-sm fs--1 mb-0">
                                             <thead class="bg-200 text-900">
@@ -441,7 +460,7 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>
@@ -465,28 +484,32 @@
                         <div class="tab-pane" id="topFree" role="tabpanel" aria-labelledby="topFree-tab">
                             <div id="tableExample4"
                                 data-list='{"valueNames":["idp","idk","name","tgl","payment"],"filter":{"key":"payment"}}'>
-                                <div class="row justify-content-center mt-2 g-0">
-                                    <div class="col-auto col-sm-3">
-                                        <form>
-                                            <div class="input-group"><input
-                                                    class="form-control form-control-sm shadow-none search" type="search"
-                                                    placeholder="Pencarian..." aria-label="search" />
-                                            </div>
-                                        </form>
-                                    </div>&nbsp;
-                                    <div class="col-auto col-sm-3">
-                                        <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
-                                            data-list-filter="data-list-filter">
-                                            <option selected="" value="">Filter Perihal</option>
-                                            <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
-                                            <option value="Pengajuan Izin">Pengajuan Izin</option>
-                                            <option value="Pengajuan Cuti">Pengajuan Cuti</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 @if ($cek_tol == 0)
-                                    <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-12 ps-lg-4 my-5 text-center text-lg-start">
+                                            <h5 class="text-secondary text-center">-- Data Kosong --</h5>
+                                        </div>
+                                    </div>
                                 @else
+                                    <div class="row justify-content-center mt-2 g-0">
+                                        <div class="col-auto col-sm-3">
+                                            <form>
+                                                <div class="input-group"><input
+                                                        class="form-control form-control-sm shadow-none search"
+                                                        type="search" placeholder="Pencarian..." aria-label="search" />
+                                                </div>
+                                            </form>
+                                        </div>&nbsp;
+                                        <div class="col-auto col-sm-3">
+                                            <select class="form-select form-select-sm mb-3" aria-label="Bulk actions"
+                                                data-list-filter="data-list-filter">
+                                                <option selected="" value="">Filter Perihal</option>
+                                                <option value="Kondisi Kesehatan">Kondisi Kesehatan</option>
+                                                <option value="Pengajuan Izin">Pengajuan Izin</option>
+                                                <option value="Pengajuan Cuti">Pengajuan Cuti</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive scrollbar">
                                         <table class="table table-bordered table-sm fs--1 mb-0">
                                             <thead class="bg-200 text-900">
@@ -542,7 +565,7 @@
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
                                                             @if ($res->respon_status == 0)
-                                                                <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
                                                                         class="fas fa-magic"></i>
                                                                     Respon</a>

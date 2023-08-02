@@ -77,6 +77,6 @@ class RpengabsController extends Controller
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
-        return view('asset.sad.rekap.pengabs.pengabs_info', compact('peng','nav', 'cek', 'penglist', 'penglist_', 'kar', 'all'));
+        return view('asset.sad.rekap.pengabs.pengabs_info', compact('peng','master', 'nav', 'cek', 'penglist', 'penglist_', 'kar', 'all'));
     }
 }

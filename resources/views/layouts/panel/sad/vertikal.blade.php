@@ -405,9 +405,9 @@
                     @if (Auth::user()->level == 2)
                         <li class="nav-item">
                             <div class="row navbar-vertical-label-wrapper mb-2">
-                                <div class="col-auto navbar-vertical-label">Master Present</div>
+                                <div class="col-auto navbar-vertical-label"><span class="text-primary">Master Present</span></div>
                                 <div class="col ps-0">
-                                    <hr class="mb-0 navbar-vertical-divider" />
+                                    <hr class="mb-0 navbar-vertical-divider text-primary" />
                                 </div>
                             </div>
                         </li>
@@ -562,8 +562,8 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link dropdown-indicator" href="#ASU"
                                         data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Rekap Sewa</span></div>
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Rekap
+                                                Sewa</span></div>
                                     </a><!-- more inner pages-->
                                     <ul class="nav collapse" id="ASU">
                                         <li class="nav-item"><a class="nav-link" href="{{ route('hm.sewa') }}">
@@ -623,42 +623,33 @@
 
                         <li class="nav-item">
                             <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-                                <div class="col-auto navbar-vertical-label">Validasi</div>
+                                <div class="col-auto navbar-vertical-label"><span class="text-danger">Rekapitulasi Data</span></div>
                                 <div class="col ps-0">
-                                    <hr class="mb-0 navbar-vertical-divider" />
+                                    <hr class="mb-0 navbar-vertical-divider text-danger" />
                                 </div>
                             </div>
                         </li>
 
                         <!-- Rekapitulasi-->
                         <li class="nav-item">
-                            <a class="nav-link dropdown-indicator" href="#qq-learning" role="button"
-                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                            class="fas fa-clipboard-check"></span></span><span
-                                        class="nav-link-text ps-1">
-                                        Validasi </span></div>
+                            <a class="nav-link" href="{{ route('rek.g') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-icon">
+                                        <span class="fas fa-clipboard-check">
+                                        </span>
+                                    </span>
+                                    <span class="nav-link-text ps-1">
+                                        Rekapitulasi
+                                    </span>
+                                </div>
                             </a>
-                            <ul class="nav collapse" id="qq-learning">
-                                <li class="nav-item"><a class="nav-link" href="{{ route('rek.g') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Validasi</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                                {{-- <li class="nav-item"><a class="nav-link" href="{{ route('print.g') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Print
-                                            Laporan</span></div>
-                                </a><!-- more inner pages-->
-                            </li> --}}
-                            </ul>
                         </li>
 
                         <li class="nav-item">
                             <div class="row navbar-vertical-label-wrapper mb-2 mt-3">
-                                <div class="col-auto navbar-vertical-label">Perusahaan Data</div>
+                                <div class="col-auto navbar-vertical-label"><span class="text-success">Division Data</span></div>
                                 <div class="col ps-0">
-                                    <hr class="mb-0 navbar-vertical-divider" />
+                                    <hr class="mb-0 navbar-vertical-divider text-success" />
                                 </div>
                             </div>
                         </li>

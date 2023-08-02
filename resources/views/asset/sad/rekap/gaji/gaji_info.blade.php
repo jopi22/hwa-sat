@@ -1,19 +1,16 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $kar->name }} | Performa | Validasi | HWA &bull; SAT
+    {{ $kar->name }} | Performa | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @if ($master->periode == $periode)
-        @include('layouts.panel.sad.vertikal')
-    @else
-        @include('layouts.panel.sad.vertikal_off')
-    @endif
+        @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
+    <script src="{{ asset('assets/print/js/jquery.min.js') }}"></script>
 @endsection
 
 @section('script')
@@ -23,43 +20,74 @@
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
+    <script src="{{ asset('assets/print/js/jspdf.debug.js') }}"></script>
+    <script src="{{ asset('assets/print/js/html2canvas.min.js') }}"></script>
+    <script src="{{ asset('assets/print/js/html2pdf.min.js') }}"></script>
+
+    <script>
+        const options = {
+            margin: 0.5,
+            filename: 'Rekap_Data_Karyawan_hwa.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 500
+            },
+            html2canvas: {
+                scale: 1
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'landscape'
+            }
+        }
+
+        $('.btn-download').click(function(e) {
+            e.preventDefault();
+            const element = document.getElementById('invoice');
+            html2pdf().from(element).set(options).save();
+        });
+
+
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
 @endsection
 
 @section('superadmin')
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-        <div class="col d-flex align-items-center">
-            <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('g.l') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="{{ route('g.i', Crypt::encryptString($kar->id)) }}"><button
-                        class="btn btn-link btn-dark btn-sm p-0"><i class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ date('F Y') }}</span>
-            </div>
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Penghasilan:
-                    <span class="fw-semi-bold text-info">{{ $kar->name }}</span></span>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-danger text-danger bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ $master->created_at->format('F Y') }}</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('r.g.l') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Back to Main Table">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Penghasilan :
+                <span class="fw-semi-bold text-info">{{ $kar->name }}</span></span>
         </div>
         <div class="col-auto d-flex align-items-center">
             <div class="position-relative">&nbsp;
                 <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-users"></i></button>
-            </div>
-            <div class="position-relative">&nbsp;
-                <div class="dropdown font-sans-serif d-inline-block">
-                    <button class="btn btn-sm btn-falcon-default dropdown-toggle" id="dropdownMenuButton" type="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                            Excel</a>
-                    </div>
-                </div>
+                <a href="javascript:void(0)" style="float: right" class="btn btn-download btn-sm ms-2 btn-warning"><i
+                        class="fas fa-file-pdf"></i></a>
             </div>
         </div>
     </div>
+</div>
+
 
     @include('comp.alert')
 
@@ -147,6 +175,7 @@
         </div>
     </div>
 
+   <div id="invoice">
     <div class="card mb-3 font-sans-serif">
         <div class="bg-holder bg-card d-none d-sm-block"
             style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
@@ -166,7 +195,7 @@
                             <th class="text-500 fw-normal fs--1" style="min-width: 180px">ID Karyawan</th>
                             <th class="text-500 fw-normal fs--1">:</th>
                             <th class="text-1000 fw-normal fs--1">&nbsp;
-                                K{{ $kar->tgl_gabung->format('ym') }}{{ $kar->id }}</th>
+                                {{ $kar->username }}</th>
                         </tr>
                         <tr>
                             <th class="text-500 fw-normal fs--1" style="min-width: 180px">Nama Karyawan</th>
@@ -212,6 +241,16 @@
                                 <th class="text-500 fw-normal fs--1">:</th>
                                 <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $a }}</th>
                             </tr>
+                            <tr>
+                                <th class="text-500 fw-normal fs--1" style="min-width: 180px">Adjustment</th>
+                                <th class="text-500 fw-normal fs--1">:</th>
+                                <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $adjust }}</th>
+                            </tr>
+                            <tr>
+                                <th class="text-500 fw-normal fs--1" style="min-width: 180px">Penghasilan Total</th>
+                                <th class="text-500 fw-normal fs--1">:</th>
+                                <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $a }}</th>
+                            </tr>
                         </table>
                     @else
                         @if ($kar_m->tipe_gaji == 'AI')
@@ -244,6 +283,11 @@
                                     <th class="text-500 fw-normal fs--1" style="min-width: 180px">Insentif</th>
                                     <th class="text-500 fw-normal fs--1">:</th>
                                     <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $insentif }}</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-500 fw-normal fs--1" style="min-width: 180px">Adjustment</th>
+                                    <th class="text-500 fw-normal fs--1">:</th>
+                                    <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $adjust }}</th>
                                 </tr>
                                 <tr>
                                     <th class="text-500 fw-normal fs--1" style="min-width: 180px">Penghasilan Total</th>
@@ -284,6 +328,11 @@
                                         <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $lemburan }}</th>
                                     </tr>
                                     <tr>
+                                        <th class="text-500 fw-normal fs--1" style="min-width: 180px">Adjustment</th>
+                                        <th class="text-500 fw-normal fs--1">:</th>
+                                        <th class="text-1000 fw-normal fs--1">&nbsp;Rp {{ $adjust }}</th>
+                                    </tr>
+                                    <tr>
                                         <th class="text-500 fw-normal fs--1" style="min-width: 180px">Penghasilan Total
                                         </th>
                                         <th class="text-500 fw-normal fs--1">:</th>
@@ -299,14 +348,14 @@
         </div>
     </div>
 
-    <div class="card">
+    <div  class="card">
         <div class="card-header bg-light">
             <h5>Rincian Penghasilan</h5>
         </div>
         <div class="card-body">
             @if ($kar_m->tipe_gaji == 'A')
                 <div class="card overflow-hidden mb-3 mt-3">
-                    <div class="card-header bg-primary">
+                    <div class="card-header bg-primary py-2">
                         <h5 class="text-white">Gaji Pokok</h5>
                     </div>
                     <div class="card-body p-0">
@@ -473,10 +522,139 @@
                         <!-- // -->
                     </div>
                 </div>
+
+                <div class="card overflow-hidden mb-3 mt-3">
+                    <div class="card-header bg-primary py-2">
+                        <h5 class="text-white">Adjustmen</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="row mx-0">
+                            <div
+                                class="col-md-6 p-x1 border-md-end border-bottom border-md-bottom-0 border-dashed">
+                                <h6 class="fs--1 text-700">Rekap Data Adjustmen</h6>
+                                <div class="row border-bottom border-dashed">
+                                    @foreach ($tunj as $item)
+                                        <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                            <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                {{ $item->ket }}
+                                            </p>
+                                        </div>
+                                        <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                            <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                            <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                    <div class="row">
+                                        <div
+                                            class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                            <hr class="bg-success ps-10">
+                                            <hr class="bg-success ps-10">
+                                            <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                        <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Tunjangan
+                                        </p>
+                                    </div>
+                                    <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                        <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                        <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                            data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                        </p>
+                                    </div>
+                                </div>&nbsp;
+                                <div class="row row mt-2 border-bottom border-dashed">
+                                    @foreach ($pinj as $item)
+                                        <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                            <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                {{ $item->ket }}
+                                            </p>
+                                        </div>
+                                        <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                            <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                            <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                    <div class="row">
+                                        <div
+                                            class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                            <hr class="bg-success ps-10">
+                                            <hr class="bg-success ps-10">
+                                            <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                        <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Pinjaman
+                                        </p>
+                                    </div>
+                                    <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                        <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                        <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                            data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 p-x1">
+                                <h6 class="fs--1 mb-3 text-700">Perhitungan Adjustment</h6>
+                                <div class="row mt-2">
+                                    <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                        <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Tunjangan
+                                        </p>
+                                    </div>
+                                    <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                        <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                        <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                            data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                        <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Pinjaman
+                                        </p>
+                                    </div>
+                                    <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                        <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                        <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                            data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                        <hr class="bg-success ps-10">
+                                        <hr class="bg-success ps-10">
+                                        <p class="mb-0 ps-3 fw-semi-bold text-success">-</p>
+                                    </div>
+                                </div>
+                                <div class="row row mt-2 border-bottom border-dashed">
+                                    <div class="col-3 mb-3 col-sm-2 col-md-3 col-lg-2">
+                                        <p class="mb-3 fs--1 fw-semi-bold text-primary text-nowrap">Total
+                                            Adjustment</p>
+                                    </div>
+                                    <div class="col-9 mb-3 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                        <p class="mb-3 fs--1 ps-8 fw-semi-bold text-primary">:</p>
+                                        <p class="mb-3 fs--1 fw-semi-bold text-primary ps-3 text-nowrap"
+                                            data-countup='{"duration":0,"prefix":"Rp&nbsp;","endValue":{{ $adjust_t }}}'>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <!-- // -->
+                    </div>
+                </div>
             @else
                 @if ($kar_m->tipe_gaji == 'AI')
                     <div class="card overflow-hidden mb-3 mt-3">
-                        <div class="card-header bg-primary">
+                        <div class="card-header bg-primary py-2">
                             <h5 class="text-white">Gaji Pokok</h5>
                         </div>
                         <div class="card-body p-0">
@@ -651,7 +829,7 @@
                         </div>
                     </div>
                     <div class="card overflow-hidden mb-3 mt-3">
-                        <div class="card-header bg-primary">
+                        <div class="card-header bg-primary py-2">
                             <h5 class="text-white">Insentif</h5>
                         </div>
                         <div class="card-body p-0">
@@ -742,10 +920,268 @@
                             <!-- // -->
                         </div>
                     </div>
+
+                    <div class="card overflow-hidden mb-3 mt-3">
+                            <div class="card-header bg-primary py-2">
+                                <h5 class="text-white">Adjustmen</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="row mx-0">
+                                    <div
+                                        class="col-md-6 p-x1 border-md-end border-bottom border-md-bottom-0 border-dashed">
+                                        <h6 class="fs--1 text-700">Rekap Data Adjustmen</h6>
+                                        <div class="row border-bottom border-dashed">
+                                            @foreach ($tunj as $item)
+                                                <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                    <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                        {{ $item->ket }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                    <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                    <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                        data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                    <hr class="bg-success ps-10">
+                                                    <hr class="bg-success ps-10">
+                                                    <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Tunjangan
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>&nbsp;
+                                        <div class="row row mt-2 border-bottom border-dashed">
+                                            @foreach ($pinj as $item)
+                                                <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                    <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                        {{ $item->ket }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                    <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                    <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                        data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                    <hr class="bg-success ps-10">
+                                                    <hr class="bg-success ps-10">
+                                                    <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Pinjaman
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-x1">
+                                        <h6 class="fs--1 mb-3 text-700">Perhitungan Adjustment</h6>
+                                        <div class="row mt-2">
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Tunjangan
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Pinjaman
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                <hr class="bg-success ps-10">
+                                                <hr class="bg-success ps-10">
+                                                <p class="mb-0 ps-3 fw-semi-bold text-success">-</p>
+                                            </div>
+                                        </div>
+                                        <div class="row row mt-2 border-bottom border-dashed">
+                                            <div class="col-3 mb-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-3 fs--1 fw-semi-bold text-primary text-nowrap">Total
+                                                    Adjustment</p>
+                                            </div>
+                                            <div class="col-9 mb-3 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-3 fs--1 ps-8 fw-semi-bold text-primary">:</p>
+                                                <p class="mb-3 fs--1 fw-semi-bold text-primary ps-3 text-nowrap"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;","endValue":{{ $adjust_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <!-- // -->
+                            </div>
+                        </div>
+
+                        <div class="card overflow-hidden mb-3 mt-3">
+                            <div class="card-header bg-primary py-2">
+                                <h5 class="text-white">Adjustmen</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="row mx-0">
+                                    <div
+                                        class="col-md-6 p-x1 border-md-end border-bottom border-md-bottom-0 border-dashed">
+                                        <h6 class="fs--1 text-700">Rekap Data Adjustmen</h6>
+                                        <div class="row border-bottom border-dashed">
+                                            @foreach ($tunj as $item)
+                                                <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                    <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                        {{ $item->ket }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                    <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                    <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                        data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                    <hr class="bg-success ps-10">
+                                                    <hr class="bg-success ps-10">
+                                                    <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Tunjangan
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>&nbsp;
+                                        <div class="row row mt-2 border-bottom border-dashed">
+                                            @foreach ($pinj as $item)
+                                                <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                    <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                        {{ $item->ket }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                    <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                    <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                        data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                    <hr class="bg-success ps-10">
+                                                    <hr class="bg-success ps-10">
+                                                    <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Pinjaman
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-x1">
+                                        <h6 class="fs--1 mb-3 text-700">Perhitungan Adjustment</h6>
+                                        <div class="row mt-2">
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Tunjangan
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Pinjaman
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                <hr class="bg-success ps-10">
+                                                <hr class="bg-success ps-10">
+                                                <p class="mb-0 ps-3 fw-semi-bold text-success">-</p>
+                                            </div>
+                                        </div>
+                                        <div class="row row mt-2 border-bottom border-dashed">
+                                            <div class="col-3 mb-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-3 fs--1 fw-semi-bold text-primary text-nowrap">Total
+                                                    Adjustment</p>
+                                            </div>
+                                            <div class="col-9 mb-3 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-3 fs--1 ps-8 fw-semi-bold text-primary">:</p>
+                                                <p class="mb-3 fs--1 fw-semi-bold text-primary ps-3 text-nowrap"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;","endValue":{{ $adjust_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <!-- // -->
+                            </div>
+                        </div>
                 @else
                     @if ($kar_m->tipe_gaji == 'AL')
                         <div class="card overflow-hidden mb-3 mt-3">
-                            <div class="card-header bg-primary">
+                            <div class="card-header bg-primary py-2 py-2">
                                 <h5 class="text-white">Gaji Pokok</h5>
                             </div>
                             <div class="card-body p-0">
@@ -933,7 +1369,7 @@
                             </div>
                         </div>
                         <div class="card overflow-hidden mb-3 mt-3">
-                            <div class="card-header bg-primary">
+                            <div class="card-header bg-primary py-2">
                                 <h5 class="text-white">Lemburan</h5>
                             </div>
                             <div class="card-body p-0">
@@ -1002,6 +1438,135 @@
                                 <!-- // -->
                             </div>
                         </div>
+
+                        <div class="card overflow-hidden mb-3 mt-3">
+                            <div class="card-header bg-primary py-2">
+                                <h5 class="text-white">Adjustmen</h5>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="row mx-0">
+                                    <div
+                                        class="col-md-6 p-x1 border-md-end border-bottom border-md-bottom-0 border-dashed">
+                                        <h6 class="fs--1 text-700">Rekap Data Adjustmen</h6>
+                                        <div class="row border-bottom border-dashed">
+                                            @foreach ($tunj as $item)
+                                                <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                    <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                        {{ $item->ket }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                    <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                    <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                        data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                    <hr class="bg-success ps-10">
+                                                    <hr class="bg-success ps-10">
+                                                    <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Tunjangan
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>&nbsp;
+                                        <div class="row row mt-2 border-bottom border-dashed">
+                                            @foreach ($pinj as $item)
+                                                <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                    <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">
+                                                        {{ $item->ket }}
+                                                    </p>
+                                                </div>
+                                                <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                    <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                    <p class="mb-0 fs--1 ps-3 fw-semi-bold text-1000"
+                                                        data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $item->nominal }}}'>
+                                                    </p>
+                                                </div>
+                                            @endforeach
+                                            <div class="row">
+                                                <div
+                                                    class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                    <hr class="bg-success ps-10">
+                                                    <hr class="bg-success ps-10">
+                                                    <p class="mb-0 ps-3 fw-semi-bold text-success">+</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-success text-nowrap">Total Pinjaman
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-success">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 p-x1">
+                                        <h6 class="fs--1 mb-3 text-700">Perhitungan Adjustment</h6>
+                                        <div class="row mt-2">
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Tunjangan
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $tunj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-0 fs--1 fw-semi-bold text-1000 text-nowrap">Total Pinjaman
+                                                </p>
+                                            </div>
+                                            <div class="col-9 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-0 fs--1 ps-8 fw-semi-bold text-700">:</p>
+                                                <p class="mb-0 fs--1 ps-3 fw-semi-bold text-success"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;&nbsp;","endValue":{{ $pinj_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex align-items-center">
+                                                <hr class="bg-success ps-10">
+                                                <hr class="bg-success ps-10">
+                                                <p class="mb-0 ps-3 fw-semi-bold text-success">-</p>
+                                            </div>
+                                        </div>
+                                        <div class="row row mt-2 border-bottom border-dashed">
+                                            <div class="col-3 mb-3 col-sm-2 col-md-3 col-lg-2">
+                                                <p class="mb-3 fs--1 fw-semi-bold text-primary text-nowrap">Total
+                                                    Adjustment</p>
+                                            </div>
+                                            <div class="col-9 mb-3 col-sm-10 col-md-9 col-lg-10 d-flex align-items-center">
+                                                <p class="mb-3 fs--1 ps-8 fw-semi-bold text-primary">:</p>
+                                                <p class="mb-3 fs--1 fw-semi-bold text-primary ps-3 text-nowrap"
+                                                    data-countup='{"duration":0,"prefix":"Rp&nbsp;","endValue":{{ $adjust_t }}}'>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-light">
+                                <!-- // -->
+                            </div>
+                        </div>
                     @else
                     @endif
                 @endif
@@ -1009,6 +1574,7 @@
         </div>
         <div class="card-footer bg-light"></div>
     </div>
+   </div>
 
 
 @endsection

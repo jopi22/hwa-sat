@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\rekap\performa;
 
 use App\Http\Controllers\Controller;
+use App\Models\EquipMaster;
+use App\Models\Equipment;
 use App\Models\Jabatan;
 use App\Models\KarMaster;
 use App\Models\Master;
@@ -18,133 +20,27 @@ class RperformaOTController extends Controller
     public function ot_list()
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
         $master = Master::where('status', 'Validasi')->first();
         $cek_perform = Performa_ot::where('master_id', $master->id)
             ->count();
         $perform = Performa_ot::where('master_id', $master->id)
             ->get();
-        $kar_filter = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Delete')
+        $equip_filter = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $kar = KarMaster::where('master_id', $master->id)
             ->where('tipe_gaji', 'AL')
             ->get();
-        return view('author.sad.rekap.pfm.ot_list', compact('master','nav', 'cek_perform', 'perform', 'kar_filter'));
-    }
-
-
-    public function ot_store(Request $request)
-    {
-        // dd($request->all());
-        $messages = [
-            'tgl.required' => 'Tanggal Wajib Diisi',
-            'jam_mulai.required' => 'Jam Mulai Wajib Diisi',
-            'jam_selesai.required' => 'Jam Selesai Wajib Diisi',
-        ];
-        $this->validate($request, [
-            'tgl'     => 'required',
-            'jam_mulai'     => 'required',
-            'jam_selesai'     => 'required',
-        ], $messages);
-
-        $awal = strtotime($request->jam_mulai);
-        $akhir = strtotime($request->jam_selesai);
-        $tot_detik = $akhir - $awal;
-        $tot_jam_kotor = floor($tot_detik / (60 * 60));
-        $pot = $request->jam_pot;
-        $tot_jam_bersih = $tot_jam_kotor - $pot;
-
-        $master = Master::where('status', 'Validasi')->first();
-        if ($request->has('jam_pot')) {
-            Performa_ot::create([
-                'tgl' => $request->tgl,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'remark' => $request->remark,
-                'jam_mulai' => $request->jam_mulai,
-                'jam_selesai' => $request->jam_selesai,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_bersih,
-            ]);
-        } else {
-            Performa_ot::create([
-                'tgl' => $request->tgl,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'remark' => $request->remark,
-                'jam_mulai' => $request->jam_mulai,
-                'jam_selesai' => $request->jam_selesai,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_kotor,
-            ]);
-        }
-        return back()->with('success', 'Data OverTime Berhasil Ditambahkan');
-    }
-
-
-    public function ot_update(Request $request)
-    {
-        // dd($request->all());
-        $messages = [
-            'tgl.required' => 'Tanggal Wajib Diisi',
-            'jam_mulai.required' => 'Jam Mulai Wajib Diisi',
-            'jam_selesai.required' => 'Jam Selesai Wajib Diisi',
-        ];
-
-        $this->validate($request, [
-            'tgl'     => 'required',
-            'jam_mulai'     => 'required',
-            'jam_selesai'     => 'required',
-        ], $messages);
-
-        $awal = strtotime($request->jam_mulai);
-        $akhir = strtotime($request->jam_selesai);
-        $tot_detik = $akhir - $awal;
-        $tot_jam_kotor = floor($tot_detik / (60 * 60));
-        $pot = $request->jam_pot;
-        $tot_jam_bersih = $tot_jam_kotor - $pot;
-
-        $master = Master::where('status', 'Validasi')->first();
-        if ($request->has('jam_pot')) {
-            Performa_ot::where('id', $request->delete)->delete();
-            Performa_ot::create([
-                'id' => $request->id,
-                'tgl' => $request->tgl,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'remark' => $request->remark,
-                'jam_mulai' => $request->jam_mulai,
-                'jam_selesai' => $request->jam_selesai,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_bersih,
-            ]);
-        } else {
-            Performa_ot::where('id', $request->delete)->delete();
-            Performa_ot::create([
-                'id' => $request->id,
-                'tgl' => $request->tgl,
-                'kar_id' => $request->kar_id,
-                'master_id' => $master->id,
-                'remark' => $request->remark,
-                'jam_mulai' => $request->jam_mulai,
-                'jam_selesai' => $request->jam_selesai,
-                'jam_pot' => $request->jam_pot,
-                'jam_total' => $tot_jam_kotor,
-            ]);
-        }
-
-        return back()->with('success', 'Data OverTime Berhasil Diupdate');
-    }
-
-
-    public function ot_delete(Request $request)
-    {
-        Performa_ot::where('id', $request->delete)->delete();
-        return back()->with('success', 'Data OverTime Berhasil Dihapus');
+        $equip = Equipment::where('status', 'Aktif')
+            ->get();
+        return view('author.sad.rekap.pfm.ot_list', compact('periode', 'equip', 'kar', 'equip_filter', 'nav', 'master', 'cek_perform', 'perform'));
     }
 
 
     public function ot_karyawan()
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
         $master = Master::where('status', 'Validasi')->first();
         $cek_perform = Performa_ot::where('master_id', $master->id)
             ->count();
@@ -153,13 +49,15 @@ class RperformaOTController extends Controller
             ->get();
         $jabatan = User::select('jabatan')->distinct()
             ->where('tipe_gaji', 'AL')->get();
-        return view('author.sad.rekap.pfm.ot_karyawan', compact('cek_perform','nav', 'jabatan', 'master', 'jabatan', 'kar_list'));
+        return view('author.sad.rekap.pfm.ot_karyawan', compact('cek_perform', 'nav', 'jabatan', 'master', 'jabatan', 'periode', 'kar_list'));
     }
+
 
     public function ot_kar_info($id)
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $decryptID = Crypt::decryptString($id);
+        $periode = date('m-Y');
         $master = Master::where('status', 'Validasi')->first();
         $kar = KarMaster::Find($decryptID);
         $jabatan = Jabatan::all();
@@ -168,6 +66,9 @@ class RperformaOTController extends Controller
         $data = Performa_ot::where('master_id', $master->id)
             ->where('kar_id', $kar->kar_id)
             ->get();
+        $cek = Performa_ot::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->count();
         $kar_list = KarMaster::where('master_id', $master->id)
             ->where('tipe_gaji', 'AL')
             ->get();
@@ -175,7 +76,7 @@ class RperformaOTController extends Controller
             ->where('kar_id', $kar->kar_id)
             ->sum('jam_total');
         $lemburan = $total_jam * $master->lemburan;
-        return view('asset.sad.rekap.performa.ot_kar_info', compact('cek_perform','nav', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master',  'data', 'total_jam'));
+        return view('asset.sad.rekap.performa.ot_kar_info', compact('cek_perform','cek', 'nav', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_jam'));
     }
 
 
@@ -212,5 +113,68 @@ class RperformaOTController extends Controller
 
         ]);
         return back()->with('success', 'Data Over Time Berhasil Disinkronkan');
+    }
+
+
+    public function ot_list_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Validasi')->first();
+        $cek_perform = Performa_ot::where('master_id', $master->id)
+            ->count();
+        $perform = Performa_ot::where('master_id', $master->id)
+            ->get();
+        $equip_filter = EquipMaster::where('master_id', $master->id)
+            ->get();
+        $kar = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AL')
+            ->get();
+        $equip = Equipment::where('status', 'Aktif')
+            ->get();
+        return view('asset.sad.rekap.performa.ot_list_excel', compact('periode', 'equip', 'kar', 'equip_filter', 'nav', 'master', 'cek_perform', 'perform'));
+    }
+
+
+    public function ot_karyawan_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Validasi')->first();
+        $cek_perform = Performa_ot::where('master_id', $master->id)
+            ->count();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AL')
+            ->get();
+        $jabatan = User::select('jabatan')->distinct()
+            ->where('tipe_gaji', 'AL')->get();
+        return view('asset.sad.rekap.performa.ot_kar_excel', compact('cek_perform', 'nav', 'jabatan', 'master', 'jabatan', 'periode', 'kar_list'));
+    }
+
+
+    public function ot_kar_info_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $decryptID = Crypt::decryptString($id);
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Validasi')->first();
+        $kar = KarMaster::Find($decryptID);
+        $jabatan = Jabatan::all();
+        $cek_perform = Performa_ot::where('master_id', $master->id)
+            ->count();
+        $data = Performa_ot::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->get();
+        $cek = Performa_ot::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->count();
+        $kar_list = KarMaster::where('master_id', $master->id)
+            ->where('tipe_gaji', 'AL')
+            ->get();
+        $total_jam = Performa_ot::where('master_id', $master->id)
+            ->where('kar_id', $kar->kar_id)
+            ->sum('jam_total');
+        $lemburan = $total_jam * $master->lemburan;
+        return view('asset.sad.rekap.performa.ot_kar_info_excel', compact('cek_perform','cek', 'nav', 'kar_list', 'lemburan', 'kar', 'jabatan', 'master', 'periode', 'data', 'total_jam'));
     }
 }

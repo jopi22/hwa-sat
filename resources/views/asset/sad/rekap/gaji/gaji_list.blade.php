@@ -1,15 +1,11 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Penghasilan Karyawan | Validasi | HWA &bull; SAT
+    Income | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @if ($master->periode == $periode)
-        @include('layouts.panel.sad.vertikal')
-    @else
-        @include('layouts.panel.sad.vertikal_off')
-    @endif
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
@@ -26,16 +22,27 @@
 @endsection
 
 @section('superadmin')
-
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-coins"></i> Keuangan <span
-                        class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Penghasilan Karyawan</h4>
+    <div class="card mb-3 bg-100 shadow-none border">
+        <div class="row gx-0 flex-between-center">
+            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                <div>
+                    <h6 class="text-primary fs--1 mb-0"><i class="fas fa-coins"></i> Finance Division
+                    </h6>
+                    <h4 class="text-primary fw-bold mb-0">Penghasilan Karyawan</h4>
+                </div>
+            </div>
+            <div class="col-sm-auto d-flex align-items-center">
+                <form class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <h6 class="text-danger mb-0">Rekapitulasi Master :</h6>
+                    </div>
+                    <div class="col-md-auto">
+                        <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
+                    </div>
+                </form>
+                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
+                    alt="" width="150" />
             </div>
         </div>
     </div>
@@ -48,36 +55,36 @@
                 <div class="col-sm-3">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700">Gaji Pokok Total</h6>
-                            <h3 class="fw-normal text-700"
-                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $pokok }}}'>0</h3>
+                            <h6 class="fw-normal text-700">Gaji Pokok Total</h6>
+                            <h6 class="text-700"
+                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $pokok }}}'>0</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700">Insentif Total</h6>
-                            <h3 class="fw-normal text-700"
-                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $insentif }}}'>0</h3>
+                            <h6 class="fw-normal text-700">Insentif Total</h6>
+                            <h6 class="text-700"
+                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $insentif }}}'>0</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-700">Lemburan Total</h6>
-                            <h3 class="fw-normal text-700"
-                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $lemburan }}}'>0</h3>
+                            <h6 class="fw-normal text-700">Lemburan Total</h6>
+                            <h6 class="text-700"
+                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $lemburan }}}'>0</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="border-sm-end border-300">
                         <div class="text-center">
-                            <h6 class="text-primary">Grand Total</h6>
-                            <h3 class="fw-normal text-primary"
-                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $grand }}}'>0</h3>
+                            <h6 class="fw-normal text-primary">Grand Total</h6>
+                            <h6 class="text-primary"
+                                data-countup='{"prefix":"Rp&nbsp;","endValue":{{ $grand }}}'>0</h6>
                         </div>
                     </div>
                 </div>
@@ -89,7 +96,7 @@
         <div class="card-header bg-light py-2">
             {{-- // --}}
         </div>
-        <div id="tableExample4" data-list='{"valueNames":["nama","id", "payment","ins","hm"],"filter":{"key":"payment"}}'>
+        <div id="tableExample4" data-list='{"valueNames":["nama","id", "tipe","ins","hm"],"filter":{"key":"tipe"}}'>
             <div class="row mt-2 ms-3 mb-2 g-0">
                 <div class="col-6">
                     <div class="row g-1">
@@ -103,9 +110,9 @@
                         <div class="col-sm-6 ">
                             <select class="form-select form-select-sm" aria-label="Bulk actions"
                                 data-list-filter="data-list-filter">
-                                <option selected="" value="">Filter: Jabatan</option>
-                                @foreach ($jabatan as $item)
-                                    <option value="{{ $item->jabatan }}">{{ $item->jabatan }}</option>
+                                <option selected="" value="">Filter: Tipe Income</option>
+                                @foreach ($kar_list as $item)
+                                    <option value="{{ $item->tipe_gaji }}">{{ $item->tipe_gaji }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -138,7 +145,7 @@
                                 Jabatan
                             </th>
                             <th style="min-width: 100px"
-                                class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="payment">
+                                class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="tipe">
                                 Tipe Income
                             </th>
                     </thead>
@@ -147,13 +154,13 @@
                             <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                 <td class="align-middle text-center text-1000 white-space-nowrap no">
                                     <a href="{{ route('r.g.i', Crypt::encryptString($res->kar_id)) }}"
-                                        class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span></a>
+                                        class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span> Lihat</a>
                                 </td>
                                 <td class="align-middle text-center text-1000 white-space-nowrap no">
                                     {{ $loop->iteration }}</td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap id">
                                     @if ($res->kar_id)
-                                        K{{ $res->kar_->tgl_gabung->format('ym') }}{{ $res->kar_->id }}
+                                        {{ $res->kar_->username }}
                                     @else
                                         -
                                     @endif
@@ -173,18 +180,10 @@
                                     @endif
                                 </td>
                                 <td class="align-middle text-1000 text-center white-space-nowrap tipe">
-                                    @if ($res->tipe_gaji == 'A')
-                                        Gaji Pokok
+                                    @if ($res->tipe_gaji)
+                                        {{ $res->tipe_gaji }}
                                     @else
-                                        @if ($res->tipe_gaji == 'AI')
-                                            Gaji Pokok + Insentif
-                                        @else
-                                            @if ($res->tipe_gaji == 'AL')
-                                                Gaji Pokok + Lemburan
-                                            @else
-                                                -
-                                            @endif
-                                        @endif
+                                        -
                                     @endif
                                 </td>
                             </tr>
@@ -197,5 +196,4 @@
             {{-- // --}}
         </div>
     </div>
-
 @endsection

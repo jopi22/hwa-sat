@@ -8,6 +8,7 @@
             <div class="modal-body p-0">
                 <form action="{{ route('hm.m.s') }}" method="post">
                     @csrf
+                    <input type="hidden" name="master_bro" value="{{$master->id}}">
                     <div class="bg-success rounded-top-lg py-3 ps-4 pe-6">
                         <h4 class="mb-1 text-white" id="staticBackdropLabel">
                             <i class="fas fa-stopwatch"></i> Form Tambah HM Manual

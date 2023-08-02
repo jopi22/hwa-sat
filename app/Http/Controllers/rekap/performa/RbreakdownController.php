@@ -4,6 +4,8 @@ namespace App\Http\Controllers\rekap\performa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Breakdown;
+use App\Models\Dedicated;
+use App\Models\EquipMaster;
 use App\Models\Equipment;
 use App\Models\Master;
 use App\Models\Navigator;
@@ -15,88 +17,28 @@ class RbreakdownController extends Controller
     public function bd_list()
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
         $master = Master::where('status', 'Validasi')->first();
         $cek = Breakdown::where('master_id', $master->id)->count();
-        $bd = Breakdown::where('master_id', $master->id)->get();
+        $bd = Breakdown::orderBy('tgl', 'ASC')
+            ->where('master_id', $master->id)->get();
+        $e_list = EquipMaster::where('master_id', $master->id)->get();
         $equip = Equipment::where('status', 'Aktif')->get();
-
-        return view('author.sad.rekap.pfm.bd_list', compact('equip','nav', 'cek', 'master', 'bd'));
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        return view('author.sad.rekap.pfm.bd_list', compact('equip', 'e_list', 'bd', 'dedi', 'nav', 'cek', 'periode', 'master'));
     }
 
-
-    public function bd_store(Request $request)
+    public function bd_excel($id)
     {
-        // dd($request->all());
-        $messages = [
-            'tgl.required' => 'Tanggal Wajib Diisi',
-            'jam_mulai.required' => 'Jam Mulai Wajib Diisi',
-            'jam_selesai.required' => 'Jam Selesai Wajib Diisi',
-        ];
-        $this->validate($request, [
-            'tgl'     => 'required',
-            'jam_mulai'     => 'required',
-            'jam_selesai'     => 'required',
-        ], $messages);
-
-        $awal = strtotime($request->jam_mulai);
-        $akhir = strtotime($request->jam_selesai);
-        $tot_detik = $akhir - $awal;
-        $jam_total = floor($tot_detik / (60 * 60));
-
-        Breakdown::create([
-            'tgl' => $request->tgl,
-            'equip_id' => $request->equip_id,
-            'master_id' => $request->master_id,
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'jam_total' => $jam_total,
-            'deskripsi' => $request->deskripsi,
-            'remark' => $request->remark,
-        ]);
-
-        return back()->with('success', 'Data BreakDown Berhasil Disimpan');
-    }
-
-
-    public function bd_update(Request $request)
-    {
-        // dd($request->all());
-        $messages = [
-            'tgl.required' => 'Tanggal Wajib Diisi',
-            'jam_mulai.required' => 'Jam Mulai Wajib Diisi',
-            'jam_selesai.required' => 'Jam Selesai Wajib Diisi',
-        ];
-        $this->validate($request, [
-            'tgl'     => 'required',
-            'jam_mulai'     => 'required',
-            'jam_selesai'     => 'required',
-        ], $messages);
-
-        Breakdown::where('id', $request->delete)->delete();
-        $awal = strtotime($request->jam_mulai);
-        $akhir = strtotime($request->jam_selesai);
-        $tot_detik = $akhir - $awal;
-        $jam_total = floor($tot_detik / (60 * 60));
-
-        Breakdown::create([
-            'id' => $request->id,
-            'tgl' => $request->tgl,
-            'equip_id' => $request->equip_id,
-            'master_id' => $request->master_id,
-            'jam_mulai' => $request->jam_mulai,
-            'jam_selesai' => $request->jam_selesai,
-            'jam_total' => $jam_total,
-            'deskripsi' => $request->deskripsi,
-            'remark' => $request->remark,
-        ]);
-
-        return back()->with('success', 'Data BreakDown Berhasil Diupdate');
-    }
-
-
-    public function bd_delete(Request $request)
-    {
-        Breakdown::where('id', $request->delete)->delete();
-        return back()->with('success', 'Data BreakDown Berhasil Dihapus');
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Validasi')->first();
+        $cek = Breakdown::where('master_id', $master->id)->count();
+        $bd = Breakdown::orderBy('tgl', 'ASC')
+            ->where('master_id', $master->id)->get();
+        $e_list = EquipMaster::where('master_id', $master->id)->get();
+        $equip = Equipment::where('status', 'Aktif')->get();
+        $dedi = Dedicated::where('status', '<>', 'Delete')->get();
+        return view('asset.sad.rekap.performa.bd_excel', compact('equip', 'e_list', 'bd', 'dedi', 'nav', 'cek', 'periode', 'master'));
     }
 }

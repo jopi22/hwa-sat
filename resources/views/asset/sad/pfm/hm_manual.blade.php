@@ -29,19 +29,31 @@
 @section('superadmin')
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
-            <div class="card mb-3 bg-light shadow-none">
-                <div class="bg-holder bg-card d-none d-sm-block"
-                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-                <!--/.bg-holder-->
-                <div class="card-header d-flex align-items-center z-index-1 p-0">
-                    <img src="{{ asset('assets/img/illustrations/reports-bg.png') }}" alt="" width="96" />
-                    <div class="ms-n3">
-                        <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
-                                class="mb-1 text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                        <h4 class="mb-0 text-primary fw-bold">Hours Meter Manual </h4>
+        <div class="card mb-3 bg-100 shadow-none border">
+            <div class="row gx-0 flex-between-center">
+                <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                    <div>
+                        <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
+                        </h6>
+                        <h4 class="text-primary fw-bold mb-0">Kelola Hours Meter Manual</h4>
                     </div>
                 </div>
+                <div class="col-sm-auto d-flex align-items-center">
+                    <form class="row align-items-center g-3">
+                        <div class="col-auto">
+                            <h6 class="text-info mb-0">Master Present :</h6>
+                        </div>
+                        <div class="col-md-auto">
+                            <h6 class="mb-0">{{ $master->created_at->format('F Y') }}</h6>
+                        </div>
+                    </form>
+                    <img class="ms-2 d-md-none d-lg-block"
+            src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
+            width="150" />
+                </div>
             </div>
+        </div>
 
             @include('comp.alert')
 

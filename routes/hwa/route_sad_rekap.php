@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\master_sad\keuangan\KasController;
-use App\Http\Controllers\primer_sad\PrintController;
+use App\Http\Controllers\rekap\performa\RhaulingController;
 use App\Http\Controllers\primer_sad\RekapController;
 use App\Http\Controllers\rekap\absensi\RabsensiController;
 use App\Http\Controllers\rekap\absensi\RpengabsController;
@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Performa HM
         Route::get('rekap_hm_performance', 'hm_performance')->name('r.hm.p');
         Route::get('rekap_manual_hm', 'hmManual')->name('r.hm.m');
+        Route::get('hm_create', 'hm_create')->name('hm.create');
         Route::post('rekap_hm_manual_store', 'hmManualStore')->name('r.hm.m.s');
         Route::post('rekap_hm_store', 'hmStore')->name('r.hm.s');
         Route::put('rekap_hm_update/{hm}', 'hmManualUpdate')->name('r.hm.m.u');
@@ -56,8 +57,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('print_hm_Karyawan', 'print_hm_karyawan')->name('p.hm.k');
         Route::get('rekap_hm_Karyawan/{kar}', 'hm_kar_info')->name('r.hm.k.i');
         Route::post('rekap_hm_kar_refresh', 'hm_kar_refresh')->name('r.hm.k.r');
+        //Print
+        Route::get('rekap_hm_performance_print/{hm}', 'hm_performance_print')->name('r.hm.p.excel');
+        Route::get('rekap_hm_performance_unit_print_excel/{hm}', 'hm_performance_unit_print_excel')->name('r.hm.u.p.excel');
+        Route::get('rekap_hm_performance_od_print_excel/{hm}', 'hm_performance_od_print_excel')->name('r.hm.od.p.excel');
 
         Route::post('tes', 'tes')->name('tes');
+
+        Route::get('rekap_hm_performance_print/{hm}', 'hm_performance_print')->name('r.hm.p.excel');
+        Route::get('rekap_hm_performance_unit_print_excel/{hm}', 'hm_performance_unit_print_excel')->name('r.hm.u.p.excel');
+        Route::get('rekap_hm_performance_od_print_excel/{hm}', 'hm_performance_od_print_excel')->name('r.hm.od.p.excel');
     });
 
     Route::controller(RperformaOTController::class)->group(function () {
@@ -70,6 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('rekap_ot_Karyawan', 'ot_karyawan')->name('r.ot.k');
         Route::get('rekap_ot_Karyawan/{kar}', 'ot_kar_info')->name('r.ot.k.i');
         Route::post('rekap_ot_kar_refresh', 'ot_kar_refresh')->name('r.ot.k.r');
+        // Print
+        Route::get('rekap.ot_list/{ot}', 'ot_list_excel')->name('r.ot.l.excel');
+        Route::get('rekap.ot_Karyawan_excel/{kar}', 'ot_karyawan_excel')->name('r.ot.k.excel');
+        Route::get('rekap.ot_Karyawan_info_excel/{kar}', 'ot_kar_info_excel')->name('r.ot.k.i.excel');
     });
 
     Route::controller(RbreakdownController::class)->group(function () {
@@ -78,6 +91,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rekap_bd_store', 'bd_store')->name('r.bd.s');
         Route::post('rekap_bd_update', 'bd_update')->name('r.bd.u');
         Route::post('rekap_bd_delete', 'bd_delete')->name('r.bd.d');
+        Route::get('rekap_bd_excel/{bd}', 'bd_excel')->name('r.bd.excel');
+
     });
 
     Route::controller(RlogistikController::class)->group(function () {
@@ -94,11 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
         // Catering
         Route::get('rekap_cat_list', 'cat_list')->name('r.cat.l');
         Route::get('rekap_cat_create', 'cat_create')->name('r.cat.c');
-        Route::post('rekap_cat_store', 'cat_store')->name('r.cat.s');
-        Route::post('rekap_cat_update', 'cat_update')->name('r.cat.u');
-        Route::post('rekap_cat_delete', 'cat_delete')->name('r.cat.d');
-        Route::post('rekap_cat_setting', 'cat_setting')->name('r.cat.set');
-        Route::post('rekap_cat_refresh', 'cat_refresh')->name('r.cat.r');
+        Route::get('rekap_cat_excel/{cat}', 'cat_excel')->name('r.cat.excel');
     });
 
     Route::controller(RkasController::class)->group(function () {
@@ -107,11 +118,22 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('rekap_kas_store', 'kas_store')->name('r.kas.s');
         Route::post('rekap_kas_update', 'kas_update')->name('r.kas.u');
         Route::post('rekap_kas_delete', 'kas_delete')->name('r.kas.d');
+        Route::get('kas_excel/{kas}', 'kas_excel')->name('kas.excel');
     });
 
     Route::controller(RincomeController::class)->group(function () {
         // Gaji
         Route::get('rekap_gaji_list', 'gaji_list')->name('r.g.l');
         Route::get('rekap_gaji_info/{gaji}', 'gaji_info')->name('r.g.i');
+        Route::get('rekap_adjust', 'adjust')->name('r.adjust');
+        Route::get('rekap_hm_sewa', 'hm_sewa')->name('r.hm.sewa');
+        Route::get('rekap_unit_sewa', 'unit_sewa')->name('r.unit.sewa');
+        Route::get('rekap_unit_sewa/{hm}', 'unit_sewa_info')->name('r.unit.sewa.i');
+    });
+
+    Route::controller(RhaulingController::class)->group(function () {
+        //  Hauling
+        Route::get('rekap_hauling_list', 'hauling_list')->name('r.ha.l');
+        Route::get('rekap_hauling_print/{ha}', 'hauling_print_excel')->name('r.ha.p.excel');
     });
 });

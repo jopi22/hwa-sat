@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $peng->id }} | Pengajuan Absen | Validasi | HWA &bull; SAT
+    {{ $peng->id }} | Rekapitulasi | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
@@ -26,24 +26,23 @@
 @endsection
 
 @section('konten')
-    {{-- // Header // --}}
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-        <div class="col d-flex align-items-center">
-            <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('r.peng.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="#"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                    {{ date('F Y') }}</span>
-            </div>
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Pengajuan Absen No: #{{ $peng->id }}</span>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-danger text-danger bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                {{ $master->created_at->format('F Y') }}</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('r.peng.g') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Back to Main Table">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Info Pengajuan Absensi</span>
+            <span class="mx-1 mx-sm-2 text-300">: </span>
+            <span class=" fw-semi-bold text-info"> {{$peng->id}}</span>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 
@@ -205,7 +204,7 @@
                                     alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold"
-                                        href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}">#{{ $res->id }}
+                                        href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}">#{{ $res->id }}
                                         | {{ $res->kar_peng_->name }}</a></h6>
                                 <div class="fs--1"><span class="fw-semi-bold">
                                         @if ($res->status == 3)

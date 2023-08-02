@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $equip_m->equip_->no_unit }} | Validasi | Performa | HWA &bull; SAT
+    {{ $equip_m->equip_->no_unit }} | Rekapitulasi | Performa | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-@include('layouts.panel.sad.vertikal')
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
@@ -22,61 +22,58 @@
 @endsection
 
 @section('superadmin')
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-        <div class="col d-flex align-items-center">
+    <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
             <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('hm.e') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="{{ route('hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}"><button
-                        class="btn btn-link btn-dark btn-sm p-0"><i class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                <span class="badge bg-soft-danger text-danger bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
                     {{ $master->created_at->format('F Y') }}</span>
-            </div>
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> {{ $equip_m->equip_->tipe }}
-                    <span class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
-            </div>
-        </div>
-        <div class="col-auto d-flex align-items-center">
-            <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
-                <a href="{{ route('r.hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
-                    <button class="btn btn-sm active text-primary" data-bs-toggle="pill"
-                        data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button" role="tab"
-                        aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" aria-selected="true"
-                        id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <a class="btn btn-falcon-default btn-sm" href="{{ route('r.hm.e') }}" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Back to Main Table">
+                    <span class="fas fa-list"></span>
                 </a>
-                <a href="{{ route('r.hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
-                    <button class="btn btn-sm  text-warning" data-bs-toggle="pill"
-                        data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
-                        aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="false"
-                        id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
-                </a>
-                <a href="{{ route('r.hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
-                    <button class="btn btn-sm text-success" data-bs-toggle="pill"
-                        data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button" role="tab"
-                        aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" aria-selected="false"
-                        id="tab-dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc">Tambah</button>
-                </a>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <span class=" fw-semi-bold text-primary"> Performance Hours Meter / {{ $equip_m->equip_->tipe }} / <span
+                        class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
             </div>
-            <div class="position-relative">&nbsp;
-                <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
-                        class="fas fa-truck-monster"></i></button>
-            </div>
-            <div class="position-relative">&nbsp;
-                <div class="dropdown font-sans-serif d-inline-block">
-                    <button class="btn btn-sm btn-falcon-default dropdown-toggle" id="dropdownMenuButton" type="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i> Print
-                            Excel</a>
+            <div class="col-auto d-flex align-items-center">
+                <div class="nav nav-pills nav-pills-falcon flex-grow-1" role="tablist">
+                    <a href="{{ route('r.hm.e.i', Crypt::encryptString($equip_m->equip_id)) }}">
+                        <button class="btn btn-sm active text-primary" data-bs-toggle="pill"
+                            data-bs-target="#dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" type="button" role="tab"
+                            aria-controls="dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77" aria-selected="true"
+                            id="tab-dom-5dcff8a5-e159-4ab1-8730-0cfe7c421b77">List</button>
+                    </a>
+                    <a href="{{ route('r.hm.e.e', Crypt::encryptString($equip_m->equip_id)) }}">
+                        <button class="btn btn-sm  text-warning" data-bs-toggle="pill"
+                            data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2" type="button" role="tab"
+                            aria-controls="dom-91d68b2e-028d-47b6-9a26-2" aria-selected="false"
+                            id="tab-dom-91d68b2e-028d-47b6-9a26-2">Edit</button>
+                    </a>
+                    <a href="{{ route('r.hm.e.c', Crypt::encryptString($equip_m->equip_id)) }}">
+                        <button class="btn btn-sm text-success" data-bs-toggle="pill"
+                            data-bs-target="#dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" type="button" role="tab"
+                            aria-controls="dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc" aria-selected="false"
+                            id="tab-dom-91d68b2e-028d-47b6-9a26-2f75d430f2dc">Tambah</button>
+                    </a>
+                </div>
+                <div class="position-relative">&nbsp;
+                    <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
+                            class="fas fa-truck-monster"></i></button>
+                </div>
+                <div class="position-relative">&nbsp;
+                    <div class="dropdown font-sans-serif d-inline-block">
+                        <a target="_blank"
+                            href="{{ route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id)) }}"><button
+                                class="btn btn-sm btn-falcon-success" type="button"><i
+                                    class="fas fa-file-excel"></i></button></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     @include('comp.alert')
 
@@ -123,13 +120,13 @@
                                     <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                         <td class="align-middle text-center text-1000 white-space-nowrap no">
                                             <div class="btn-group  btn-group-sm" role="group">
-                                                <a href="{{ route('hm.e.i', Crypt::encryptString($res->equip_id)) }}"
+                                                <a href="{{ route('r.hm.e.i', Crypt::encryptString($res->equip_id)) }}"
                                                     class="btn btn-info" type="button"><i
                                                         class="fas fa-info-circle"></i></a>
-                                                <a href="{{ route('hm.e.e', Crypt::encryptString($res->equip_id)) }}"
+                                                <a href="{{ route('r.hm.e.e', Crypt::encryptString($res->equip_id)) }}"
                                                     class="btn btn-warning" type="button"><i
                                                         class="fas fa-edit"></i></a>
-                                                <a href="{{ route('hm.e.c', Crypt::encryptString($res->equip_id)) }}"
+                                                <a href="{{ route('r.hm.e.c', Crypt::encryptString($res->equip_id)) }}"
                                                     class="btn btn-success" type="button"><i
                                                         class="fas fa-plus-square"></i></a>
                                             </div>

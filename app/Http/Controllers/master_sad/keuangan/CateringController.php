@@ -73,7 +73,7 @@ class CateringController extends Controller
             $cat['total'] = $porsi_tot;
             Catering::create($cat);
         }
-        return redirect()->route('cat.l')->with('success', 'Data Catering Berhasil Disimpan');
+        return back()->with('success', 'Data Catering Berhasil Disimpan');
     }
 
 

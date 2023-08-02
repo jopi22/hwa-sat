@@ -744,7 +744,7 @@ class PerformaHMController extends Controller
             'tgl' => $request->tgl,
             'shift_id' => $request->shift_id,
             'kar_id' => $request->kar_id,
-            'master_id' => $master->id,
+            'master_id' => $request->master_bro,
             'equip_id' => $request->equip_id,
             'lokasi_id' => $request->lokasi_id,
             'dedicated_id' => $request->dedicated_id,

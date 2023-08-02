@@ -1,41 +1,29 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Kalender | Validasi | HWA &bull; SAT
+    Kalender | Rekapitulasi
 @endsection
 
 @section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+    @include('layouts.panel.sad.vertikal_rekap')
 @endsection
 
 @section('link')
-    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
+    {{-- // Eksport Excel // --}}
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-        window.jsPDF = window.jspdf.jsPDF;
-        var docPDF = new jsPDF();
-
-        function print() {
-            var elementHTML = document.querySelector("#printTable");
-            docPDF.html(elementHTML, {
-                callback: function(docPDF) {
-                    docPDF.save('HWA_Kalender.pdf');
-                },
-                x: 15,
-                y: 15,
-                width: 180,
-                windowWidth: 1500
-            });
-        }
-    </script>
+    <script src="{{ asset('vendors/countup/countUp.umd.js') }}"></script>
+    <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
+    {{-- // Eksport Excel // --}}
     <script type="text/javascript">
         function htmlTableToExcel(type) {
-            var data = document.getElementById('printTable');
+            var data = document.getElementById('tblToExcl');
             var excelFile = XLSX.utils.table_to_book(data, {
                 sheet: "sheet1"
             });
@@ -44,92 +32,98 @@
                 bookSST: true,
                 type: 'base64'
             });
-            XLSX.writeFile(excelFile, 'HWA_Kalender.' + type);
+            XLSX.writeFile(excelFile, 'Rekap Absensi.' + type);
         }
     </script>
-    <script src="{{ asset('vendors/countup/countUp.umd.js') }}"></script>
-    <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
 @endsection
 
-@section('konten')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-            <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Kalender <span
-                        class="text-danger">Validasi</span> <span
-                        class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Kalender </h4>
+@section('superadmin')
+<div class="card mb-3 bg-100 shadow-none border">
+    <div class="row gx-0 flex-between-center">
+        <div class="col-sm-auto d-flex align-items-center"><img class="ms-2"
+                src="{{ asset('assets/img/illustrations/reports-greeting.png') }}" alt="" width="60" />
+            <div class="ms-4">
+                <h6 class="text-primary fs--1 mb-0"><i class="fas fa-users"></i> Human Resource & General Affairs
+                </h6>
+                <h4 class="text-primary fw-bold mb-0">Kalender {{ $cek->created_at->format('F Y') }}</h4>
             </div>
         </div>
-    </div>
-
-    <div class="card mb-3">
-        <div class="card-body py-5 py-sm-3">
-            <div class="row g-5 g-sm-0">
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-success">Kehadiran Total</h6>
-                            <h3 class="fw-normal text-success" data-countup='{"endValue":{{ $hadir }}}'>0
-                            </h3>
-                        </div>
-                    </div>
+        <div class="col-sm-auto d-flex align-items-center">
+            <form class="row align-items-center g-3">
+                <div class="col-auto">
+                    <h6 class="text-danger mb-0">Rekapitulasi Master :</h6>
                 </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-danger">Alpha Total</h6>
-                            <h3 class="fw-normal text-danger" data-countup='{"endValue":{{ $alpha }}}'>0
-                            </h3>
-                        </div>
-                    </div>
+                <div class="col-md-auto">
+                    <h6 class="mb-0">{{ $cek->created_at->format('F Y') }}</h6>
                 </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-warning">Cuti Total</h6>
-                            <h3 class="fw-normal text-warning" data-countup='{"endValue":{{ $cuti }}}'>0
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-info">Izin Ket/Tanpa Ket</h6>
-                            <div class="text-center">
-                                <h3 class="fw-normal text-info">{{ $izin_k }}/{{ $izin_tk }}</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-info">Sakit Ket/Tanpa Ket</h6>
-                            <h3 class="fw-normal text-info">{{ $sakit_k }}/{{ $sakit_tk }}</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="border-sm-end border-300">
-                        <div class="text-center">
-                            <h6 class="text-700">Progres Absensi (%)</h6>
-                            <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $progres }}}'>0</h3>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            </form>
+            <img class="ms-2 d-md-none d-lg-block"
+                src="{{ asset('assets/img/icons/spot-illustrations/corner-1.png') }}" alt=""
+                width="90" />
         </div>
     </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body py-5 py-sm-3">
+        <div class="row g-5 g-sm-0">
+            <div class="col-sm-2">
+                <div class="border-sm-end border-300">
+                    <div class="text-center">
+                        <h6 class="text-success">Kehadiran Total</h6>
+                        <h3 class="fw-normal text-success" data-countup='{"endValue":{{ $hadir }}}'>0
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="border-sm-end border-300">
+                    <div class="text-center">
+                        <h6 class="text-danger">Alpha Total</h6>
+                        <h3 class="fw-normal text-danger" data-countup='{"endValue":{{ $alpha }}}'>0
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="border-sm-end border-300">
+                    <div class="text-center">
+                        <h6 class="text-warning">Cuti Total</h6>
+                        <h3 class="fw-normal text-warning" data-countup='{"endValue":{{ $cuti }}}'>0
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="border-sm-end border-300">
+                    <div class="text-center">
+                        <h6 class="text-info">Izin Ket/Tanpa Ket</h6>
+                        <div class="text-center">
+                            <h3 class="fw-normal text-info">{{ $izin_k }}/{{ $izin_tk }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="border-sm-end border-300">
+                    <div class="text-center">
+                        <h6 class="text-info">Sakit Ket/Tanpa Ket</h6>
+                        <h3 class="fw-normal text-info">{{ $sakit_k }}/{{ $sakit_tk }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div>
+                    <div class="text-center">
+                        <h6 class="text-700">Progres Absensi (%)</h6>
+                        <h3 class="fw-normal text-700" data-countup='{"endValue":{{ $progres }}}'>0</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
     @foreach ($abs as $item)
         @if ($item->periode_id)
@@ -140,13 +134,15 @@
                             <h5>Kalender {{ date('F Y') }}</h5>
                         </div>
                         <div class="col-6 col-sm-auto ms-auto text-end ps-0">
-                            <button class="btn btn-sm btn-falcon-warning" id="printButton" onclick="print()"><i class="far fa-file-pdf"></i> PDF</button>
-                            <button class="btn btn-sm btn-falcon-success" id="button" onclick="htmlTableToExcel('xlsx')"><i class="far fa-file-excel"></i> Excel</button>
+                            {{-- <button class="btn btn-sm btn-falcon-warning" id="printButton" onclick="print()"><i
+                                    class="fas fa-file-pdf"></i></button> --}}
+                            <button class="btn btn-sm btn-falcon-success" id="button"
+                                onclick="htmlTableToExcel('xlsx')"><i class="fas fa-file-excel"></i></button>
                         </div>
                     </div>
                 </div>
                 <div id="printTable" class="card-body px-0 pt-0">
-                    <table class="table mb-0 data-table fs--1"
+                    <table id="tblToExcl" class="table mb-0 data-table fs--1"
                         data-options='{"paging":false,"scrollY":"1000px","searching":false,"scrollCollapse":true,"fixedColumns":{"left":2},"scrollX":true}'>
                         <thead class="bg-200 text-900">
                             <tr>
@@ -559,9 +555,6 @@
                                         K{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}</td>
                                     <td class="align-middle white-space-nowrap fw-semi-bold text-black">
                                         {{ $res->name }}</td>
-
-
-
                                     @foreach ($res->absensi_ as $item)
                                         @if ($item->periode_id == $per->id)
                                             <td
@@ -579,13 +572,13 @@
                                                                 <span class="badge bg-info">I</span>
                                                             @else
                                                                 @if ($item->status == 4)
-                                                                    <span class="badge bg-info">?</span>
+                                                                    <span class="badge bg-info">N</span>
                                                                 @else
                                                                     @if ($item->status == 3)
                                                                         <span class="badge bg-secondary">S</span>
                                                                     @else
                                                                         @if ($item->status == 2)
-                                                                            <span class="badge bg-secondary">?</span>
+                                                                            <span class="badge bg-secondary">T</span>
                                                                         @else
                                                                             @if ($item->status == 1)
                                                                                 <span class="badge bg-success">H</span>
@@ -601,25 +594,13 @@
                                             </td>
                                         @endif
                                     @endforeach
-
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer bg-light d-flex flex-between-center py-2">
-                    <div class="dropdown font-sans-serif btn-reveal-trigger"><button
-                            class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                            type="button" id="dropdown-bandwidth-saved" data-bs-toggle="dropdown"
-                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span
-                                class="fas fa-ellipsis-h fs--2"></span></button>
-                        <div class="dropdown-menu dropdown-menu-end border py-2"
-                            aria-labelledby="dropdown-bandwidth-saved">
-                            <a class="dropdown-item text-success" href="#!"><i class="fas fa-file-excel"></i>
-                                Print
-                                Excel</a>
-                        </div>
-                    </div>
+                    {{-- // --}}
                 </div>
             </div>
         @endif
@@ -636,13 +617,13 @@
                         Cuti</span></div>
                 <div class="col-auto"> <span class="badge bg-info">I</span><span class="text-1000 fs--1"> Izin
                         Disertai Keterangan</span></div>
-                <div class="col-auto"> <span class="badge bg-info">?</span><span class="text-1000 fs--1"> Izin
+                <div class="col-auto"> <span class="badge bg-info">N</span><span class="text-1000 fs--1"> Izin
                         Tanpa
                         Keterangan</span></div>
                 <div class="col-auto"> <span class="badge bg-secondary">S</span><span class="text-1000 fs--1">
                         Sakit
                         Disertai Keterangan</span></div>
-                <div class="col-auto"> <span class="badge bg-secondary">?</span><span class="text-1000 fs--1">
+                <div class="col-auto"> <span class="badge bg-secondary">T</span><span class="text-1000 fs--1">
                         Sakit
                         Tanpa Keterangan</span></div>
             </div>
