@@ -41,13 +41,14 @@
     </script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @if ($cek->periode == $periode)
         @if ($cek->ket == 1)
             <div class="card mb-3 bg-100 shadow-none border">
                 <div class="row gx-0 flex-between-center">
                     <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
-                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                            src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt=""
+                            width="90" />
                         <div>
                             <h6 class="text-primary fs--1 mb-0"><i class="fas fa-users"></i> Human Resource & General Affairs
                             </h6>
@@ -63,9 +64,8 @@
                                 <h6 class="mb-0">{{ $cek->created_at->format('F Y') }}</h6>
                             </div>
                         </form>
-                        <img class="ms-2 d-md-none d-lg-block"
-                src="{{ asset('assets/img/illustrations/ticket-bg.png') }}" alt=""
-                width="150" />
+                        <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/illustrations/ticket-bg.png') }}"
+                            alt="" width="150" />
                     </div>
                 </div>
             </div>

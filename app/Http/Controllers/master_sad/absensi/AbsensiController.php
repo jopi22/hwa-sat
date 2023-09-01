@@ -64,9 +64,9 @@ class AbsensiController extends Controller
         if ($cek->ket == 1) {
             $persentase = $sudah * 100 / $all;
             $progres = number_format($persentase);
-            return view('asset.sad.abs.abs_kalender', compact('progres', 'nav', 'per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
+            return view('author.sad.abs.abs_kalender', compact('progres', 'nav', 'per', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
         }
-        return view('asset.sad.abs.abs_kalender', compact('per', 'nav', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
+        return view('author.sad.abs.abs_kalender', compact('per', 'nav', 'kar', 'abs', 'cek', 'periode', 'hadir', 'sakit_tk', 'sakit_k', 'izin_tk', 'izin_k', 'cuti', 'alpha', 'blm', 'sudah'));
     }
 
 

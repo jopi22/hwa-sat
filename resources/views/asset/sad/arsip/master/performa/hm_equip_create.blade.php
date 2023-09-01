@@ -415,7 +415,7 @@
     </script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
         <div class="col d-flex align-items-center">
             <div>

@@ -24,7 +24,7 @@
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
         <div class="card mb-3 bg-100 shadow-none border">

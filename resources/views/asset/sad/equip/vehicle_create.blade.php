@@ -145,7 +145,7 @@
     </script>
 @endsection
 
-@section('superadmin')
+@section('konten')
 <div class="card mb-3">
     <div class="card-body d-flex justify-content-between">
         <div>

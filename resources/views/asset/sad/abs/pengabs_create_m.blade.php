@@ -35,7 +35,7 @@
     </script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @if ($cek->periode == $periode)
         @if ($cek->ket == 1)
             <div class="card mb-3">

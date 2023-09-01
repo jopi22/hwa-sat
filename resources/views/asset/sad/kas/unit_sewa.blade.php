@@ -28,7 +28,7 @@
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket2 == 1)
             @if ($master->ket1 == 1)

@@ -35,7 +35,7 @@
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @include('comp.alert')
 
     <div class="card mb-3">

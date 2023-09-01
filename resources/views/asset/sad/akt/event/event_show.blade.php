@@ -29,7 +29,7 @@
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     <div class="card mb-3"><img class="card-img-top" src="{{ asset($eve->foto) }}" height="400px" />
         <div class="card-body">
             <div class="row justify-content-between align-items-center">

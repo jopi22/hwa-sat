@@ -76,30 +76,7 @@
 
             @include('layouts.panel.sad.ganda_horizontal')
 
-            @if (Auth::user()->level == 1)
-                @yield('sad_menu')
-            @else
-                @if (Auth::user()->level == 2)
-                    @yield('sad_menu')
-                @else
-                    @if (Auth::user()->level == 3)
-                        @if ($cek_null == null)
-                            @include('layouts.panel.sad.vertikal_adm')
-                        @else
-                            @if ($cek->periode == $periode)
-                                @include('layouts.panel.sad.vertikal')
-                            @else
-                                @include('layouts.panel.sad.vertikal_off')
-                            @endif
-                        @endif
-                    @else
-                        @if (Auth::user()->level == 4)
-                            {{-- // --}}
-                        @else
-                        @endif
-                    @endif
-                @endif
-            @endif
+            @yield('sad_menu')
 
             @include('layouts.panel.sad.horizontal')
 
@@ -147,25 +124,10 @@
                     }
                 </script>
 
-                @if (Auth::user()->level == 1)
-                    @yield('developer')
-                    @yield('superadmin')
-                @else
-                    @if (Auth::user()->level == 2)
-                        @yield('superadmin')
-                    @else
-                        @if (Auth::user()->level == 3)
-                            @yield('admin')
-                        @else
-                            @if (Auth::user()->level == 4)
-                                @yield('pekerja')
-                            @else
-                            @endif
-                        @endif
-                    @endif
-                @endif
 
                 @yield('konten')
+
+
 
                 <!-- ===============================================-->
                 <!--    joo-footer-->

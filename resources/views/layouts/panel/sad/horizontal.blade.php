@@ -2,27 +2,33 @@
     <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false"
         aria-label="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
-    <a class="navbar-brand me-1 me-sm-3" href="index.html">
-        <div class="d-flex align-items-center"><img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png"
-                alt="" width="40" /><span class="font-sans-serif">HWA H</span></div>
+    <a class="navbar-brand me-1 me-sm-3" href="{{ route('dash') }}">
+        <div class="d-flex align-items-center">
+            <img class="me-2" src="{{ asset('assets/img/logos/hubstaff.png') }}" alt="" width="40" /><span
+                class="font-sans-serif">HWA SAT</span>
+        </div>
     </a>
+
     <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
         <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dashboards">##</a>
                 <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0" aria-labelledby="dashboards">
-                    <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium"
-                            href="index.html">Default</a><a class="dropdown-item link-600 fw-medium"
-                            href="dashboard/analytics.html">Analytics</a><a class="dropdown-item link-600 fw-medium"
-                            href="dashboard/crm.html">CRM</a><a class="dropdown-item link-600 fw-medium"
-                            href="dashboard/e-commerce.html">E
-                            commerce</a><a class="dropdown-item link-600 fw-medium" href="dashboard/lms.html">LMS<span
-                                class="badge rounded-pill ms-2 badge-soft-success">New</span></a><a
-                            class="dropdown-item link-600 fw-medium"
-                            href="dashboard/project-management.html">Management</a><a
-                            class="dropdown-item link-600 fw-medium" href="dashboard/saas.html">SaaS</a><a
-                            class="dropdown-item link-600 fw-medium" href="dashboard/support-desk.html">Support
-                            desk<span class="badge rounded-pill ms-2 badge-soft-success">New</span></a></div>
+                    <div class="bg-white dark__bg-1000 rounded-3 py-2">
+                        <a class="dropdown-item link-600 fw-medium" href="{{ route('dash') }}">Default</a>
+                        <a class="dropdown-item link-600 fw-medium" href="dashboard/analytics.html">Analytics</a>
+                        <a class="dropdown-item link-600 fw-medium" href="dashboard/crm.html">CRM</a>
+                        <a class="dropdown-item link-600 fw-medium" href="dashboard/e-commerce.html">E
+                            commerce</a>
+                        <a class="dropdown-item link-600 fw-medium" href="dashboard/lms.html">LMS
+                            <span class="badge rounded-pill ms-2 badge-soft-success">New</span>
+                        </a><a class="dropdown-item link-600 fw-medium"
+                            href="dashboard/project-management.html">Management</a>
+                        <a class="dropdown-item link-600 fw-medium" href="dashboard/saas.html">SaaS</a>
+                        <a class="dropdown-item link-600 fw-medium" href="dashboard/support-desk.html">Support
+                            desk
+                            <span class="badge rounded-pill ms-2 badge-soft-success">New</span></a>
+                    </div>
                 </div>
             </li>
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
@@ -716,8 +722,8 @@
                                     </a>
                                 </div>
 
-                                <div class="col-12"><a class="btn btn-outline-primary btn-sm mt-4"
-                                        href="#!"><i class="fas fa-cog"></i> Setting</a></div>
+                                <div class="col-12"><a class="btn btn-outline-primary btn-sm mt-4" href="#!"><i
+                                            class="fas fa-cog"></i> Setting</a></div>
                             </div>
                         </div>
                     </div>

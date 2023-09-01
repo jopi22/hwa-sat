@@ -146,6 +146,11 @@
         </li>
 
         <li class="nav-item">
+            <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip"
+                data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span
+                        class="toggle-line"></span></span></button>
+        </li>
+        <li class="nav-item">
             <a href="#settings-offcanvas" data-bs-toggle="offcanvas">
                 <div class="theme-control-toggle fa-icon-wait px-2">
                     <div class="settings-popover"><span class="ripple"><span
@@ -347,7 +352,8 @@
                     <a class="dropdown-item fw-bold text-warning" href="#!"><span
                             class="fas fa-crown me-1"></span><span>{{ Auth::user()->name }}</span></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{route('kar.i', Crypt::encryptString(Auth::user()->id))}}">Profile</a>
+                    <a class="dropdown-item"
+                        href="{{ route('kar.i', Crypt::encryptString(Auth::user()->id)) }}">Profile</a>
                     {{-- <a class="dropdown-item" href="{{route('akun.i', Crypt::encryptString(Auth::user()->id))}}">Account</a> --}}
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}"

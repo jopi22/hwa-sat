@@ -1,5 +1,11 @@
-@if (Auth::user()->level < 3)
-    @include('asset.sad.log.pemesanan_list_create')
+{{-- @if (Auth::user()->level < 3)
+    @include('asset.sad.log.pemes')
 @else
-    @include('home.404')
+    @if (Auth::user()->level == 5)
+        @include('asset.sad.log.pemes')
+    @else
+        @include('home.404')
+    @endif
 @endif
+ --}}
+@include('home.404')

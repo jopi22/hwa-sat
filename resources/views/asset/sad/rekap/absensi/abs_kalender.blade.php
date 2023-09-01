@@ -37,7 +37,7 @@
     </script>
 @endsection
 
-@section('superadmin')
+@section('konten')
 <div class="card mb-3 bg-100 shadow-none border">
     <div class="row gx-0 flex-between-center">
         <div class="col-sm-auto d-flex align-items-center"><img class="ms-2"

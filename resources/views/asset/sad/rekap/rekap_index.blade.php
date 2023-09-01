@@ -25,7 +25,7 @@
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @include('comp.alert')
     @if ($val == 0)
         @include('comp.card.card_validasi')

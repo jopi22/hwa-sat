@@ -36,7 +36,7 @@
     </script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     <div class="card mb-3 mt-3">
         <div class="card-body">
             <div class="row justify-content-between align-items-center">

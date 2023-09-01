@@ -14,7 +14,7 @@
 
 
 
-@section('superadmin')
+@section('konten')
     <div class="card mb-3 bg-light shadow-none">
         <div class="bg-holder bg-card d-none d-sm-block"
             style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>

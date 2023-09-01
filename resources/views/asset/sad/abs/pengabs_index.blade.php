@@ -29,7 +29,7 @@
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
     @if ($master->periode == $periode)
         @if ($cek->ket == 1)
             <div class="card mb-3 bg-100 shadow-none border">

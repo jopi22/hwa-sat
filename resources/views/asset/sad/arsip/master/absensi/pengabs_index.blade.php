@@ -54,7 +54,7 @@
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
 @endsection
 
-@section('superadmin')
+@section('konten')
 <div class="card mb-3">
     <div class="card-body d-flex justify-content-between">
         <div>
