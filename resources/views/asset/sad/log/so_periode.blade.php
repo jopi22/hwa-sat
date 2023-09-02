@@ -1,11 +1,15 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Pemesanan Barang | HWA &bull; SAT
+    Stock Opname | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
-    @include('layouts.panel.sad.vertikal')
+    @if ($master->periode == $periode)
+        @include('layouts.panel.sad.vertikal')
+    @else
+        @include('layouts.panel.sad.vertikal_off')
+    @endif
 @endsection
 
 @section('link')
@@ -25,8 +29,8 @@
             <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
                     src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
                 <div>
-                    <h6 class="mb-1 text-primary"><i class="fas fa-gas-pump"></i> Logistic Division</h6>
-                    <h4 class="mb-0 text-primary fw-bold">Faktur Pemesanan Barang</h4>
+                    <h6 class="mb-1 text-primary"><i class="fas fa-warehouse"></i> Logistic Division</h6>
+                    <h4 class="mb-0 text-primary fw-bold"> Stock Opname</h4>
                 </div>
             </div>
             <div class="col-sm-auto d-flex align-items-center">
@@ -85,49 +89,68 @@
                                     Aksi/Status
                                 </th>
                                 <th style="min-width: 300px" class="sort align-middle white-space-nowrap" data-sort="kode">
-                                    Kode Faktur
+                                    Tanggal
+                                </th>
+                                <th style="min-width: 300px" class="sort align-middle white-space-nowrap" data-sort="kode">
+                                    Status
                                 </th>
                                 <th style="min-width: 300px" class="sort align-middle white-space-nowrap" data-sort="tgl">
-                                    Tanggal Faktur
+                                    Selisih Total
                                 </th>
                             </tr>
                         </thead>
                         <tbody id="table-posts" class="list">
-                            @foreach ($pb as $res)
+                            @foreach ($so as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
                                     <td class="align-middle text-1000 text-center white-space-nowrap no">
                                         {{ $loop->iteration }}
                                     </td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">
                                         <div class="btn-group  btn-group-sm" role="group">
-
                                             @if ($res->status == null)
-                                                <a href="{{ route('pemesanan.l', Crypt::Encryptstring($res->id)) }}"
-                                                    class="btn btn-success" data-bs-toggle="tooltip"><span
-                                                        class="far fa-plus-square"></span> Tambah Barang</a>
+                                                <a href="{{ route('so.cp', Crypt::Encryptstring($res->id)) }}"
+                                                    class="btn btn-secondary" data-bs-toggle="tooltip"><span
+                                                        class="fas fa-list-alt"></span> Cetak Pertama</a>
                                             @else
-                                                @if ($res->status == 'Selesai')
-                                                    Selesai
-                                                @else
-                                                    <a href="{{ route('cek.barang', Crypt::Encryptstring($res->id)) }}"
-                                                        class="btn btn-warning" data-bs-toggle="tooltip"><span
-                                                            class="far fa-check-square"></span> Cek Barang</a>
+                                                @if ($res->status == 'Cetak Pertama')
+                                                    <a href="{{ route('so.ck', Crypt::Encryptstring($res->id)) }}"
+                                                        class="btn btn-secondary" data-bs-toggle="tooltip"><span
+                                                            class="fas fa-list-alt"></span> Cetak Kedua</a>
                                                     <a data-bs-toggle="modal" data-bs-target="#delete-{{ $res->id }}"
                                                         class="btn btn-danger"><span class="fas fa-trash-alt"></span></a>
+                                                @else
+                                                    @if ($res->status == 'Cetak Kedua')
+                                                        <a href="{{ route('so.adjust', Crypt::Encryptstring($res->id)) }}"
+                                                            class="btn btn-secondary" data-bs-toggle="tooltip"><span
+                                                                class="fas fa-list-alt"></span> Adjust</a>
+                                                    @else
+                                                    <a href="{{ route('so.adjust', Crypt::Encryptstring($res->id)) }}"
+                                                        class="btn btn-secondary" data-bs-toggle="tooltip"><span
+                                                            class="fas fa-list-alt"></span> Lihat</a>
+                                                    @endif
                                                 @endif
                                             @endif
+
+
                                         </div>
                                     </td>
-                                    <td class="align-middle text-center text-1000 white-space-nowrap kode">
-                                        @if ($res->kode)
-                                            {{ $res->kode }}
+                                    <td class="align-middle text-center text-1000 white-space-nowrap tgl">
+                                        @if ($res->tgl)
+                                            {{ $res->tgl->format('d-m-Y') }}
                                         @else
                                             -
                                         @endif
                                     </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap tgl">
-                                        @if ($res->tgl)
-                                            {{ $res->tgl->format('d-m-Y') }}
+                                        @if ($res->status)
+                                            {{ $res->status }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-center text-1000 white-space-nowrap tgl">
+                                        @if ($res->hasil)
+                                            {{ $res->hasil }}
                                         @else
                                             -
                                         @endif
@@ -150,5 +173,5 @@
         </div>
     </div>
 
-    @include('comp.modal.stok.modal_pemesanan_barang')
+    @include('comp.modal.stok.modal_so_periode')
 @endsection

@@ -103,9 +103,6 @@
     <script src="{{ asset('assets/print/js/jspdf.debug.js') }}"></script>
     <script src="{{ asset('assets/print/js/html2canvas.min.js') }}"></script>
     <script src="{{ asset('assets/print/js/html2pdf.min.js') }}"></script>
-
-
-
     <script>
         const options = {
             margin: 0.5,

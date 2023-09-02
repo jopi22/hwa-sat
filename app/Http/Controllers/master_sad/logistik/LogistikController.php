@@ -17,6 +17,7 @@ use App\Models\Stok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Redirect;
 
 class LogistikController extends Controller
 {
@@ -115,8 +116,22 @@ class LogistikController extends Controller
         $pemesanan = Pemesanan_Barang::Find($decrypID);
         $barang = Barang::where('status', 'Aktif')->get();
         $cek = Pemesanan_Barang_List::where('pemesanan_id', $pemesanan->kode)->count();
-        $pb = Pemesanan_Barang_List::where('pemesanan_id', $pemesanan->kode)->count();
+        $pb = Pemesanan_Barang_List::where('pemesanan_id', $pemesanan->kode)->get();
         return view('asset.sad.log.pemesanan_barang_list', compact('nav', 'pb', 'cek', 'barang', 'master', 'periode', 'pemesanan'));
+    }
+
+
+    public function cek_barang($id)
+    {
+        $decrypID = Crypt::decryptString($id);
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $pemesanan = Pemesanan_Barang::Find($decrypID);
+        $barang = Barang::where('status', 'Aktif')->get();
+        $cek = Pemesanan_Barang_List::where('pemesanan_id', $pemesanan->kode)->count();
+        $pb = Pemesanan_Barang_List::where('pemesanan_id', $pemesanan->kode)->get();
+        return view('asset.sad.log.cek_barang', compact('nav', 'pb', 'cek', 'barang', 'master', 'periode', 'pemesanan'));
     }
 
 
@@ -152,19 +167,62 @@ class LogistikController extends Controller
             $data['pemesanan_id'] = $kode;
             Pemesanan_Barang_List::create($data);
         }
-        return back()->with('success', 'Data Pemesanan Barang Berhasil Disimpan');
+        return redirect()->route('pemesanan.barang');
     }
 
 
-    public function pemesanan_update(Request $request, $id)
+    public function adjust_barang(Request $request, $id)
+    {
+        // dd($request->all());
+        $cek =  Pemesanan_Barang_List::Find($id);
+        $cek->update([
+            'token' => $request->token,
+        ]);
+        $barangDatang = $request->pesanan;
+        $barangLama = $request->stok;
+        $adjust = $barangDatang + $barangLama;
+
+        $barangID = $cek->barang_id;
+        $bro =  Barang::Find($barangID);
+        $bro->update([
+            'jumlah' => $adjust,
+        ]);
+        return back();
+    }
+
+
+    public function pemesanan_list_store(Request $request)
+    {
+        // dd($request->all());
+        Pemesanan_Barang::where('id', $request->del_faktur)->delete();
+        Pemesanan_Barang::create([
+            'id' => $request->id_faktur,
+            'tgl' => $request->tgl,
+            'kode' => $request->kode,
+            'status' => $request->status,
+        ]);
+        foreach ($request->del_barang as $key => $items) {
+            Pemesanan_Barang_List::where('id', $request->del_barang[$key])->delete();
+        }
+        foreach ($request->id_barang as $key => $value) {
+            $data['id'] = $request->id_barang[$key];
+            $data['barang_id'] = $request->barang_id[$key];
+            $data['pemesanan_id'] = $request->pemesanan_id[$key];
+            $data['jumlah'] = $request->jumlah[$key];
+            Pemesanan_Barang_List::create($data);
+        }
+        return redirect()->route('pemesanan.barang');
+    }
+
+
+    public function pemesanan_final(Request $request, $id)
     {
         // dd($request->all());
         $pb =  Pemesanan_Barang::Find($id);
         $pb->update([
-            'tgl' => $request->tgl,
-            'kode' => $request->kode,
+            'status' => $request->status,
         ]);
-        return back()->with('success', 'Data Pemesanan Barang Berhasil Diubah');
+        return back()->with('success', 'Faktur Pemesanan Berhasil Ditutup');
     }
 
 
@@ -173,6 +231,6 @@ class LogistikController extends Controller
         // dd($request->all());
         $pb =  Pemesanan_Barang::Find($id);
         $pb->delete();
-        return back()->with('success', 'Data Pemesanan Barang Berhasil Dihapus');
+        return back()->with('success', 'Faktur Pemesanan Barang Berhasil Dihapus');
     }
 }

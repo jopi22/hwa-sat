@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pemesanan_Barang_List extends Model
+class SoData extends Model
 {
     use HasFactory;
-    protected $table = 'hwa_pemesanan_barang_list';
+    use HasFactory;
+    protected $table = 'hwa_so_data';
     protected $guarded = ['id'];
     protected $dates = ['tgl'];
 
@@ -17,8 +18,8 @@ class Pemesanan_Barang_List extends Model
         return $this->belongsTo(Barang::class, 'barang_id');
     }
 
-    public function pemesanan_()
+    public function so__()
     {
-        return $this->belongsTo(Pemesanan_Barang::class, 'kode', 'pemesanan_id');
+        return $this->belongsTo(SoPeriode::class, 'kode', 'so_id');
     }
 }

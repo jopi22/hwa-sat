@@ -808,6 +808,11 @@
                                                 class="nav-link-text ps-1">Pemesanan</span></div>
                                     </a>
                                 </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('so.periode') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Stock Opname</span></div>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 

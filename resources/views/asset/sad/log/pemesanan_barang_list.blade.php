@@ -141,50 +141,76 @@
 
     <form action="{{ route('pemesanan.l.s') }}" method="post">
         @csrf
+        <input type="hidden" name="del_faktur" value="{{ $pemesanan->id }}">
+        <input type="hidden" name="id_faktur" value="{{ $pemesanan->id }}">
+        <input type="hidden" name="tgl" value="{{ $pemesanan->tgl }}">
+        <input type="hidden" name="kode" value="{{ $pemesanan->kode }}">
+        <input type="hidden" name="status" value="OK">
         <div class="card mb-3">
             <div class="card-header bg-light">
-                <p class="fs--1 mb-0"><strong>Notes: </strong>Kolom Berwarna
-                    Merah <i class="fas fa-square text-danger"></i> Wajib Diisi | Tekan Tombol <i
-                        class="fas fa-plus-square text-success"></i> Untuk Tambah
-                    Baris</p>
+                {{-- // --}}
             </div>
             <div id="tableExample4">
                 <div class="table-responsive scrollbar">
                     <table id="tableEstimate" class="table table-sm table-striped table-bordered mb-0 fs--1"
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                         <thead class="bg-200 text-800">
-                            <tr class="text-center bg-secondary text-white">
-                                <th style="min-width: 100px" class="sort align-middle white-space-nowrap">
-                                    Add Row
+                            <tr class="text-center bg-200 text-800">
+                                <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
+                                    #
                                 </th>
-                                <th style="min-width: 380px" class="sort bg-danger align-middle white-space-nowrap">
-                                    Unit Barang
+                                <th style="min-width: 100px" class="sortalign-middle white-space-nowrap">
+                                    Kode Faktur
                                 </th>
-                                <th style="min-width: 300px" class="sort bg-danger align-middle white-space-nowrap">
+                                <th style="min-width: 100px" class="sortalign-middle white-space-nowrap">
+                                    Nama Barang | Kode Barang
+                                </th>
+                                <th style="min-width: 100px"
+                                    class="sortalign-middle bg-primary text-white white-space-nowrap">
                                     Jumlah
+                                </th>
+                                <th style="min-width: 100px" class="sortalign-middle white-space-nowrap">
+                                    Satuan
                                 </th>
                             </tr>
                         </thead>
                         <tbody id="table-posts" class="list">
-                            <tr class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                <td class="align-middle text-1000 text-center white-space-nowrap">
-                                    <a href="javascript:void(0)" class="text-success" title="Add" id="addBtn"><i
-                                            class="fas fa-plus-square fs-2"></i></a>
-                                </td>
-                                <td class="align-middle text-1000 text-center white-space-nowrap tgl">
-                                    <select required name="barang_id[]" class="form-control form-control-sm">
-                                        <option value=""></option>
-                                        @foreach ($barang as $item)
-                                            <option value="{{ $item->id }}">{{ $item->barang }}</option>
-                                        @endforeach
-                                    </select>
-                                    <input type="hidden" value="{{ $pemesanan->id }}" name="pemesanan_id[]">
-                                </td>
-                                <td class="align-middle text-1000 text-center white-space-nowrap tgl">
-                                    <input required type="number" class="form-control form-control-sm"
-                                        name="jumlah[]">
-                                </td>
-                            </tr>
+                            @foreach ($pb as $asu)
+                                <tr class="btn-reveal-trigger text-1000 fw-semi-bold">
+                                    <td class="align-middle text-1000 text-center white-space-nowrap">
+                                        {{ $loop->iteration }}
+                                        <input type="hidden" value=" {{ $asu->id }}" name="del_barang[]">
+                                        <input type="hidden" value=" {{ $asu->id }}" name="id_barang[]">
+                                    </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap tgl">
+                                        @if ($asu->pemesanan_id)
+                                            {{ $asu->pemesanan_id }}
+                                            <input type="hidden" value=" {{ $asu->pemesanan_id }}" name="pemesanan_id[]">
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-1000 white-space-nowrap tgl">
+                                        @if ($asu->barang_id)
+                                            {{ $asu->barang_->barang }} | {{ $asu->barang_->kode }}
+                                            <input type="hidden" value="{{ $asu->barang_id }}" name="barang_id[]">
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap tgl">
+                                        <input type="number" name="jumlah[]" value="{{ $asu->jumlah }}"
+                                            class="form-control form-control-sm">
+                                    </td>
+                                    <td class="align-middle text-1000 text-center white-space-nowrap tgl">
+                                        @if ($asu->barang_id)
+                                            {{ $asu->barang_->satuan }}
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

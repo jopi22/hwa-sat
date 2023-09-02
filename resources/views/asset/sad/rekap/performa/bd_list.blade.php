@@ -29,7 +29,7 @@
             <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
                     src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
                 <div>
-                    <h6 class="text-primary fs--1 mb-0"><i class="fas fa-wrench"></i> Mechanic Division
+                    <h6 class="text-primary fs--1 mb-0"><i class="fas fa-tools"></i> Mechanic Division
                     </h6>
                     <h4 class="text-primary fw-bold mb-0">Breakdown</h4>
                 </div>
