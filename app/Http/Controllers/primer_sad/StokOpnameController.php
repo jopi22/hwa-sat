@@ -3,70 +3,85 @@
 namespace App\Http\Controllers\primer_sad;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barang;
 use App\Models\Brand;
 use App\Models\EquipMaster;
-use App\Models\LogMaster;
 use App\Models\Master;
 use App\Models\Mitra;
 use App\Models\Navigator;
+use App\Models\Pemakaian_Barang;
 use App\Models\Stok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
-class StokController extends Controller
+class StokOpnameController extends Controller
 {
-    public function ond_list()
+    public function barang()
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
-        $cek = Stok::where('jenis', 'Onderdil')->count();
-        $ond = Stok::where('jenis', 'Onderdil')->get();
-        $brand = Brand::all();
-        return view('author.sad.log.onderdil', compact('ond', 'brand', 'cek', 'nav', 'master', 'periode'));
+        $cek = Barang::where('status', 'Aktif')->count();
+        $bar = Barang::where('status', 'Aktif')->get();
+        return view('author.sad.log.barang', compact('bar',  'cek', 'nav', 'master', 'periode'));
     }
 
 
-    public function ond_store(Request $request)
+    public function barang_excel($id)
+    {
+        $nav = Navigator::where('karyawan', Auth::user()->id)->get();
+        $periode = date('m-Y');
+        $master = Master::where('status', 'Present')->first();
+        $cek = Barang::where('status', 'Aktif')->count();
+        $bar = Barang::where('status', 'Aktif')->get();
+        return view('asset.sad.log.barang_excel', compact('bar',  'cek', 'nav', 'master', 'periode'));
+    }
+
+
+    public function barang_store(Request $request)
     {
         // dd($request->all());
-        Stok::create([
+        Barang::create([
             'kode' => $request->kode,
             'barang' => $request->barang,
-            'jenis' => $request->jenis,
-            'brand' => $request->brand,
-            'tipe_alat' => $request->tipe_alat,
+            'kategori' => $request->kategori,
+            'status' => $request->status,
             'jumlah' => $request->jumlah,
             'satuan' => $request->satuan,
         ]);
-        return back()->with('success', 'Data Onderdil Berhasil Disimpan');
+        return back()->with('success', 'Data Barang Berhasil Disimpan');
     }
 
 
-    public function ond_update(Request $request, $id)
+    public function barang_update(Request $request, $id)
     {
         // dd($request->all());
-        $ond = Stok::Find($id);
+        $ond = Barang::Find($id);
         $ond_data = [
             'kode' => $request->kode,
             'barang' => $request->barang,
-            'jenis' => $request->jenis,
-            'brand' => $request->brand,
-            'tipe_alat' => $request->tipe_alat,
+            'kategori' => $request->kategori,
+            'status' => $request->status,
             'jumlah' => $request->jumlah,
             'satuan' => $request->satuan,
         ];
         $ond->update($ond_data);
-        return back()->with('success', 'Data Onderdil Berhasil Diubah');
+        return back()->with('success', 'Data Barang Berhasil Diubah');
     }
 
 
-    public function ond_delete(Request $request)
+    public function barang_delete(Request $request, $id)
     {
-        Stok::where('id', $request->delete)->delete();
+        $ond = Barang::Find($id);
+        $ond_data = [
+            'status' => $request->status,
+        ];
+        $ond->update($ond_data);
         return back()->with('success', 'Data Onderdil Berhasil Dihapus');
     }
+
+
 
 
     public function liq_list()
@@ -74,8 +89,8 @@ class StokController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
-        $cek = Stok::where('jenis', 'Liquid')->count();
-        $liq = Stok::where('jenis', 'Liquid')->get();
+        $cek = Barang::where('jenis', 'Liquid')->count();
+        $liq = Barang::where('jenis', 'Liquid')->get();
         $brand = Brand::all();
         return view('author.sad.log.liquid', compact('liq', 'brand', 'cek', 'nav', 'master', 'periode'));
     }
@@ -84,7 +99,7 @@ class StokController extends Controller
     public function liq_store(Request $request)
     {
         // dd($request->all());
-        Stok::create([
+        Barang::create([
             'barang' => $request->barang,
             'jenis' => $request->jenis,
             'brand' => $request->brand,
@@ -99,7 +114,7 @@ class StokController extends Controller
     public function liq_update(Request $request, $id)
     {
         // dd($request->all());
-        $liq = Stok::Find($id);
+        $liq = Barang::Find($id);
         $liq_data = [
             'barang' => $request->barang,
             'jenis' => $request->jenis,
@@ -115,7 +130,7 @@ class StokController extends Controller
 
     public function liq_delete(Request $request)
     {
-        Stok::where('id', $request->delete)->delete();
+        Barang::where('id', $request->delete)->delete();
         return back()->with('success', 'Data Liquid Berhasil Dihapus');
     }
 
@@ -125,30 +140,30 @@ class StokController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->first();
-        $barang = Stok::Find($id);
-        $stok = $barang->jumlah;
-        $log = LogMaster::where('master_id', $master->id)
+        $barang = Barang::Find($id);
+        $Barang = $barang->jumlah;
+        $log = Pemakaian_Barang::where('master_id', $master->id)
             ->where('status', 'Belum')
             ->where('barang_id', $id)
             ->get();
-        $cek = LogMaster::where('master_id', $master->id)
+        $cek = Pemakaian_Barang::where('master_id', $master->id)
             ->where('status', 'Belum')
             ->where('barang_id', $id)
             ->count();
 
-        $masuk = LogMaster::where('master_id', $master->id)
+        $masuk = Pemakaian_Barang::where('master_id', $master->id)
             ->where('status', 'Belum')
             ->where('log_tipe', 'Masuk')
             ->where('barang_id', $id)
             ->sum('jumlah');
-        $keluar = LogMaster::where('master_id', $master->id)
+        $keluar = Pemakaian_Barang::where('master_id', $master->id)
             ->where('status', 'Belum')
             ->where('log_tipe', 'Keluar')
             ->where('barang_id', $id)
             ->sum('jumlah');
 
-        $jum_tot = $stok + $masuk - $keluar;
-        return view('author.sad.log.verif', compact('log','stok','jum_tot', 'barang','keluar', 'masuk', 'cek', 'nav', 'master', 'periode'));
+        $jum_tot = $Barang + $masuk - $keluar;
+        return view('author.sad.log.verif', compact('log', 'Barang', 'jum_tot', 'barang', 'keluar', 'masuk', 'cek', 'nav', 'master', 'periode'));
     }
 
 
@@ -156,7 +171,7 @@ class StokController extends Controller
     {
         // dd($request->all());
         foreach ($request->delete_log as $key => $items) {
-            LogMaster::where('id', $request->delete_log[$key])->delete();
+            Pemakaian_Barang::where('id', $request->delete_log[$key])->delete();
         }
         foreach ($request->id as $key => $items) {
             $log['id'] = $request->id[$key];
@@ -169,11 +184,11 @@ class StokController extends Controller
             $log['ket'] = $request->ket[$key];
             $log['log_tipe'] = $request->log_tipe[$key];
             $log['status'] = $request->status[$key];
-            LogMaster::create($log);
+            Pemakaian_Barang::create($log);
         }
 
-        Stok::where('id', $request->delete_stok)->delete();
-        Stok::create([
+        Barang::where('id', $request->delete_Barang)->delete();
+        Barang::create([
             'id' => $request->id_stok,
             'barang' => $request->barang,
             'jenis' => $request->jenis,

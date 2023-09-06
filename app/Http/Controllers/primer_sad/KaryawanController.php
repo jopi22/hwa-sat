@@ -45,7 +45,6 @@ class KaryawanController extends Controller
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
         $kar = User::Find($decryptID);
-        $bnk = Bank::all();
         $jab = Jabatan::all();
         $kar_list = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Trash')
@@ -56,7 +55,7 @@ class KaryawanController extends Controller
         $hwa = Site::where('id', 1)->first();
         // History
         $h_user = User::where('author', $decryptID)->get();
-        return view('asset.sad.kar.kar_info', compact('kar', 'nav', 'jab', 'bnk', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
+        return view('asset.sad.kar.kar_info', compact('kar', 'nav', 'jab', 'master', 'periode', 'hwa', 'kar_list', 'cek', 'h_user'));
     }
 
 
@@ -65,9 +64,8 @@ class KaryawanController extends Controller
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $master = Master::where('status', 'Present')->count();
-        $bank = Bank::all();
         $jabatan = Jabatan::all();
-        return view('author.sad.kar.kar_create', compact('jabatan', 'nav', 'bank', 'periode', 'master'));
+        return view('author.sad.kar.kar_create', compact('jabatan', 'nav','periode', 'master'));
     }
 
 
@@ -84,9 +82,8 @@ class KaryawanController extends Controller
             ->where('status', '<>', 'Trash')
             ->count();
         $kar = User::Find($decryptID);
-        $bank = Bank::all();
         $jab = Jabatan::all();
-        return view('asset.sad.kar.kar_edit', compact('kar', 'nav', 'jab', 'bank', 'master', 'periode', 'master', 'kar_list', 'cek'));
+        return view('asset.sad.kar.kar_edit', compact('kar', 'nav', 'jab', 'master', 'periode', 'master', 'kar_list', 'cek'));
     }
 
 

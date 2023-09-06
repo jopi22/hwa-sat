@@ -792,6 +792,12 @@
                                         class="nav-link-text ps-1">Logistik</span></div>
                             </a>
                             <ul class="nav collapse" id="e-0s0">
+                                <li class="nav-item"><a class="nav-link" href="{{ route('barang') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data Barang
+                                            </span></div>
+                                    </a>
+                                </li>
+
                                 <li class="nav-item"><a class="nav-link" href="{{ route('log.e.l') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
                                                 Keluar</span></div>
@@ -802,12 +808,7 @@
                                                 Masuk</span></div>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('ond.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
-                                                Onderdil
-                                            </span></div>
-                                    </a>
-                                </li>
+
                                 <li class="nav-item"><a class="nav-link" href="{{ route('liq.l') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
                                                 Liquid
@@ -839,8 +840,8 @@
                                     </a><!-- more inner pages-->
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('hwa.p') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Divisi </span></div>
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Divisi
+                                            </span></div>
                                     </a><!-- more inner pages-->
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('gal.g') }}">
@@ -851,7 +852,7 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('mit.g') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Mitra
-                                                </span>
+                                            </span>
                                         </div>
                                     </a><!-- more inner pages-->
                                 </li>

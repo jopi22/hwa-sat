@@ -2,9 +2,23 @@
 
 use App\Http\Controllers\master_sad\logistik\LogistikController;
 use App\Http\Controllers\primer_sad\StokController;
+use App\Http\Controllers\primer_sad\StokOpnameController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], function () {
+
+    // Barang
+    Route::controller(StokOpnameController::class)->group(function () {
+        Route::get('barang', 'barang')->name('barang');
+        Route::post('barang_store', 'barang_store')->name('barang.s');
+        Route::put('barang_delete/{barang}', 'barang_delete')->name('barang.d');
+        Route::put('barang_update/{barang}', 'barang_update')->name('barang.u');
+        Route::get('barang_excel/{barang}', 'barang_excel')->name('barang.excel');
+
+        // Route::post('verifikasi_update', 'verif_update')->name('verif.u');
+        // Route::put('onderdil_update/{ond}', 'ond_update')->name('ond.u');
+        // Route::get('verifikasi_info/{ond}', 'verif_info')->name('verif.i');
+    });
 
     Route::controller(LogistikController::class)->group(function () {
         //Master Logistik
@@ -25,16 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('log_masuk_update/{log}', 'log_m_update')->name('log.m.u');
     });
 
-
-    // Stok Onderdil
-    Route::controller(StokController::class)->group(function () {
-        Route::get('onderdil_list', 'ond_list')->name('ond.l');
-        Route::post('onderdil_store', 'ond_store')->name('ond.s');
-        Route::post('onderdil_delete', 'ond_delete')->name('ond.d');
-        Route::post('verifikasi_update', 'verif_update')->name('verif.u');
-        Route::put('onderdil_update/{ond}', 'ond_update')->name('ond.u');
-        Route::get('verifikasi_info/{ond}', 'verif_info')->name('verif.i');
-    });
 
     // Stok Liquid
     Route::controller(StokController::class)->group(function () {
