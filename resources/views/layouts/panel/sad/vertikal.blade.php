@@ -267,7 +267,7 @@
                                     </div>
                                 </a><!-- more inner pages-->
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('bank.g') }}">
+                            <li class="nav-item"><a class="nav-link" href="#">
                                     <div class="d-flex align-items-center"><span
                                             class="nav-link-text ps-1">Bank</span>
                                     </div>
@@ -817,32 +817,51 @@
                             </ul>
                         </li>
 
-                        <a class="nav-link dropdown-indicator" href="#e-m" role="button"
-                            data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                        class="fab fa-pagelines"></span></span><span
-                                    class="nav-link-text ps-1">Aktivitas</span>
-                            </div>
-                        </a>
-                        <ul class="nav collapse" id="e-m">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('bank.g') }}">
-                                    <div class="d-flex align-items-center"><span
-                                            class="nav-link-text ps-1">Bank</span>
-                                    </div>
-                                </a><!-- more inner pages-->
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('mit.g') }}">
-                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Mitra
-                                            Perusahaan</span>
-                                    </div>
-                                </a><!-- more inner pages-->
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('eve.g') }}">
-                                    <div class="d-flex align-items-center"><span
-                                            class="nav-link-text ps-1">Event</span></div>
-                                </a><!-- more inner pages-->
-                            </li>
-                        </ul>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-indicator" href="#sdads-learning" role="button"
+                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
+                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                            class="fab fa-hornbill"></span></span><span class="nav-link-text ps-1">
+                                        Perusahaan </span></div>
+                            </a>
+                            <ul class="nav collapse" id="sdads-learning">
+
+                                <li class="nav-item"><a class="nav-link" href="{{ route('hwa.g') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">
+                                                Profil Perusahaan</span>
+                                        </div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('hwa.s') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Struktur
+                                                Organisasi</span></div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('hwa.p') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Divisi </span></div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('gal.g') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Galeri</span>
+                                        </div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('mit.g') }}">
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Mitra
+                                                </span>
+                                        </div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('eve.g') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Event</span></div>
+                                    </a><!-- more inner pages-->
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link dropdown-indicator" href="#sdads-ss" role="button"
@@ -866,49 +885,10 @@
                                         </div>
                                     </a><!-- more inner pages-->
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('gal.g') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Galeri</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                </li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('catat.g') }}">
                                         <div class="d-flex align-items-center"><span
                                                 class="nav-link-text ps-1">Catatan</span>
                                         </div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                            </ul>
-                        </li>
-
-
-
-                        <li class="nav-item">
-
-                            <a class="nav-link dropdown-indicator" href="#sdads-learning" role="button"
-                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                                <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                            class="fas fa-building"></span></span><span class="nav-link-text ps-1">
-                                        Perusahaan </span></div>
-                            </a>
-                            <ul class="nav collapse" id="sdads-learning">
-
-                                <li class="nav-item"><a class="nav-link" href="{{ route('hwa.g') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Profil
-                                                Perusahaan</span>
-                                        </div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('hwa.s') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Struktur
-                                                Organisai</span></div>
-                                    </a><!-- more inner pages-->
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('hwa.p') }}">
-                                        <div class="d-flex align-items-center"><span
-                                                class="nav-link-text ps-1">Peraturan
-                                                Perusahaan</span></div>
                                     </a><!-- more inner pages-->
                                 </li>
                             </ul>

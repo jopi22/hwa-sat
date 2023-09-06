@@ -21,21 +21,27 @@
 @endsection
 
 @section('superadmin')
-<div class="card mb-3 bg-light shadow-none">
-    <div class="bg-holder bg-card d-none d-sm-block"
-        style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-    <!--/.bg-holder-->
-    <div class="card-header d-flex align-items-center z-index-1 p-0">
-        <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-        <div class="ms-n3">
-            <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Hours Meter <a
-                    href="{{ route('amast.g') }}"><span class="text-danger">Master Arsip</span></a>
-                {{ $master->created_at->format('F Y') }}
-            </h6>
-            <h4 class="mb-0 text-primary fw-bold">Performa Operator & Driver <span class="mb-1 text-info"></span> </h4>
+    <div class="card mb-3">
+        <div class="card-body d-flex justify-content-between">
+            <div>
+                <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-archive"></i>
+                    Arsip</span>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <a class="btn btn-falcon-default btn-sm" href="{{ route('amast.g') }}" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Halaman Menu Arsip">
+                    <span class="fas fa-list"></span>
+                </a>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <a class="btn fw-semi-bold btn-falcon-success btn-sm" href="{{ route('master.gdp', $master->id) }}"
+                    data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Master {{ $master->created_at->format('F Y') }}">
+                    {{ $master->created_at->format('F Y') }}
+                </a>
+                <span class="mx-1 mx-sm-2 text-300">| </span>
+                <span class=" fw-semi-bold text-primary"> Performance Operator & Driver</span>
+            </div>
         </div>
     </div>
-</div>
 
     @include('comp.alert')
 
@@ -61,10 +67,10 @@
                         @endforeach
                     </select>
                 </div>&nbsp;
-                <div class="col-auto col-sm-3 ">
-                    <a href="{{route('p.hm.k')}}" target="_blank" rel="noopener noreferrer"><button class="btn btn-sm btn-falcon-info"><i
-                        class="fas fa-print"></i> Print</button></a>
-                </div>
+                {{-- <div class="col-auto col-sm-3 ">
+                    <a href="{{ route('p.hm.k') }}" target="_blank" rel="noopener noreferrer"><button
+                            class="btn btn-sm btn-falcon-info"><i class="fas fa-print"></i> Print</button></a>
+                </div> --}}
             </div>
             @if ($cek_perform == 0)
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
@@ -74,9 +80,6 @@
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                         <thead class="bg-200 text-800">
                             <tr class="text-center">
-                                <th style="min-width: 50px" class="bg-secondary text-white align-middle white-space-nowrap">
-                                    Aksi
-                                </th>
                                 <th style="min-width: 50px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap" data-sort="no">
                                     #
@@ -106,11 +109,6 @@
                         <tbody id="table-posts" class="list">
                             @foreach ($kar_list as $res)
                                 <tr id="index_{{ $res->id }}" class="btn-reveal-trigger text-1000 fw-semi-bold">
-                                    <td class="align-middle text-center text-1000 white-space-nowrap no">
-                                        <a href="{{ route('r.hm.k.i', Crypt::encryptString($res->id)) }}"
-                                            class="btn btn-info btn-sm"><span class="fas fa-info-circle"></span>
-                                        </a>
-                                    </td>
                                     <td class="align-middle text-center text-1000 white-space-nowrap no">
                                         {{ $loop->iteration }}</td>
                                     <td class="align-middle text-1000 text-center white-space-nowrap id">

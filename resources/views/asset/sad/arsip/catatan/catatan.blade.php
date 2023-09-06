@@ -28,20 +28,22 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Arsip <span
-                        class="mb-1 text-info">Sekunder</span>
+<div class="card mb-3 bg-100 shadow-none border">
+    <div class="row gx-0 flex-between-center">
+        <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+            <div>
+                <h6 class="text-primary fs--1 mb-0"><i class="fab fa-hornbill"></i> PT Harapan Wahyu Abadi Site Sandai
                 </h6>
-                <h4 class="mb-0 text-primary fw-bold">Catatan</h4>
+                <h4 class="text-primary fw-bold mb-0">Arsip Catatan</h4>
             </div>
         </div>
+        <div class="col-sm-auto d-flex align-items-center">
+            <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
+                alt="" width="130" />
+        </div>
     </div>
+</div>
 
     @include('comp.alert')
 
@@ -72,7 +74,7 @@
                     <div class="btn-group  btn-group-sm mx-2" role="group">
                         <a href="{{ route('catat.c') }}"> <button class="btn btn-sm btn-falcon-success mx-2"
                                 type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
-                                Catatan
+
                             </button></a>
                     </div>
                 </div>

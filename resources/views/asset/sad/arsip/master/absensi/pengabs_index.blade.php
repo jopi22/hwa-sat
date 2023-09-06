@@ -55,21 +55,26 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Absensi <a
-                        href="{{ route('amast.g') }}"><span class="text-danger">Master Arsip</span></a>
-                    {{ $master->created_at->format('F Y') }}
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Pengajuan Absensi <span class="mb-1 text-info"></span> </h4>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-archive"></i>
+                Arsip</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('amast.g') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Halaman Menu Arsip">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn fw-semi-bold btn-falcon-success btn-sm" href="{{ route('master.gdp', $master->id) }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Master {{ $master->created_at->format('F Y') }}">
+                {{ $master->created_at->format('F Y') }}
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Pengajuan Absensi</span>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 
@@ -194,10 +199,10 @@
                                             <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Perihal</th>
-                                            <th style="width: 100px"
+                                            {{-- <th style="width: 100px"
                                                 class="sort align-middle white-space-nowrap text-center">
                                                 Aksi / Status
-                                            </th>
+                                            </th> --}}
                                             <th style="width: 100px" class="sort align-middle white-space-nowrap"
                                                 data-sort="tgl">Dibuat
                                             </th>
@@ -210,7 +215,7 @@
                                                 <td class="align-middle text-center white-space-nowrap idp">
                                                     {{ $res->id }}</td>
                                                 <td class="align-middle text-center white-space-nowrap idk">
-                                                    K{{ $res->kar_peng_->tgl_gabung->format('ym') }}{{ $res->kar_peng_->id }}
+                                                    {{ $res->kar_peng_->username }}
                                                 </td>
                                                 <td class="align-middle white-space-nowrap name">
                                                     {{ $res->kar_peng_->name }}
@@ -229,7 +234,7 @@
                                                         @endif
                                                     @endif
                                                 </td>
-                                                <td class="align-middle text-center white-space-nowrap">
+                                                {{-- <td class="align-middle text-center white-space-nowrap">
                                                     @if ($res->respon_status == 0)
                                                         <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                             class="btn btn-warning btn-sm"><i class="fas fa-magic"></i>
@@ -239,7 +244,7 @@
                                                             class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                             Lihat</a>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td class="align-middle text-center white-space-nowrap tgl">
                                                     {{ $res->created_at->format('d/m/Y') }}</td>
                                             </tr>
@@ -300,10 +305,10 @@
                                             <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Perihal</th>
-                                            <th style="width: 100px"
+                                            {{-- <th style="width: 100px"
                                                 class="sort align-middle white-space-nowrap text-center">
                                                 Aksi / Status
-                                            </th>
+                                            </th> --}}
                                             <th style="width: 100px" class="sort align-middle white-space-nowrap"
                                                 data-sort="tgl">Dibuat
                                             </th>
@@ -316,7 +321,7 @@
                                                 <td class="align-middle text-center white-space-nowrap idp">
                                                     {{ $res->id }}</td>
                                                 <td class="align-middle text-center white-space-nowrap idk">
-                                                    K{{ $res->kar_peng_->tgl_gabung->format('ym') }}{{ $res->kar_peng_->id }}
+                                                    {{ $res->kar_peng_->username }}
                                                 </td>
                                                 <td class="align-middle white-space-nowrap name">
                                                     {{ $res->kar_peng_->name }}
@@ -335,7 +340,7 @@
                                                         @endif
                                                     @endif
                                                 </td>
-                                                <td class="align-middle text-center white-space-nowrap">
+                                                {{-- <td class="align-middle text-center white-space-nowrap">
                                                     @if ($res->respon_status == 0)
                                                         <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                             class="btn btn-warning btn-sm"><i class="fas fa-magic"></i>
@@ -345,7 +350,7 @@
                                                             class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                             Lihat</a>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td class="align-middle text-center white-space-nowrap tgl">
                                                     {{ $res->created_at->format('d/m/Y') }}</td>
                                             </tr>
@@ -400,10 +405,10 @@
                                             <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Perihal</th>
-                                            <th style="width: 100px"
+                                            {{-- <th style="width: 100px"
                                                 class="sort align-middle white-space-nowrap text-center">
                                                 Aksi / Status
-                                            </th>
+                                            </th> --}}
                                             <th style="width: 100px" class="sort align-middle white-space-nowrap"
                                                 data-sort="tgl">Dibuat
                                             </th>
@@ -416,7 +421,7 @@
                                                 <td class="align-middle text-center white-space-nowrap idp">
                                                     {{ $res->id }}</td>
                                                 <td class="align-middle text-center white-space-nowrap idk">
-                                                    K{{ $res->kar_peng_->tgl_gabung->format('ym') }}{{ $res->kar_peng_->id }}
+                                                    {{ $res->kar_peng_->username }}
                                                 </td>
                                                 <td class="align-middle white-space-nowrap name">
                                                     {{ $res->kar_peng_->name }}
@@ -435,7 +440,7 @@
                                                         @endif
                                                     @endif
                                                 </td>
-                                                <td class="align-middle text-center white-space-nowrap">
+                                                {{-- <td class="align-middle text-center white-space-nowrap">
                                                     @if ($res->respon_status == 0)
                                                         <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                             class="btn btn-warning btn-sm"><i class="fas fa-magic"></i>
@@ -445,7 +450,7 @@
                                                             class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                             Lihat</a>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td class="align-middle text-center white-space-nowrap tgl">
                                                     {{ $res->created_at->format('d/m/Y') }}</td>
                                             </tr>
@@ -500,10 +505,10 @@
                                             <th style="width: 200px" class="sort align-middle white-space-nowrap"
                                                 data-sort="payment">
                                                 Perihal</th>
-                                            <th style="width: 100px"
+                                            {{-- <th style="width: 100px"
                                                 class="sort align-middle white-space-nowrap text-center">
                                                 Aksi / Status
-                                            </th>
+                                            </th> --}}
                                             <th style="width: 100px" class="sort align-middle white-space-nowrap"
                                                 data-sort="tgl">Dibuat
                                             </th>
@@ -516,7 +521,7 @@
                                                 <td class="align-middle text-center white-space-nowrap idp">
                                                     {{ $res->id }}</td>
                                                 <td class="align-middle text-center white-space-nowrap idk">
-                                                    K{{ $res->kar_peng_->tgl_gabung->format('ym') }}{{ $res->kar_peng_->id }}
+                                                    {{ $res->kar_peng_->username }}
                                                 </td>
                                                 <td class="align-middle white-space-nowrap name">
                                                     {{ $res->kar_peng_->name }}
@@ -535,7 +540,7 @@
                                                         @endif
                                                     @endif
                                                 </td>
-                                                <td class="align-middle text-center white-space-nowrap">
+                                                {{-- <td class="align-middle text-center white-space-nowrap">
                                                     @if ($res->respon_status == 0)
                                                         <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                             class="btn btn-warning btn-sm"><i class="fas fa-magic"></i>
@@ -545,7 +550,7 @@
                                                             class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                             Lihat</a>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td class="align-middle text-center white-space-nowrap tgl">
                                                     {{ $res->created_at->format('d/m/Y') }}</td>
                                             </tr>

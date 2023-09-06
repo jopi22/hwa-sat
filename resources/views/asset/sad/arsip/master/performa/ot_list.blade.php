@@ -23,21 +23,26 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Over Time <a
-                        href="{{ route('amast.g') }}"><span class="text-danger">Master Arsip</span></a>
-                    {{ $master->created_at->format('F Y') }}
-                </h6>
-                <h4 class="mb-0 text-primary fw-bold">Performa Over Time<span class="mb-1 text-info"></span> </h4>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-archive"></i>
+                Arsip</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('amast.g') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Halaman Menu Arsip">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn fw-semi-bold btn-falcon-success btn-sm" href="{{ route('master.gdp', $master->id) }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Master {{ $master->created_at->format('F Y') }}">
+                {{ $master->created_at->format('F Y') }}
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Overtime</span>
         </div>
     </div>
+</div>
 
     @include('comp.alert')
 
@@ -191,7 +196,7 @@
             </div>
         </div>
     </div>
-    @include('comp.modal.hm.modal_ot_create')
-    @include('comp.modal.hm.modal_ot_edit')
-    @include('comp.modal.hm.modal_ot_hapus')
+    {{-- @include('comp.modal.hm.modal_ot_create') --}}
+    {{-- @include('comp.modal.hm.modal_ot_edit') --}}
+    {{-- @include('comp.modal.hm.modal_ot_hapus') --}}
 @endsection

@@ -55,20 +55,26 @@
 @endsection
 
 @section('konten')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/illustrations/bg-wave.png') }}" alt="" width="56" />
-            <div class="ms-n0">
-                <h6 class="mb-1 text-primary"><i class="fas fa-calendar-check"></i> Kalender <span
-                        class="text-danger">Validasi</span> <span
-                        class="mb-1 text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Kalender </h4>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-archive"></i>
+                Arsip</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('amast.g') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Halaman Menu Arsip">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn fw-semi-bold btn-falcon-success btn-sm" href="{{ route('master.gdp', $per->id) }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Master {{ $per->created_at->format('F Y') }}">
+                {{ $per->created_at->format('F Y') }}
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Data Kalender</span>
         </div>
     </div>
+</div>
 
     <div class="card mb-3">
         <div class="card-body py-5 py-sm-3">
@@ -137,12 +143,12 @@
                 <div class="card-header bg-light">
                     <div class="row flex-between-center">
                         <div class="col-6 col-sm-auto d-flex align-items-center pe-0">
-                            <h5>Kalender {{ date('F Y') }}</h5>
+                            <h5>Kalender {{ $per->created_at->format('F Y') }}</h5>
                         </div>
-                        <div class="col-6 col-sm-auto ms-auto text-end ps-0">
+                        {{-- <div class="col-6 col-sm-auto ms-auto text-end ps-0">
                             <button class="btn btn-sm btn-falcon-warning" id="printButton" onclick="print()"><i class="far fa-file-pdf"></i> PDF</button>
                             <button class="btn btn-sm btn-falcon-success" id="button" onclick="htmlTableToExcel('xlsx')"><i class="far fa-file-excel"></i> Excel</button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div id="printTable" class="card-body px-0 pt-0">

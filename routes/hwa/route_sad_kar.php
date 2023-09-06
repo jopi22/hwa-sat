@@ -54,13 +54,4 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('ajax_jab_update/{jab}', 'jab_update');
         Route::delete('ajax_jab_delete/{jab}', 'jab_delete');
     });
-
-    //Bank
-    Route::controller(BankController::class)->group(function () {
-        Route::get('bank', 'bank_index')->name('bank.g');
-        Route::post('ajax_bank_store', 'bank_store');
-        Route::get('ajax_bank_show/{bank}', 'bank_show');
-        Route::put('ajax_bank_update/{bank}', 'bank_update');
-        Route::delete('ajax_bank_delete/{bank}', 'bank_delete');
-    });
 });

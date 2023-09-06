@@ -235,24 +235,21 @@
 @endsection
 
 @section('superadmin')
-    {{-- // Header // --}}
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mt-2 mb-3">
-        <div class="col d-flex align-items-center">
-            <div>
-                <a href="{{ route('dash') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-home text-primary"></i></button></a>
-                <a href="{{ route('catat.g') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-list text-primary"></i></button></a>
-                <a href="{{ route('catat.c') }}"><button class="btn btn-link btn-dark btn-sm p-0"><i
-                            class="fas fa-spinner text-primary"></i></button></a>
-                <span class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="far fa-dot-circle"></i>
-                    Sekunder</span>
-            </div>
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Info Catatan</span>
-            </div>
+<div class="card mb-3">
+    <div class="card-body d-flex justify-content-between">
+        <div>
+            <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                Division Data</span>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <a class="btn btn-falcon-default btn-sm" href="{{ route('catat.g') }}" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="Back to Main Table">
+                <span class="fas fa-list"></span>
+            </a>
+            <span class="mx-1 mx-sm-2 text-300">| </span>
+            <span class=" fw-semi-bold text-primary"> Info Catatan : <span class="text-info">{{$catat->judul}}</span></span>
         </div>
     </div>
+</div>
 
     <div class="card mb-3">
         <div class="card-header">
@@ -267,8 +264,7 @@
         <div class="card-body bg-light border-top">
             <p>{!! $catat->isi !!}</p>
         </div>
-        <div class="card-footer border-top text-end"><a class="btn btn-falcon-default btn-sm" href="#!"><span
-                    class="fas fa-dollar-sign fs--2 me-1"></span>Refund</a><a class="btn btn-falcon-default btn-sm ms-2"
-                href="#!"><span class="fas fa-check fs--2 me-1"></span>Save changes</a></div>
+        <div class="card-footer border-top text-end">
+            </div>
     </div>
 @endsection

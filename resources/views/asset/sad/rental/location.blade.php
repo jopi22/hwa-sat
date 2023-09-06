@@ -119,17 +119,25 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
-                        class="badge bg-soft-primary text-primary bg-sm rounded-pill"><i class="fas fa-key"></i>
-                    </span></h6>
-                <h4 class="mb-0 text-primary fw-bold">Location</h4>
+    <div class="card mb-3 bg-100 shadow-none border">
+        <div class="row gx-0 flex-between-center">
+            <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+                <div>
+                    <h6 class="text-primary fs--1 mb-0"><i class="fas fa-truck-monster"></i> Rental Performance
+                    </h6>
+                    <h4 class="text-primary fw-bold mb-0">Location</h4>
+                </div>
+            </div>
+            <div class="col-sm-auto d-flex align-items-center">
+                <form class="row align-items-center g-3">
+                    <div class="col-auto">
+                        <span class="badge bg-soft-success text-success bg-sm rounded-pill"><i class="fas fa-key"></i>
+                            Division Data</span>
+                    </div>
+                </form>
+                <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
+                    alt="" width="130" />
             </div>
         </div>
     </div>
@@ -149,6 +157,10 @@
                     <div class="border p-x1 rounded">
                         <form action="{{ route('location.s') }}" method="post">
                             @csrf
+                            <p class="fs--1 mb-0"><strong>Notes: </strong>Kolom Berwarna
+                                Merah <i class="fas fa-square text-danger"></i> Wajib Diisi | Tekan Tombol <i
+                                    class="fas fa-plus-square text-success"></i> Untuk Tambah
+                                Baris</p>
                             <div id="tableExample4">
                                 <div class="table-responsive scrollbar">
                                     <table id="tableEstimate" class="table table-sm table-striped table-bordered mb-0 fs--1"
@@ -213,41 +225,6 @@
                         <a href="#"><button class="btn btn-sm btn-falcon-success mx-2" data-bs-toggle="collapse"
                                 data-bs-target="#collapseExample" type="button"><span data-fa-transform="shrink-3"
                                     class="fas fa-plus"></span></button></a>
-                        <div class="dropdown font-sans-serif d-inline-block">
-                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-layer-group"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-900" href="{{ route('aktivitas.l') }}">
-                                    Jenis Aktivitas
-                                </a>
-                                <a class="dropdown-item text-900" href="{{ route('location.l') }}">
-                                    Location
-                                </a>
-                                <a class="dropdown-item text-900" href="{{ route('category.l') }}">
-                                    Category
-                                </a>
-                                <a class="dropdown-item text-900" href="{{ route('dedicated.l') }}">
-                                    Dedicated
-                                </a>
-                            </div>
-                        </div>
-                        <div class="dropdown font-sans-serif d-inline-block">
-                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-truck-monster"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-900" href="{{ route('heavy.l') }}">
-                                    Heavy
-                                </a>
-                                <a class="dropdown-item text-900" href="{{ route('vehicle.l') }}">
-                                    Vehicle
-                                </a>
-                                <a class="dropdown-item text-900" href="{{ route('support.l') }}">
-                                    Support
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -256,7 +233,7 @@
             @else
                 <div class="table-responsive scrollbar">
                     <table class="table table-sm table-striped table-bordered mb-0 fs--1 overflow-hidden">
-                        <thead class="bg-secondary text-white">
+                        <thead class="bg-200 text-800">
                             <tr class="text-center">
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap" data-sort="no">
                                     #
@@ -264,8 +241,7 @@
                                 <th style="min-width: 50px" class="sort align-middle white-space-nowrap">
                                     Aksi
                                 </th>
-                                <th style="min-width: 150px" class="sort align-middle white-space-nowrap"
-                                    data-sort="akt">
+                                <th style="min-width: 150px" class="sort align-middle white-space-nowrap" data-sort="akt">
                                     Location
                                 </th>
                                 <th style="min-width: 300px" class="sort align-middle white-space-nowrap"

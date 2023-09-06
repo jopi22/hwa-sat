@@ -20,20 +20,22 @@
 @endsection
 
 @section('superadmin')
-    <div class="card mb-3 bg-light shadow-none">
-        <div class="bg-holder bg-card d-none d-sm-block"
-            style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-4.png') }});"></div>
-        <!--/.bg-holder-->
-        <div class="card-header d-flex align-items-center z-index-1 p-0">
-            <img src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" width="96" />
-            <div class="ms-n3">
-                <h6 class="mb-1 text-primary"><i class="fas fa-file-archive"></i> Arsip <span class="badge bg-soft-secondary text-secondary bg-sm rounded-pill"><i class="fas fa-check"></i>
-                </span>
+<div class="card mb-3 bg-100 shadow-none border">
+    <div class="row gx-0 flex-between-center">
+        <div class="col-sm-auto d-flex align-items-center"><img class="ms-n0"
+                src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="90" />
+            <div>
+                <h6 class="text-primary fs--1 mb-0"><i class="fab fa-hornbill"></i> PT Harapan Wahyu Abadi Site Sandai
                 </h6>
-                <h4 class="mb-0 text-primary fw-bold">Master Arsip</h4>
+                <h4 class="text-primary fw-bold mb-0">Arsip Master Data</h4>
             </div>
         </div>
+        <div class="col-sm-auto d-flex align-items-center">
+            <img class="ms-2 d-md-none d-lg-block" src="{{ asset('assets/img/icons/spot-illustrations/corner-4.png') }}"
+                alt="" width="130" />
+        </div>
     </div>
+</div>
 
     @include('comp.alert')
 
@@ -146,10 +148,10 @@
                                                     <div class="col-auto lh-1 me-3"><small
                                                             class="badge rounded badge-soft-success false">Arsip</small>
                                                     </div>
-                                                    <div class="col-auto">
+                                                    {{-- <div class="col-auto">
                                                         <h6 class="mb-0 text-500">{{ $item->updated_at->diffforhumans() }}
                                                         </h6>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>

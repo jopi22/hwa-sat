@@ -88,7 +88,7 @@
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('bank.g') }}">
+                        <li class="nav-item"><a class="nav-link" href="#">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Bank</span>
                                 </div>
                             </a><!-- more inner pages-->
