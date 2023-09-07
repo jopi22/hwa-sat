@@ -775,7 +775,7 @@
                                             class="fas fa-gas-pump"></span></span><span
                                         class="nav-link-text ps-1">Logistik</span></div>
                             </a>
-                            <ul class="nav collapse" id="e-0s0">
+                            {{-- <ul class="nav collapse" id="e-0s0">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('log.e.l') }}">
                                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
                                                 Keluar</span></div>
@@ -798,7 +798,7 @@
                                             </span></div>
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </li>
 
                         <a class="nav-link dropdown-indicator" href="#e-m" role="button"

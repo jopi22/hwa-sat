@@ -6,53 +6,56 @@
                 <button type="button" class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                     data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('barang.s') }}" method="POST">
+            <form action="{{ route('pemakaian.s') }}" method="POST">
                 @csrf
-                <input type="hidden" name="status" value="Aktif">
                 <div class="modal-header bg-success">
                     <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fas fa-gas-pump"></i>
                         Data Barang
                     </h5>
                 </div>
                 <div class="modal-body">
+                    <p class="fs--1 mb-1"><strong>Notes: </strong>Yang Bertanda Bintang
+                        Merah <code>*</code> Tidak Wajib Diisi
+                    </p>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-2">
-                                <input required maxlength="20" class="form-control form-control-sm mt-2" name="barang"
-                                    type="text" />
-                                <label>Nama Barang</label>
+                                <input required class="form-control" name="tgl" type="date" />
+                                <label>Tanggal</label>
                             </div>
                             <div class="form-floating">
-                                <input required maxlength="20" class="form-control form-control-sm" name="kode"
-                                    type="text" />
-                                <label>Kode Barang</label>
-                            </div>
-                            <div class="form-floating">
-                                <select required class="form-control form-control-sm mt-2" name="kategori">
+                                <select required class="form-control form-control-sm mt-2" name="equip_id">
                                     <option value=""></option>
-                                    <option value="Spare Part">Spare Part</option>
-                                    <option value="Bahan Bakar">Bahan Bakar</option>
-                                    <option value="Oli">Oli</option>
-                                    <option value="Lain-lain">Lain-lain</option>
-                                </select> <label>Kategori</label>
+                                    @foreach ($filter as $equip)
+                                        <option value="{{ $equip->id }}">{{ $equip->no_unit }}</option>
+                                    @endforeach
+                                </select>
+                                <label>Unit</label>
+                            </div>
+                            <div class="form-floating">
+                                <select required class="form-control form-control-sm mt-2" name="barang_id">
+                                    <option value=""></option>
+                                    @foreach ($barang as $bar)
+                                        <option value="{{ $bar->id }}">{{ $bar->barang }}</option>
+                                    @endforeach
+                                </select> <label>Barang</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating">
-                                <input required maxlength="50" class="form-control form-control-sm mt-2" name="jumlah"
+                                <input required class="form-control form-control-sm mt-2" name="jumlah"
                                     type="number" />
                                 <label>Jumlah</label>
                             </div>
                             <div class="form-floating">
-                                <select required class="form-control form-control-sm mt-2" name="satuan">
-                                    <option value=""></option>
-                                    <option value="Pcs">Pcs</option>
-                                    <option value="Liter">Liter</option>
-                                    <option value="Kilo Gram">Kilo Gram</option>
-                                    <option value="Set">Set</option>
-                                    <option value="Botol">Botol</option>
-                                    <option value="Barel">Barel</option>
-                                </select> <label>Satuan</label>
+                                <input required maxlength="50" class="form-control form-control-sm mt-2" name="hmkm"
+                                    type="number" />
+                                <label>HM/KM</label>
+                            </div>
+                            <div class="form-floating">
+                                <input required maxlength="50" class="form-control form-control-sm mt-2" name="ket"
+                                    type="text" />
+                                <label>Keterangan<code>*</code></label>
                             </div>
                         </div>
                     </div>
@@ -72,7 +75,7 @@
 </div>
 
 {{-- // Edit //  --}}
-@foreach ($bar as $edit)
+@foreach ($pb as $edit)
     <div class="modal fade" id="edit-{{ $edit->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog mt-6" style="max-width: 800px">
@@ -81,7 +84,7 @@
                     <button type="button" class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('barang.u', $edit->id) }}" method="POST">
+                <form action="{{ route('pemakaian.u', $edit->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="status" value="Aktif">
@@ -91,44 +94,49 @@
                         </h5>
                     </div>
                     <div class="modal-body">
+                        <p class="fs--1 mb-1"><strong>Notes: </strong>Yang Bertanda Bintang
+                            Merah <code>*</code> Tidak Wajib Diisi
+                        </p>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-floating mb-2">
-                                    <input required maxlength="20" class="form-control form-control-sm mt-2"
-                                        value="{{ $edit->barang }}" name="barang" type="text" />
-                                    <label>Nama Barang</label>
+                                    <input value="{{ $edit->tgl }}" required class="form-control" name="tgl"
+                                        type="date" />
+                                    <label>Tanggal</label>
                                 </div>
                                 <div class="form-floating">
-                                    <input required maxlength="20" class="form-control form-control-sm"
-                                        value="{{ $edit->kode }}" name="kode" type="text" />
-                                    <label>Kode Barang</label>
+                                    <select required class="form-control form-control-sm mt-2" name="equip_id">
+                                        <option value="{{ $edit->equip_id }}">{{ $edit->equip_->no_unit }}</option>
+                                        @foreach ($filter as $equip)
+                                            <option value="{{ $equip->id }}">{{ $equip->no_unit }}</option>
+                                        @endforeach
+                                    </select>
+                                    <label>Unit</label>
                                 </div>
                                 <div class="form-floating">
-                                    <select required class="form-control form-control-sm mt-2" name="kategori">
-                                        <option value="{{ $edit->kategori }}">{{ $edit->kategori }}</option>
-                                        <option value="Spare Part">Spare Part</option>
-                                        <option value="Bahan Bakar">Bahan Bakar</option>
-                                        <option value="Oli">Oli</option>
-                                        <option value="Lain-lain">Lain-lain</option>
-                                    </select> <label>Kategori</label>
+                                    <select required class="form-control form-control-sm mt-2" name="barang_id">
+                                        <option value="{{ $edit->barang_id }}">{{ $edit->barang_->barang }}</option>
+                                        @foreach ($barang as $bar)
+                                            <option value="{{ $bar->id }}">{{ $bar->barang }}</option>
+                                        @endforeach
+                                    </select> <label>Barang</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-floating">
-                                    <input required maxlength="50" class="form-control form-control-sm mt-2"
-                                        value="{{ $edit->jumlah }}" name="jumlah" type="number" />
+                                    <input required value="{{ $edit->jumlah }}"
+                                        class="form-control form-control-sm mt-2" name="jumlah" type="number" />
                                     <label>Jumlah</label>
                                 </div>
                                 <div class="form-floating">
-                                    <select required class="form-control form-control-sm mt-2" name="satuan">
-                                        <option value="{{ $edit->satuan }}">{{ $edit->satuan }}</option>
-                                        <option value="Pcs">Pcs</option>
-                                        <option value="Liter">Liter</option>
-                                        <option value="Kilo Gram">Kilo Gram</option>
-                                        <option value="Set">Set</option>
-                                        <option value="Botol">Botol</option>
-                                        <option value="Barel">Barel</option>
-                                    </select> <label>Satuan</label>
+                                    <input required value="{{ $edit->hmkm }}"
+                                        class="form-control form-control-sm mt-2" name="hmkm" type="number" />
+                                    <label>HM/KM</label>
+                                </div>
+                                <div class="form-floating">
+                                    <input value="{{ $edit->ket }}" maxlength="50"
+                                        class="form-control form-control-sm mt-2" name="ket" type="text" />
+                                    <label>Keterangan<code>*</code></label>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +157,7 @@
 @endforeach
 
 {{-- // Hapus // --}}
-@foreach ($bar as $del)
+@foreach ($pb as $del)
     <div class="modal fade" id="delete-{{ $del->id }}" tabindex="-1" role="dialog"
         aria-labelledby="authentication-modal-label" aria-hidden="true">
         <div class="modal-dialog mt-6" style="max-width: 500px">
@@ -157,14 +165,13 @@
                 <div class="modal-header px-5 position-relative modal-shape-header bg-danger">
                     <div class="position-relative z-index-1 light">
                         <h5 class="mb-0 text-white" id="authentication-modal-label"><i class="fas fa-trash-alt"></i>
-                            {{ $del->barang }}</h5>
+                            {{ $del->id }}</h5>
                     </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('barang.d', $del->id) }}" method="post">
+                <form action="{{ route('pemakaian.d', $del->id) }}" method="post">
                     @csrf
-                    @method('PUT')
-                    <input type="hidden" name="status" value="Delete">
+                    @method('delete')
                     <div class="modal-body py-4 px-5">
                         <h5 class="text text-900">Anda Yakin, Untuk
                             Menghapus Data Ini?</h5>

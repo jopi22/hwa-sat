@@ -793,26 +793,19 @@
                             </a>
                             <ul class="nav collapse" id="e-0s0">
                                 <li class="nav-item"><a class="nav-link" href="{{ route('barang') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data Barang
+                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Data
+                                                Barang
                                             </span></div>
                                     </a>
                                 </li>
-
-                                <li class="nav-item"><a class="nav-link" href="{{ route('log.e.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
-                                                Keluar</span></div>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('pemakaian.barang') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Pemakaian</span></div>
                                     </a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('log.m') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Barang
-                                                Masuk</span></div>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item"><a class="nav-link" href="{{ route('liq.l') }}">
-                                        <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Stok
-                                                Liquid
-                                            </span></div>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('pemesanan.barang') }}">
+                                        <div class="d-flex align-items-center"><span
+                                                class="nav-link-text ps-1">Pemesanan</span></div>
                                     </a>
                                 </li>
                             </ul>

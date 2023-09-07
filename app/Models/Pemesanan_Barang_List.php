@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pemakaian_Barang extends Model
+class Pemesanan_Barang_List extends Model
 {
     use HasFactory;
-    protected $table = 'hwa_pemakaian_barang';
+    protected $table = 'hwa_pemesanan_barang_list';
     protected $guarded = ['id'];
     protected $dates = ['tgl'];
 
-    public function equip_(){
-        return $this->belongsTo(Equipment::class, 'equip_id');
-    }
-
-    public function barang_(){
+    public function barang_()
+    {
         return $this->belongsTo(Barang::class, 'barang_id');
     }
 
+    public function pemesanan_()
+    {
+        return $this->belongsTo(Pemesanan_Barang::class, 'pemesanan_id');
+    }
 }
