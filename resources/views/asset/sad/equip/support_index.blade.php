@@ -70,21 +70,9 @@
                                     type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
                                 </button></a>
                             <div class="dropdown font-sans-serif d-inline-block">
-                                <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                    type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="fas fa-print"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                    <a target="_blank" class="dropdown-item text-success"
-                                        href="{{ route('support.p.excel', Auth::user()->id) }}"><i
-                                            class="fas fa-file-excel"></i>
-                                        Print Excel
-                                    </a>
-                                    <a target="_blank" class="dropdown-item text-warning"
-                                        href="{{ route('support.p.pdf', Auth::user()->id) }}"><i
-                                            class="fas fa-file-pdf"></i>
-                                        Print PDF
-                                    </a>
-                                </div>
+                                <a target="_blank"
+                                href="{{ route('support.p.excel', Auth::user()->id) }}"><button class="btn btn-falcon-default btn-sm mx-2"><i class="fas fa-print"></i></button>
+                                </a>
                             </div>
                         </div>
                     </div>

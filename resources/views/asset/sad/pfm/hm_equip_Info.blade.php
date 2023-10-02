@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    {{ $equip_m->equip_->no_unit }} | Performance | HWA &bull; SAT
+    {{ $equip_m->equip_->no_unit }} | Performance Unit | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -14,6 +14,7 @@
 
 @section('link')
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 @endsection
 
 @section('script')
@@ -23,13 +24,27 @@
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
+    <script type="text/javascript">
+        function htmlTableToExcel(type) {
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {
+                sheet: "sheet1"
+            });
+            XLSX.write(excelFile, {
+                bookType: type,
+                bookSST: true,
+                type: 'base64'
+            });
+            XLSX.writeFile(excelFile, 'Performance Operator dan Driver.' + type);
+        }
+    </script>
 @endsection
 
 @section('konten')
     <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
         <div class="col d-flex align-items-center">
             <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Performance /
+                <span class=" fw-semi-bold text-primary"> Performance Unit /
                     <span class="fw-semi-bold text-info">{{ $equip_m->equip_->no_unit }}</span></span>
             </div>
         </div>
@@ -103,7 +118,7 @@
     </div>
 
     @if ($cek > 0)
-        <div class="card mb-3">
+        <div class="card mb-2">
             <div class="card-body py-5 py-sm-3">
                 <div class="row g-5 g-sm-0">
                     <div class="col-sm-3">
@@ -177,7 +192,7 @@
     @else
     @endif
 
-    <div class="card mt-3 mb-3">
+    <div class="card mt-2 mb-2">
         <div class="card-header border-bottom border-200 px-0">
             <div class="d-lg-flex justify-content-between">
                 <div class="row flex-between-center gy-2 px-x1">
@@ -230,10 +245,11 @@
                         <button class="btn btn-falcon-default text-info btn-sm" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i
                                 class="fas fa-truck-monster"></i></button>
-                        <a target="_blank"
-                            href="{{ route('hm.e.p.excel', Crypt::EncryptString($equip_m->equip_id)) }}"><button
-                                class="btn btn-sm btn-falcon-success ms-2" type="button"><i
-                                    class="fas fa-file-excel"></i></button></a>
+                                <div class="dropdown ms-2 font-sans-serif d-inline-block">
+                                    <button id="button" onclick="htmlTableToExcel('xlsx')"
+                                        class="btn btn-sm btn-falcon-success"type="button"><i
+                                            class="fas fa-file-excel"></i></button>
+                                </div>
                     </div>
                 </div>
             </div>
@@ -262,7 +278,7 @@
                 <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
             @else
                 <div class="table-responsive scrollbar">
-                    <table class="table table-sm table-bordered mb-0 fs--1"
+                    <table id="tblToExcl" class="table table-sm table-bordered mb-0 fs--1"
                         data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                         <thead class="bg-secondary text-white">
                             <tr class="text-center">
@@ -432,7 +448,7 @@
                         @method('delete')
                         @csrf
                         <div class="modal-body py-4 px-5">
-                            <h5 class="text text-900">Ente Yakin, Untuk
+                            <h5 class="text text-900">Anda Yakin, Untuk
                                 Menghapus Data Ini?</h5>
                         </div>
                         <div class="modal-footer">

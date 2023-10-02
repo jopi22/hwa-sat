@@ -152,7 +152,7 @@
                 <button class="btn btn-falcon-default text-info btn-sm mx-1" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-users"></i></button>
             </div>
-            <div class="position-relative">&nbsp;
+            {{-- <div class="position-relative">&nbsp;
                 <button class="btn btn-sm btn-falcon-info mx-1 dropdown-toggle" id="dropdownMenuButton" type="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
                         class="fas fa-print"></i></button>
@@ -162,7 +162,7 @@
                         Print PDF
                     </a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -547,7 +547,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-6">
+                        {{-- <div class="col-6">
                             <table>
                                 <tr>
                                     <th class="text-500 fw-normal fs--1">KARTU SIM & SERTIFIKAT PROFESI</th>
@@ -603,7 +603,7 @@
                                     </th>
                                 </tr>
                             </table>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

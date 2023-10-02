@@ -13,6 +13,7 @@
 @endsection
 
 @section('link')
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
 @endsection
 
@@ -22,22 +23,36 @@
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
+    <script type="text/javascript">
+        function htmlTableToExcel(type) {
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {
+                sheet: "sheet1"
+            });
+            XLSX.write(excelFile, {
+                bookType: type,
+                bookSST: true,
+                type: 'base64'
+            });
+            XLSX.writeFile(excelFile, 'Performance Operator dan Driver.' + type);
+        }
+    </script>
 @endsection
 
 @section('konten')
     @if ($master->periode == $periode)
-    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
-        <div class="col d-flex align-items-center">
-            <div class="ms-1">&nbsp;
-                <span class=" fw-semi-bold text-primary"> Performance O/D /
-                    <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
+        <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+            <div class="col d-flex align-items-center">
+                <div class="ms-1">&nbsp;
+                    <span class=" fw-semi-bold text-primary"> Performance O/D /
+                        <span class="fw-semi-bold text-info">{{ $kar->kar_->name }}</span></span>
+                </div>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
+                    {{ date('F Y') }}</span>
             </div>
         </div>
-        <div class="col-auto d-flex align-items-center">
-            <span class="badge bg-soft-info text-info bg-sm rounded-pill"><i class="fas fa-calendar-alt"></i>
-                {{ date('F Y') }}</span>
-        </div>
-    </div>
 
         @include('comp.alert')
 
@@ -298,9 +313,9 @@
                                 aria-controls="offcanvasRight"><i class="fas fa-truck-monster"></i></button>
                         </div>
                         <div class="dropdown ms-2 font-sans-serif d-inline-block">
-                            <a href="{{ route('hm.od.p.excel', 1) }}" target="_blank" rel="noopener noreferrer"><button
-                                    class="btn btn-sm btn-falcon-success"type="button"><i
-                                        class="fas fa-file-excel"></i></button></a>
+                            <button id="button" onclick="htmlTableToExcel('xlsx')"
+                                class="btn btn-sm btn-falcon-success"type="button"><i
+                                    class="fas fa-file-excel"></i></button>
                         </div>
                     </div>
                 </div>
@@ -320,7 +335,7 @@
                     <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
                 @else
                     <div class="table-responsive scrollbar">
-                        <table class="table table-sm table-bordered mb-0 fs--1"
+                        <table id="tblToExcl" class="table table-sm table-bordered mb-0 fs--1"
                             data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                             <thead class="bg-200 text-800">
                                 <tr class="text-center">

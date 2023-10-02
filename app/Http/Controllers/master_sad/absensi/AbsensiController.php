@@ -27,7 +27,10 @@ class AbsensiController extends Controller
         $master = Master::where('status', 'Present')->first();
         $abs = Absensi::where('periode_id', $master->id)
             ->where('tgl', $today)->get();
-        return view('author.sad.abs.kelola_absensi', compact('abs', 'nav', 'kar', 'today', 'master', 'periode', 'cek'));
+        $tgl_list = Absensi::where('periode_id', $master->id)
+            ->where('karyawan', Auth::user()->id)
+            ->get();
+        return view('author.sad.abs.kelola_absensi', compact('abs','tgl_list', 'nav', 'kar', 'today', 'master', 'periode', 'cek'));
     }
 
 
@@ -92,14 +95,14 @@ class AbsensiController extends Controller
 
     public function absSearch(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'search'     => 'required',
-        ], [
-            'required' => 'Tidak Boleh Kosong',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+        // $validator = Validator::make($request->all(), [
+        //     'search'     => 'required',
+        // ], [
+        //     'required' => 'Tidak Boleh Kosong',
+        // ]);
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 422);
+        // }
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
         $periode = date('m-Y');
         $kar = User::where('status', '<>', 'Hidden')
@@ -114,8 +117,11 @@ class AbsensiController extends Controller
         } else {
             $abs = Absensi::latest()->take(0)->get();
         }
+        $tgl_list = Absensi::where('periode_id', $master->id)
+            ->where('karyawan', Auth::user()->id)
+            ->get();
 
-        return view('author.sad.abs.kelola_absensi', compact('abs', 'nav', 'master', 'kar', 'cek', 'periode'));
+        return view('author.sad.abs.kelola_absensi', compact('abs','tgl_list', 'nav', 'master', 'kar', 'cek', 'periode'));
     }
 
 

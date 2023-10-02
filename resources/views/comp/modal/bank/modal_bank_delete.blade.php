@@ -6,7 +6,7 @@
         let token   = $("meta[name='csrf-token']").attr("content");
 
         Swal.fire({
-            title: 'Ente Yakin?',
+            title: 'Anda Yakin?',
             text: "ingin menghapus data ini!",
             icon: 'warning',
             showCancelButton: true,

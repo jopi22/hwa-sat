@@ -84,7 +84,7 @@
                                 NIK / ID</th>
                             <th style="min-width: 250px" class="sort" data-sort="name">
                                 Nama</th>
-                            <th style="min-width: 150px" class="sort" data-sort="password">Password</th>
+                            {{-- <th style="min-width: 150px" class="sort" data-sort="password">Password</th> --}}
                             <th style="min-width: 150px" class="sort" data-sort="level">Role Akun</th>
                         </tr>
                     </thead>
@@ -152,7 +152,7 @@
                                 </td>
                                 <td class="text-black fw-semi-bold align-middle white-space-nowrap name">
                                     {{ $res->name }}</td>
-                                <td class="text-black fw-semi-bold text-center align-middlefs-0 white-space-nowrap payment">
+                                {{-- <td class="text-black fw-semi-bold text-center align-middlefs-0 white-space-nowrap payment">
                                     @if ($res->level == 1)
                                         <span class="id fs--1 text-400"><i>Hidden</i></span>
                                     @else
@@ -169,7 +169,7 @@
                                             @endif
                                         @endif
                                     @endif
-                                </td>
+                                </td> --}}
                                 <td class="text-black text-center fw-semi-bold align-middle white-space-nowrap level">
                                     @if ($res->level == 1)
                                         Developer

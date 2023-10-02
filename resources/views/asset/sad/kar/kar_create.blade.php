@@ -68,6 +68,21 @@
                                     <input required type="date" class="form-control "
                                         name="tgl_gabung[]">
                                 </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <select required name="agama[]" class="form-control ">
+                                        <option value=""></option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katholik">Katholik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input required type="number" maxlength="50" class="form-control " name="no_ktp[]">
+                                </td>
                 <td class="align-middle white-space-nowrap">
                                     <input type="text" maxlength="50" class="form-control "
                                         name="kimper[]">
@@ -91,18 +106,6 @@
                                         <option value="Mandiri">Mandiri</option>
                                         <option value="Kalbar">Kalbar</option>
                                         <option value="BCA">BCA</option>
-                                        <option value="Lain-lain">Lain-lain</option>
-                                    </select>
-                                </td>
-                                <td class="align-middle white-space-nowrap">
-                                    <select name="agama[]" class="form-control ">
-                                        <option value=""></option>
-                                        <option value="Islam">Islam</option>
-                                        <option value="Kristen">Kristen</option>
-                                        <option value="Katholik">Katholik</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Budha">Budha</option>
-                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
                                         <option value="Lain-lain">Lain-lain</option>
                                     </select>
                                 </td>
@@ -183,17 +186,17 @@
 @endsection
 
 @section('konten')
-<div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
-    <div class="col d-flex align-items-center">
-        <div>
-            <a href="{{ route('kar.g') }}"><button class="btn  btn-falcon-default btn-sm"><i
-                class="fas fa-arrow-left"></i></button></a>
-        </div>
-        <div class="ms-1">&nbsp;
-            <span class=" fw-semi-bold text-primary">Tambah Karyawan</span>
+    <div class="row gx-0 kanban-header rounded-2 px-x1 py-2 mb-2">
+        <div class="col d-flex align-items-center">
+            <div>
+                <a href="{{ route('kar.g') }}"><button class="btn  btn-falcon-default btn-sm"><i
+                            class="fas fa-arrow-left"></i></button></a>
+            </div>
+            <div class="ms-1">&nbsp;
+                <span class=" fw-semi-bold text-primary">Tambah Karyawan</span>
+            </div>
         </div>
     </div>
-</div>
 
 
     @include('comp.alert')
@@ -227,7 +230,7 @@
                                 </th>
                                 <th style="min-width: 200px"
                                     class="sort bg-danger text-white align-middle white-space-nowrap">
-                                    Tipe Income
+                                    Tipe Gaji
                                 </th>
                                 <th style="min-width: 200px"
                                     class="sort bg-danger text-white align-middle white-space-nowrap">
@@ -236,6 +239,14 @@
                                 <th style="min-width: 200px"
                                     class="sort bg-danger text-white align-middle white-space-nowrap">
                                     Tgl Gabung
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-danger text-white align-middle white-space-nowrap">
+                                    Agama
+                                </th>
+                                <th style="min-width: 200px"
+                                    class="sort bg-danger text-white align-middle white-space-nowrap">
+                                    No KTP
                                 </th>
                                 <th style="min-width: 200px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap">
@@ -259,10 +270,6 @@
                                 </th>
                                 <th style="min-width: 200px"
                                     class="sort bg-secondary text-white align-middle white-space-nowrap">
-                                    Agama
-                                </th>
-                                <th style="min-width: 200px"
-                                    class="sort bg-secondary text-white align-middle white-space-nowrap">
                                     Status
                                 </th>
                             </tr>
@@ -274,14 +281,12 @@
                                             class="fas fa-plus-square fs-2"></i></a>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="number" maxlength="25" class="form-control "
-                                        name="username[]">
+                                    <input required type="number" maxlength="25" class="form-control " name="username[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="25" class="form-control "
-                                        name="name[]">
-                                    <input required type="hidden" maxlength="25" class="form-control "
-                                        name="site_id[]" value="1">
+                                    <input required type="text" maxlength="25" class="form-control " name="name[]">
+                                    <input required type="hidden" maxlength="25" class="form-control " name="site_id[]"
+                                        value="1">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <select required name="tipe_gaji[]" class="form-control ">
@@ -303,19 +308,31 @@
                                     <input required type="date" class="form-control " name="tgl_gabung[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input type="text" maxlength="50" class="form-control "
-                                        name="kimper[]">
+                                    <select required name="agama[]" class="form-control ">
+                                        <option value=""></option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katholik">Katholik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
+                                        <option value="Lain-lain">Lain-lain</option>
+                                    </select>
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input required type="number" maxlength="50" class="form-control " name="no_ktp[]">
+                                </td>
+                                <td class="align-middle white-space-nowrap">
+                                    <input type="text" maxlength="50" class="form-control " name="kimper[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input type="date" class="form-control " name="ed_kimper[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input type="text" maxlength="50" class="form-control "
-                                        name="nama_rek[]">
+                                    <input type="text" maxlength="50" class="form-control " name="nama_rek[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input type="number" maxlength="50" class="form-control "
-                                        name="no_rek[]">
+                                    <input type="number" maxlength="50" class="form-control " name="no_rek[]">
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <select name="bank[]" class="form-control ">
@@ -325,18 +342,6 @@
                                         <option value="Mandiri">Mandiri</option>
                                         <option value="Kalbar">Kalbar</option>
                                         <option value="BCA">BCA</option>
-                                        <option value="Lain-lain">Lain-lain</option>
-                                    </select>
-                                </td>
-                                <td class="align-middle white-space-nowrap">
-                                    <select name="agama[]" class="form-control ">
-                                        <option value=""></option>
-                                        <option value="Islam">Islam</option>
-                                        <option value="Kristen">Kristen</option>
-                                        <option value="Katholik">Katholik</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Budha">Budha</option>
-                                        <option value="Kong Hu Chu">Kong Hu Chu</option>
                                         <option value="Lain-lain">Lain-lain</option>
                                     </select>
                                 </td>

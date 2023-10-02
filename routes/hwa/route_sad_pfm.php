@@ -18,6 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('hm_performance_print/{hm}', 'hm_performance_print')->name('hm.p.excel');
         Route::get('hm_performance_unit_print_excel/{hm}', 'hm_performance_unit_print_excel')->name('hm.u.p.excel');
         Route::get('hm_performance_od_print_excel/{hm}', 'hm_performance_od_print_excel')->name('hm.od.p.excel');
+        Route::get('hm_performance_od_cetak/{hm}', 'hm_performance_od_cetak')->name('hm.od.p.cetak');
         Route::get('hm_performance_unit', 'hm_performance_unit')->name('hm.p.u');
         Route::get('hm_performance_od', 'hm_performance_od')->name('hm.p.od');
         Route::get('manual_hm', 'hmManual')->name('hm.m');

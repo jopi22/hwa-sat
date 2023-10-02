@@ -342,12 +342,12 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
-                                                                    class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
-                                                                    Respon</a>
-                                                            @else
+                                                            @if ($res->respon_status == 'Belum')
+                                                            <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                class="btn btn-warning btn-sm"><i
+                                                                    class="fas fa-edit"></i>
+                                                                Respon</a>
+                                                        @else
                                                                 <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
@@ -447,12 +447,12 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
-                                                                    class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
-                                                                    Respon</a>
-                                                            @else
+                                                            @if ($res->respon_status == 'Belum')
+                                                            <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                class="btn btn-warning btn-sm"><i
+                                                                    class="fas fa-edit"></i>
+                                                                Respon</a>
+                                                        @else
                                                                 <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
@@ -552,12 +552,12 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
-                                                                    class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
-                                                                    Respon</a>
-                                                            @else
+                                                            @if ($res->respon_status == 'Ditolak')
+                                                            <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                class="btn btn-info btn-sm"><i
+                                                                    class="fas fa-info"></i>
+                                                                Lihat</a>
+                                                        @else
                                                                 <a href="{{ route('r.peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>

@@ -106,7 +106,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-auto mt-4">
+                        {{-- <div class="col-auto mt-4">
                             <div class="col-auto">
                                 <a href="{{ route('peng.abs.cm') }}">
                                     <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"><span
@@ -123,7 +123,7 @@
                                     </button>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="card-body p-0">
@@ -168,7 +168,7 @@
                                                         data-sort="idp">ID Pengajuan
                                                     </th>
                                                     <th style="width: 100px" class="sort align-middle white-space-nowrap"
-                                                        data-sort="idk">ID Karyawan
+                                                        data-sort="idk">NIK
                                                     </th>
                                                     <th style="width: 400px" class="sort align-middle white-space-nowrap"
                                                         data-sort="name">Karyawan
@@ -192,7 +192,7 @@
                                                         <td class="align-middle text-center white-space-nowrap idp">
                                                             {{ $res->id }}</td>
                                                         <td class="align-middle text-center white-space-nowrap idk">
-                                                            K{{ $res->kar_peng_->tgl_gabung->format('ym') }}{{ $res->kar_peng_->id }}
+                                                            {{ $res->kar_peng_->username }}
                                                         </td>
                                                         <td class="align-middle white-space-nowrap name">
                                                             {{ $res->kar_peng_->name }}
@@ -212,10 +212,10 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
+                                                            @if ($res->respon_status == 'Belum')
                                                                 <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
+                                                                        class="fas fa-edit"></i>
                                                                     Respon</a>
                                                             @else
                                                                 <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
@@ -317,10 +317,10 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
+                                                            @if ($res->respon_status == 'Belum')
                                                                 <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
+                                                                        class="fas fa-edit"></i>
                                                                     Respon</a>
                                                             @else
                                                                 <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
@@ -422,12 +422,12 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
-                                                                    class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
-                                                                    Respon</a>
-                                                            @else
+                                                            @if ($res->respon_status == 'Belum')
+                                                            <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                class="btn btn-warning btn-sm"><i
+                                                                    class="fas fa-edit"></i>
+                                                                Respon</a>
+                                                        @else
                                                                 <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
                                                                     Lihat</a>
@@ -527,11 +527,10 @@
                                                             @endif
                                                         </td>
                                                         <td class="align-middle text-center white-space-nowrap">
-                                                            @if ($res->respon_status == 0)
-                                                                <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
-                                                                    class="btn btn-warning btn-sm"><i
-                                                                        class="fas fa-magic"></i>
-                                                                    Respon</a>
+                                                            @if ($res->respon_status == 'Ditolak')
+                                                            <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
+                                                                class="btn btn-info btn-sm"><i class="fas fa-eye"></i>
+                                                                Lihat</a>
                                                             @else
                                                                 <a href="{{ route('peng.abs.i', Crypt::encryptString($res->id)) }}"
                                                                     class="btn btn-info btn-sm"><i class="fas fa-eye"></i>

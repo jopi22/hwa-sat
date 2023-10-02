@@ -196,9 +196,7 @@
             </div>
         </div>
         <div class="card-footer bg-light">
-            <p class="fs--1 mb-0"><strong>Notes: </strong>We really appreciate your business and if there’s anything else
-                we
-                can do, please let us know!</p>
+
         </div>
     </div>
 @endsection

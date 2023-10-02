@@ -30,7 +30,7 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket1 == 1)
-        <div class="card mb-3 bg-light shadow-none">
+        <div class="card mb-2 bg-light shadow-none">
             <div class="bg-holder bg-card d-none d-sm-block"
                 style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
             <!--/.bg-holder-->
@@ -67,7 +67,7 @@
                             </button>
                             <a href="{{ route('bd.excel', Crypt::EncryptString(Auth::user()->id)) }}" target="_blank"
                                 rel="noopener noreferrer">
-                                <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                                <button class="btn btn-sm btn-falcon-default mx-2"><i class="fas fa-print"></i>
                                 </button>
                             </a>
                             </div>
@@ -146,6 +146,10 @@
                                             class="bg-secondary text-white align-middle white-space-nowrap" data-sort="rem">
                                             Remark
                                         </th>
+                                        <th style="min-width: 200px"
+                                            class="bg-secondary text-white align-middle white-space-nowrap" data-sort="rem">
+                                            Created
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-posts" class="list">
@@ -168,10 +172,10 @@
                                                 </div>
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap tgl">
-                                                @if ($res->tgl)
-                                                    {{ $res->tgl }}
+                                                @if ($res->jam_mulai->format('d-m-Y') == $res->jam_selesai->format('d-m-Y'))
+                                                    {{ $res->jam_mulai->format('d-m-Y') }}
                                                 @else
-                                                    -
+                                                {{ $res->jam_mulai->format('d-m-Y') }} s.d {{ $res->jam_selesai->format('d-m-Y') }}
                                                 @endif
                                             </td>
                                             <td class="align-middle text-1000 white-space-nowrap unit">
@@ -183,14 +187,14 @@
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap">
                                                 @if ($res->jam_mulai)
-                                                    {{ $res->jam_mulai->format('H:i A') }}
+                                                    {{ $res->jam_mulai->format('H:i') }}
                                                 @else
                                                     -
                                                 @endif
                                             </td>
                                             <td class="align-middle text-1000 text-center white-space-nowrap">
                                                 @if ($res->jam_selesai)
-                                                    {{ $res->jam_selesai->format('H:i A') }}
+                                                    {{ $res->jam_selesai->format('H:i') }}
                                                 @else
                                                     -
                                                 @endif
@@ -219,6 +223,13 @@
                                             <td class="align-middle text-1000 white-space-nowrap rem">
                                                 @if ($res->remark)
                                                     {{ $res->remark }}
+                                                @else
+                                                    -
+                                                @endif
+                                            </td>
+                                            <td class="align-middle text-center text-1000 white-space-nowrap rem">
+                                                @if ($res->tgl)
+                                                    {{ $res->tgl }}
                                                 @else
                                                     -
                                                 @endif

@@ -322,13 +322,13 @@
                                         @endif
                                     </td>
                                     <td class="align-middle text-center white-space-nowrap">
-                                        @if ($res->status == 0)
-                                            <span class="badge bg-success">Belum Direspon</span>
+                                        @if ($res->respon_status == 'Belum')
+                                            <span class="badge bg-secondary">Belum Direspon</span>
                                         @else
-                                            @if ($res->status == 3)
+                                            @if ($res->respon_status == 'Diterima')
                                                 <span class="badge bg-success">Diterima</span>
                                             @else
-                                                @if ($res->status == 5)
+                                                @if ($res->respon_status == 'Ditolak')
                                                     <span class="badge bg-danger">Ditolak</span>
                                                 @else
                                                 @endif

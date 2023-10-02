@@ -73,22 +73,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-sm-auto">
-                        <div class="btn-group  btn-group-sm mx-2" role="group">
-                            <div class="dropdown font-sans-serif d-inline-block">
-                                <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                    type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="fas fa-print"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item text-success" target="_blank"
-                                        href="{{ route('r.hm.od.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"><i
-                                            class="fas fa-file-excel"></i>
-                                        Print Excel
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 @if ($cek_perform == 0)
                     <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
@@ -174,9 +159,7 @@
             </div>
         </div>
         <div class="card-footer bg-light">
-            <p class="fs--1 mb-0"><strong>Notes: </strong>We really appreciate your business and if there’s anything else
-                we
-                can do, please let us know!</p>
+
         </div>
     </div>
 @endsection

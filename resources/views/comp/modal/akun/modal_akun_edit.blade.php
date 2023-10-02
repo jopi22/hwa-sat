@@ -25,8 +25,7 @@
                                     value="{{ $res->email }}">
                             @else
                                 <label>NIK</label>
-                                <input type="text" class="form-control" disabled
-                                    value="{{ $res->username }}">
+                                <input type="text" class="form-control" disabled value="{{ $res->username }}">
                                 <input type="hidden" name="username"
                                     value="{{ $res->tgl_gabung->format('ym') }}{{ $res->id }}">
                             @endif
@@ -41,7 +40,32 @@
                         <div class="form-group">
                             <label>Role</label><br>
                             <select required name="level" class="form-control">
-                                <option value="{{ $res->level }}">{{ $res->level }}</option>
+                                <option value="{{ $res->level }}">
+                                    @if ($res->level == 2)
+                                        Superadmin (2)
+                                    @else
+                                        @if ($res->level == 3)
+                                            Admin HRGA (3)
+                                        @else
+                                            @if ($res->level == 4)
+                                                Admin Rental (4)
+                                            @else
+                                                @if ($res->level == 5)
+                                                    Admin Logistik (5)
+                                                @else
+                                                    @if ($res->level == 6)
+                                                        Karyawan (6)
+                                                    @else
+                                                        @if ($res->level == 7)
+                                                            Manajer (7)
+                                                        @else
+                                                        @endif
+                                                    @endif
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endif
+                                </option>
                                 {{-- <option value="1">Developer</option> --}}
                                 <option value="2">Superadmin (2)</option>
                                 <option value="3">Admin HRGA (3)</option>

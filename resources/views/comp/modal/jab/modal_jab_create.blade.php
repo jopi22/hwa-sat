@@ -27,6 +27,7 @@
                             <option value="Rental Performance">Rental Performance</option>
                             <option value="Mechanic">Mechanic</option>
                             <option value="Finance">Finance</option>
+                            <option value="Logistik">Logistik</option>
                             <option value="Health, Safety, and Environment">Health, Safety, and Environment</option>
                         </select>
                     </div>

@@ -242,13 +242,13 @@
                                 <input type="hidden" name="bro_id" value="{{ $kar->id }}">
                                 <button class="btn btn-falcon-default text-primary btn-sm" type="submit"><i
                                         class="fab fa-slack"></i>
-                                    Sinkron</button>
+                                    Sinkronisasi</button>
                             </form>
                         </div>
                     </div>
                     <div class="border-bottom border-200 my-3"></div>
                     <div class="d-flex align-items-center justify-content-between justify-content-lg-end px-x1">
-                        <div class="col-auto pe-0">
+                        <div class="d-flex align-items-center">
                             <button class="btn btn-falcon-default text-info btn-sm" type="button"
                                 data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                                 aria-controls="offcanvasRight"><i class="fas fa-users"></i>

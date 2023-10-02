@@ -27,7 +27,7 @@
 @section('konten')
     @if ($master->periode == $periode)
         @if ($master->ket1 == 1)
-            <div class="card mb-3 bg-light shadow-none">
+            <div class="card mb-2 bg-light shadow-none">
                 <div class="bg-holder bg-card d-none d-sm-block"
                     style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
                 <!--/.bg-holder-->
@@ -45,7 +45,7 @@
 
             @include('comp.alert')
 
-            <div class="card mb-3">
+            <div class="card mb-2">
                 <div class="card-header bg-light">
                     <div class="d-lg-flex justify-content-between">
                         <div class="row flex-between-center gy-2 px-x1">
@@ -64,7 +64,7 @@
                             <div class="col-auto pe-0">
                                 <a href="{{ route('ot.k.excel', Crypt::EncryptString(Auth::user()->id)) }}" target="_blank"
                                     rel="noopener noreferrer">
-                                    <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
+                                    <button class="btn btn-sm btn-falcon-default mx-2"><i class="fas fa-print"></i>
                                     </button>
                                 </a>
                             </div>

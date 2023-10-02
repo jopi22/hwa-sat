@@ -57,12 +57,22 @@
                                         <option></option>
                                         <option value="Excavator">Excavator</option>
                                         <option value="Vibro">Vibro</option>
-                                        <option value="Bulldoser">Bulldozer</option>
+                                        <option value="Bulldozer">Bulldozer</option>
                                     </select>
                                 </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control "
-                            name="brand[]">
+                        <select required name="brand[]" class="form-control ">
+                                        <option></option>
+                                        <option value="Sany">Sany</option>
+                                        <option value="Sumitomo">Sumitomo</option>
+                                        <option value="Caterpillar">Caterpillar</option>
+                                        <option value="Hitachi">Hitachi</option>
+                                        <option value="Hyundai">Hyundai</option>
+                                        <option value="Sakai">Sakai</option>
+                                        <option value="Komatsu">Komatsu</option>
+                                        <option value="Doosan">Doosan</option>
+                                        <option value="Kobelco">Kobelco</option>
+                                    </select>
                     </td>
 <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="50" class="form-control "
@@ -234,12 +244,22 @@
                                         <option></option>
                                         <option value="Excavator">Excavator</option>
                                         <option value="Vibro">Vibro</option>
-                                        <option value="Bulldoser">Bulldozer</option>
+                                        <option value="Bulldozer">Bulldozer</option>
                                     </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control "
-                                        name="brand[]">
+                                    <select required name="brand[]" class="form-control ">
+                                        <option></option>
+                                        <option value="Sany">Sany</option>
+                                        <option value="Sumitomo">Sumitomo</option>
+                                        <option value="Caterpillar">Caterpillar</option>
+                                        <option value="Hitachi">Hitachi</option>
+                                        <option value="Hyundai">Hyundai</option>
+                                        <option value="Sakai">Sakai</option>
+                                        <option value="Komatsu">Komatsu</option>
+                                        <option value="Doosan">Doosan</option>
+                                        <option value="Kobelco">Kobelco</option>
+                                    </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="50" class="form-control "

@@ -42,19 +42,19 @@ class HwaController extends Controller
         $hwa = Site::Find(1);
 
         // Karyawan
-        $hadir = Absensi::where('karyawan', Auth::user()->id)->where('periode_id', $master->id)
-            ->where('status', 1)
-            ->count();
-        $performa_hm = Performa_hm::where('kar_id', Auth::user()->id)->where('master_id', $master->id)
-            ->sum('hm_total');
-        $performa_ot = Performa_ot::where('kar_id', Auth::user()->id)->where('master_id', $master->id)
-            ->sum('jam_total');
+        // $hadir = Absensi::where('karyawan', Auth::user()->id)->where('periode_id', $master->id)
+        //     ->where('status', 1)
+        //     ->count();
+        // $performa_hm = Performa_hm::where('kar_id', Auth::user()->id)->where('master_id', $master->id)
+        //     ->sum('hm_total');
+        // $performa_ot = Performa_ot::where('kar_id', Auth::user()->id)->where('master_id', $master->id)
+        //     ->sum('jam_total');
 
         return view('home.home', compact(
             'hwa',
-            'hadir',
-            'performa_hm',
-            'performa_ot',
+            // 'hadir',
+            // 'performa_hm',
+            // 'performa_ot',
             'periode',
             'cek_master',
             'cek',

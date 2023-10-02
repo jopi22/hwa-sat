@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}">
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.css') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 @endsection
 
 @section('script')
@@ -25,6 +26,20 @@
     <script src="{{ asset('vendors/datatables.net/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-bs5/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js') }}"></script>
+    <script type="text/javascript">
+        function htmlTableToExcel(type) {
+            var data = document.getElementById('tblToExcl');
+            var excelFile = XLSX.utils.table_to_book(data, {
+                sheet: "sheet1"
+            });
+            XLSX.write(excelFile, {
+                bookType: type,
+                bookSST: true,
+                type: 'base64'
+            });
+            XLSX.writeFile(excelFile, 'Hauling dan Timbangan.' + type);
+        }
+    </script>
     <script>
         $(document).on('click', '.delete_estimate', function() {
             var _this = $(this).parents('tr');
@@ -209,11 +224,11 @@
                                     <a href="#"><button class="btn btn-sm btn-falcon-success mx-2"
                                             data-bs-toggle="collapse" data-bs-target="#collapseExample" type="button"><span
                                                 data-fa-transform="shrink-3" class="fas fa-plus"></span></button></a>
-                                    <a href="{{ route('ha.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
-                                        </button>
-                                    </a>
+                                                <div class="dropdown font-sans-serif d-inline-block">
+                                                    <button id="button" onclick="htmlTableToExcel('xlsx')"
+                                                        class="btn btn-sm btn-falcon-success"type="button"><i
+                                                            class="fas fa-file-excel"></i></button>
+                                                </div>
                                 </div>
                             </div>
                         </div>
@@ -229,7 +244,7 @@
                                     @csrf
                                     <div id="tableExample4">
                                         <div class="table-responsive scrollbar">
-                                            <table id="tableEstimate"
+                                            <table id="tblToExcl"
                                                 class="table table-sm table-striped table-bordered mb-0 fs--1"
                                                 data-options='{"paging":true,"scrollY":"300px","searching":false,"scrollCollapse":true,"scrollX":true,"page":1,"pagination":true}'>
                                                 <thead class="">
@@ -350,7 +365,7 @@
                     </div>
                 </div>
                 <div id="tableExample4"
-                    data-list='{"valueNames":["id","no","tgl","name","payment","dedi","lokasi","shift","rem"],"filter":{"key":"payment"}}'>
+                    data-list='{"valueNames":["id","no","tgl","nama","payment","dedi","lokasi","shift","rem"],"filter":{"key":"payment"}}'>
                     <div class="row mt-2 mb-2 ms-3 g-0 flex-between-left">
                         <div class="col-6">
                             <div class="row g-1">
@@ -365,10 +380,10 @@
                                 <div class="col-sm-6 ">
                                     <select class="form-select form-select-sm" aria-label="Bulk actions"
                                         data-list-filter="data-list-filter">
-                                        <option selected="" value="">Filter: Brand</option>
-                                        {{-- @foreach ($equipment as $item)
-                                            <option value="{{ $item->brand }}">{{ $item->brand }}</option>
-                                        @endforeach --}}
+                                        <option selected="" value="">Filter: No Unit</option>
+                                        @foreach ($equip as $item)
+                                            <option value="{{ $item->no_unit }}">{{ $item->no_unit }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -385,7 +400,7 @@
                                         <th class="sort bg-secondary text-white">#</th>
                                         <th class="sort bg-secondary text-white">Aksi</th>
                                         <th class="sort bg-secondary text-white">Tanggal</th>
-                                        <th class="sort bg-secondary text-white" sorted="nama">Driver</th>
+                                        <th class="sort bg-secondary text-white" data-sort="nama">Driver</th>
                                         <th class="sort bg-secondary text-white">No Unit</th>
                                         <th class="sort bg-secondary text-white">Start Location</th>
                                         <th class="sort bg-secondary text-white">End Location</th>
@@ -611,7 +626,7 @@
                                     data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body py-4 px-5">
-                                <h5 class="text text-900">Ente Yakin, Untuk
+                                <h5 class="text text-900">Anda Yakin, Untuk
                                     Menghapus Data Ini?</h5>
                             </div>
                             <div class="modal-footer">

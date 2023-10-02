@@ -59,6 +59,9 @@
                 </div>&nbsp;
                 <div class="col-sm-auto">
                     <button class="btn btn-sm btn-falcon-success mx-2" type="button" data-bs-toggle="modal"
+                        data-bs-target="#sp1"><i class="fas fa-plus"></i>
+                    </button>
+                    {{-- <button class="btn btn-sm btn-falcon-success mx-2" type="button" data-bs-toggle="modal"
                         data-bs-target="#sp1">SP-1
                     </button>
                     <button class="btn btn-sm btn-falcon-warning mx-2" type="button" data-bs-toggle="modal"
@@ -66,7 +69,7 @@
                     </button>
                     <button class="btn btn-sm btn-falcon-danger mx-2" type="button" data-bs-toggle="modal"
                         data-bs-target="#sp3">SP-3
-                    </button>
+                    </button> --}}
                 </div>
             </div>
             @if ($cek == 0)

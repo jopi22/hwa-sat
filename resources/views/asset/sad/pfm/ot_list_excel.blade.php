@@ -74,18 +74,7 @@
                             @endforeach
                         </select>
                     </div>&nbsp;
-                    <div class="col-sm-3">
-                        <button class="btn btn-falcon-default btn-sm mx-2 text-success" type="button"
-                            data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="fas fa-plus text-success"
-                                data-fa-transform="shrink-3"></span><span
-                                class="d-none d-sm-inline-block d-xl-none d-xxl-inline-block ms-1"></span>
-                        </button>
-                        <a href="{{ route('ot.l.excel', Crypt::EncryptString(Auth::user()->id)) }}" target="_blank"
-                            rel="noopener noreferrer">
-                            <button class="btn btn-sm btn-falcon-success mx-2"><i class="fas fa-file-excel"></i>
-                            </button>
-                        </a>
-                    </div>
+
                 </div>
                 @if ($cek_perform == 0)
                     <h6 class="text-500 text-center mt-3 mb-3"> -- Data Kosong --</h6>
@@ -220,20 +209,12 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center mt-3 mb-3"><button
-                            class="btn btn-sm btn-falcon-default me-1" type="button" title="Previous"
-                            data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-                        <ul class="pagination mb-0"></ul><button class="btn btn-sm btn-falcon-default ms-1"
-                            type="button" title="Next" data-list-pagination="next"><span
-                                class="fas fa-chevron-right"> </span></button>
-                    </div>
+
                 @endif
             </div>
         </div>
         <div class="card-footer bg-light">
-            <p class="fs--1 mb-0"><strong>Notes: </strong>We really appreciate your business and if there’s anything else
-                we
-                can do, please let us know!</p>
+
         </div>
     </div>
 @endsection

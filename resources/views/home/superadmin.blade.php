@@ -135,7 +135,7 @@
                                         <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                         <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                         <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                OKE OCE</button>
+                                                Update Master</button>
                                             Untuk Proses Update.</p>
                                         <h5>Perhatian!</h5>
                                         <ul>
@@ -175,8 +175,8 @@
                                         <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                         <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                         <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                OKE OCE</button>
-                                            Untuk Proses Update.</p>
+                                            Update Master</button>
+                                        Untuk Proses Update.</p>
                                         <h5>Perhatian!</h5>
                                         <ul>
                                             <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>
@@ -215,8 +215,8 @@
                                         <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                         <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                         <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                OKE OCE</button>
-                                            Untuk Proses Update.</p>
+                                            Update Master</button>
+                                        Untuk Proses Update.</p>
                                         <h5>Perhatian!</h5>
                                         <ul>
                                             <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>
@@ -255,8 +255,8 @@
                                         <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                         <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                         <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                OKE OCE</button>
-                                            Untuk Proses Update.</p>
+                                            Update Master</button>
+                                        Untuk Proses Update.</p>
                                         <h5>Perhatian!</h5>
                                         <ul>
                                             <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>
@@ -375,8 +375,8 @@
                                             <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                             <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                             <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                    OKE OCE</button>
-                                                Untuk Proses Update.</p>
+                                                Update Master</button>
+                                            Untuk Proses Update.</p>
                                             <h5>Perhatian!</h5>
                                             <ul>
                                                 <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>
@@ -425,8 +425,8 @@
                                             <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                             <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                             <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                    OKE OCE</button>
-                                                Untuk Proses Update.</p>
+                                                Update Master</button>
+                                            Untuk Proses Update.</p>
                                             <h5>Perhatian!</h5>
                                             <ul>
                                                 <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>
@@ -475,8 +475,8 @@
                                             <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                             <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                             <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                    OKE OCE</button>
-                                                Untuk Proses Update.</p>
+                                                Update Master</button>
+                                            Untuk Proses Update.</p>
                                             <h5>Perhatian!</h5>
                                             <ul>
                                                 <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>
@@ -525,8 +525,8 @@
                                             <input type="hidden" name="updated_at_new" value="{{ date('Y-m-d') }}">
                                             <h5>Mengupdate Master Data Periode {{ date('F Y') }}?</h5>
                                             <p>Klik <button class="btn btn-success btn-sm" type="submit">
-                                                    OKE OCE</button>
-                                                Untuk Proses Update.</p>
+                                                Update Master</button>
+                                            Untuk Proses Update.</p>
                                             <h5>Perhatian!</h5>
                                             <ul>
                                                 <li>Master Data Periode Sebelumnya akan dipindahkan ke Rekapitulasi</li>

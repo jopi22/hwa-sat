@@ -189,20 +189,18 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="d-flex justify-content-center mt-3 mb-3"><button
+                    {{-- <div class="d-flex justify-content-center mt-3 mb-3"><button
                             class="btn btn-sm btn-falcon-default me-1" type="button" title="Previous"
                             data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
                         <ul class="pagination mb-0"></ul><button class="btn btn-sm btn-falcon-default ms-1"
                             type="button" title="Next" data-list-pagination="next"><span
                                 class="fas fa-chevron-right"> </span></button>
-                    </div>
+                    </div> --}}
                 @endif
             </div>
         </div>
         <div class="card-footer bg-light">
-            <p class="fs--1 mb-0"><strong>Notes: </strong>We really appreciate your business and if there’s anything else
-                we
-                can do, please let us know!</p>
+
         </div>
     </div>
 @endsection

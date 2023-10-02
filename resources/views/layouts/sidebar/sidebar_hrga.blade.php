@@ -79,7 +79,7 @@
             <span class="nav-link-text ps-1">Surat Peringatan</span>
         </div>
     </a>
-    <a class="nav-link" href="{{ route('mut.g') }}" role="button" aria-expanded="false" aria-controls="e-learning">
+    {{-- <a class="nav-link" href="{{ route('mut.g') }}" role="button" aria-expanded="false" aria-controls="e-learning">
         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
                     class="fas fa-people-arrows"></span></span>
             <span class="nav-link-text ps-1">Mutasi & PHK</span>
@@ -89,7 +89,7 @@
         <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-award"></span></span>
             <span class="nav-link-text ps-1">KIMPER</span>
         </div>
-    </a>
+    </a> --}}
     <a class="nav-link" href="{{ route('res.g') }}" role="button" aria-expanded="false"
         aria-controls="e-learning">
         <div class="d-flex align-items-center"><span class="nav-link-icon"><span

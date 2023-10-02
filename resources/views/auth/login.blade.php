@@ -2,7 +2,7 @@
 <html lang="en-US" dir="ltr">
 
 
-<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/authentication/card/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:07 GMT -->
+<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/authentication/split/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:07 GMT -->
 <!-- Added by HTTrack -->
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 
@@ -14,7 +14,7 @@
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
-    <title>HWA SAT | Landing Page | 2023</title>
+    <title> HWA SAT | Landing Page | 2023 </title>
 
     <!-- ===============================================-->
     <!--    Favicons-->
@@ -64,81 +64,48 @@
     <!-- ===============================================-->
     <main class="main" id="top">
         <div class="container-fluid">
-            <div class="row min-vh-100 flex-center g-0">
-                <div class="col-lg-8 col-xxl-5 py-3 position-relative"><img class="bg-auth-circle-shape"
-                        src="../../../assets/img/icons/spot-illustrations/bg-shape.png" alt=""
-                        width="250"><img class="bg-auth-circle-shape-2"
-                        src="../../../assets/img/icons/spot-illustrations/shape-1.png" alt="" width="150">
-                    <div class="card overflow-hidden z-index-1">
-                        <div class="card-body p-0">
-                            <div class="row g-0 h-100">
-                                <div class="col-md-5 text-center bg-card-gradient">
-                                    <div class="position-relative p-4 pt-md-5 pb-md-7 light">
-                                        <div class="bg-holder bg-auth-card-shape"
-                                            style="background-image:url(../../../assets/img/icons/spot-illustrations/half-circle.png);">
-                                        </div>
-                                        <!--/.bg-holder-->
-                                        <div class="z-index-1 position-relative"><a
-                                                class="link-light mb-4 font-sans-serif fs-4 d-inline-block fw-bolder"
-                                                href="../../../index.html">HWA SAT</a>
-                                            {{-- <p class="opacity-75 text-white">With the power of Falcon, you can now focus
-                                                only on functionaries for your digital products, while leaving the UI
-                                                design on us!
-                                            </p> --}}
+            <script>
+                var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+                if (isFluid) {
+                    var container = document.querySelector('[data-layout]');
+                    container.classList.remove('container');
+                    container.classList.add('container-fluid');
+                }
+            </script>
+            <div class="row min-vh-100 bg-100">
+                <div class="col-6 d-none d-lg-block position-relative">
+                    <div class="bg-holder"
+                        style="background-image:url({{ asset('assets/img/generic/photo_6338839406810609585_y.jpg') }});background-position: 50% 20%;">
+                    </div>
+                    <!--/.bg-holder-->
+                </div>
+                <div class="col-sm-10 col-md-6 px-sm-0 align-self-center mx-auto py-5">
+                    <div class="row justify-content-center g-0">
+                        <div class="col-lg-9 col-xl-8 col-xxl-6">
+                            <div class="card">
+                                <div class="card-header bg-circle-shape bg-shape text-center p-2"><a
+                                        class="font-sans-serif fw-bolder fs-4 z-index-1 position-relative link-light light"
+                                        href="#">HWA SAT</a></div>
+                                <div class="card-body p-4">
+                                    <div class="row flex-between-center">
+                                        <div class="col-auto">
+                                            <h3>Pilih Role Anda</h3>
                                         </div>
                                     </div>
-                                    {{-- <div class="mt-3 mb-4 mt-md-4 mb-md-5 light">
-                                        <p class="text-white">Don't have an account?<br><a
-                                                class="text-decoration-underline link-light" href="register.html">Get
-                                                started!</a></p>
-                                        <p class="mb-0 mt-4 mt-md-5 fs--1 fw-semi-bold text-white opacity-75">Read our
-                                            <a class="text-decoration-underline text-white" href="#!">terms</a> and
-                                            <a class="text-decoration-underline text-white" href="#!">conditions
-                                            </a>
-                                        </p>
-                                    </div> --}}
-                                </div>
-                                <div class="col-md-7 d-flex flex-center">
-                                    <div class="p-4 p-md-5 flex-grow-1">
-                                        <div class="row flex-between-center">
-                                            <div class="col-auto">
-                                                <h3>Pilih Role Anda</h3>
+                                    <div class="modal-body py-4 px-5">
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <div class="mb-3"><label class="form-label" for="split-login-email">NIK
+                                                </label>
+                                                <input class="form-control" name="no_hp" id="split-login-email" type="text" />
                                             </div>
-                                        </div>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <input type="hidden" name="no_hp" value="2">
-                                            <input type="hidden" name="password" value="1212">
-                                            <div class="mb-3"><button class="btn btn-danger d-block w-100 mt-3"
-                                                    type="submit" name="submit">Superadmin</button></div>
-                                        </form>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <input type="hidden" name="no_hp" value="3">
-                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between"><label class="form-label"
+                                                        for="split-login-password">Password</label></div>
+                                                <input class="form-control" name="password" id="split-login-password" type="password" />
+                                            </div>
                                             <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
-                                                    type="submit" name="submit">Admin HRGA</button></div>
-                                        </form>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <input type="hidden" name="no_hp" value="4">
-                                            <input type="hidden" name="password" value="1212">
-                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
-                                                    type="submit" name="submit">Admin Rental</button></div>
-                                        </form>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <input type="hidden" name="no_hp" value="5">
-                                            <input type="hidden" name="password" value="1212">
-                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
-                                                    type="submit" name="submit">Admin Logistik</button></div>
-                                        </form>
-                                        <form method="POST" action="{{ route('login') }}">
-                                            @csrf
-                                            <input type="hidden" name="no_hp" value="6">
-                                            <input type="hidden" name="password" value="1212">
-                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3"
-                                                    type="submit" name="submit">Karyawan</button></div>
+                                                    type="submit">Log in</button></div>
                                         </form>
                                     </div>
                                 </div>
@@ -146,13 +113,68 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="col-sm-10 col-md-6 px-sm-0 align-self-center mx-auto py-5">
+                    <div class="row justify-content-center g-0">
+                        <div class="col-lg-9 col-xl-8 col-xxl-6">
+                            <div class="card">
+                                <div class="card-header bg-circle-shape bg-shape text-center p-2"><a
+                                        class="font-sans-serif fw-bolder fs-4 z-index-1 position-relative link-light light"
+                                        href="#">HWA SAT</a></div>
+                                <div class="card-body p-4">
+                                    <div class="row flex-between-center">
+                                        <div class="col-auto">
+                                            <h3>Pilih Role Anda</h3>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body py-4 px-5">
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="2">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-danger d-block w-100 mt-3" type="submit"
+                                                    name="submit">Superadmin</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="3">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                                    name="submit">Admin HRGA</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="4">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                                    name="submit">Admin Rental</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="5">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                                    name="submit">Admin Logistik</button></div>
+                                        </form>
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <input type="hidden" name="no_hp" value="6">
+                                            <input type="hidden" name="password" value="1212">
+                                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
+                                                    name="submit">Karyawan</button></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
     </main><!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 
-    <div class="offcanvas offcanvas-end settings-panel border-0" id="settings-offcanvas" tabindex="-1"
+    {{-- <div class="offcanvas offcanvas-end settings-panel border-0" id="settings-offcanvas" tabindex="-1"
         aria-labelledby="settings-offcanvas">
         <div class="offcanvas-header settings-panel-header bg-shape">
             <div class="z-index-1 py-1 light">
@@ -280,23 +302,23 @@
             </div><small
                 class="text-uppercase text-primary fw-bold bg-soft-primary py-2 pe-2 ps-1 rounded-end">customize</small>
         </div>
-    </a>
+    </a> --}}
 
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    <script src="../../../vendors/popper/popper.min.js"></script>
-    <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
-    <script src="../../../vendors/anchorjs/anchor.min.js"></script>
-    <script src="../../../vendors/is/is.min.js"></script>
-    <script src="../../../vendors/fontawesome/all.min.js"></script>
-    <script src="../../../vendors/lodash/lodash.min.js"></script>
-    <script src="../../../../../../polyfill.io/v3/polyfill.min58be.js?features=window.scroll"></script>
-    <script src="../../../vendors/list.js/list.min.js"></script>
-    <script src="../../../assets/js/theme.js"></script>
+    <script src="{{ asset('vendors/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('vendors/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendors/anchorjs/anchor.min.js') }}"></script>
+    <script src="{{ asset('vendors/is/is.min.js') }}"></script>
+    <script src="{{ asset('vendors/fontawesome/all.min.js') }}"></script>
+    <script src="{{ asset('vendors/lodash/lodash.min.js') }}"></script>
+    <script src="{{ asset('polyfill.io/v3/polyfill.min58be.js?features=window.scroll') }}"></script>
+    <script src="{{ asset('vendors/list.js/list.min.js') }}"></script>
+    <script src="{{ asset('assets/js/theme.js') }}"></script>
 </body>
 
 
-<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/authentication/card/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:07 GMT -->
+<!-- Mirrored from prium.github.io/falcon/v3.14.0/pages/authentication/split/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2022 02:08:07 GMT -->
 
 </html>

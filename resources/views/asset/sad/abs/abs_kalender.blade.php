@@ -44,19 +44,20 @@
 @section('konten')
     @if ($cek->periode == $periode)
         @if ($cek->ket == 1)
-        <div class="card mb-3 bg-light shadow-none">
-            <div class="bg-holder bg-card d-none d-sm-block"
-                style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
-            <!--/.bg-holder-->
-            <div class="card-header d-flex align-items-center z-index-1 p-0"><img
-                    src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
-                <div class="ms-n3">
-                    <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
-                            class="text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
-                    <h4 class="mb-0 text-primary fw-bold">Kalender {{ $cek->created_at->format('F Y') }}<span class="text-info fw-medium"></span></h4>
+            <div class="card mb-3 bg-light shadow-none">
+                <div class="bg-holder bg-card d-none d-sm-block"
+                    style="background-image:url({{ asset('assets/img/illustrations/ticket-bg.png') }});"></div>
+                <!--/.bg-holder-->
+                <div class="card-header d-flex align-items-center z-index-1 p-0"><img
+                        src="{{ asset('assets/img/icons/spot-illustrations/cornewr-2.png') }}" alt="" width="96" />
+                    <div class="ms-n3">
+                        <h6 class="mb-1 text-primary"><i class="fas fa-users"></i> Human Resource & General Affairs <span
+                                class="text-info">{{ $cek->created_at->format('F Y') }}</span></h6>
+                        <h4 class="mb-0 text-primary fw-bold">Kalender {{ $cek->created_at->format('F Y') }}<span
+                                class="text-info fw-medium"></span></h4>
+                    </div>
                 </div>
             </div>
-        </div>
 
             <div class="card mb-3">
                 <div class="card-body py-5 py-sm-3">
@@ -122,323 +123,159 @@
             @foreach ($abs as $item)
                 @if ($item->periode_id)
                     <div class="card mb-3">
-                        <div class="card-header bg-light">
+                        <div class="card-header bg-light py-2 d-flex flex-between-center">
                             <div class="row flex-between-center">
                                 <div class="col-6 col-sm-auto ms-auto text-end ps-0">
                                     {{-- <button class="btn btn-sm btn-falcon-warning" id="printButton" onclick="print()"><i
                                             class="fas fa-file-pdf"></i></button> --}}
-                                    <button class="btn btn-sm btn-falcon-success" id="button"
-                                        onclick="htmlTableToExcel('xlsx')"><i class="fas fa-file-excel"></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body px-0 pt-0">
-                            <table id="tblToExcl" class="table mb-0 data-table fs--1"
-                                data-options='{"paging":false,"scrollY":"1000px","searching":false,"scrollCollapse":true,"fixedColumns":{"left":2},"scrollX":true}'>
-                                <thead class="bg-200 text-900">
-                                    <tr>
-                                        <th style="width: 80px" class="sort pe-1 align-middle white-space-nowrap">ID</th>
-                                        <th style="width: 100px" class="sort pe-1 align-middle  white-space-nowrap">Karyawan
-                                        </th>
-                                        @if ($per->total == 28)
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                1
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                2
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                3
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                4
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                5
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                6
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                7
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                8
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                9
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                10
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                11
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                12
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                13
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                14
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                15
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                16
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                17
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                18
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                19
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                10
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                21
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                22
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                23
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                24
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                25
-                                            </td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                26
-                                            </td>
-                                            <td
-                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                27
-                                            </td>
-                                            <td
-                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                28
-                                            </td>
-                                        @else
-                                            @if ($per->total == 29)
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    1
+                            <div id="tableExample3"
+                                data-list='{"valueNames":["id","nik","no","tgl","nama","jab","tipe","kimper","tgl2","agama","status"],"page":10,"pagination":true,"filter":{"key":"jab"}}'>
+                                <div class="row mt-2 ms-3 mb-2 g-0 flex-between-left">
+                                    <div class="col-sm-3">
+                                        <form>
+                                            <div class="input-group"><input
+                                                    class="form-control form-control-sm shadow-none search" type="search"
+                                                    placeholder="Pencarian..." aria-label="search" />
+                                            </div>
+                                        </form>
+                                    </div>&nbsp;
+                                    <div class="col-sm-3">
+                                        <button class="btn btn-sm btn-falcon-success" id="button"
+                                            onclick="htmlTableToExcel('xlsx')"><i class="fas fa-file-excel"></i></button>
+                                    </div>&nbsp;
+                                </div>
+                                <div class="table-responsive scrollbar">
+                                    <table id="tblToExcl"
+                                        class="table table-sm table-striped table-bordered mb-0 fs--1 overflow-hidden">
+                                        <thead class="bg-200 text-800">
+                                            <tr class="text-center">
+                                                <td style="min-width: 100px" class="sort align-middle white-space-nowrap"
+                                                    data-sort="id">
+                                                    NIK
                                                 </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    2
+                                                <td style="min-width: 200px" class="sort align-middle white-space-nowrap"
+                                                    data-sort="nama">
+                                                    Nama
                                                 </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    3
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    4
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    5
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    6
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    7
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    8
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    9
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    10
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    11
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    12
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    13
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    14
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    15
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    16
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    17
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    18
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    19
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    20
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    21
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    22
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    23
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    24
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    25
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    26
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    27
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    28
-                                                </td>
-                                                <td
-                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                    29
-                                                </td>
-                                            @else
-                                                @if ($per->total == 30)
+                                                @if ($per->total == 28)
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        1</td>
+                                                        1
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        2</td>
+                                                        2
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        3</td>
+                                                        3
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        4</td>
+                                                        4
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        5</td>
+                                                        5
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        6</td>
+                                                        6
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        7</td>
+                                                        7
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        8</td>
+                                                        8
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        9</td>
+                                                        9
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        10</td>
+                                                        10
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        11</td>
+                                                        11
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        12</td>
+                                                        12
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        13</td>
+                                                        13
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        14</td>
+                                                        14
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        15</td>
+                                                        15
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        16</td>
+                                                        16
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        17</td>
+                                                        17
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        18</td>
+                                                        18
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        19</td>
+                                                        19
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        20</td>
+                                                        10
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        21</td>
+                                                        21
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        22</td>
+                                                        22
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        23</td>
+                                                        23
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        24</td>
+                                                        24
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        25</td>
+                                                        25
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        26</td>
+                                                        26
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        27</td>
+                                                        27
+                                                    </td>
                                                     <td
                                                         class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        28</td>
-                                                    <td
-                                                        class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        29</td>
-                                                    <td
-                                                        class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        30</td>
+                                                        28
+                                                    </td>
                                                 @else
-                                                    @if ($per->total == 31)
+                                                    @if ($per->total == 29)
                                                         <td
                                                             class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
                                                             1
@@ -555,74 +392,304 @@
                                                             class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
                                                             29
                                                         </td>
-                                                        <td
-                                                            class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                            30
-                                                        </td>
-                                                        <td
-                                                            class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                            31
-                                                        </td>
                                                     @else
+                                                        @if ($per->total == 30)
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                1</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                2</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                3</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                4</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                5</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                6</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                7</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                8</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                9</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                10</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                11</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                12</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                13</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                14</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                15</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                16</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                17</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                18</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                19</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                20</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                21</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                22</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                23</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                24</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                25</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                26</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                27</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                28</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                29</td>
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                30</td>
+                                                        @else
+                                                            @if ($per->total == 31)
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    1
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    2
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    3
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    4
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    5
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    6
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    7
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    8
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    9
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    10
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    11
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    12
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    13
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    14
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    15
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    16
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    17
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    18
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    19
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    20
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    21
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    22
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    23
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    24
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    25
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    26
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    27
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    28
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    29
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    30
+                                                                </td>
+                                                                <td
+                                                                    class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                    31
+                                                                </td>
+                                                            @else
+                                                            @endif
+                                                        @endif
                                                     @endif
                                                 @endif
-                                            @endif
-                                        @endif
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($kar as $res)
-                                        <tr id="index_{{ $res->id }}" class="btn-reveal-trigger">
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-black">
-                                                {{ $res->username }}</td>
-                                            <td class="align-middle white-space-nowrap fw-semi-bold text-black">
-                                                {{ $res->name }}</td>
-                                            @foreach ($res->absensi_ as $item)
-                                                @if ($item->periode_id == $per->id)
-                                                    <td
-                                                        class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
-                                                        @if ($item->status == 8)
-                                                            <span class="badge bg-light text-500">-</span>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-posts" class="list">
+                                            @foreach ($kar as $res)
+                                                <tr id="" class="btn-reveal-trigger text-1000 fw-semi-bold">
+                                                    <td class="align-middle text-1000 white-space-nowrap id">
+                                                        @if ($res->username)
+                                                            {{ $res->username }}
                                                         @else
-                                                            @if ($item->status == 7)
-                                                                <span class="badge bg-danger">A</span>
-                                                            @else
-                                                                @if ($item->status == 6)
-                                                                    <span class="badge bg-warning">C</span>
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td class="align-middle text-1000 white-space-nowrap nama">
+                                                        @if ($res->name)
+                                                            {{ $res->name }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    @foreach ($res->absensi_ as $item)
+                                                        @if ($item->periode_id == $per->id)
+                                                            <td
+                                                                class="align-middle white-space-nowrap fw-semi-bold text-center text-black">
+                                                                @if ($item->status == 8)
+                                                                    <span class="badge bg-light text-500">-</span>
                                                                 @else
-                                                                    @if ($item->status == 5)
-                                                                        <span class="badge bg-info">I</span>
+                                                                    @if ($item->status == 7)
+                                                                        <span class="badge bg-danger">A</span>
                                                                     @else
-                                                                        @if ($item->status == 4)
-                                                                            <span class="badge bg-info">N</span>
+                                                                        @if ($item->status == 6)
+                                                                            <span class="badge bg-warning">C</span>
                                                                         @else
-                                                                            @if ($item->status == 3)
-                                                                                <span class="badge bg-secondary">S</span>
+                                                                            @if ($item->status == 5)
+                                                                                <span class="badge bg-info">I</span>
                                                                             @else
-                                                                                @if ($item->status == 2)
-                                                                                    <span
-                                                                                        class="badge bg-secondary">T</span>
+                                                                                @if ($item->status == 4)
+                                                                                    <span class="badge bg-info">N</span>
                                                                                 @else
-                                                                                    @if ($item->status == 1)
+                                                                                    @if ($item->status == 3)
                                                                                         <span
-                                                                                            class="badge bg-success">H</span>
+                                                                                            class="badge bg-secondary">S</span>
                                                                                     @else
+                                                                                        @if ($item->status == 2)
+                                                                                            <span
+                                                                                                class="badge bg-secondary">T</span>
+                                                                                        @else
+                                                                                            @if ($item->status == 1)
+                                                                                                <span
+                                                                                                    class="badge bg-success">H</span>
+                                                                                            @else
+                                                                                            @endif
+                                                                                        @endif
                                                                                     @endif
                                                                                 @endif
                                                                             @endif
                                                                         @endif
                                                                     @endif
                                                                 @endif
-                                                            @endif
+                                                            </td>
                                                         @endif
-                                                    </td>
-                                                @endif
+                                                    @endforeach
+                                                </tr>
                                             @endforeach
-
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- <div class="d-flex justify-content-center mt-3 mb-3"><button
+                                        class="btn btn-sm btn-falcon-default me-1" type="button" title="Previous"
+                                        data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
+                                    <ul class="pagination mb-0"></ul><button class="btn btn-sm btn-falcon-default ms-1"
+                                        type="button" title="Next" data-list-pagination="next"><span
+                                            class="fas fa-chevron-right">
+                                        </span></button>
+                                </div> --}}
+                            </div>
                         </div>
                         <div class="card-footer bg-light d-flex flex-between-center py-2">
                             {{-- // --}}
@@ -641,16 +708,16 @@
                         <div class="col-auto"> <span class="badge bg-warning">C</span><span class="text-1000 fs--1">
                                 Cuti</span></div>
                         <div class="col-auto"> <span class="badge bg-info">I</span><span class="text-1000 fs--1"> Izin
-                                Disertai Keterangan</span></div>
-                        <div class="col-auto"> <span class="badge bg-info">N</span><span class="text-1000 fs--1"> Izin
+                            </span></div>
+                        {{-- <div class="col-auto"> <span class="badge bg-info">N</span><span class="text-1000 fs--1"> Izin
                                 Tanpa
-                                Keterangan</span></div>
+                                Keterangan</span></div> --}}
                         <div class="col-auto"> <span class="badge bg-secondary">S</span><span class="text-1000 fs--1">
                                 Sakit
-                                Disertai Keterangan</span></div>
-                        <div class="col-auto"> <span class="badge bg-secondary">T</span><span class="text-1000 fs--1">
+                            </span></div>
+                        {{-- <div class="col-auto"> <span class="badge bg-secondary">T</span><span class="text-1000 fs--1">
                                 Sakit
-                                Tanpa Keterangan</span></div>
+                                Tanpa Keterangan</span></div> --}}
                     </div>
                 </div>
             </div>

@@ -147,7 +147,7 @@
                                 data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <h5>Ente Yakin, Bende Ni Mau di Generate?</h5>
+                            <h5>Anda Yakin, Bende Ni Mau di Generate?</h5>
                             <input type="hidden" name="kode_unik" value="{{ $cek->id }}{{ $asu->id }}">
                             <input type="hidden" name="master_id" value="{{ $cek->id }}">
                             <input type="hidden" name="kar_id" value="{{ $asu->id }}">
@@ -180,7 +180,7 @@
                             data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <h5>Ente Yakin, Bende Ni Mau di Generate?</h5>
+                        <h5>Anda Yakin, Bende Ni Mau di Generate?</h5>
                         @if ($per->total == 28)
                             <form action="{{ route('kal.gen') }}" method="post">
                                 @csrf

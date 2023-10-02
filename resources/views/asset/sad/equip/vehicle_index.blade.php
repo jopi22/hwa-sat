@@ -70,19 +70,9 @@
                                     type="button"><span data-fa-transform="shrink-3" class="fas fa-plus"></span>
                                 </button></a>
                             <div class="dropdown font-sans-serif d-inline-block">
-                                <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                    type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="fas fa-print"></i></button>
-                                <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                    <a target="_blank" class="dropdown-item text-success"
-                                        href="{{ route('vehicle.p.excel', Auth::user()->id) }}"><i class="fas fa-file-excel"></i>
-                                        Print Excel
-                                    </a>
-                                    <a target="_blank" class="dropdown-item text-warning"
-                                        href="{{ route('vehicle.p.pdf', Auth::user()->id) }}"><i class="fas fa-file-pdf"></i>
-                                        Print PDF
-                                    </a>
-                                </div>
+                                <a target="_blank"
+                                href="{{ route('vehicle.p.excel', Auth::user()->id) }}"><button class="btn btn-falcon-default btn-sm mx-2"><i class="fas fa-print"></i></button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -103,15 +93,10 @@
                     <select class="form-select form-select-sm" aria-label="Bulk actions"
                         data-list-filter="data-list-filter">
                         <option selected="" value="">Filter: Tipe</option>
-                        <option value="Excavator">Excavator</option>
-                        <option value="Vibro">Vibro</option>
-                        <option value="Bulldozer">Bulldozer</option>
                         <option value="Dump Truck">Dump Truck</option>
                         <option value="Pick Up">Pick Up</option>
                         <option value="Truck Loader">Truck Loader</option>
                         <option value="Truck Tangki">Truck Tangki</option>
-                        <option value="Peralatan Las">Peralatan Las</option>
-                        <option value="Kompresor">Kompresor</option>
                     </select>
                 </div>&nbsp;
             </div>

@@ -84,23 +84,9 @@
                         <a href="{{ route('akun.g') }}"><button class="btn btn-sm btn-falcon-default mx-2"
                                 type="button"><span data-fa-transform="shrink-3" class="fas fa-unlock-alt"></span>
                             </button></a>
-                        <div class="dropdown font-sans-serif d-inline-block">
-                            <button class="btn btn-sm btn-falcon-default mx-2 dropdown-toggle" id="dropdownMenuButton"
-                                type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    class="fas fa-print"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-success" target="_blank"
-                                    href="{{ route('kar.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"><i
-                                        class="fas fa-file-excel"></i>
-                                    Print Excel
-                                </a>
-                                <a class="dropdown-item text-warning" target="_blank"
-                                    href="{{ route('kar.p.pdf', Crypt::EncryptString(Auth::user()->id)) }}"><i
-                                        class="fas fa-file-pdf"></i>
-                                    Print PDF
-                                </a>
-                            </div>
-                        </div>
+                        <a target="_blank" href="{{ route('kar.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"><button class="btn btn-sm btn-falcon-default mx-2"
+                                type="button"><span data-fa-transform="shrink-3" class="fas fa-print"></span>
+                            </button></a>
                     </div>
                 </div>
             </div>

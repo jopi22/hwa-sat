@@ -70,9 +70,17 @@
                             <div class="col-auto col-sm-3 mb-3">
                                 <form action="{{ route('abs.f') }}" class="form-inline" method="GET">
                                     <div class="input-group">
-                                        <input class="form-control datetimepicker form-control-sm shadow-none"
-                                            name="search" id="start-date" type="text" placeholder="Cari Tanggal"
-                                            data-options='{"dateFormat":"d-m-Y","disableMobile":true}' />
+                                        {{-- <input class="form-control datetimepicker form-control-sm shadow-none"
+                                            name="search" id="start-date" type="text" value="{{ date('d-m-Y') }}" placeholder="Cari Tanggal"
+                                            data-options='{"dateFormat":"d-m-Y","disableMobile":true}' /> --}}
+                                        <select required class="form-control form-control-sm" name="search" type="text"
+                                            name="absensi_id[]" id="" style="min-width:150px">
+                                            <option></option>
+                                            @foreach ($tgl_list as $item)
+                                                <option class="text-left" value="{{ $item->tgl }}">
+                                                    {{ $item->tgl }}</option>
+                                            @endforeach
+                                        </select>
                                         <button type="submit" class="input-group-text bg-200"><i
                                                 class="fa fa-search fs--1 text-success"></i></button>
                                     </div>
@@ -81,7 +89,7 @@
                             <div class="col-auto col-sm-3 mb-3">
                                 <form>
                                     <div class="input-group"><input class="form-control form-control-sm shadow-none search"
-                                            type="search" placeholder="Cari Nama & Id Karyawan" aria-label="search" />
+                                            type="search" placeholder="Cari Nama & NIK" aria-label="search" />
                                     </div>
                                 </form>
                             </div>&nbsp;
@@ -127,9 +135,9 @@
                                                             <option value="{{ $res->status }}">
                                                                 {{ $res->status_absensi_->status }}</option>
                                                             <option value="1">Hadir</option>
-                                                            <option value="7">Alpha / AFK</option>
-                                                            <option value="2">Sakit</option>
-                                                            <option value="4">Izin</option>
+                                                            <option value="7">Alpha</option>
+                                                            {{-- <option value="2">Sakit</option>
+                                                            <option value="4">Izin</option> --}}
                                                         </select>
                                                     </td>
                                                     <td class="name text-1000 fw-semi-bold align-middle">

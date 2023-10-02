@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('judul')
-    Performa Hours Meter | HWA &bull; SAT
+    Rekap Performa Hours Meter | HWA &bull; SAT
 @endsection
 
 @section('sad_menu')
@@ -42,7 +42,7 @@
                         <div class="ms-n3">
                             <h6 class="mb-1 text-primary"><i class="fas fa-truck-monster"></i> Rental Performance <span
                                     class="text-info">{{ $master->created_at->format('F Y') }}</span></h6>
-                            <h4 class="mb-0 text-primary fw-bold">Performance Hours Meter
+                            <h4 class="mb-0 text-primary fw-bold">Rekap Performance Hours Meter
                                 <span class="text-info fw-medium"></span>
                             </h4>
                         </div>
@@ -77,8 +77,8 @@
                                     <div class="btn-group  btn-group-sm mx-2" role="group">
                                         <a href="{{ route('hm.p.excel', Crypt::EncryptString(Auth::user()->id)) }}"
                                             target="_blank" rel="noopener noref errer">
-                                            <button class="btn btn-sm btn-falcon-success mx-2"><i
-                                                    class="fas fa-file-excel"></i>
+                                            <button class="btn btn-sm btn-falcon-default mx-2"><i
+                                                    class="fas fa-print"></i>
                                             </button>
                                         </a>
                                     </div>

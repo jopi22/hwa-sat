@@ -45,8 +45,7 @@ class KaryawanController extends Controller
         $master = Master::where('status', 'Present')->count();
         $kar = User::Find($decryptID);
         $jab = Jabatan::all();
-        $kar_list = User::where('status', '<>', 'Hidden')
-            ->where('status', '<>', 'Trash')
+        $kar_list = User::where('status', 'Aktif')
             ->get();
         $cek = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Trash')
@@ -86,6 +85,135 @@ class KaryawanController extends Controller
     }
 
 
+    // public function kar_store(Request $request)
+    // {
+    //     $messages = [
+    //         'image.max' => 'Photo Melebihi Limit 500kb!',
+    //         'file_sim_a.max' => 'Sim A Melebihi Limit 500kb!',
+    //         'file_sim_b1.max' => 'Sim B1 Melebihi Limit 500kb!',
+    //         'file_sim_b2.max' => 'Sim B2 Melebihi Limit 500kb!',
+    //         'file_sertifikat.max' => 'Sertifikat Melebihi Limit 500kb!',
+    //         'name.required' => 'Nama Harus Diisi',
+    //         'no_hp.required' => 'NIK Harus Diisi',
+    //         'nomor_hp.required' => 'Nomor Harus Diisi',
+    //         'tipe_gaji.required' => 'Tipe Income Harus Diisi',
+    //         'tgl_gabung.required' => 'Tanggal Bergabung Harus Diisi',
+    //     ];
+    //     $this->validate($request, [
+    //         'image' => 'max:500',
+    //         'file_sim_a' => 'max:500',
+    //         'file_sim_b1' => 'max:500',
+    //         'file_sim_b2' => 'max:500',
+    //         'file_sertifikat' => 'max:500',
+    //         'name' => 'required',
+    //         'no_hp' => 'required',
+    //         'nomor_hp' => 'required',
+    //         'jabatan' => 'required',
+    //         'tipe_gaji' => 'required',
+    //         'tgl_gabung' => 'required',
+    //     ], $messages);
+
+    //     // dd($request->all());
+
+    //     if ($request->has('image')) {
+    //         $image = $request->image;
+    //         $new_image = 'image' . time() . $image->getClientOriginalName();
+    //         $image->move('file/karyawan/avatar/', $new_image);
+    //         User::create([
+    //             'name' => $request->name,
+    //             'tgl_lahir' => $request->tgl_lahir,
+    //             'email' => $request->email,
+    //             'level' => $request->level,
+    //             'username' => $request->no_hp,
+    //             'alamat' => $request->alamat,
+    //             'jenis_kelamin' => $request->jenis_kelamin,
+    //             'tipe_gaji' => $request->tipe_gaji,
+    //             'no_ktp' => $request->no_ktp,
+    //             'no_sim_a' => $request->no_sim_a,
+    //             'no_sim_b1' => $request->no_sim_b1,
+    //             'no_sim_b2' => $request->no_sim_b2,
+    //             'no_bpjs' => $request->no_bpjs,
+    //             'no_rek' => $request->no_rek,
+    //             'nomor_hp' => $request->nomor_hp,
+    //             'no_hp' => $request->no_hp,
+    //             'bank' => $request->bank,
+    //             'tgl_gabung' => $request->tgl_gabung,
+    //             'tgl_resign' => $request->tgl_resign,
+    //             'status' => $request->status,
+    //             'asal' => $request->asal,
+    //             'password' => bcrypt($request->no_hp),
+    //             'password_view' => $request->no_hp,
+    //             'jabatan' => $request->jabatan,
+    //             'agama' => $request->agama,
+    //             'kimper' => $request->kimper,
+    //             'ed_kimper' => $request->ed_kimper,
+    //             'image' => 'file/karyawan/avatar/' . $new_image,
+    //         ]);
+
+    //         // $image = $request->image;
+    //         // $new_image = $kar->name . time() . $image->getClientOriginalName();
+    //         // $image->move('file/karyawan/avatar/', $new_image);
+    //         // $kar_data = [
+    //         //     'image' => 'file/karyawan/avatar/' . $new_image,
+    //         // ];
+    //         // $kar->update($kar_data);
+    //     }
+
+    //     $kar_data = [
+    //         'name' => $request->name,
+    //         'tgl_lahir' => $request->tgl_lahir,
+    //         'email' => $request->email,
+    //         'alamat' => $request->alamat,
+    //         'jenis_kelamin' => $request->jenis_kelamin,
+    //         'tipe_gaji' => $request->tipe_gaji,
+    //         'no_ktp' => $request->no_ktp,
+    //         'no_sim_a' => $request->no_sim_a,
+    //         'no_sim_b1' => $request->no_sim_b1,
+    //         'no_sim_b2' => $request->no_sim_b2,
+    //         'no_bpjs' => $request->no_bpjs,
+    //         'no_rek' => $request->no_rek,
+    //         'bank' => $request->bank,
+    //         'tgl_gabung' => $request->tgl_gabung,
+    //         'tgl_resign' => $request->tgl_resign,
+    //         'status' => $request->status,
+    //         'asal' => $request->asal,
+    //         'jabatan' => $request->jabatan,
+    //         'agama' => $request->agama,
+    //         'kimper' => $request->kimper,
+    //         'ed_kimper' => $request->ed_kimper,
+    //     ];
+    //     // dd($request->all());
+    //     // $date = date("YdmHi");
+    //     // $user_id = auth()->user()->id;
+    //     // $token = $user_id . $date;
+    //     // foreach ($request->name as $key => $value) {
+    //     //     $kar['name'] = $request->name[$key];
+    //     //     $kar['username'] = $request->username[$key];
+    //     //     $kar['no_hp'] = $request->username[$key];
+    //     //     $kar['tipe_gaji'] = $request->tipe_gaji[$key];
+    //     //     $kar['jabatan'] = $request->jabatan[$key];
+    //     //     $kar['tgl_gabung'] = $request->tgl_gabung[$key];
+    //     //     $kar['status'] = $request->status[$key];
+    //     //     $kar['kimper'] = $request->kimper[$key];
+    //     //     $kar['ed_kimper'] = $request->ed_kimper[$key];
+    //     //     $kar['agama'] = $request->agama[$key];
+    //     //     $kar['nama_rek'] = $request->nama_rek[$key];
+    //     //     $kar['no_rek'] = $request->no_rek[$key];
+    //     //     $kar['bank'] = $request->bank[$key];
+    //     //     $kar['site_id'] = $request->site_id[$key];
+    //     //     $kar['password_view'] = $request->username[$key];
+    //     //     $kar['level'] = $request->level[$key];
+    //     //     $kar['password'] = bcrypt($request->username[$key]);
+    //     //     $kar['token'] = $token;
+    //     //     $kar['author'] = Auth::user()->id;
+    //     //     User::create($kar);
+    //     // }
+    //     // LogActivity::addToLog('Menambahkan Data Karyawan');
+
+    //     return redirect()->route('kar.g')->with('success', 'Data Karyawan Berhasil di Tambahkan');
+    // }
+
+
     public function kar_store(Request $request)
     {
         // dd($request->all());
@@ -95,6 +223,7 @@ class KaryawanController extends Controller
         foreach ($request->name as $key => $value) {
             $kar['name'] = $request->name[$key];
             $kar['username'] = $request->username[$key];
+            $kar['no_ktp'] = $request->no_ktp[$key];
             $kar['no_hp'] = $request->username[$key];
             $kar['tipe_gaji'] = $request->tipe_gaji[$key];
             $kar['jabatan'] = $request->jabatan[$key];

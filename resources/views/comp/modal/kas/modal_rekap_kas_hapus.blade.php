@@ -11,7 +11,7 @@
                         data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body py-4 px-5">
-                    <h5 class="text text-900">Ente Yakin, Untuk
+                    <h5 class="text text-900">Anda Yakin, Untuk
                         Menghapus Data Ini ?</h5>
                 </div>
                 <div class="modal-footer">

@@ -62,8 +62,12 @@
                                     </select>
                                 </td>
                     <td class="align-middle white-space-nowrap">
-                        <input required type="text" maxlength="50" class="form-control "
-                            name="brand[]">
+                        <select required name="brand[]" class="form-control ">
+                                        <option></option>
+                                        <option value="Hino">Hino</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Mitsubishi">Mitsubishi</option>
+                                    </select>
                     </td>
 <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="50" class="form-control "
@@ -240,8 +244,12 @@
                                     </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
-                                    <input required type="text" maxlength="50" class="form-control "
-                                        name="brand[]">
+                                    <select required name="brand[]" class="form-control ">
+                                        <option></option>
+                                        <option value="Hino">Hino</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Mitsubishi">Mitsubishi</option>
+                                    </select>
                                 </td>
                                 <td class="align-middle white-space-nowrap">
                                     <input required type="text" maxlength="50" class="form-control "

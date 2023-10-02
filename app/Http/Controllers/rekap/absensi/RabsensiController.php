@@ -24,21 +24,24 @@ class RabsensiController extends Controller
         $master = Master::where('status', 'Validasi')->first();
         $cek = $master;
         $abs = Absensi::where('periode_id', $master->id)->take(0)->get();
-        return view('author.sad.rekap.abs.kelola_absensi', compact('abs','nav', 'kar', 'master', 'cek'));
+        $tgl_list = Absensi::where('periode_id', $master->id)
+            ->where('karyawan', Auth::user()->id)
+            ->get();
+        return view('author.sad.rekap.abs.kelola_absensi', compact('abs','nav','tgl_list', 'kar', 'master', 'cek'));
     }
 
 
     public function absSearch(Request $request)
     {
         $nav = Navigator::where('karyawan', Auth::user()->id)->get();
-        $validator = Validator::make($request->all(), [
-            'search'     => 'required',
-        ], [
-            'required' => 'Tidak Boleh Kosong',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+        // $validator = Validator::make($request->all(), [
+        //     'search'     => 'required',
+        // ], [
+        //     'required' => 'Tidak Boleh Kosong',
+        // ]);
+        // if ($validator->fails()) {
+        //     return response()->json($validator->errors(), 422);
+        // }
         $kar = User::where('status', '<>', 'Hidden')
             ->where('status', '<>', 'Delete')
             ->get();
@@ -51,8 +54,10 @@ class RabsensiController extends Controller
         } else {
             $abs = Absensi::latest()->take(0)->get();
         }
-
-        return view('asset.sad.rekap.absensi.kelola_absensi', compact('abs','nav', 'master', 'kar', 'cek'));
+        $tgl_list = Absensi::where('periode_id', $master->id)
+        ->where('karyawan', Auth::user()->id)
+        ->get();
+        return view('asset.sad.rekap.absensi.kelola_absensi', compact('abs','nav','tgl_list', 'master', 'kar', 'cek'));
     }
 
 
